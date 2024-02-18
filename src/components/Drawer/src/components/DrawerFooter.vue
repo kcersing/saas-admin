@@ -24,41 +24,43 @@
     </template>
   </div>
 </template>
-<script lang="ts" setup>
-  import type { CSSProperties } from 'vue';
-  import { computed } from 'vue';
-  import { useDesign } from '@/hooks/web/useDesign';
-  import { footerProps } from '../props';
+<script lang="ts">
+  import type { CSSProperties } from 'vue'
+  import { defineComponent, computed } from 'vue'
+  import { useDesign } from '/@/hooks/web/useDesign'
 
-  defineOptions({ name: 'BasicDrawerFooter' });
-
-  const props = defineProps({
-    ...footerProps,
-    height: {
-      type: String,
-      default: '60px',
+  import { footerProps } from '../props'
+  export default defineComponent({
+    name: 'BasicDrawerFooter',
+    props: {
+      ...footerProps,
+      height: {
+        type: String,
+        default: '60px',
+      },
     },
-  });
+    emits: ['ok', 'close'],
+    setup(props, { emit }) {
+      const { prefixCls } = useDesign('basic-drawer-footer')
 
-  const emit = defineEmits(['ok', 'close']);
+      const getStyle = computed((): CSSProperties => {
+        const heightStr = `${props.height}`
+        return {
+          height: heightStr,
+          lineHeight: `calc(${heightStr} - 1px)`,
+        }
+      })
 
-  const { prefixCls } = useDesign('basic-drawer-footer');
+      function handleOk() {
+        emit('ok')
+      }
 
-  const getStyle = computed((): CSSProperties => {
-    const heightStr = `${props.height}`;
-    return {
-      height: heightStr,
-      lineHeight: `calc(${heightStr} - 1px)`,
-    };
-  });
-
-  function handleOk() {
-    emit('ok');
-  }
-
-  function handleClose() {
-    emit('close');
-  }
+      function handleClose() {
+        emit('close')
+      }
+      return { handleOk, prefixCls, handleClose, getStyle }
+    },
+  })
 </script>
 
 <style lang="less">
@@ -67,12 +69,11 @@
   .@{prefix-cls} {
     position: absolute;
     bottom: 0;
-    left: 0;
     width: 100%;
     padding: 0 12px 0 20px;
-    border-top: 1px solid @border-color-base;
-    background-color: @component-background;
     text-align: right;
+    background-color: @component-background;
+    border-top: 1px solid @border-color-base;
 
     > * {
       margin-right: 8px;

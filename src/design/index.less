@@ -1,14 +1,11 @@
-@import 'color.less';
 @import 'transition/index.less';
 @import 'var/index.less';
 @import 'public.less';
 @import 'ant/index.less';
-@import 'theme.less';
-@import 'entry.css';
+@import './theme.less';
 
 input:-webkit-autofill {
-  box-shadow: 0 0 0 1000px transparent inset;
-  -webkit-text-fill-color: @text-color-base;
+  box-shadow: 0 0 0 1000px white inset !important;
 }
 
 :-webkit-autofill {
@@ -22,10 +19,10 @@ html {
 
 html,
 body {
-  position: relative;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: visible;
+  overflow-x: hidden;
 
   &.color-weak {
     filter: invert(80%);
@@ -44,11 +41,4 @@ div,
 svg,
 span {
   outline: none;
-}
-
-// 保持 和 windi 一样的全局样式，减少升级带来的影响
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
 }

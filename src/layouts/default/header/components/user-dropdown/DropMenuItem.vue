@@ -1,26 +1,32 @@
 <template>
-  <Menu.Item :key="itemKey">
+  <MenuItem :key="itemKey">
     <span class="flex items-center">
       <Icon :icon="icon" class="mr-1" />
       <span>{{ text }}</span>
     </span>
-  </Menu.Item>
+  </MenuItem>
 </template>
-<script lang="ts" setup>
-  import { Menu } from 'ant-design-vue';
-  import { computed, getCurrentInstance } from 'vue';
-  import Icon from '@/components/Icon/Icon.vue';
-  import { propTypes } from '@/utils/propTypes';
+<script lang="ts">
+  import { Menu } from 'ant-design-vue'
 
-  defineOptions({ name: 'DropdownMenuItem' });
+  import { computed, defineComponent, getCurrentInstance } from 'vue'
 
-  const props = defineProps({
-    // eslint-disable-next-line
-    key: propTypes.string,
-    text: propTypes.string,
-    icon: propTypes.string,
-  });
+  import Icon from '/@/components/Icon/index'
+  import { propTypes } from '/@/utils/propTypes'
 
-  const instance = getCurrentInstance();
-  const itemKey = computed(() => props.key || instance?.vnode?.props?.key);
+  export default defineComponent({
+    name: 'DropdownMenuItem',
+    components: { MenuItem: Menu.Item, Icon },
+    props: {
+      // eslint-disable-next-line
+      key: propTypes.string,
+      text: propTypes.string,
+      icon: propTypes.string,
+    },
+    setup(props) {
+      const instance = getCurrentInstance()
+      const itemKey = computed(() => props.key || instance?.vnode?.props?.key)
+      return { itemKey }
+    },
+  })
 </script>

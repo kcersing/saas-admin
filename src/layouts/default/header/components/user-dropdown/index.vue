@@ -3,7 +3,7 @@
     <span :class="[prefixCls, `${prefixCls}--${theme}`]" class="flex">
       <img :class="`${prefixCls}__header`" :src="getUserInfo.avatar" />
       <span :class="`${prefixCls}__info hidden md:block`">
-        <span :class="`${prefixCls}__name`" class="truncate">
+        <span :class="`${prefixCls}__name  `" class="truncate">
           {{ getUserInfo.realName }}
         </span>
       </span>
@@ -17,19 +17,7 @@
           icon="ion:document-text-outline"
           v-if="getShowDoc"
         />
-        <Menu.Divider v-if="getShowDoc" />
-        <MenuItem
-          v-if="getShowApi"
-          key="api"
-          :text="t('layout.header.dropdownChangeApi')"
-          icon="ant-design:swap-outlined"
-        />
-        <MenuItem
-          v-if="getUseLockPage"
-          key="lock"
-          :text="t('layout.header.tooltipLock')"
-          icon="ion:lock-closed-outline"
-        />
+        <MenuDivider v-if="getShowDoc" />
         <MenuItem
           key="logout"
           :text="t('layout.header.dropdownItemLoginOut')"
@@ -38,95 +26,97 @@
       </Menu>
     </template>
   </Dropdown>
-  <LockAction @register="register" />
-  <ChangeApi @register="registerApi" />
 </template>
-<script lang="ts" setup>
-  import { Dropdown, Menu } from 'ant-design-vue';
-  import type { MenuInfo } from 'ant-design-vue/lib/menu/src/interface';
-  import { computed } from 'vue';
-  import { DOC_URL } from '@/settings/siteSetting';
-  import { useUserStore } from '@/store/modules/user';
-  import { useHeaderSetting } from '@/hooks/setting/useHeaderSetting';
-  import { useI18n } from '@/hooks/web/useI18n';
-  import { useDesign } from '@/hooks/web/useDesign';
-  import { useModal } from '@/components/Modal';
-  import headerImg from '@/assets/images/header.jpg';
-  import { propTypes } from '@/utils/propTypes';
-  import { openWindow } from '@/utils';
-  import { createAsyncComponent } from '@/utils/factory/createAsyncComponent';
+<script lang="ts">
+  // components
+  import { Dropdown, Menu } from 'ant-design-vue'
+  import type { MenuInfo } from 'ant-design-vue/lib/menu/src/interface'
 
-  type MenuEvent = 'logout' | 'doc' | 'lock' | 'api';
+  import { defineComponent, computed } from 'vue'
 
-  const MenuItem = createAsyncComponent(() => import('./DropMenuItem.vue'));
-  const LockAction = createAsyncComponent(() => import('../lock/LockModal.vue'));
-  const ChangeApi = createAsyncComponent(() => import('../ChangeApi/index.vue'));
+  import { DOC_URL } from '/@/settings/siteSetting'
 
-  defineOptions({ name: 'UserDropdown' });
+  import { useUserStore } from '/@/store/modules/user'
+  import { useHeaderSetting } from '/@/hooks/setting/useHeaderSetting'
+  import { useI18n } from '/@/hooks/web/useI18n'
+  import { useDesign } from '/@/hooks/web/useDesign'
+  import { useModal } from '/@/components/Modal'
 
-  defineProps({
-    theme: propTypes.oneOf(['dark', 'light']),
-  });
+  import headerImg from '/@/assets/images/header.jpg'
+  import { propTypes } from '/@/utils/propTypes'
+  import { openWindow } from '/@/utils'
 
-  const { prefixCls } = useDesign('header-user-dropdown');
-  const { t } = useI18n();
-  const { getShowDoc, getUseLockPage, getShowApi } = useHeaderSetting();
-  const userStore = useUserStore();
+  import { createAsyncComponent } from '/@/utils/factory/createAsyncComponent'
 
-  const getUserInfo = computed(() => {
-    const { realName = '', avatar, desc } = userStore.getUserInfo || {};
-    return { realName, avatar: avatar || headerImg, desc };
-  });
+  type MenuEvent = 'logout' | 'doc'
 
-  const [register, { openModal }] = useModal();
-  const [registerApi, { openModal: openApiModal }] = useModal();
+  export default defineComponent({
+    name: 'UserDropdown',
+    components: {
+      Dropdown,
+      Menu,
+      MenuItem: createAsyncComponent(() => import('./DropMenuItem.vue')),
+      MenuDivider: Menu.Divider,
+    },
+    props: {
+      theme: propTypes.oneOf(['dark', 'light']),
+    },
+    setup() {
+      const { prefixCls } = useDesign('header-user-dropdown')
+      const { t } = useI18n()
+      const { getShowDoc } = useHeaderSetting()
+      const userStore = useUserStore()
 
-  function handleLock() {
-    openModal(true);
-  }
+      const getUserInfo = computed(() => {
+        const { realName = '', avatar, desc } = userStore.getUserInfo || {}
+        return { realName, avatar: avatar || headerImg, desc }
+      })
 
-  function handleApi() {
-    openApiModal(true, {});
-  }
+      const [register] = useModal()
 
-  //  login out
-  function handleLoginOut() {
-    userStore.confirmLoginOut();
-  }
+      //  login out
+      function handleLoginOut() {
+        userStore.confirmLoginOut()
+      }
 
-  // open doc
-  function openDoc() {
-    openWindow(DOC_URL);
-  }
+      // open doc
+      function openDoc() {
+        openWindow(DOC_URL)
+      }
 
-  function handleMenuClick(e: MenuInfo) {
-    switch (e.key as MenuEvent) {
-      case 'logout':
-        handleLoginOut();
-        break;
-      case 'doc':
-        openDoc();
-        break;
-      case 'lock':
-        handleLock();
-        break;
-      case 'api':
-        handleApi();
-        break;
-    }
-  }
+      function handleMenuClick(e: MenuInfo) {
+        switch (e.key as MenuEvent) {
+          case 'logout':
+            handleLoginOut()
+            break
+          case 'doc':
+            openDoc()
+            break
+        }
+      }
+
+      return {
+        prefixCls,
+        t,
+        getUserInfo,
+        handleMenuClick,
+        getShowDoc,
+        register,
+      }
+    },
+  })
 </script>
 <style lang="less">
   @prefix-cls: ~'@{namespace}-header-user-dropdown';
 
   .@{prefix-cls} {
-    align-items: center;
     height: @header-height;
     padding: 0 0 0 10px;
     padding-right: 10px;
     overflow: hidden;
     font-size: 12px;
     cursor: pointer;
+    align-items: center;
 
     img {
       width: 24px;

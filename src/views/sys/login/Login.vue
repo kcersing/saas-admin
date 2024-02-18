@@ -40,7 +40,6 @@
             <ForgetPasswordForm />
             <RegisterForm />
             <MobileForm />
-            <QrCodeForm />
           </div>
         </div>
       </div>
@@ -48,30 +47,30 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { AppDarkModeToggle, AppLocalePicker, AppLogo } from '@/components/Application';
-  import { useGlobSetting } from '@/hooks/setting';
-  import { useDesign } from '@/hooks/web/useDesign';
-  import { useI18n } from '@/hooks/web/useI18n';
-  import { useLocaleStore } from '@/store/modules/locale';
-  import { computed } from 'vue';
-  import ForgetPasswordForm from './ForgetPasswordForm.vue';
-  import LoginForm from './LoginForm.vue';
-  import MobileForm from './MobileForm.vue';
-  import QrCodeForm from './QrCodeForm.vue';
-  import RegisterForm from './RegisterForm.vue';
+  import { computed } from 'vue'
+  import { AppLogo } from '/@/components/Application'
+  import { AppLocalePicker, AppDarkModeToggle } from '/@/components/Application'
+  import LoginForm from './LoginForm.vue'
+  import ForgetPasswordForm from './ForgetPasswordForm.vue'
+  import RegisterForm from './RegisterForm.vue'
+  import MobileForm from './MobileForm.vue'
+  import { useGlobSetting } from '/@/hooks/setting'
+  import { useI18n } from '/@/hooks/web/useI18n'
+  import { useDesign } from '/@/hooks/web/useDesign'
+  import { useLocaleStore } from '/@/store/modules/locale'
 
   defineProps({
     sessionTimeout: {
       type: Boolean,
     },
-  });
+  })
 
-  const globSetting = useGlobSetting();
-  const { prefixCls } = useDesign('login');
-  const { t } = useI18n();
-  const localeStore = useLocaleStore();
-  const showLocale = localeStore.getShowPicker;
-  const title = computed(() => globSetting?.title ?? '');
+  const globSetting = useGlobSetting()
+  const { prefixCls } = useDesign('login')
+  const { t } = useI18n()
+  const localeStore = useLocaleStore()
+  const showLocale = localeStore.getShowPicker
+  const title = computed(() => globSetting?.title ?? '')
 </script>
 <style lang="less">
   @prefix-cls: ~'@{namespace}-login';
@@ -84,7 +83,7 @@
       background-color: @dark-bg;
 
       &::before {
-        background-image: url('@/assets/svg/login-bg-dark.svg');
+        background-image: url(/@/assets/svg/login-bg-dark.svg);
       }
 
       .ant-input,
@@ -92,7 +91,7 @@
         background-color: #232a3b;
       }
 
-      .ant-btn:not(.ant-btn-link, .ant-btn-primary) {
+      .ant-btn:not(.ant-btn-link):not(.ant-btn-primary) {
         border: 1px solid #4a5569;
       }
 
@@ -103,18 +102,18 @@
       .app-iconify {
         color: #fff;
       }
+    }
 
-      .ant-divider-inner-text {
-        color: @text-color-secondary;
-      }
+    input.fix-auto-fill,
+    .fix-auto-fill input {
+      -webkit-text-fill-color: #c9d1d9 !important;
+      box-shadow: inherit !important;
     }
   }
 
   .@{prefix-cls} {
     min-height: 100%;
     overflow: hidden;
-
-    /* stylelint-disable-next-line media-query-no-invalid */
     @media (max-width: @screen-xl) {
       background-color: #293146;
 
@@ -124,18 +123,17 @@
     }
 
     &::before {
-      content: '';
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       margin-left: -48%;
-      background-image: url('@/assets/svg/login-bg.svg');
-      background-repeat: no-repeat;
+      background-image: url(/@/assets/svg/login-bg.svg);
       background-position: 100%;
+      background-repeat: no-repeat;
       background-size: auto 100%;
-      /* stylelint-disable-next-line media-query-no-invalid */
+      content: '';
       @media (max-width: @screen-xl) {
         display: none;
       }
@@ -147,8 +145,8 @@
       height: 30px;
 
       &__title {
-        color: #fff;
         font-size: 16px;
+        color: #fff;
       }
 
       img {
@@ -163,8 +161,8 @@
         height: 80px;
 
         &__title {
-          color: #fff;
           font-size: 24px;
+          color: #fff;
         }
 
         img {
@@ -175,8 +173,8 @@
 
     &-sign-in-way {
       .anticon {
-        color: #888;
         font-size: 22px;
+        color: #888;
         cursor: pointer;
 
         &:hover {
@@ -187,19 +185,19 @@
 
     input:not([type='checkbox']) {
       min-width: 360px;
-      /* stylelint-disable-next-line media-query-no-invalid */
+
       @media (max-width: @screen-xl) {
         min-width: 320px;
       }
-      /* stylelint-disable-next-line media-query-no-invalid */
+
       @media (max-width: @screen-lg) {
         min-width: 260px;
       }
-      /* stylelint-disable-next-line media-query-no-invalid */
+
       @media (max-width: @screen-md) {
         min-width: 240px;
       }
-      /* stylelint-disable-next-line media-query-no-invalid */
+
       @media (max-width: @screen-sm) {
         min-width: 160px;
       }
@@ -207,6 +205,11 @@
 
     .@{countdown-prefix-cls} input {
       min-width: unset;
+    }
+
+    .ant-divider-inner-text {
+      font-size: 12px;
+      color: @text-color-secondary;
     }
   }
 </style>

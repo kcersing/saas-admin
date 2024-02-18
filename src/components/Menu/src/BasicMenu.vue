@@ -1,7 +1,7 @@
 <template>
   <Menu
-    :selectedKeys="menuState.selectedKeys"
-    :defaultSelectedKeys="menuState.defaultSelectedKeys"
+    :selectedKeys="selectedKeys"
+    :defaultSelectedKeys="defaultSelectedKeys"
     :mode="mode"
     :openKeys="getOpenKeys"
     :inlineIndent="inlineIndent"
@@ -17,133 +17,148 @@
     </template>
   </Menu>
 </template>
-<script lang="ts" setup>
-  import type { MenuState } from './types';
-  import { computed, unref, reactive, watch, toRefs, ref } from 'vue';
-  import { Menu, MenuProps } from 'ant-design-vue';
-  import BasicSubMenuItem from './components/BasicSubMenuItem.vue';
-  import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum';
-  import { useOpenKeys } from './useOpenKeys';
-  import { RouteLocationNormalizedLoaded, useRouter } from 'vue-router';
-  import { isFunction } from '@/utils/is';
-  import { basicProps } from './props';
-  import { useMenuSetting } from '@/hooks/setting/useMenuSetting';
-  import { REDIRECT_NAME } from '@/router/constant';
-  import { useDesign } from '@/hooks/web/useDesign';
-  import { getCurrentParentPath } from '@/router/menus';
-  import { listenerRouteChange } from '@/logics/mitt/routeChange';
-  import { getAllParentPath } from '@/router/helper/menuHelper';
+<script lang="ts">
+  import type { MenuState } from './types'
+  import { computed, defineComponent, unref, reactive, watch, toRefs, ref } from 'vue'
+  import { Menu } from 'ant-design-vue'
+  import BasicSubMenuItem from './components/BasicSubMenuItem.vue'
+  import { MenuModeEnum, MenuTypeEnum } from '/@/enums/menuEnum'
+  import { useOpenKeys } from './useOpenKeys'
+  import { RouteLocationNormalizedLoaded, useRouter } from 'vue-router'
+  import { isFunction } from '/@/utils/is'
+  import { basicProps } from './props'
+  import { useMenuSetting } from '/@/hooks/setting/useMenuSetting'
+  import { REDIRECT_NAME } from '/@/router/constant'
+  import { useDesign } from '/@/hooks/web/useDesign'
+  import { getCurrentParentPath } from '/@/router/menus'
+  import { listenerRouteChange } from '/@/logics/mitt/routeChange'
+  import { getAllParentPath } from '/@/router/helper/menuHelper'
 
-  defineOptions({ name: 'BasicMenu' });
+  export default defineComponent({
+    name: 'BasicMenu',
+    components: {
+      Menu,
+      BasicSubMenuItem,
+    },
+    props: basicProps,
+    emits: ['menuClick'],
+    setup(props, { emit }) {
+      const isClickGo = ref(false)
+      const currentActiveMenu = ref('')
 
-  const props = defineProps(basicProps);
+      const menuState = reactive<MenuState>({
+        defaultSelectedKeys: [],
+        openKeys: [],
+        selectedKeys: [],
+        collapsedOpenKeys: [],
+      })
 
-  const emit = defineEmits(['menuClick']);
+      const { prefixCls } = useDesign('basic-menu')
+      const { items, mode, accordion } = toRefs(props)
 
-  const isClickGo = ref(false);
-  const currentActiveMenu = ref('');
+      const { getCollapsed, getTopMenuAlign, getSplit } = useMenuSetting()
 
-  const menuState = reactive<MenuState>({
-    defaultSelectedKeys: [],
-    openKeys: [],
-    selectedKeys: [],
-    collapsedOpenKeys: [],
-  });
+      const { currentRoute } = useRouter()
 
-  const { prefixCls } = useDesign('basic-menu');
-  const { items, mode, accordion } = toRefs(props);
+      const { handleOpenChange, setOpenKeys, getOpenKeys } = useOpenKeys(
+        menuState,
+        items,
+        mode as any,
+        accordion,
+      )
 
-  const { getCollapsed, getTopMenuAlign, getSplit } = useMenuSetting();
+      const getIsTopMenu = computed(() => {
+        const { type, mode } = props
 
-  const { currentRoute } = useRouter();
+        return (
+          (type === MenuTypeEnum.TOP_MENU && mode === MenuModeEnum.HORIZONTAL) ||
+          (props.isHorizontal && unref(getSplit))
+        )
+      })
 
-  const { handleOpenChange, setOpenKeys, getOpenKeys } = useOpenKeys(
-    menuState,
-    items,
-    mode as any,
-    accordion,
-  );
+      const getMenuClass = computed(() => {
+        const align = props.isHorizontal && unref(getSplit) ? 'start' : unref(getTopMenuAlign)
+        return [
+          prefixCls,
+          `justify-${align}`,
+          {
+            [`${prefixCls}__second`]: !props.isHorizontal && unref(getSplit),
+            [`${prefixCls}__sidebar-hor`]: unref(getIsTopMenu),
+          },
+        ]
+      })
 
-  const getIsTopMenu = computed(() => {
-    const { type, mode } = props;
+      const getInlineCollapseOptions = computed(() => {
+        const isInline = props.mode === MenuModeEnum.INLINE
 
-    return (
-      (type === MenuTypeEnum.TOP_MENU && mode === MenuModeEnum.HORIZONTAL) ||
-      (props.isHorizontal && unref(getSplit))
-    );
-  });
+        const inlineCollapseOptions: { inlineCollapsed?: boolean } = {}
+        if (isInline) {
+          inlineCollapseOptions.inlineCollapsed = props.mixSider ? false : unref(getCollapsed)
+        }
+        return inlineCollapseOptions
+      })
 
-  const getMenuClass = computed(() => {
-    const align = props.isHorizontal && unref(getSplit) ? 'start' : unref(getTopMenuAlign);
-    return [
-      prefixCls,
-      `justify-${align}`,
-      {
-        [`${prefixCls}__second`]: !props.isHorizontal && unref(getSplit),
-        [`${prefixCls}__sidebar-hor`]: unref(getIsTopMenu),
-      },
-    ];
-  });
+      listenerRouteChange((route) => {
+        if (route.name === REDIRECT_NAME) return
+        handleMenuChange(route)
+        currentActiveMenu.value = route.meta?.currentActiveMenu as string
 
-  const getInlineCollapseOptions = computed(() => {
-    const isInline = props.mode === MenuModeEnum.INLINE;
+        if (unref(currentActiveMenu)) {
+          menuState.selectedKeys = [unref(currentActiveMenu)]
+          setOpenKeys(unref(currentActiveMenu))
+        }
+      })
 
-    const inlineCollapseOptions: { inlineCollapsed?: boolean } = {};
-    if (isInline) {
-      inlineCollapseOptions.inlineCollapsed = props.mixSider ? false : unref(getCollapsed);
-    }
-    return inlineCollapseOptions;
-  });
+      !props.mixSider &&
+        watch(
+          () => props.items,
+          () => {
+            handleMenuChange()
+          },
+        )
 
-  listenerRouteChange((route) => {
-    if (route.name === REDIRECT_NAME) return;
-    handleMenuChange(route);
-    currentActiveMenu.value = route.meta?.currentActiveMenu as string;
+      async function handleMenuClick(key) {
+        const { beforeClickFn } = props
+        if (beforeClickFn && isFunction(beforeClickFn)) {
+          const flag = await beforeClickFn(key)
+          if (!flag) return
+        }
+        emit('menuClick', key)
 
-    if (unref(currentActiveMenu)) {
-      menuState.selectedKeys = [unref(currentActiveMenu)];
-      setOpenKeys(unref(currentActiveMenu));
-    }
-  });
+        isClickGo.value = true
+        menuState.selectedKeys = [key]
+      }
 
-  !props.mixSider &&
-    watch(
-      () => props.items,
-      () => {
-        handleMenuChange();
-      },
-    );
+      async function handleMenuChange(route?: RouteLocationNormalizedLoaded) {
+        if (unref(isClickGo)) {
+          isClickGo.value = false
+          return
+        }
+        const path =
+          (route || unref(currentRoute)).meta?.currentActiveMenu ||
+          (route || unref(currentRoute)).path
+        setOpenKeys(path)
+        if (unref(currentActiveMenu)) return
+        if (props.isHorizontal && unref(getSplit)) {
+          const parentPath = await getCurrentParentPath(path)
+          menuState.selectedKeys = [parentPath]
+        } else {
+          const parentPaths = await getAllParentPath(props.items, path)
+          menuState.selectedKeys = parentPaths
+        }
+      }
 
-  const handleMenuClick: MenuProps['onClick'] = async ({ key }) => {
-    const { beforeClickFn } = props;
-    if (beforeClickFn && isFunction(beforeClickFn)) {
-      const flag = await beforeClickFn(key);
-      if (!flag) return;
-    }
-    emit('menuClick', key);
-
-    isClickGo.value = true;
-    menuState.selectedKeys = [key];
-  };
-
-  async function handleMenuChange(route?: RouteLocationNormalizedLoaded) {
-    if (unref(isClickGo)) {
-      isClickGo.value = false;
-      return;
-    }
-    const path =
-      (route || unref(currentRoute)).meta?.currentActiveMenu || (route || unref(currentRoute)).path;
-    setOpenKeys(path);
-    if (unref(currentActiveMenu)) return;
-    if (props.isHorizontal && unref(getSplit)) {
-      const parentPath = await getCurrentParentPath(path);
-      menuState.selectedKeys = [parentPath];
-    } else {
-      const parentPaths = await getAllParentPath(props.items, path);
-      menuState.selectedKeys = parentPaths;
-    }
-  }
+      return {
+        handleMenuClick,
+        getInlineCollapseOptions,
+        getMenuClass,
+        handleOpenChange,
+        getOpenKeys,
+        ...toRefs(menuState),
+      }
+    },
+  })
 </script>
 <style lang="less">
-  @import url('./index.less');
+  @import './index.less';
 </style>
