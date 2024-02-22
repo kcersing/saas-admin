@@ -90,8 +90,8 @@ export const useUserStore = defineStore({
     ): Promise<GetUserInfoModel | null> {
       try {
         const { goHome = true, mode, ...loginParams } = params
-        const data = await loginApi(loginParams, mode)
-        const { token } = data
+        const data: any = await loginApi(loginParams, mode)
+        const token = 'Bearer ' + data.token
 
         // save token
         this.setToken(token)
@@ -124,17 +124,34 @@ export const useUserStore = defineStore({
     },
     async getUserInfoAction(): Promise<UserInfo | null> {
       if (!this.getToken) return null
-      const userInfo = await getUserInfo()
-      const { roles = [] } = userInfo
+      const userModel: any = await getUserInfo()
+      if (!userModel) {
+        return null
+      }
+      userModel.data = {
+        id: userModel.ID,
+        nickname: userModel.nickname,
+        avatar: userModel.avatar,
+        email: userModel.email,
+        userId: userModel.UUID,
+        username: userModel.username,
+        roles: {
+          roleName: userModel.roleName,
+          value: userModel.roleValue,
+        },
+      }
+      const userInfo = userModel
+
+      const { roles = [] }: any = userInfo.data
       if (isArray(roles)) {
         const roleList = roles.map((item) => item.value) as RoleEnum[]
         this.setRoleList(roleList)
       } else {
-        userInfo.roles = []
+        userInfo.data.roles = []
         this.setRoleList([])
       }
-      this.setUserInfo(userInfo)
-      return userInfo
+      this.setUserInfo(userInfo.data)
+      return userInfo.data
     },
     /**
      * @description: logout
@@ -143,6 +160,7 @@ export const useUserStore = defineStore({
       if (this.getToken) {
         try {
           await doLogout()
+          console.log('logout successful')
         } catch {
           console.log('注销Token失败')
         }
