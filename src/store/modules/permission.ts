@@ -222,7 +222,8 @@ export const usePermissionStore = defineStore({
           let routeList: AppRouteRecordRaw[] = []
           try {
             await this.changePermissionCode()
-            routeList = (await getMenuList()) as AppRouteRecordRaw[]
+            const menus = await getMenuList()
+            routeList = menus.data as unknown as AppRouteRecordRaw[]
           } catch (error) {
             console.error(error)
           }
@@ -238,10 +239,11 @@ export const usePermissionStore = defineStore({
 
           // remove meta.ignoreRoute item
           // 删除 meta.ignoreRoute 项
-          routeList = filter(routeList, routeRemoveIgnoreFilter)
-          routeList = routeList.filter(routeRemoveIgnoreFilter)
+          // routeList = filter(routeList, routeRemoveIgnoreFilter)
+          // routeList = routeList.filter(routeRemoveIgnoreFilter)
 
-          routeList = flatMultiLevelRoutes(routeList)
+          // routeList = flatMultiLevelRoutes(routeList)
+
           routes = [PAGE_NOT_FOUND_ROUTE, ...routeList]
           break
       }
