@@ -2,7 +2,7 @@
  * @Author: GS\Administrator wt4@live.cn
  * @Date: 2024-02-22 10:24:15
  * @LastEditors: GS\Administrator wt4@live.cn
- * @LastEditTime: 2024-02-24 15:02:17
+ * @LastEditTime: 2024-02-27 11:45:23
  * @FilePath: \vben-admin\src\api\sys\user.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -20,7 +20,8 @@ import {
 } from './model/userModel'
 
 import { ErrorMessageMode } from '/#/axios'
-import { BaseDataResp, BaseResp } from '../model/baseModel'
+import { BaseDataResp, BaseIdReq, BaseResp } from '../model/baseModel'
+
 enum Api {
   TestRetry = '/testRetry',
 
@@ -126,5 +127,13 @@ export function changePassword(params: ChangePasswordReq) {
   return defHttp.post<BaseResp>(
     { url: Api.ChangePassword, params },
     { errorMessageMode: 'message' },
+  )
+}
+export const deleteUser = (params: BaseIdReq, mode: ErrorMessageMode = 'message') => {
+  return defHttp.delete<BaseResp>(
+    { url: Api.DeleteUser, params: params },
+    {
+      errorMessageMode: mode,
+    },
   )
 }

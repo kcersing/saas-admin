@@ -1,7 +1,7 @@
 <template>
   <section
     class="full-loading"
-    :class="{ absolute, [theme]: !!theme }"
+    :class="{ absolute, [theme ? theme : 'dark']: !!theme }"
     :style="[background ? `background-color: ${background}` : '']"
     v-show="loading"
   >
@@ -41,7 +41,7 @@
         type: String as PropType<string>,
       },
       theme: {
-        type: String as PropType<any>,
+        type: String as PropType<'dark' | 'light'>,
       },
     },
   })
