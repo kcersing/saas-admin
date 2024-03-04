@@ -81,7 +81,7 @@
         }
         if (params.ID == 0) {
           const result = await CreateOrAddDetailDictionary(params, 'message')
-          if (result.errCode === 0) {
+          if (result.code === 0) {
             closeDrawer()
             emit('success')
           } else {
@@ -90,7 +90,7 @@
           return
         }
         let result = await createOrUpdateDictionaryDetail(params)
-        if (result.errCode === 0) {
+        if (result.code === 0) {
           closeDrawer()
           emit('success')
         } else {
