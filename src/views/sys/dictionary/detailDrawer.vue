@@ -67,19 +67,20 @@
         // defined dict id
         let dictId: number
         if (unref(isUpdate)) {
-          dictId = Number(values['ID'])
+          dictId = Number(values['id'])
         } else {
           dictId = 0
         }
         let params: DictionaryDetailInfo = {
-          ID: dictId,
+          id: dictId,
           title: values['title'],
           key: values['key'],
           value: values['value'],
           status: values['status'],
           parentId: Number(currentRoute.value.query.id),
         }
-        if (params.ID == 0) {
+        console.log(params)
+        if (params.id == 0) {
           const result = await CreateOrAddDetailDictionary(params, 'message')
           if (result.code === 0) {
             closeDrawer()

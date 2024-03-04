@@ -75,6 +75,7 @@
       }
 
       function handleEdit(record: Recordable) {
+        console.log('点击了编辑', record)
         openDrawer(true, {
           record,
           isUpdate: true,
@@ -83,7 +84,7 @@
 
       async function handleDelete(record: Recordable) {
         const result = await deleteDictionary({ id: record.id }, 'modal')
-        message.success(t(result.errMsg), 2)
+        message.success(t(result.message), 2)
         reload()
       }
 

@@ -11,6 +11,7 @@ export interface BasicFetchResult<T> {
 export interface BaseDataResp<T> {
   code: number
   message: string
+  total: number
   data: T
 }
 
@@ -27,7 +28,7 @@ export interface BaseRespStr<T> {
 }
 
 export interface BaseIdReq {
-  ID: number
+  id: number
 }
 
 export interface BaseIdsReq {
@@ -42,19 +43,4 @@ export interface BasePageReq {
 export interface BaseListResp<T> {
   data: T[]
   total: number
-}
-
-export interface BaseDataResp<T> {
-  errCode: number
-  errMsg: string
-  total: number
-  data: T
-}
-
-export interface BaseIdReq {
-  ID: number
-}
-
-export interface BaseIdsReq {
-  ids: number[]
 }

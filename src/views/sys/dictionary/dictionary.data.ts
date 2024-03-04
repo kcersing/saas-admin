@@ -103,8 +103,8 @@ export const searchFormSchema: FormSchema[] = [
 
 export const formSchema: FormSchema[] = [
   {
-    field: 'ID',
-    label: 'ID',
+    field: 'id',
+    label: 'id',
     component: 'Input',
     show: false,
   },
@@ -146,8 +146,8 @@ export const formSchema: FormSchema[] = [
 
 export const detailSchema: FormSchema[] = [
   {
-    field: 'ID',
-    label: 'ID',
+    field: 'id',
+    label: 'id',
     component: 'Input',
     show: false,
   },

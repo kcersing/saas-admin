@@ -55,9 +55,9 @@
           setFieldsValue({
             ...data.record,
           })
-          console.log(data.record)
+
           dictionaryName.value = data.record.name
-          dictionaryId.value = data.record.ID
+          dictionaryId.value = data.record.id
         }
       })
 
@@ -70,7 +70,6 @@
       }
 
       async function handleSubmit() {
-        1
         const values = await validate()
         setDrawerProps({ confirmLoading: true })
         // defined dict id
@@ -89,7 +88,7 @@
         }
         if (params.ID == 0) {
           const result = await createOrAddDictionary(params, 'message')
-          if (result.errCode === 0) {
+          if (result.code === 0) {
             closeDrawer()
             emit('success')
           } else {
@@ -98,7 +97,7 @@
           return
         }
         let result = await createOrUpdateDictionary(params)
-        if (result.errCode === 0) {
+        if (result.code === 0) {
           closeDrawer()
           emit('success')
         } else {
