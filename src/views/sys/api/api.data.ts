@@ -1,9 +1,9 @@
-import { BasicColumn } from '/@/components/Table'
-import { FormSchema } from '/@/components/Table'
-import { useI18n } from '/@/hooks/web/useI18n'
-import { formatToDateTime } from '/@/utils/dateUtil'
+import { BasicColumn } from '/@/components/Table';
+import { FormSchema } from '/@/components/Table';
+import { useI18n } from '/@/hooks/web/useI18n';
+import { formatToDateTime } from '/@/utils/dateUtil';
 
-const { t } = useI18n()
+const { t } = useI18n();
 
 export const columns: BasicColumn[] = [
   {
@@ -31,10 +31,10 @@ export const columns: BasicColumn[] = [
     dataIndex: 'createdAt',
     width: 70,
     customRender: ({ record }) => {
-      return formatToDateTime(record.createdAt)
+      return formatToDateTime(record.createdAt);
     },
   },
-]
+];
 
 export const searchFormSchema: FormSchema[] = [
   {
@@ -64,7 +64,7 @@ export const searchFormSchema: FormSchema[] = [
     component: 'Input',
     colProps: { span: 8 },
   },
-]
+];
 
 export const formSchema: FormSchema[] = [
   {
@@ -108,4 +108,4 @@ export const formSchema: FormSchema[] = [
       ],
     },
   },
-]
+];

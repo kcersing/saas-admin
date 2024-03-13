@@ -1,34 +1,34 @@
-import { BasicColumn } from '/@/components/Table'
-import { FormSchema } from '/@/components/Table'
-import { useI18n } from '/@/hooks/web/useI18n'
-import { formatToDateTime } from '/@/utils/dateUtil'
-import { h } from 'vue'
-import { Switch } from 'ant-design-vue'
-import { useMessage } from '/@/hooks/web/useMessage'
-import { setUserStatus } from '/@/api/sys/user'
-import { RoleInfo } from '/@/api/sys/model/roleModel'
+import { BasicColumn } from '/@/components/Table';
+import { FormSchema } from '/@/components/Table';
+import { useI18n } from '/@/hooks/web/useI18n';
+import { formatToDateTime } from '/@/utils/dateUtil';
+import { h } from 'vue';
+import { Switch } from 'ant-design-vue';
+import { useMessage } from '/@/hooks/web/useMessage';
+import { setUserStatus } from '/@/api/sys/user';
+import { RoleInfo } from '/@/api/sys/model/roleModel';
 
-const { t } = useI18n()
+const { t } = useI18n();
 interface compOption {
-  label: string
-  value: string | number
+  label: string;
+  value: string | number;
 }
 
 // get role options data
 export const roleOptionData = (roleInfoInStore: RoleInfo[], type: number): compOption[] => {
-  const result: compOption[] = []
+  const result: compOption[] = [];
   // type 1 means search schema
   if (type === 1) {
-    result.push({ label: '全部', value: 0 })
+    result.push({ label: '全部', value: 0 });
   }
   for (let i = 0; i < roleInfoInStore.length; i++) {
     result.push({
       label: roleInfoInStore[i].remark,
       value: roleInfoInStore[i].ID,
-    })
+    });
   }
-  return result
-}
+  return result;
+};
 
 export const columns: BasicColumn[] = [
   {
@@ -52,7 +52,7 @@ export const columns: BasicColumn[] = [
     width: 20,
     customRender: ({ record }) => {
       if (!Reflect.has(record, 'pendingStatus')) {
-        record.pendingStatus = false
+        record.pendingStatus = false;
       }
       return h(Switch, {
         checked: record.status === 1,
@@ -60,22 +60,22 @@ export const columns: BasicColumn[] = [
         unCheckedChildren: t('common.off'),
         loading: record.pendingStatus,
         onChange(checked: boolean) {
-          record.pendingStatus = true
-          const newStatus = checked ? 1 : 0
-          const { createMessage } = useMessage()
+          record.pendingStatus = true;
+          const newStatus = checked ? 1 : 0;
+          const { createMessage } = useMessage();
           setUserStatus(record.ID, newStatus)
             .then(() => {
-              record.status = newStatus
-              createMessage.success(t('common.changeStatusSuccess'))
+              record.status = newStatus;
+              createMessage.success(t('common.changeStatusSuccess'));
             })
             .catch(() => {
-              createMessage.error(t('common.changeStatusFailed'))
+              createMessage.error(t('common.changeStatusFailed'));
             })
             .finally(() => {
-              record.pendingStatus = false
-            })
+              record.pendingStatus = false;
+            });
         },
-      })
+      });
     },
   },
   {
@@ -83,10 +83,10 @@ export const columns: BasicColumn[] = [
     dataIndex: 'createdAt',
     width: 50,
     customRender: ({ record }) => {
-      return formatToDateTime(record.createdAt)
+      return formatToDateTime(record.createdAt);
     },
   },
-]
+];
 
 export const searchFormSchema: FormSchema[] = [
   {
@@ -133,7 +133,7 @@ export const searchFormSchema: FormSchema[] = [
     colProps: { span: 8 },
     rules: [{ type: 'email' }],
   },
-]
+];
 
 export const formSchema: FormSchema[] = [
   {
@@ -203,4 +203,4 @@ export const formSchema: FormSchema[] = [
       ],
     },
   },
-]
+];

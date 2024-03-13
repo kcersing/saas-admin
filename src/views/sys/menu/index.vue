@@ -30,25 +30,25 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent } from 'vue'
-  import { message } from 'ant-design-vue'
-  import { BasicTable, useTable, TableAction } from '/@/components/Table'
-  import { useI18n } from 'vue-i18n'
-  import { deleteMenu, getAllMenu } from '/@/api/sys/menu'
+  import { defineComponent } from 'vue';
+  import {  message } from 'ant-design-vue';
+  import { BasicTable, useTable, TableAction } from '/@/components/Table';
+  import { useI18n } from 'vue-i18n';
+  import { deleteMenu, getAllMenu } from '/@/api/sys/menu';
 
-  import { useDrawer } from '/@/components/Drawer'
-  import MenuDrawer from './MenuDrawer.vue'
-  import { useMessage } from '/@/hooks/web/useMessage'
+  import { useDrawer } from '/@/components/Drawer';
+  import MenuDrawer from './MenuDrawer.vue';
+  import { useMessage } from '/@/hooks/web/useMessage';
 
-  import { columns } from './menu.data'
+  import { columns } from './menu.data';
 
   export default defineComponent({
     name: 'MenuManagement',
     components: { BasicTable, MenuDrawer, TableAction },
     setup() {
-      const { t } = useI18n()
-      const { notification } = useMessage()
-      const [registerDrawer, { openDrawer }] = useDrawer()
+      const { t } = useI18n();
+      const { notification } = useMessage();
+      const [registerDrawer, { openDrawer }] = useDrawer();
       const [registerTable, { reload }] = useTable({
         title: t('sys.menu.menuList'),
         api: getAllMenu,
@@ -70,38 +70,38 @@
           dataIndex: 'action',
           fixed: undefined,
         },
-      })
+      });
 
       function handleCreate() {
         openDrawer(true, {
           isUpdate: false,
-        })
+        });
       }
 
       function handleEdit(record: Recordable) {
         openDrawer(true, {
           record,
           isUpdate: true,
-        })
+        });
       }
 
       async function handleDelete(record: Recordable) {
-        const result = await deleteMenu({ id: record.ID }, 'modal')
-        if (result.errCode === 0) {
-          message.success(result.errMsg, 3)
-        } else {
-          message.error(result.errMsg)
-        }
+        const result = await deleteMenu({ id: record.ID }, 'modal');
+         if (result.errCode === 0){
+          message.success(result.errMsg, 3);
+         }else{
+          message.error(result.errMsg,);
+         }
         // notification.success({
         //   message: t('common.successful'),
         //   description: t(result.success),
         //   duration: 3,
         // });
-        reload()
+        reload();
       }
 
       function handleSuccess() {
-        reload()
+        reload();
       }
 
       return {
@@ -112,7 +112,7 @@
         handleEdit,
         handleDelete,
         handleSuccess,
-      }
+      };
     },
-  })
+  });
 </script>

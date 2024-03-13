@@ -1,20 +1,20 @@
-import { BaseListResp } from '../../model/baseModel'
+import { BaseListResp } from '../../model/baseModel';
 
 /**
  *  author: Ryan Su
  *  @description: role info response
  */
 export interface RoleInfo {
-  id: number
-  ID: number
-  createdAt?: number
-  title: string
-  name: string
-  value: string
-  defaultRouter: string
-  status: number
-  remark: string
-  orderNo: number
+  id: number;
+  ID:number;
+  createdAt?: number;
+  title: string;
+  name: string;
+  value: string;
+  defaultRouter: string;
+  status: number;
+  remark: string;
+  orderNo: number;
 }
 
 /**
@@ -22,4 +22,4 @@ export interface RoleInfo {
  *  @description: role list resource
  */
 
-export type RoleListResp = BaseListResp<RoleInfo>
+export type RoleListResp = BaseListResp<RoleInfo>;

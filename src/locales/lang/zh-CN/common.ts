@@ -1,11 +1,3 @@
-/*
- * @Author: GS\Administrator wt4@live.cn
- * @Date: 2024-02-27 10:23:58
- * @LastEditors: GS\Administrator wt4@live.cn
- * @LastEditTime: 2024-02-27 11:30:30
- * @FilePath: \vben-admin\src\locales\lang\zh-CN\common.ts
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
 export default {
   okText: '确认',
   closeText: '关闭',
@@ -73,4 +65,4 @@ export default {
   changeStatusSuccess: '状态修改成功',
   changeStatusFailed: '状态修改失败',
   targetNotExist: '目标不存在',
-}
+};

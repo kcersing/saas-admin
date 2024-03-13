@@ -32,26 +32,26 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent } from 'vue'
-  import { useRouter } from 'vue-router'
-  import { BasicTable, useTable, TableAction } from '/@/components/Table'
+  import { defineComponent } from 'vue';
+  import { useRouter } from 'vue-router';
+  import { BasicTable, useTable, TableAction } from '/@/components/Table';
 
-  import { useDrawer } from '/@/components/Drawer'
-  import DictionaryDrawer from './detailDrawer.vue'
-  import { useI18n } from 'vue-i18n'
-  import { useMessage } from '/@/hooks/web/useMessage'
+  import { useDrawer } from '/@/components/Drawer';
+  import DictionaryDrawer from './detailDrawer.vue';
+  import { useI18n } from 'vue-i18n';
+  import { useMessage } from '/@/hooks/web/useMessage';
 
-  import { detailColumns } from './dictionary.data'
-  import { deleteDictionary, getDictionaryDetailList } from '/@/api/sys/dictionary'
+  import { detailColumns } from './dictionary.data';
+  import { deleteDictionary, getDictionaryDetailList } from '/@/api/sys/dictionary';
 
   export default defineComponent({
     name: 'DictionaryDetail',
     components: { BasicTable, DictionaryDrawer, TableAction },
     setup() {
-      const { t } = useI18n()
-      const [registerDrawer, { openDrawer }] = useDrawer()
-      const { notification } = useMessage()
-      const { currentRoute } = useRouter()
+      const { t } = useI18n();
+      const [registerDrawer, { openDrawer }] = useDrawer();
+      const { notification } = useMessage();
+      const { currentRoute } = useRouter();
 
       const [registerTable, { reload }] = useTable({
         title: t('sys.dictionary.dictionaryDetailList'),
@@ -80,33 +80,33 @@
           dataIndex: 'action',
           fixed: undefined,
         },
-      })
+      });
 
       function handleCreate() {
         openDrawer(true, {
           isUpdate: false,
-        })
+        });
       }
 
       function handleEdit(record: Recordable) {
         openDrawer(true, {
           record,
           isUpdate: true,
-        })
+        });
       }
 
       async function handleDelete(record: Recordable) {
-        const result = await deleteDictionary({ id: record.id }, 'modal')
+        const result = await deleteDictionary({ id: record.id }, 'modal');
         notification.success({
           message: t('common.successful'),
           description: t(result.errMsg),
           duration: 3,
-        })
-        reload()
+        });
+        reload();
       }
 
       function handleSuccess() {
-        reload()
+        reload();
       }
 
       return {
@@ -117,7 +117,7 @@
         handleEdit,
         handleDelete,
         handleSuccess,
-      }
+      };
     },
-  })
+  });
 </script>

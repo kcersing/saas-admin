@@ -1,7 +1,7 @@
-import { defHttp } from '/@/utils/http/axios'
-import { ErrorMessageMode } from '/#/axios'
-import { BaseIdReq, BasePageReq, BaseResp, BaseDataResp } from '/@/api/model/baseModel'
-import { LogsListResp } from './model/logsModel'
+import { defHttp } from '/@/utils/http/axios';
+import { ErrorMessageMode } from '/#/axios';
+import {  BaseIdReq,  BasePageReq,  BaseResp,BaseDataResp } from '/@/api/model/baseModel';
+import {  LogsListResp, } from './model/logsModel';
 
 enum Api {
   GetLogsList = '/api/admin/logs/list',
@@ -13,8 +13,12 @@ enum Api {
  */
 
 export const getLogsList = (params: BasePageReq) => {
-  return defHttp.get<BaseDataResp<LogsListResp>>({ url: Api.GetLogsList, params })
-}
+  return defHttp.get<BaseDataResp<LogsListResp>>({ url: Api.GetLogsList, params });
+};
+
+
+
+
 
 /**
  *  author: Ryan Su
@@ -26,5 +30,5 @@ export const deleteLogs = (params: BaseIdReq, mode: ErrorMessageMode = 'modal') 
     {
       errorMessageMode: mode,
     },
-  )
-}
+  );
+};

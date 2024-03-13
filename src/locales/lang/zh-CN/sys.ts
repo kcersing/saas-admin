@@ -207,7 +207,7 @@ export default {
     name: '字典名称',
     dictionaryList: '字典列表',
     dictionaryDetailList: '键值列表',
-    keyValue: '键值管理',
+    keyValue : '键值管理',
     addDictionary: '添加字典',
     addDictionaryDetail: '添加键值',
     editDictionary: '编辑字典',
@@ -251,7 +251,7 @@ export default {
     time: '耗时(ms)',
     createdAt: '创建时间',
     updatedAt: '更新时间',
-    successLo: '成功',
-    errorLo: '失败',
+    successLo : '成功',
+    errorLo : '失败',
   },
-}
+};

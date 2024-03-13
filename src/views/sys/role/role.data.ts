@@ -1,17 +1,17 @@
-import { BasicColumn } from '/@/components/Table'
-import { FormSchema } from '/@/components/Table'
-import { h } from 'vue'
-import { Switch } from 'ant-design-vue'
-import { setRoleStatus } from '/@/api/sys/role'
-import { useMessage } from '/@/hooks/web/useMessage'
-import { useI18n } from '/@/hooks/web/useI18n'
-import { MenuListItem } from '/@/api/sys/model/menuModel'
-import { DataNode } from 'ant-design-vue/lib/tree'
-import { ApiInfo } from '/@/api/sys/model/apiModel'
-import { ApiAuthorityInfo } from '/@/api/sys/model/authorityModel'
-import { formatToDateTime } from '/@/utils/dateUtil'
+import { BasicColumn } from '/@/components/Table';
+import { FormSchema } from '/@/components/Table';
+import { h } from 'vue';
+import { Switch } from 'ant-design-vue';
+import { setRoleStatus } from '/@/api/sys/role';
+import { useMessage } from '/@/hooks/web/useMessage';
+import { useI18n } from '/@/hooks/web/useI18n';
+import { MenuListItem } from '/@/api/sys/model/menuModel';
+import { DataNode } from 'ant-design-vue/lib/tree';
+import { ApiInfo } from '/@/api/sys/model/apiModel';
+import { ApiAuthorityInfo } from '/@/api/sys/model/authorityModel';
+import { formatToDateTime } from '/@/utils/dateUtil';
 
-const { t } = useI18n()
+const { t } = useI18n();
 
 export const columns: BasicColumn[] = [
   {
@@ -35,7 +35,7 @@ export const columns: BasicColumn[] = [
     width: 220,
     customRender: ({ record }) => {
       if (!Reflect.has(record, 'pendingStatus')) {
-        record.pendingStatus = false
+        record.pendingStatus = false;
       }
       return h(Switch, {
         checked: record.status === 1,
@@ -43,22 +43,22 @@ export const columns: BasicColumn[] = [
         unCheckedChildren: t('common.off'),
         loading: record.pendingStatus,
         onChange(checked: boolean) {
-          record.pendingStatus = true
-          const newStatus = checked ? 1 : 0
-          const { createMessage } = useMessage()
+          record.pendingStatus = true;
+          const newStatus = checked ? 1 : 0;
+          const { createMessage } = useMessage();
           setRoleStatus(record.ID, newStatus)
             .then(() => {
-              record.status = newStatus
-              createMessage.success(t('common.updateSuccess'))
+              record.status = newStatus;
+              createMessage.success(t('common.updateSuccess'));
             })
             .catch(() => {
-              createMessage.error(t('common.updateFailed'))
+              createMessage.error(t('common.updateFailed'));
             })
             .finally(() => {
-              record.pendingStatus = false
-            })
+              record.pendingStatus = false;
+            });
         },
-      })
+      });
     },
   },
   {
@@ -66,7 +66,7 @@ export const columns: BasicColumn[] = [
     dataIndex: 'createdAt',
     width: 220,
     customRender: ({ record }) => {
-      return formatToDateTime(record.createdAt)
+      return formatToDateTime(record.createdAt);
     },
   },
   {
@@ -74,7 +74,7 @@ export const columns: BasicColumn[] = [
     width: 220,
     dataIndex: 'remark',
   },
-]
+];
 
 export const formSchema: FormSchema[] = [
   {
@@ -130,7 +130,7 @@ export const formSchema: FormSchema[] = [
     component: 'InputTextArea',
     rules: [{ max: 200 }],
   },
-]
+];
 
 /**
  *  author: Ryan Su
@@ -139,22 +139,22 @@ export const formSchema: FormSchema[] = [
 
 export function convertMenuTreeData(params: MenuListItem[] | undefined): DataNode[] {
   if (params === undefined) {
-    return []
+    return [];
   }
-  const data: DataNode[] = []
+  const data: DataNode[] = [];
   for (const key in params) {
     const tmp: DataNode = {
       title: t(params[key].name),
       key: params[key].ID,
       children: [],
-    }
+    };
     // console.log(tmp.key);
     if (params[key].children !== undefined) {
-      tmp.children = convertMenuTreeData(params[key].children)
+      tmp.children = convertMenuTreeData(params[key].children);
     }
-    data.push(tmp)
+    data.push(tmp);
   }
-  return data
+  return data;
 }
 
 /**
@@ -163,14 +163,14 @@ export function convertMenuTreeData(params: MenuListItem[] | undefined): DataNod
  */
 
 export function convertApiTreeData(params: ApiInfo[]): DataNode[] {
-  const apiData: DataNode[] = []
+  const apiData: DataNode[] = [];
   if (params.length === 0) {
-    return apiData
+    return apiData;
   }
 
-  const apiMap = new Map<string, boolean>()
+  const apiMap = new Map<string, boolean>();
   for (let i = 0; i < params.length; i++) {
-    apiMap.set(params[i].group, true)
+    apiMap.set(params[i].group, true);
   }
 
   for (const k of apiMap.keys()) {
@@ -178,20 +178,20 @@ export function convertApiTreeData(params: ApiInfo[]): DataNode[] {
       title: k,
       key: k,
       children: [],
-    }
+    };
 
     for (let i = 0; i < params.length; i++) {
       if (params[i].group == k) {
         apiTmp.children?.push({
           title: t(params[i].description),
           key: params[i].ID,
-        })
+        });
       }
     }
 
-    apiData.push(apiTmp)
+    apiData.push(apiTmp);
   }
-  return apiData
+  return apiData;
 }
 
 /**
@@ -200,32 +200,32 @@ export function convertApiTreeData(params: ApiInfo[]): DataNode[] {
  */
 export function convertApiCheckedKeysToReq(checked: number[], data: ApiInfo[]): ApiAuthorityInfo[] {
   // delete string keys
-  const pureDigit: number[] = []
+  const pureDigit: number[] = [];
   for (let i = 0; i < checked.length; i++) {
     if (typeof checked[i] === 'number') {
-      pureDigit.push(checked[i])
+      pureDigit.push(checked[i]);
     }
   }
   // sort data
   data.sort(function (a, b) {
-    return a.ID - b.ID
-  })
+    return a.ID - b.ID;
+  });
   pureDigit.sort(function (a, b) {
-    return a - b
-  })
+    return a - b;
+  });
   // convert data
-  const target: ApiAuthorityInfo[] = []
-  let j = 0
+  const target: ApiAuthorityInfo[] = [];
+  let j = 0;
   for (let i = 0; i < data.length; i++) {
     if (data[i].ID === pureDigit[j]) {
       target.push({
         path: data[i].path,
         method: data[i].method,
-      })
-      j++
+      });
+      j++;
     }
   }
-  return target
+  return target;
 }
 
 /**
@@ -234,13 +234,13 @@ export function convertApiCheckedKeysToReq(checked: number[], data: ApiInfo[]): 
  */
 
 export function convertApiToCheckedKeys(checked: ApiAuthorityInfo[], data: ApiInfo[]): number[] {
-  const dataMap = new Map()
-  const result: number[] = []
+  const dataMap = new Map();
+  const result: number[] = [];
   for (let i = 0; i < data.length; i++) {
-    dataMap.set(data[i].path + data[i].method, data[i].ID)
+    dataMap.set(data[i].path + data[i].method, data[i].ID);
   }
   for (let i = 0; i < checked.length; i++) {
-    result.push(dataMap.get(checked[i].path + checked[i].method))
+    result.push(dataMap.get(checked[i].path + checked[i].method));
   }
-  return result
+  return result;
 }

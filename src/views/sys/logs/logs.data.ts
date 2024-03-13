@@ -1,12 +1,13 @@
-import { BasicColumn } from '/@/components/Table'
-import { FormSchema } from '/@/components/Table'
-import { useI18n } from '/@/hooks/web/useI18n'
-import { formatToDateTime } from '/@/utils/dateUtil'
-import { h } from 'vue'
-import { Tag } from 'ant-design-vue'
+import { BasicColumn } from '/@/components/Table';
+import { FormSchema } from '/@/components/Table';
+import { useI18n } from '/@/hooks/web/useI18n';
+import { formatToDateTime } from '/@/utils/dateUtil';
+import { h } from 'vue';
+import { Tag } from 'ant-design-vue';
 // import { useMessage } from '/@/hooks/web/useMessage';
 
-const { t } = useI18n()
+const { t } = useI18n();
+
 
 export const columns: BasicColumn[] = [
   {
@@ -29,11 +30,11 @@ export const columns: BasicColumn[] = [
     dataIndex: 'success',
     width: 60,
     customRender: ({ record }) => {
-      const status = record.success
-      const enable = ~~status === 1
-      const color = enable ? 'green' : 'red'
-      const text = enable ? t('common.success') : t('common.fail')
-      return h(Tag, { color: color }, () => text)
+      const status = record.success;
+      const enable = ~~status === 1;
+      const color = enable ? 'green' : 'red';
+      const text = enable ? t('common.success') : t('common.fail');
+      return h(Tag, { color: color }, () => text);
     },
   },
   {
@@ -74,7 +75,7 @@ export const columns: BasicColumn[] = [
     dataIndex: 'createdAt',
     width: 50,
     customRender: ({ record }) => {
-      return formatToDateTime(record.createdAt)
+      return formatToDateTime(record.createdAt);
     },
   },
   {
@@ -82,10 +83,10 @@ export const columns: BasicColumn[] = [
     dataIndex: 'updatedAt',
     width: 50,
     customRender: ({ record }) => {
-      return formatToDateTime(record.updatedAt)
+      return formatToDateTime(record.updatedAt);
     },
   },
-]
+];
 
 export const searchFormSchema: FormSchema[] = [
   {
@@ -145,4 +146,4 @@ export const searchFormSchema: FormSchema[] = [
     component: 'Input',
     colProps: { span: 8 },
   },
-]
+];

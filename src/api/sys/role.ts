@@ -1,7 +1,7 @@
-import { defHttp } from '/@/utils/http/axios'
-import { ErrorMessageMode } from '/#/axios'
-import { BaseDataResp, BaseIdReq, BasePageReq, BaseResp } from '/@/api/model/baseModel'
-import { RoleInfo, RoleListResp } from './model/roleModel'
+import { defHttp } from '/@/utils/http/axios';
+import { ErrorMessageMode } from '/#/axios';
+import { BaseDataResp, BaseIdReq, BasePageReq, BaseResp } from '/@/api/model/baseModel';
+import { RoleInfo, RoleListResp } from './model/roleModel';
 
 enum Api {
   GetRoleList = '/api/admin/role/list',
@@ -16,8 +16,8 @@ enum Api {
  */
 
 export const getRoleList = (params: BasePageReq) => {
-  return defHttp.get<BaseDataResp<RoleListResp>>({ url: Api.GetRoleList, params })
-}
+  return defHttp.get<BaseDataResp<RoleListResp>>({ url: Api.GetRoleList, params });
+};
 
 /**
  *  author: ryan
@@ -29,8 +29,8 @@ export const createOrAddRole = (params: RoleInfo, mode: ErrorMessageMode = 'mess
     {
       errorMessageMode: mode,
     },
-  )
-}
+  );
+};
 
 /**
  *  author: ryan
@@ -42,8 +42,8 @@ export const createOrUpdateRole = (params: RoleInfo, mode: ErrorMessageMode = 'm
     {
       errorMessageMode: mode,
     },
-  )
-}
+  );
+};
 
 /**
  *  author: Ryan Su
@@ -55,12 +55,12 @@ export const deleteRole = (params: BaseIdReq, mode: ErrorMessageMode = 'message'
     {
       errorMessageMode: mode,
     },
-  )
-}
+  );
+};
 
 /**
  *  author: Ryan Su
  *  @description: set role's status
  */
 export const setRoleStatus = (id: number, status: number) =>
-  defHttp.post({ url: Api.SetRoleStatus, params: { id, status } })
+  defHttp.post({ url: Api.SetRoleStatus, params: { id, status } });

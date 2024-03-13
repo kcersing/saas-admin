@@ -39,31 +39,31 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent } from 'vue'
-  import { message } from 'ant-design-vue'
-  import { BasicTable, useTable, TableAction } from '/@/components/Table'
-  import { useUserStore } from '/@/store/modules/user'
+  import { defineComponent } from 'vue';
+  import {  message } from 'ant-design-vue';
+  import { BasicTable, useTable, TableAction } from '/@/components/Table';
+  import { useUserStore } from '/@/store/modules/user';
 
-  import { useDrawer } from '/@/components/Drawer'
-  import UserDrawer from './UserDrawer.vue'
-  import { useI18n } from 'vue-i18n'
+  import { useDrawer } from '/@/components/Drawer';
+  import UserDrawer from './UserDrawer.vue';
+  import { useI18n } from 'vue-i18n';
 
-  import { columns, searchFormSchema } from './user.data'
-  import { getUserList, deleteUser } from '/@/api/sys/user'
-  import { useRoleStore } from '/@/store/modules/role'
-  import { logout } from '/@/api/sys/token'
+  import { columns, searchFormSchema } from './user.data';
+  import { getUserList, deleteUser } from '/@/api/sys/user';
+  import { useRoleStore } from '/@/store/modules/role';
+  import { logout } from '/@/api/sys/token';
 
   export default defineComponent({
     name: 'UserManagement',
     components: { BasicTable, UserDrawer, TableAction },
     setup() {
-      const { t } = useI18n()
-      const [registerDrawer, { openDrawer }] = useDrawer()
-      const roleStoreData = useRoleStore()
-      const userStore = useUserStore()
+      const { t } = useI18n();
+      const [registerDrawer, { openDrawer }] = useDrawer();
+      const roleStoreData = useRoleStore();
+      const userStore = useUserStore();
 
       // get role data
-      roleStoreData.getRoleInfoFromServer()
+      roleStoreData.getRoleInfoFromServer();
 
       const [registerTable, { reload }] = useTable({
         title: t('sys.user.userList'),
@@ -83,38 +83,38 @@
           dataIndex: 'action',
           fixed: undefined,
         },
-      })
+      });
 
       function handleCreate() {
         openDrawer(true, {
           isUpdate: false,
-        })
+        });
       }
 
       function handleEdit(record: Recordable) {
         openDrawer(true, {
           record,
           isUpdate: true,
-        })
+        });
       }
 
       async function handleDelete(record: Recordable) {
-        const result = await deleteUser({ id: record.ID }, 'modal')
-        if (result.errCode === 0) {
-          message.success(result.errMsg, 3)
-          reload()
-        } else {
-          message.error(result.errMsg)
-        }
+        const result = await deleteUser({ id: record.ID }, 'modal');
+         if (result.errCode === 0){
+          message.success(result.errMsg, 3);
+          reload();
+         }else{
+          message.error(result.errMsg,);
+         }
       }
 
       async function handleLogout(record: Recordable) {
-        const result = await logout(record.UUID)
-        userStore.confirmLoginOut()
+        const result = await logout(record.UUID);
+        userStore.confirmLoginOut();
       }
 
       function handleSuccess() {
-        reload()
+        reload();
       }
 
       return {
@@ -126,7 +126,7 @@
         handleLogout,
         handleDelete,
         handleSuccess,
-      }
+      };
     },
-  })
+  });
 </script>

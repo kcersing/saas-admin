@@ -1,6 +1,6 @@
 // Used to configure the general configuration of some components without modifying the components
 
-import type { SorterResult } from '../components/Table'
+import type { SorterResult } from '../components/Table';
 
 export default {
   // basic-table setting
@@ -13,7 +13,7 @@ export default {
       // The number field name of each page displayed in the background
       sizeField: 'pageSize',
       // Field name of the form data returned by the interface
-      listField: 'items',
+      listField: 'data',
       // Total number of tables returned by the interface field name
       totalField: 'total',
     },
@@ -25,21 +25,21 @@ export default {
     defaultSize: 'middle',
     // Custom general sort function
     defaultSortFn: (sortInfo: SorterResult) => {
-      const { field, order } = sortInfo
+      const { field, order } = sortInfo;
       if (field && order) {
         return {
           // The sort field passed to the backend you
           field,
           // Sorting method passed to the background asc/desc
           order,
-        }
+        };
       } else {
-        return {}
+        return {};
       }
     },
     // Custom general filter function
     defaultFilterFn: (data: Partial<Recordable<string[]>>) => {
-      return data
+      return data;
     },
   },
   // scrollbar setting
@@ -48,4 +48,4 @@ export default {
     // After opening, the menu, modal, drawer will change the pop-up scroll bar to native
     native: false,
   },
-}
+};

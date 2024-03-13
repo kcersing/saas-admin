@@ -3,11 +3,11 @@
  *  @description:
  */
 
-import { BaseListResp } from '../../model/baseModel'
+import { BaseListResp } from '../../model/baseModel';
 
 export interface MenuAuthorityInfo {
-  roleID: number
-  MenuIDs: number[]
+  roleID: number;
+  MenuIDs: number[];
 }
 
 /**
@@ -16,12 +16,12 @@ export interface MenuAuthorityInfo {
  */
 
 export interface ApiListReq {
-  page: number
-  pageSize: number
-  path: string
-  group: string
-  description: string
-  method: string
+  page: number;
+  pageSize: number;
+  path: string;
+  group: string;
+  description: string;
+  method: string;
 }
 
 /**
@@ -30,13 +30,13 @@ export interface ApiListReq {
  */
 
 export interface ApiAuthorityReq {
-  roleId: number
-  data: ApiAuthorityInfo[]
+  roleId: number;
+  data: ApiAuthorityInfo[];
 }
 
 export interface ApiAuthorityInfo {
-  path: string
-  method: string
+  path: string;
+  method: string;
 }
 
-export type ApiAuthorityResp = BaseListResp<ApiAuthorityInfo>
+export type ApiAuthorityResp = BaseListResp<ApiAuthorityInfo>;

@@ -1,12 +1,12 @@
-import { BasicColumn } from '/@/components/Table'
-import { FormSchema } from '/@/components/Table'
-import { h } from 'vue'
-import { Tag } from 'ant-design-vue'
-import { Icon } from '/@/components/Icon'
-import { useI18n } from '/@/hooks/web/useI18n'
-import { formatToDateTime } from '/@/utils/dateUtil'
+import { BasicColumn } from '/@/components/Table';
+import { FormSchema } from '/@/components/Table';
+import { h } from 'vue';
+import { Tag } from 'ant-design-vue';
+import { Icon } from '/@/components/Icon';
+import { useI18n } from '/@/hooks/web/useI18n';
+import { formatToDateTime } from '/@/utils/dateUtil';
 
-const { t } = useI18n()
+const { t } = useI18n();
 // interface compOption {
 //   label: string;
 //   value: string | number;
@@ -56,14 +56,14 @@ export const extraParamColumns = [
     width: 200,
     align: 'left',
   },
-]
+];
 
 export interface paramFormData {
-  id: number
-  menuId: number
-  dataType: string
-  key: string
-  value: string
+  id: number;
+  menuId: number;
+  dataType: string;
+  key: string;
+  value: string;
 }
 
 export const columns: BasicColumn[] = [
@@ -78,7 +78,7 @@ export const columns: BasicColumn[] = [
     dataIndex: 'meta.icon',
     width: 50,
     customRender: ({ record }) => {
-      return h(Icon, { icon: record.meta.icon })
+      return h(Icon, { icon: record.meta.icon });
     },
   },
   {
@@ -96,11 +96,11 @@ export const columns: BasicColumn[] = [
     dataIndex: 'disabled',
     width: 80,
     customRender: ({ record }) => {
-      const status = record.disabled
-      const enable = ~~status === 0
-      const color = enable ? 'green' : 'red'
-      const text = enable ? t('common.on') : t('common.off')
-      return h(Tag, { color: color }, () => text)
+      const status = record.disabled;
+      const enable = ~~status === 0;
+      const color = enable ? 'green' : 'red';
+      const text = enable ? t('common.on') : t('common.off');
+      return h(Tag, { color: color }, () => text);
     },
   },
   {
@@ -108,11 +108,11 @@ export const columns: BasicColumn[] = [
     dataIndex: 'meta.hideMenu',
     width: 80,
     customRender: ({ record }) => {
-      const status = record.meta.hideMenu
-      const enable = ~~status === 1
-      const color = enable ? 'green' : 'red'
-      const text = enable ? t('common.yes') : t('common.no')
-      return h(Tag, { color: color }, () => text)
+      const status = record.meta.hideMenu;
+      const enable = ~~status === 1;
+      const color = enable ? 'green' : 'red';
+      const text = enable ? t('common.yes') : t('common.no');
+      return h(Tag, { color: color }, () => text);
     },
   },
   {
@@ -120,14 +120,14 @@ export const columns: BasicColumn[] = [
     dataIndex: 'createdAt',
     width: 180,
     customRender: ({ record }) => {
-      return formatToDateTime(record.createdAt)
+      return formatToDateTime(record.createdAt);
     },
   },
-]
+];
 
-const isDir = (menuType: Number) => menuType === 0
-const isMenu = (menuType: Number) => menuType === 1
-const isButton = (menuType: Number) => menuType === 2
+const isDir = (menuType: Number) => menuType === 0;
+const isMenu = (menuType: Number) => menuType === 1;
+const isButton = (menuType: Number) => menuType === 2;
 
 export const formSchema: FormSchema[] = [
   {
@@ -387,4 +387,4 @@ export const formSchema: FormSchema[] = [
     },
     ifShow: ({ values }) => isMenu(values.menuType),
   },
-]
+];

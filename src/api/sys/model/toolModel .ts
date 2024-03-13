@@ -1,7 +1,10 @@
-import { BaseRespStr } from '../../model/baseModel'
+import { BaseRespStr } from '../../model/baseModel';
+
 
 export interface ToolInfo {
-  structStr: string
+  structStr: string;
 }
 
-export type ToolListResp = BaseRespStr<ToolInfo>
+
+
+export type ToolListResp = BaseRespStr<ToolInfo>;

@@ -25,22 +25,22 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent } from 'vue'
-  import { message } from 'ant-design-vue'
-  import { BasicTable, useTable, TableAction } from '/@/components/Table'
+  import { defineComponent } from 'vue';
+  import { message } from 'ant-design-vue';
+  import { BasicTable, useTable, TableAction } from '/@/components/Table';
 
   // import { useDrawer } from '/@/components/Drawer';
-  import { useI18n } from 'vue-i18n'
+  import { useI18n } from 'vue-i18n';
 
-  import { columns, searchFormSchema } from './logs.data'
-  import { getLogsList, deleteLogs } from '/@/api/sys/logs'
+  import { columns, searchFormSchema } from './logs.data';
+  import { getLogsList, deleteLogs } from '/@/api/sys/logs';
 
   export default defineComponent({
     name: 'LogsManagement',
-    components: { BasicTable, TableAction },
+    components: { BasicTable,  TableAction },
     setup() {
-      const { t } = useI18n()
-      const [registerTable, { reload }] = useTable({
+      const { t } = useI18n();
+       const [registerTable, { reload }] = useTable({
         title: t('sys.logs.logsList'),
         api: getLogsList,
         columns,
@@ -58,7 +58,7 @@
           dataIndex: 'action',
           fixed: undefined,
         },
-      })
+      });
       // const [registerDrawer, { openDrawer }] = useDrawer();
       // const [registerTable, { reload }] = useTable({
       //   title: t('sys.logs.logsList'),
@@ -94,12 +94,15 @@
       // }
 
       async function handleDelete(record: Recordable) {
-        const result = await deleteLogs({ id: record.ID }, 'modal')
-        if (result.errCode === 0) message.success(result.errMsg)
+        const result = await deleteLogs({ id: record.ID }, 'modal');
+        if (result.errCode === 0) message.success(result.errMsg);
+        
       }
 
+
+
       function handleSuccess() {
-        reload()
+        reload();
       }
 
       return {
@@ -108,7 +111,7 @@
         // registerDrawer,
         handleDelete,
         handleSuccess,
-      }
+      };
     },
-  })
+  });
 </script>

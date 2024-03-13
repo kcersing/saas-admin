@@ -1,31 +1,23 @@
-/*
- * @Author: GS\Administrator wt4@live.cn
- * @Date: 2024-02-22 10:24:15
- * @LastEditors: GS\Administrator wt4@live.cn
- * @LastEditTime: 2024-02-27 11:45:23
- * @FilePath: \vben-admin\src\api\sys\user.ts
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
-import { defHttp } from '/@/utils/http/axios'
+import { defHttp } from '/@/utils/http/axios';
 import {
-  LoginParams,
-  LoginResultModel,
+  LoginReq,
+  LoginResp,
   GetUserInfoModel,
   CaptchaResp,
+  RegisterReq,
   UserListReq,
   UserListResp,
   UserInfo,
   UserProfile,
   ChangePasswordReq,
-} from './model/userModel'
+} from './model/userModel';
 
-import { ErrorMessageMode } from '/#/axios'
-import { BaseDataResp, BaseIdReq, BaseResp } from '../model/baseModel'
+import { ErrorMessageMode } from '/#/axios';
+import { BaseDataResp, BaseIdReq, BaseResp } from '../model/baseModel';
 
 enum Api {
-  TestRetry = '/testRetry',
-
   Login = '/api/login',
+  Register = '/api/user/register',
   Logout = '/api/admin/token',
   GetUserInfo = '/api/admin/user/info',
   GetPermCode = '/api/admin/user/perm',
@@ -42,8 +34,8 @@ enum Api {
 /**
  * @description: user login api
  */
-export function loginApi(params: LoginParams, mode: ErrorMessageMode = 'modal') {
-  return defHttp.post<BaseDataResp<LoginResultModel>>(
+export function login(params: LoginReq, mode: ErrorMessageMode = 'message') {
+  return defHttp.post<BaseDataResp<LoginResp>>(
     {
       url: Api.Login,
       params,
@@ -51,89 +43,138 @@ export function loginApi(params: LoginParams, mode: ErrorMessageMode = 'modal') 
     {
       errorMessageMode: mode,
     },
-  )
+  );
 }
 
 /**
- * @description: getUserInfo
+ * @description: user register api
  */
-export function getUserInfo() {
-  return defHttp.get<GetUserInfoModel>({ url: Api.GetUserInfo }, { errorMessageMode: 'none' })
-}
-
-export function getPermCode() {
-  return defHttp.post<string[]>({ url: Api.GetPermCode })
-}
-
-export function doLogout() {
-  return defHttp.post({ url: Api.Logout })
-}
-
-export function testRetry() {
-  return defHttp.get(
-    { url: Api.TestRetry },
+export function register(params: RegisterReq, mode: ErrorMessageMode = 'message') {
+  return defHttp.post<BaseResp>(
     {
-      retryRequest: {
-        isOpenRetry: true,
-        count: 5,
-        waitTime: 1000,
-      },
+      url: Api.Register,
+      params,
     },
-  )
+    {
+      errorMessageMode: mode,
+    },
+  );
 }
 
+/**
+ * @description: get captcha api
+ */
 export function getCaptcha(mode: ErrorMessageMode = 'message') {
-  return defHttp.post<BaseDataResp<CaptchaResp>>(
+  return defHttp.get<BaseDataResp<CaptchaResp>>(
     {
       url: Api.GetCaptcha,
     },
     {
       errorMessageMode: mode,
     },
-  )
+  );
 }
+
+/**
+ * @description: getUserInfo
+ */
+export function getUserInfo() {
+  return defHttp.get<BaseDataResp<GetUserInfoModel>>(
+    { url: Api.GetUserInfo },
+    { errorMessageMode: 'none' },
+  );
+}
+
+export function getPermCode() {
+  return defHttp.get<BaseDataResp<string[]>>({ url: Api.GetPermCode });
+}
+
+export function doLogout() {
+  return defHttp.delete({ url: Api.Logout });
+}
+
+// user management
+
+/**
+ * @description: Get user menu based on api id
+ */
+
 export const getUserList = (params: UserListReq) => {
-  return defHttp.get<BaseDataResp<UserListResp>>({ url: Api.GetUserList, params })
-}
+  return defHttp.get<BaseDataResp<UserListResp>>({ url: Api.GetUserList, params });
+};
+
+/**
+ *  author: Ryan Su
+ *  @description: create a new user
+ */
 export const createOrAddUser = (params: UserInfo, mode: ErrorMessageMode = 'message') => {
   return defHttp.post<BaseResp>(
     { url: Api.CreateOrAddUser, params: params },
     {
       errorMessageMode: mode,
     },
-  )
-}
+  );
+};
+
+/**
+ *  author: Ryan Su
+ *  @description: create a new user
+ */
 export const createOrUpdateUser = (params: UserInfo, mode: ErrorMessageMode = 'message') => {
   return defHttp.post<BaseResp>(
     { url: Api.CreateOrUpdateUser, params: params },
     {
       errorMessageMode: mode,
     },
-  )
-}
-export const setUserStatus = (id: number, status: number) =>
-  defHttp.post({ url: Api.SetUserStatus, params: { id, status } })
-export function getUserProfile() {
-  return defHttp.get<BaseDataResp<UserProfile>>(
-    { url: Api.GetProfile },
-    { errorMessageMode: 'message' },
-  )
-}
-export function updateProfile(params: UserProfile) {
-  return defHttp.post<BaseResp>({ url: Api.GetProfile, params }, { errorMessageMode: 'message' })
-}
+  );
+};
 
-export function changePassword(params: ChangePasswordReq) {
-  return defHttp.post<BaseResp>(
-    { url: Api.ChangePassword, params },
-    { errorMessageMode: 'message' },
-  )
-}
+/**
+ *  author: Ryan Su
+ *  @description: delete a user
+ */
 export const deleteUser = (params: BaseIdReq, mode: ErrorMessageMode = 'message') => {
   return defHttp.delete<BaseResp>(
     { url: Api.DeleteUser, params: params },
     {
       errorMessageMode: mode,
     },
-  )
+  );
+};
+
+/**
+ *  author: Ryan Su
+ *  @description: set role's status
+ */
+export const setUserStatus = (id: number, status: number) =>
+  defHttp.post({ url: Api.SetUserStatus, params: { id, status } });
+
+/**
+ *  author: Ryan Su
+ *  @description: Get user profile
+ */
+export function getUserProfile() {
+  return defHttp.get<BaseDataResp<UserProfile>>(
+    { url: Api.GetProfile },
+    { errorMessageMode: 'message' },
+  );
+}
+
+/**
+ *  author: Ryan Su
+ *  @description: update user profile
+ */
+export function updateProfile(params: UserProfile) {
+  return defHttp.post<BaseResp>({ url: Api.GetProfile, params }, { errorMessageMode: 'message' });
+}
+
+/**
+ *  author: Ryan Su
+ *  @description: change user password
+ */
+export function changePassword(params: ChangePasswordReq) {
+  return defHttp.post<BaseResp>(
+    { url: Api.ChangePassword, params },
+    { errorMessageMode: 'message' },
+  );
 }

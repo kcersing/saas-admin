@@ -1,9 +1,9 @@
-import { BasicColumn } from '/@/components/Table'
-import { FormSchema } from '/@/components/Table'
-import { useI18n } from '/@/hooks/web/useI18n'
-import { formatToDateTime } from '/@/utils/dateUtil'
+import { BasicColumn } from '/@/components/Table';
+import { FormSchema } from '/@/components/Table';
+import { useI18n } from '/@/hooks/web/useI18n';
+import { formatToDateTime } from '/@/utils/dateUtil';
 
-const { t } = useI18n()
+const { t } = useI18n();
 
 export const columns: BasicColumn[] = [
   {
@@ -21,7 +21,7 @@ export const columns: BasicColumn[] = [
     dataIndex: 'description',
     width: 200,
     customRender: ({ record }) => {
-      return t(record.description)
+      return t(record.description);
     },
   },
   {
@@ -30,9 +30,9 @@ export const columns: BasicColumn[] = [
     width: 50,
     customRender: ({ record }) => {
       if (record.status) {
-        return t('common.on')
+        return t('common.on');
       }
-      return t('common.off')
+      return t('common.off');
     },
   },
   {
@@ -40,10 +40,10 @@ export const columns: BasicColumn[] = [
     dataIndex: 'createdAt',
     width: 70,
     customRender: ({ record }) => {
-      return formatToDateTime(record.createdAt)
+      return formatToDateTime(record.createdAt);
     },
   },
-]
+];
 
 export const detailColumns: BasicColumn[] = [
   {
@@ -67,9 +67,9 @@ export const detailColumns: BasicColumn[] = [
     width: 50,
     customRender: ({ record }) => {
       if (record.status) {
-        return t('common.on')
+        return t('common.on');
       }
-      return t('common.off')
+      return t('common.off');
     },
   },
   {
@@ -77,10 +77,10 @@ export const detailColumns: BasicColumn[] = [
     dataIndex: 'createdAt',
     width: 70,
     customRender: ({ record }) => {
-      return formatToDateTime(record.createdAt)
+      return formatToDateTime(record.createdAt);
     },
   },
-]
+];
 
 export const searchFormSchema: FormSchema[] = [
   {
@@ -99,12 +99,12 @@ export const searchFormSchema: FormSchema[] = [
     colProps: { span: 8 },
     rules: [{ max: 10 }],
   },
-]
+];
 
 export const formSchema: FormSchema[] = [
   {
-    field: 'id',
-    label: 'id',
+    field: 'ID',
+    label: 'ID',
     component: 'Input',
     show: false,
   },
@@ -142,12 +142,12 @@ export const formSchema: FormSchema[] = [
       ],
     },
   },
-]
+];
 
 export const detailSchema: FormSchema[] = [
   {
-    field: 'id',
-    label: 'id',
+    field: 'ID',
+    label: 'ID',
     component: 'Input',
     show: false,
   },
@@ -184,4 +184,4 @@ export const detailSchema: FormSchema[] = [
       ],
     },
   },
-]
+];

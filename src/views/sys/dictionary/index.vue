@@ -32,22 +32,22 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent } from 'vue'
-  import { BasicTable, useTable, TableAction } from '/@/components/Table'
-  import { useDrawer } from '/@/components/Drawer'
-  import DictionaryDrawer from './dictionaryDrawer.vue'
-  import { useI18n } from 'vue-i18n'
+  import { defineComponent } from 'vue';
+  import { BasicTable, useTable, TableAction } from '/@/components/Table';
+  import { useDrawer } from '/@/components/Drawer';
+  import DictionaryDrawer from './dictionaryDrawer.vue';
+  import { useI18n } from 'vue-i18n';
 
-  import { columns, searchFormSchema } from './dictionary.data'
-  import { getDictionaryList, deleteDictionary } from '/@/api/sys/dictionary'
-  import { message } from 'ant-design-vue'
+  import { columns, searchFormSchema } from './dictionary.data';
+  import { getDictionaryList, deleteDictionary } from '/@/api/sys/dictionary';
+  import { message } from 'ant-design-vue';
 
   export default defineComponent({
     name: 'DictionaryManagement',
     components: { BasicTable, DictionaryDrawer, TableAction },
     setup() {
-      const { t } = useI18n()
-      const [registerDrawer, { openDrawer }] = useDrawer()
+      const { t } = useI18n();
+      const [registerDrawer, { openDrawer }] = useDrawer();
       const [registerTable, { reload }] = useTable({
         title: t('sys.dictionary.dictionaryList'),
         api: getDictionaryList,
@@ -66,30 +66,29 @@
           dataIndex: 'action',
           fixed: undefined,
         },
-      })
+      });
 
       function handleCreate() {
         openDrawer(true, {
           isUpdate: false,
-        })
+        });
       }
 
       function handleEdit(record: Recordable) {
-        console.log('点击了编辑', record)
         openDrawer(true, {
           record,
           isUpdate: true,
-        })
+        });
       }
 
       async function handleDelete(record: Recordable) {
-        const result = await deleteDictionary({ id: record.id }, 'modal')
-        message.success(t(result.message), 2)
-        reload()
+        const result = await deleteDictionary({ id: record.id }, 'modal');
+        message.success(t(result.errMsg), 2);
+        reload();
       }
 
       function handleSuccess() {
-        reload()
+        reload();
       }
 
       return {
@@ -100,7 +99,7 @@
         handleEdit,
         handleDelete,
         handleSuccess,
-      }
+      };
     },
-  })
+  });
 </script>

@@ -16,68 +16,68 @@
   </BasicDrawer>
 </template>
 <script lang="ts">
-  import { defineComponent, ref, computed, unref } from 'vue'
-  import { BasicForm, useForm } from '/@/components/Form/index'
-  import { formSchema } from './dictionary.data'
-  import { BasicDrawer, useDrawerInner } from '/@/components/Drawer'
-  import { useI18n } from 'vue-i18n'
+  import { defineComponent, ref, computed, unref } from 'vue';
+  import { BasicForm, useForm } from '/@/components/Form/index';
+  import { formSchema } from './dictionary.data';
+  import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
+  import { useI18n } from 'vue-i18n';
 
-  import { DictionaryInfo } from '/@/api/sys/model/dictionaryModel'
-  import { createOrUpdateDictionary, createOrAddDictionary } from '/@/api/sys/dictionary'
+  import { DictionaryInfo } from '/@/api/sys/model/dictionaryModel';
+  import { createOrUpdateDictionary, createOrAddDictionary } from '/@/api/sys/dictionary';
   // import { useRouter } from 'vue-router';
-  import { useGo } from '/@/hooks/web/usePage'
+  import { useGo } from '/@/hooks/web/usePage';
 
   export default defineComponent({
     name: 'DictionaryDrawer',
     components: { BasicDrawer, BasicForm },
     emits: ['success', 'register'],
     setup(_, { emit }) {
-      const isUpdate = ref(true)
-      const { t } = useI18n()
-      const go = useGo()
-      const dictionaryName = ref<string>('')
-      const dictionaryId = ref<number>(0)
+      const isUpdate = ref(true);
+      const { t } = useI18n();
+      const go = useGo();
+      const dictionaryName = ref<string>('');
+      const dictionaryId = ref<number>(0);
 
       const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
         labelWidth: 90,
         baseColProps: { span: 24 },
         schemas: formSchema,
         showActionButtonGroup: false,
-      })
+      });
 
       const [registerDrawer, { setDrawerProps, closeDrawer }] = useDrawerInner(async (data) => {
-        resetFields()
-        setDrawerProps({ confirmLoading: false })
+        resetFields();
+        setDrawerProps({ confirmLoading: false });
 
-        isUpdate.value = !!data?.isUpdate
+        isUpdate.value = !!data?.isUpdate;
 
         if (unref(isUpdate)) {
           setFieldsValue({
             ...data.record,
-          })
-
-          dictionaryName.value = data.record.name
-          dictionaryId.value = data.record.id
+          });
+          console.log(data.record)
+          dictionaryName.value = data.record.name;
+          dictionaryId.value = data.record.ID;
         }
-      })
+      });
 
       const getTitle = computed(() =>
         !unref(isUpdate) ? t('sys.dictionary.addDictionary') : t('sys.dictionary.editDictionary'),
-      )
+      );
 
       function handleOpenDetail() {
-        go('/sys/dictionary/detail?id=' + dictionaryId.value + '&name=' + dictionaryName.value)
+        go('/sys/dictionary/detail?id=' + dictionaryId.value + '&name=' + dictionaryName.value);
       }
 
-      async function handleSubmit() {
-        const values = await validate()
-        setDrawerProps({ confirmLoading: true })
+      async function handleSubmit() {1
+        const values = await validate();
+        setDrawerProps({ confirmLoading: true });
         // defined dict id
-        let dictId: number
+        let dictId: number;
         if (unref(isUpdate)) {
-          dictId = Number(values['ID'])
+          dictId = Number(values['ID']);
         } else {
-          dictId = 0
+          dictId = 0;
         }
         let params: DictionaryInfo = {
           ID: dictId,
@@ -85,23 +85,23 @@
           name: values['name'],
           description: values['description'],
           status: values['status'],
-        }
+        };
         if (params.ID == 0) {
-          const result = await createOrAddDictionary(params, 'message')
-          if (result.code === 0) {
-            closeDrawer()
-            emit('success')
+          const result = await createOrAddDictionary(params, 'message');
+          if (result.errCode === 0) {
+            closeDrawer();
+            emit('success');
           } else {
-            setDrawerProps({ confirmLoading: false })
+            setDrawerProps({ confirmLoading: false });
           }
-          return
+          return;
         }
-        let result = await createOrUpdateDictionary(params)
-        if (result.code === 0) {
-          closeDrawer()
-          emit('success')
+        let result = await createOrUpdateDictionary(params);
+        if (result.errCode === 0) {
+          closeDrawer();
+          emit('success');
         } else {
-          setDrawerProps({ confirmLoading: false })
+          setDrawerProps({ confirmLoading: false });
         }
       }
 
@@ -113,7 +113,7 @@
         handleSubmit,
         t,
         handleOpenDetail,
-      }
+      };
     },
-  })
+  });
 </script>

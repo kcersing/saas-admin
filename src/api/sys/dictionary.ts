@@ -1,12 +1,12 @@
-import { defHttp } from '/@/utils/http/axios'
-import { ErrorMessageMode } from '/#/axios'
-import { BaseDataResp, BaseIdReq, BasePageReq, BaseResp } from '/@/api/model/baseModel'
+import { defHttp } from '/@/utils/http/axios';
+import { ErrorMessageMode } from '/#/axios';
+import { BaseDataResp, BaseIdReq, BasePageReq, BaseResp } from '/@/api/model/baseModel';
 import {
   DictionaryDetailInfo,
   DictionaryDetailListResp,
   DictionaryInfo,
   DictionaryListResp,
-} from './model/dictionaryModel'
+} from './model/dictionaryModel';
 
 enum Api {
   GetDictionaryList = '/api/admin/dict/list',
@@ -24,21 +24,24 @@ enum Api {
  */
 
 export const getDictionaryList = (params: BasePageReq) => {
-  return defHttp.get<BaseDataResp<DictionaryListResp>>({ url: Api.GetDictionaryList, params })
-}
+  return defHttp.get<BaseDataResp<DictionaryListResp>>({ url: Api.GetDictionaryList, params });
+};
 
 /**
  *  author: ryan
  *  @description: create or update a new dictionary
  */
-export const createOrAddDictionary = (params: DictionaryInfo, mode: ErrorMessageMode = 'modal') => {
+export const createOrAddDictionary = (
+  params: DictionaryInfo,
+  mode: ErrorMessageMode = 'modal',
+) => {
   return defHttp.post<BaseResp>(
     { url: Api.CreateOrAddDictionary, params: params },
     {
       errorMessageMode: mode,
     },
-  )
-}
+  );
+};
 
 /**
  *  author: ryan
@@ -53,8 +56,8 @@ export const CreateOrAddDetailDictionary = (
     {
       errorMessageMode: mode,
     },
-  )
-}
+  );
+};
 
 /**
  *  author: ryan
@@ -69,8 +72,8 @@ export const createOrUpdateDictionary = (
     {
       errorMessageMode: mode,
     },
-  )
-}
+  );
+};
 
 /**
  *  author: Ryan Su
@@ -82,8 +85,8 @@ export const deleteDictionary = (params: BaseIdReq, mode: ErrorMessageMode = 'mo
     {
       errorMessageMode: mode,
     },
-  )
-}
+  );
+};
 
 /**
  * @description: Get dictionary detail list
@@ -93,8 +96,8 @@ export const getDictionaryDetailList = (params: BasePageReq) => {
   return defHttp.get<BaseDataResp<DictionaryDetailListResp>>({
     url: Api.GetDictionaryDetailList,
     params,
-  })
-}
+  });
+};
 
 /**
  *  author: ryan
@@ -109,8 +112,8 @@ export const createOrUpdateDictionaryDetail = (
     {
       errorMessageMode: mode,
     },
-  )
-}
+  );
+};
 
 /**
  *  author: Ryan Su
@@ -122,5 +125,5 @@ export const deleteDictionaryDetail = (params: BaseIdReq, mode: ErrorMessageMode
     {
       errorMessageMode: mode,
     },
-  )
-}
+  );
+};
