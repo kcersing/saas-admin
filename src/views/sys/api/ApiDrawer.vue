@@ -63,7 +63,7 @@
           apiId = 0;
         }
         let params: ApiInfo = {
-          ID: apiId,
+          id: apiId,
           // title: '',
           path: values['path'],
           description: values['description'],

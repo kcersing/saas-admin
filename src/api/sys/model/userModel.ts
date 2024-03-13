@@ -38,7 +38,7 @@ export interface LoginResp {
  */
 export interface GetUserInfoModel {
   roles: RoleInfo[];
-  ID : number;
+  id: number;
   // 用户id
   userId: string | number;
   // 用户名
@@ -52,7 +52,7 @@ export interface GetUserInfoModel {
 }
 
 export interface CaptchaResp {
-  captchaId: string;
+  id: string;
   imgPath: string;
 }
 
@@ -66,7 +66,7 @@ export interface UserListReq {
 }
 
 export interface UserInfo {
-  ID: number;
+  id: number;
   UUID?: string;
   username: string;
   nickname: string;
@@ -93,7 +93,7 @@ export interface UserProfile {
 }
 
 export interface ChangePasswordReq {
-  userID : string;
+  userID: string;
   oldPassword: string;
   newPassword: string;
 }

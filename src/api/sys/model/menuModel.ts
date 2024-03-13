@@ -36,7 +36,7 @@ export type MenuParams = {
  */
 export interface MenuListItem {
   id: number;
-  ID:number;
+  id: number;
   type: number;
   trans: string;
   parentId: number;
@@ -60,7 +60,7 @@ export interface MenuListItem {
   dynamicLevel: number;
   realPath: string;
   children: MenuListItem[];
-  meta :any;
+  meta: any;
 }
 
 /**

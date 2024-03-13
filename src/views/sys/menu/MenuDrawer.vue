@@ -221,7 +221,7 @@
 
         treeData.push({
           name: 'root',
-          ID: 1,
+          id: 1,
           menuType: 0,
           parentID: 1,
           path: '',
@@ -299,7 +299,7 @@
 
         // }
         let params: CreateOrUpdateMenuReq = {
-          ID: menuId,
+          id: menuId,
           menuType: values['menuType'],
           level: values['dynamicLevel'],
           parentID: parentId,

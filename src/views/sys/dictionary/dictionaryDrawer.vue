@@ -80,7 +80,7 @@
           dictId = 0;
         }
         let params: DictionaryInfo = {
-          ID: dictId,
+          id: dictId,
           title: values['title'],
           name: values['name'],
           description: values['description'],

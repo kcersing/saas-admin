@@ -9,26 +9,26 @@ export interface BaseListResp<T> {
 }
 
 export interface BaseDataResp<T> {
-  errCode: number;
-  errMsg: string;
+  code: number;
+  message: string;
   total: number;
   data: T;
 }
 
-export interface BaseResp{
-  errCode?: number;
-  errMsg: string;
+export interface BaseResp {
+  code?: number;
+  message: string;
 }
 
 export interface BaseRespStr<T> {
-  errCode?: number;
-  errMsg: string;
-  protoStr : T;
+  code?: number;
+  message: string;
+  protoStr: T;
   structStr: T;
 }
 
 export interface BaseIdReq {
-  ID: number;
+  id: number;
 }
 
 export interface BaseIdsReq {

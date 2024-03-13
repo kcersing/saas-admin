@@ -82,7 +82,7 @@
           userId = 0;
         }
         let params: UserInfo = {
-          ID: userId,
+          id: userId,
           username: values['username'],
           nickname: values['nickname'],
           mobile: values['mobile'],

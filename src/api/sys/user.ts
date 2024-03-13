@@ -65,7 +65,7 @@ export function register(params: RegisterReq, mode: ErrorMessageMode = 'message'
  * @description: get captcha api
  */
 export function getCaptcha(mode: ErrorMessageMode = 'message') {
-  return defHttp.get<BaseDataResp<CaptchaResp>>(
+  return defHttp.post<BaseDataResp<CaptchaResp>>(
     {
       url: Api.GetCaptcha,
     },
