@@ -181,8 +181,8 @@
   async function getCaptchaData() {
     const captcha = await getCaptcha('none');
     console.log(captcha);
-    formData.captchaId = captcha.captchaID;
-    formData.imgPath = captcha.imgPath;
+    formData.captchaId = captcha.data.captchaId;
+    formData.imgPath = captcha.data.imgPath;
   }
 
   getCaptchaData();
