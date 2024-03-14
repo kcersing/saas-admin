@@ -73,7 +73,7 @@
         };
         if (params.ID == 0) {
           const result = await createOrAddApi(params, 'message');
-          if (result.errCode === 0) {
+          if (result.code === 0) {
             closeDrawer();
             emit('success');
           } else {
@@ -82,7 +82,7 @@
           return;
         }
         let result = await createOrUpdateApi(params);
-        if (result.errCode === 0) {
+        if (result.code === 0) {
           closeDrawer();
           emit('success');
         } else {

@@ -28,7 +28,7 @@
 </template>
 <script lang="ts">
   import { createVNode, defineComponent, ref } from 'vue';
-  import {  message } from 'ant-design-vue';
+  import { message } from 'ant-design-vue';
   import { Button, Modal } from 'ant-design-vue';
   import { ExclamationCircleOutlined } from '@ant-design/icons-vue/lib/icons';
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
@@ -78,12 +78,12 @@
 
       async function handleDelete(record: Recordable) {
         const result = await deleteToken({ id: record.ID }, 'modal');
-          if (result.errCode === 0){
-          message.success(result.errMsg, 3);
+        if (result.code === 0) {
+          message.success(result.message, 3);
           reload();
-         }else{
-          message.error(result.errMsg,);
-         }
+        } else {
+          message.error(result.message);
+        }
       }
 
       async function handleBatchDelete() {
@@ -92,7 +92,7 @@
           icon: createVNode(ExclamationCircleOutlined),
           async onOk() {
             const result = await batchDeleteToken({ ids: selectedIds.value as number[] }, 'modal');
-            if (result.errCode === 0) {
+            if (result.code === 0) {
               reload();
               showDeleteButton.value = false;
             }

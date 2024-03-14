@@ -33,9 +33,9 @@ export interface RetryRequest {
   waitTime: number;
 }
 export interface Result<T = any> {
-  errCode: number;
+  code: number;
   type: 'success' | 'error' | 'warning';
-  errMsg: string;
+  message: string;
   data: T;
 }
 

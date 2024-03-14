@@ -31,7 +31,7 @@
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import {  message } from 'ant-design-vue';
+  import { message } from 'ant-design-vue';
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
   import { useI18n } from 'vue-i18n';
   import { deleteMenu, getAllMenu } from '/@/api/sys/menu';
@@ -87,11 +87,11 @@
 
       async function handleDelete(record: Recordable) {
         const result = await deleteMenu({ id: record.ID }, 'modal');
-         if (result.errCode === 0){
-          message.success(result.errMsg, 3);
-         }else{
-          message.error(result.errMsg,);
-         }
+        if (result.code === 0) {
+          message.success(result.message, 3);
+        } else {
+          message.error(result.message);
+        }
         // notification.success({
         //   message: t('common.successful'),
         //   description: t(result.success),

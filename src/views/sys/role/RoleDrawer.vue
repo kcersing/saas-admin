@@ -31,8 +31,7 @@
             checkable
             :height="600"
             :tree-data="treeMenuData"
-            checkStrictly= true
-            
+            checkStrictly="true"
           />
         </ATabPane>
         <ATabPane key="2" :tab="t('sys.authority.apiAuthority')">
@@ -87,8 +86,8 @@
       const { t } = useI18n();
       const activeKey = ref('1');
       let tempApiList: BaseDataResp<ApiListResp> = {
-        errCode: 0,
-        errMsg: '',
+        code: 0,
+        message: '',
         data: { total: 0, data: [] },
       };
       // children drawer
@@ -182,7 +181,7 @@
 
       //父子节点问题
       function onCheck(checkedKeys, info) {
-          allCheckedKeys.value = checkedKeys.checked.concat(info.halfCheckedKeys); //将父节点拼接到子节点
+        allCheckedKeys.value = checkedKeys.checked.concat(info.halfCheckedKeys); //将父节点拼接到子节点
       }
 
       // 编辑角色修改
@@ -240,14 +239,14 @@
           // message.success(t(result.msg));
           // return
           // }
-          checkedMenuKeys.value = allCheckedKeys.value
+          checkedMenuKeys.value = allCheckedKeys.value;
           const result = await createOrUpdateMenuAuthority({
             roleID: Number(roleData['ID']),
             MenuIDs: checkedMenuKeys.value,
           });
-           if (result.errCode === 0) {
+          if (result.code === 0) {
             childrenDrawer.value = false;
-            message.success(result.errMsg);
+            message.success(result.message);
             closeDrawer();
           }
         } else {
@@ -261,9 +260,9 @@
             roleID: Number(roleData['ID']),
             data: apiReqData,
           });
-          if (result.errCode === 0) {
+          if (result.code === 0) {
             childrenDrawer.value = false;
-            message.success(result.errMsg);
+            message.success(result.message);
             closeDrawer();
           }
         }

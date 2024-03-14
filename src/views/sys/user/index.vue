@@ -40,7 +40,7 @@
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import {  message } from 'ant-design-vue';
+  import { message } from 'ant-design-vue';
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
   import { useUserStore } from '/@/store/modules/user';
 
@@ -100,12 +100,12 @@
 
       async function handleDelete(record: Recordable) {
         const result = await deleteUser({ id: record.ID }, 'modal');
-         if (result.errCode === 0){
-          message.success(result.errMsg, 3);
+        if (result.code === 0) {
+          message.success(result.message, 3);
           reload();
-         }else{
-          message.error(result.errMsg,);
-         }
+        } else {
+          message.error(result.message);
+        }
       }
 
       async function handleLogout(record: Recordable) {

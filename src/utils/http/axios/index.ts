@@ -52,7 +52,7 @@ const transform: AxiosTransform = {
       throw new Error(t('sys.api.apiRequestFailed'));
     }
 
-    if (res.data.errCode === 0 || res.data.errMsg === undefined) {
+    if (res.data.code === 0 || res.data.message === undefined) {
       return res.data;
     } else {
       return res.data;

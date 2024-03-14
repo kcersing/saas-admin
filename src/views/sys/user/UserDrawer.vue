@@ -97,7 +97,7 @@
 
         if (params.ID == 0) {
           const result = await createOrAddUser(params, 'message');
-          if (result.errCode === 0) {
+          if (result.code === 0) {
             closeDrawer();
             emit('success');
           } else {
@@ -106,7 +106,7 @@
           return;
         }
         const result = await createOrUpdateUser(params, 'message');
-        if (result.errCode === 0) {
+        if (result.code === 0) {
           closeDrawer();
           emit('success');
         } else {

@@ -86,7 +86,7 @@ export function getUserInfo() {
 }
 
 export function getPermCode() {
-  return defHttp.get<BaseDataResp<string[]>>({ url: Api.GetPermCode });
+  return defHttp.post<BaseDataResp<string[]>>({ url: Api.GetPermCode });
 }
 
 export function doLogout() {
@@ -100,7 +100,7 @@ export function doLogout() {
  */
 
 export const getUserList = (params: UserListReq) => {
-  return defHttp.get<BaseDataResp<UserListResp>>({ url: Api.GetUserList, params });
+  return defHttp.post<BaseDataResp<UserListResp>>({ url: Api.GetUserList, params });
 };
 
 /**

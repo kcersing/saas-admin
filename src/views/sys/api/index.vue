@@ -84,11 +84,11 @@ import {  message } from 'ant-design-vue';
 
       async function handleDelete(record: Recordable) {
         const result = await deleteApi({ id: record.ID }, 'modal');
-        if (result.errCode === 0){
-          message.success(result.errMsg, 3);
+        if (result.code === 0){
+          message.success(result.message, 3);
           reload();
          }else{
-          message.error(result.errMsg,);
+          message.error(result.message,);
          }
         // notification.success({
         //   message: t('common.successful'),
