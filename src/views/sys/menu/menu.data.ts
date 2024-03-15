@@ -27,7 +27,7 @@ const { t } = useI18n();
 
 export const extraParamColumns = [
   {
-    title: 'ID',
+    title: 'id',
     dataIndex: 'id',
     width: 200,
     align: 'left',
@@ -145,8 +145,8 @@ export const formSchema: FormSchema[] = [
     colProps: { lg: 24, md: 24 },
   },
   {
-    field: 'ID',
-    label: 'ID',
+    field: 'id',
+    label: 'id',
     component: 'Input',
     show: false,
   },
@@ -167,8 +167,8 @@ export const formSchema: FormSchema[] = [
       // the label show the field of data.name
       fieldNames: {
         label: 'name',
-        key: 'ID',
-        value: 'ID',
+        key: 'id',
+        value: 'id',
       },
       getPopupContainer: () => document.body,
     },

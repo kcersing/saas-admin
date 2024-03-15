@@ -86,7 +86,7 @@
       }
 
       async function handleDelete(record: Recordable) {
-        const result = await deleteMenu({ id: record.ID }, 'modal');
+        const result = await deleteMenu({ id: record.id }, 'modal');
         if (result.code === 0) {
           message.success(result.message, 3);
         } else {

@@ -46,7 +46,7 @@ export const columns: BasicColumn[] = [
           record.pendingStatus = true;
           const newStatus = checked ? 1 : 0;
           const { createMessage } = useMessage();
-          setRoleStatus(record.ID, newStatus)
+          setRoleStatus(record.id, newStatus)
             .then(() => {
               record.status = newStatus;
               createMessage.success(t('common.updateSuccess'));
@@ -78,8 +78,8 @@ export const columns: BasicColumn[] = [
 
 export const formSchema: FormSchema[] = [
   {
-    field: 'ID',
-    label: 'ID',
+    field: 'id',
+    label: 'id',
     component: 'Input',
     show: false,
   },
@@ -145,7 +145,7 @@ export function convertMenuTreeData(params: MenuListItem[] | undefined): DataNod
   for (const key in params) {
     const tmp: DataNode = {
       title: t(params[key].name),
-      key: params[key].ID,
+      key: params[key].id,
       children: [],
     };
     // console.log(tmp.key);
@@ -184,7 +184,7 @@ export function convertApiTreeData(params: ApiInfo[]): DataNode[] {
       if (params[i].group == k) {
         apiTmp.children?.push({
           title: t(params[i].description),
-          key: params[i].ID,
+          key: params[i].id,
         });
       }
     }
@@ -208,7 +208,7 @@ export function convertApiCheckedKeysToReq(checked: number[], data: ApiInfo[]): 
   }
   // sort data
   data.sort(function (a, b) {
-    return a.ID - b.ID;
+    return a.id - b.id;
   });
   pureDigit.sort(function (a, b) {
     return a - b;
@@ -217,7 +217,7 @@ export function convertApiCheckedKeysToReq(checked: number[], data: ApiInfo[]): 
   const target: ApiAuthorityInfo[] = [];
   let j = 0;
   for (let i = 0; i < data.length; i++) {
-    if (data[i].ID === pureDigit[j]) {
+    if (data[i].id === pureDigit[j]) {
       target.push({
         path: data[i].path,
         method: data[i].method,
@@ -237,7 +237,7 @@ export function convertApiToCheckedKeys(checked: ApiAuthorityInfo[], data: ApiIn
   const dataMap = new Map();
   const result: number[] = [];
   for (let i = 0; i < data.length; i++) {
-    dataMap.set(data[i].path + data[i].method, data[i].ID);
+    dataMap.set(data[i].path + data[i].method, data[i].id);
   }
   for (let i = 0; i < checked.length; i++) {
     result.push(dataMap.get(checked[i].path + checked[i].method));

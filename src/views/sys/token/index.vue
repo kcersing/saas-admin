@@ -77,7 +77,7 @@
       });
 
       async function handleDelete(record: Recordable) {
-        const result = await deleteToken({ id: record.ID }, 'modal');
+        const result = await deleteToken({ id: record.id }, 'modal');
         if (result.code === 0) {
           message.success(result.message, 3);
           reload();

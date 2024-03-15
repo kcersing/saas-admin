@@ -352,7 +352,7 @@
           // dynamicLevel: values['dynamicLevel'],
           // realPath: values['realPath'] == undefined ? '' : values['realPath'],
         };
-        if (params.ID === 0) {
+        if (params.id === 0) {
           const result = await CreateOrAddMenu(params);
           if (result.code === 0) {
             closeDrawer();

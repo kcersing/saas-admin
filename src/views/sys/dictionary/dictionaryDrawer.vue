@@ -57,7 +57,7 @@
           });
           console.log(data.record)
           dictionaryName.value = data.record.name;
-          dictionaryId.value = data.record.ID;
+          dictionaryId.value = data.record.id;
         }
       });
 
@@ -86,7 +86,7 @@
           description: values['description'],
           status: values['status'],
         };
-        if (params.ID == 0) {
+        if (params.id == 0) {
           const result = await createOrAddDictionary(params, 'message');
           if (result.code === 0) {
             closeDrawer();

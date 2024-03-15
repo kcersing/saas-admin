@@ -71,7 +71,7 @@
           method: values['method'],
           // createdAt: 0, // do not need to set
         };
-        if (params.ID == 0) {
+        if (params.id == 0) {
           const result = await createOrAddApi(params, 'message');
           if (result.code === 0) {
             closeDrawer();

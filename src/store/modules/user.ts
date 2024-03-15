@@ -131,7 +131,7 @@ export const useUserStore = defineStore({
           return null;
          }
          userModel.data =  {
-          ID : userModel.ID,
+          ID : userModel.id,
           nickname : userModel.nickname,
           avatar : userModel.avatar,
           email : userModel.email,

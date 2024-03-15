@@ -80,7 +80,7 @@
       }
 
       async function handleDelete(record: Recordable) {
-        const result = await deleteRole({ ID: record.ID }, 'modal');
+        const result = await deleteRole({ ID: record.id }, 'modal');
         if (result.code === 0) reload();
       }
 

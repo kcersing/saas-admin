@@ -79,7 +79,7 @@
           status: values['status'],
           parentId: Number(currentRoute.value.query.id),
         }
-        if (params.ID == 0) {
+        if (params.id == 0) {
           const result = await CreateOrAddDetailDictionary(params, 'message')
           if (result.code === 0) {
             closeDrawer()

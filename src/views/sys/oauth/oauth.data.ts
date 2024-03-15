@@ -29,7 +29,7 @@ export const columns: BasicColumn[] = [
 export const formSchema: FormSchema[] = [
   {
     field: 'id',
-    label: 'ID',
+    label: 'id',
     component: 'Input',
     show: false,
   },

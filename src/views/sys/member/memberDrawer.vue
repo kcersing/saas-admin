@@ -13,7 +13,7 @@
 <script lang="ts">
   import { defineComponent, ref, computed, unref } from 'vue';
   import { BasicForm, useForm } from '/@/components/Form/index';
-  import { formSchema, roleOptionData } from './user.data';
+  import { formSchema, roleOptionData } from './member.data';
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
   import { useI18n } from 'vue-i18n';
   import { UserInfo } from '/@/api/sys/model/userModel';

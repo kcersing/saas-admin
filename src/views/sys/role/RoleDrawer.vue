@@ -206,7 +206,7 @@
           orderNo: values['orderNo'],
           // createdAt: 0, // do not need to set
         };
-        if (params.ID == 0) {
+        if (params.id == 0) {
           let result = await createOrAddRole(params);
           if (result.code === 1) {
             childrenDrawer.value = false;
@@ -231,7 +231,7 @@
       async function handleAuthorizationSubmit() {
         if (activeKey.value === '1') {
           const roleData = await validate();
-          // if(roleData.ID === 0){
+          // if(roleData.id === 0){
           //     const result = await CreateOrAddMenuAuthority({
           //   roleID: Number(roleData['ID']),
           //   MenuIDs: checkedMenuKeys.value,

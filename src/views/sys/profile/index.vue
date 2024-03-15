@@ -112,7 +112,7 @@
 
   async function handleChangePasswordSubmit() {
     const result = await changePassword({
-      userID: userStore.getUserInfo.ID,
+      userID: userStore.getUserInfo.id,
       oldPassword: changePasswordReq.oldPassword,
       newPassword: changePasswordReq.newPassword,
     });
