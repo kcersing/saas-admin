@@ -67,7 +67,7 @@
         // defined dict id
         let dictId: number
         if (unref(isUpdate)) {
-          dictId = Number(values['ID'])
+          dictId = Number(values['id'])
         } else {
           dictId = 0
         }

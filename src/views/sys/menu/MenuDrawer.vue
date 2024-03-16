@@ -155,7 +155,7 @@
 
       async function handleOpenModal(record: Recordable) {
         const values = await validate();
-        let menuId: number = unref(isUpdate) ? Number(values['ID']) : 0;
+        let menuId: number = unref(isUpdate) ? Number(values['id']) : 0;
         const result = await getMenuParamListByMenuId({ id: menuId });
         dataSource.value = result.data;
         paramFormTitle.value = t('sys.menu.addMenuParam');
@@ -260,7 +260,7 @@
         };
 
         treeData = travel(treeData);
-        console.log(treeData)
+        console.log(treeData);
         updateSchema({
           field: 'parentID',
           //   componentProps: {
@@ -287,13 +287,13 @@
           componentValue = values['component'];
         }
         // defined the parent id
-        let parentId: number = values['parentID'] ? Number(values['parentID']) : 0;
+        let parentId: number = values['parentId'] ? Number(values['parentId']) : 0;
         // defined menu id
-        let menuId: number = unref(isUpdate) ? Number(values['ID']) : 0;
+        let menuId: number = unref(isUpdate) ? Number(values['id']) : 0;
 
         //  let menuId: number;
         // if (unref(isUpdate)) {
-        //   menuId = Number(values['ID']);
+        //   menuId = Number(values['id']);
         // } else {
         //   menuId = 0;
 

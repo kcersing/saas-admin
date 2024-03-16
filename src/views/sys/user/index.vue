@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>
     <BasicTable @register="registerTable">
       <template #toolbar>
@@ -129,4 +129,4 @@
       };
     },
   });
-</script>
+</script> -->

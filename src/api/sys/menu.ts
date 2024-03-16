@@ -118,7 +118,7 @@ export const deleteMenuParam = (params: BaseIdReq, mode: ErrorMessageMode = 'mes
  *  @description:
  */
 export const getMenuParamListByMenuId = (params: BaseIdReq, mode: ErrorMessageMode = 'message') => {
-  return defHttp.get<BaseDataResp<MenuParamList>>(
+  return defHttp.post<BaseDataResp<MenuParamList>>(
     { url: Api.GetMenuParamsByMenuId, params: params },
     {
       errorMessageMode: mode,

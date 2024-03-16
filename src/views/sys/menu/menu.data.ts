@@ -19,7 +19,7 @@ const { t } = useI18n();
 //   for (let i = 0; i < menuInfoInStore.length; i++) {
 //     result.push({
 //       label: menuInfoInStore[i].name,
-//       value: menuInfoInStore[i].parentID,
+//       value: menuInfoInStore[i].parentId,
 //     });
 //   }
 //   return result;
@@ -158,7 +158,7 @@ export const formSchema: FormSchema[] = [
     rules: [{ max: 50 }],
   },
   {
-    field: 'parentID',
+    field: 'parentId',
     label: t('sys.menu.menuParent'),
     component: 'TreeSelect',
     required: true,

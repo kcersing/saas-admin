@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <BasicDrawer
     v-bind="$attrs"
     @register="registerDrawer"
@@ -122,4 +122,4 @@
       };
     },
   });
-</script>
+</script> -->
