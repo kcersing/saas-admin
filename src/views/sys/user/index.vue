@@ -45,7 +45,7 @@
   import { useUserStore } from '/@/store/modules/user';
 
   import { useDrawer } from '/@/components/Drawer';
-  import UserDrawer from './UserDrawer.vue';
+  import UserDrawer from './ProductDrawer.vue';
   import { useI18n } from 'vue-i18n';
 
   import { columns, searchFormSchema } from './user.data';

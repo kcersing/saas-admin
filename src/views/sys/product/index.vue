@@ -26,15 +26,15 @@
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
 
   import { useDrawer } from '/@/components/Drawer';
-  import UserDrawer from './UserDrawer.vue';
+  import UserDrawer from './ProductDrawer.vue';
   import { useI18n } from 'vue-i18n';
 
-  import { columns, searchFormSchema } from './user.data';
+  import { columns, searchFormSchema } from './product.data';
   import { getProductList } from '/@/api/sys/product';
 
   export default defineComponent({
     name: 'UserManagement',
-    components: { BasicTable, UserDrawer, TableAction },
+    components: { BasicTable, ProductDrawer, TableAction },
     setup() {
       const { t } = useI18n();
       const [registerDrawer, { openDrawer }] = useDrawer();
