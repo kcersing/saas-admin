@@ -17,7 +17,7 @@
         </template>
       </template>
     </BasicTable>
-    <UserDrawer @register="registerDrawer" @success="handleSuccess" />
+    <ProductDrawer @register="registerDrawer" @success="handleSuccess" />
   </div>
 </template>
 <script lang="ts">
@@ -26,7 +26,7 @@
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
 
   import { useDrawer } from '/@/components/Drawer';
-  import UserDrawer from './ProductDrawer.vue';
+  import ProductDrawer from './ProductDrawer.vue';
   import { useI18n } from 'vue-i18n';
 
   import { columns, searchFormSchema } from './product.data';

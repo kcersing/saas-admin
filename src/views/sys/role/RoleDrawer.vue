@@ -108,7 +108,7 @@
             treeMenuData.value.push(dataConv[key]);
           }
           const roleId = await validate();
-          const checkedData = await getMenuAuthority({ id: Number(roleId['ID']) });
+          const checkedData = await getMenuAuthority({ id: Number(roleId['id']) });
           checkedMenuKeys.value = checkedData.MenuIDs;
         } catch (error) {
           console.log(error);
@@ -134,7 +134,7 @@
             treeApiData.value.push(dataConv[key]);
           }
           const roleID = await validate();
-          const checkedData = await getApiAuthority({ id: Number(roleID['ID']) });
+          const checkedData = await getApiAuthority({ id: Number(roleID['id']) });
           const checkKeyConv = convertApiToCheckedKeys(checkedData.data, apiData.data);
           checkedApiKeys.value = checkKeyConv;
         } catch (error) {
@@ -191,7 +191,7 @@
         // defined role id
         let roleId: number;
         if (unref(isUpdate)) {
-          roleId = Number(values['ID']);
+          roleId = Number(values['id']);
         } else {
           roleId = 0;
         }
@@ -241,7 +241,7 @@
           // }
           checkedMenuKeys.value = allCheckedKeys.value;
           const result = await createOrUpdateMenuAuthority({
-            roleID: Number(roleData['ID']),
+            roleID: Number(roleData['id']),
             MenuIDs: checkedMenuKeys.value,
           });
           if (result.code === 0) {
@@ -257,7 +257,7 @@
 
           const roleData = await validate();
           const result = await createOrUpdateApiAuthority({
-            roleID: Number(roleData['ID']),
+            roleID: Number(roleData['id']),
             data: apiReqData,
           });
           if (result.code === 0) {

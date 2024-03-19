@@ -13,15 +13,14 @@
 <script lang="ts">
   import { defineComponent, ref, computed, unref } from 'vue';
   import { BasicForm, useForm } from '/@/components/Form/index';
-  import { formSchema } from './api.data';
+  import { formSchema } from './property.data';
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
   import { useI18n } from 'vue-i18n';
-
-  import { ApiInfo } from '/@/api/sys/model/apiModel';
-  import { createOrUpdateApi, createOrAddApi } from '/@/api/sys/api';
+  import {createOrAddProperty, createOrUpdateProperty} from '/@/api/sys/product';
+  import {PropertyInfo} from "/@/api/sys/model/productModel";
 
   export default defineComponent({
-    name: 'ApiDrawer',
+    name: 'PropertyDrawer',
     components: { BasicDrawer, BasicForm },
     emits: ['success', 'register'],
     setup(_, { emit }) {
@@ -36,43 +35,47 @@
       });
 
       const [registerDrawer, { setDrawerProps, closeDrawer }] = useDrawerInner(async (data) => {
-        resetFields();
+        await resetFields();
         setDrawerProps({ confirmLoading: false });
 
         isUpdate.value = !!data?.isUpdate;
 
         if (unref(isUpdate)) {
-          setFieldsValue({
+          await setFieldsValue({
             ...data.record,
           });
         }
       });
 
       const getTitle = computed(() =>
-        !unref(isUpdate) ? t('sys.apis.addApi') : t('sys.apis.editApi'),
+        !unref(isUpdate) ? t('添加属性') : t('更新属性'),
       );
 
       async function handleSubmit() {
         const values = await validate();
+        console.log(values);
         setDrawerProps({ confirmLoading: true });
-        // defined api id
-        let apiId: number;
+        // defined user id
+        let propertyId: number;
         if (unref(isUpdate)) {
-          apiId = Number(values['id']);
-        } else {
-          apiId = 0;
-        }
-        let params: ApiInfo = {
-          id: apiId,
-          // title: '',
-          path: values['path'],
-          description: values['description'],
-          group: values['group'],
-          method: values['method'],
-          // createdAt: 0, // do not need to set
+          propertyId = Number(values['id']);
+        }   else {
+          propertyId = 0;
+      }
+        let params: PropertyInfo = {
+          id: propertyId,
+          name: values['name'],
+          status: values['status'],
+          price: values['price'],
+          duration: values['duration'],
+          type: values['type'],
+          length: values['length'],
+          count: values['count'],
+          data: ''
         };
+
         if (params.id == 0) {
-          const result = await createOrAddApi(params, 'message');
+          const result = await createOrAddProperty(params, 'message');
           if (result.code === 0) {
             closeDrawer();
             emit('success');
@@ -81,7 +84,7 @@
           }
           return;
         }
-        let result = await createOrUpdateApi(params);
+        const result = await createOrUpdateProperty(params, 'message');
         if (result.code === 0) {
           closeDrawer();
           emit('success');
@@ -93,8 +96,8 @@
       return {
         registerDrawer,
         registerForm,
-        getTitle,
         handleSubmit,
+        getTitle,
       };
     },
   });

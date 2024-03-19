@@ -2,7 +2,7 @@
   <div>
     <BasicTable @register="registerTable">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate"> {{ t('新增产品') }} </a-button>
+        <a-button type="primary" @click="handleCreate"> {{ t('新增属性') }} </a-button>
       </template>
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'action'">
@@ -17,7 +17,7 @@
         </template>
       </template>
     </BasicTable>
-    <ProductDrawer @register="registerDrawer" @success="handleSuccess" />
+    <PropertyDrawer @register="registerDrawer" @success="handleSuccess" />
   </div>
 </template>
 <script lang="ts">
@@ -26,22 +26,22 @@
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
 
   import { useDrawer } from '/@/components/Drawer';
-  import ProductDrawer from './ProductDrawer.vue';
+  import PropertyDrawer from './PropertyDrawer.vue';
   import { useI18n } from 'vue-i18n';
 
-  import { columns, searchFormSchema } from './product.data';
-  import { getProductList } from '/@/api/sys/product';
+  import { columns, searchFormSchema } from './property.data';
+  import { getPropertyList } from '/@/api/sys/product';
 
   export default defineComponent({
     name: 'UserManagement',
-    components: { BasicTable, ProductDrawer, TableAction },
+    components: { BasicTable, PropertyDrawer, TableAction },
     setup() {
       const { t } = useI18n();
       const [registerDrawer, { openDrawer }] = useDrawer();
 
       const [registerTable, { reload }] = useTable({
-        title: t('产品列表'),
-        api: getProductList,
+        title: t('属性列表'),
+        api: getPropertyList,
         columns,
         formConfig: {
           labelWidth: 120,

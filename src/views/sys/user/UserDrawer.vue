@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <BasicDrawer
     v-bind="$attrs"
     @register="registerDrawer"
@@ -72,7 +72,7 @@
         let userId: number;
         let password: string;
         if (unref(isUpdate)) {
-          userId = Number(values['ID']);
+          userId = Number(values['id']);
           if (values['password'] == undefined) {
             password = '';
           } else {
@@ -122,4 +122,4 @@
       };
     },
   });
-</script> -->
+</script>

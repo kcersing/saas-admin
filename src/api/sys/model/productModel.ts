@@ -20,3 +20,33 @@ export interface ProductInfo {
   createdAt?: number;
   updatedAt?: number;
 }
+
+export interface PropertyInfo {
+  id: number;
+  name: string;
+  price: string;
+
+  duration: number;
+  type: string;
+  length: number;
+  count: number;
+
+  data: string;
+  status: number;
+
+  createdAt?: number;
+  updatedAt?: number;
+}
+
+export interface PropertyListReq {
+  page: number;
+  pageSize: number;
+  name: string;
+}
+
+export interface PropertyListResp {
+  total: number;
+  data: PropertyInfo[];
+}
+
+

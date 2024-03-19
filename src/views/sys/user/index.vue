@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <div>
     <BasicTable @register="registerTable">
       <template #toolbar>
@@ -45,7 +45,7 @@
   import { useUserStore } from '/@/store/modules/user';
 
   import { useDrawer } from '/@/components/Drawer';
-  import UserDrawer from './ProductDrawer.vue';
+  import UserDrawer from './OrderDrawer.vue';
   import { useI18n } from 'vue-i18n';
 
   import { columns, searchFormSchema } from './user.data';
@@ -129,4 +129,4 @@
       };
     },
   });
-</script> -->
+</script>
