@@ -33,7 +33,7 @@ export interface PropertyInfo {
 
   data: string;
   status: number;
-
+  venueId: number[];
   createdAt?: number;
   updatedAt?: number;
 }

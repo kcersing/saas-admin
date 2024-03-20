@@ -193,6 +193,7 @@ export const formSchema: FormSchema[] = [
     label: '场馆',
     required: true,
     componentProps: {
+      mode: 'multiple',
       api: getAllVenue,
       params: {
         // name: 1,

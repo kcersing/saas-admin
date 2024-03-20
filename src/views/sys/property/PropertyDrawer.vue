@@ -71,6 +71,7 @@
           type: values['type'],
           length: values['length'],
           count: values['count'],
+          venueId:values['venue'] ,
           data: ''
         };
 
