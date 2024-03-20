@@ -5,9 +5,8 @@ import { formatToDateTime } from '/@/utils/dateUtil';
 import { h } from 'vue';
 import { Switch } from 'ant-design-vue';
 import { useMessage } from '/@/hooks/web/useMessage';
-import { setProductStatus } from '/@/api/sys/product';
+import { setUserStatus } from '/@/api/sys/user';
 import { RoleInfo } from '/@/api/sys/model/roleModel';
-import {getAllVenue} from "/@/api/sys/universal";
 
 const { t } = useI18n();
 interface compOption {
@@ -33,19 +32,19 @@ export const roleOptionData = (roleInfoInStore: RoleInfo[], type: number): compO
 
 export const columns: BasicColumn[] = [
   {
-    title: t('产品名'),
-    dataIndex: 'name',
+    title: t('sys.login.username'),
+    dataIndex: 'username',
     width: 30,
   },
   {
-    title: t('价格'),
-    dataIndex: 'price',
+    title: t('sys.user.nickname'),
+    dataIndex: 'nickname',
     width: 30,
   },
   {
-    title: t('库存'),
-    dataIndex: 'stock',
-    width: 30,
+    title: t('sys.login.email'),
+    dataIndex: 'email',
+    width: 80,
   },
   {
     title: t('common.statusName'),
@@ -64,7 +63,7 @@ export const columns: BasicColumn[] = [
           record.pendingStatus = true;
           const newStatus = checked ? 1 : 0;
           const { createMessage } = useMessage();
-          setProductStatus(record.id, newStatus)
+          setUserStatus(record.id, newStatus)
             .then(() => {
               record.status = newStatus;
               createMessage.success(t('common.changeStatusSuccess'));
@@ -91,54 +90,55 @@ export const columns: BasicColumn[] = [
 
 export const searchFormSchema: FormSchema[] = [
   {
-    field: 'name',
-    label: t('产品名'),
+    field: 'username',
+    label: t('sys.login.username'),
     component: 'Input',
     colProps: { span: 8 },
     rules: [{ max: 30 }],
   },
   {
-    field: 'propertyName',
-    label: t('属性名'),
+    field: 'nickname',
+    label: t('sys.user.nickname'),
     component: 'Input',
     colProps: { span: 8 },
     rules: [{ max: 30 }],
   },
-  // {
-  //   field: 'roleID',
-  //   label: t('sys.role.roleTitle'),
-  //   component: 'Select',
-  //   colProps: { span: 8 },
-  //   componentProps: {
-  //     // search form does not support updateSchema function yet
-  //     // therefore we have to manually set the options
-  //     options: [
-  //       { label: t('common.all'), value: 0 },
-  //       { label: t('卡'), value: 1 },
-  //       { label: t('私教课'), value: 2 },
-  //       { label: t('团课'), value: 3 },
-  //     ],
-  //   },
-  // },
-  // {
-  //   field: 'mobile',
-  //   label: t('sys.login.mobile'),
-  //   component: 'Input',
-  //   colProps: { span: 8 },
-  //   rules: [{ max: 18 }],
-  // },
-  // {
-  //   field: 'email',
-  //   label: t('sys.login.email'),
-  //   component: 'Input',
-  //   colProps: { span: 8 },
-  //   rules: [{ type: 'email' }],
-  // },
+  {
+    field: 'roleID',
+    label: t('sys.role.roleTitle'),
+    component: 'Select',
+    colProps: { span: 8 },
+    componentProps: {
+      // search form does not support updateSchema function yet
+      // therefore we have to manually set the options
+      options: [
+        { label: t('common.all'), value: 0 },
+        { label: t('sys.role.admin'), value: 1 },
+        { label: t('sys.role.stuff'), value: 2 },
+        { label: t('sys.role.member'), value: 3 },
+      ],
+    },
+  },
+  {
+    field: 'mobile',
+    label: t('sys.login.mobile'),
+    component: 'Input',
+    colProps: { span: 8 },
+    rules: [{ max: 18 }],
+  },
+  {
+    field: 'email',
+    label: t('sys.login.email'),
+    component: 'Input',
+    colProps: { span: 8 },
+    rules: [{ type: 'email' }],
+  },
 ];
+
 export const formSchema: FormSchema[] = [
   {
-    field: 'pic',
-    label: t('图片'),
+    field: 'avatar',
+    label: t('sys.user.avatar'),
     defaultValue: '',
     component: 'Input',
     show: false,
@@ -150,62 +150,47 @@ export const formSchema: FormSchema[] = [
     show: false,
   },
   {
-    field: 'name',
-    label: t('产品名'),
+    field: 'username',
+    label: t('sys.login.username'),
     required: true,
     component: 'Input',
     rules: [{ max: 30 }],
   },
-
   {
-    field: 'name',
-    label: t('产品名'),
+    field: 'nickname',
+    label: t('sys.user.nickname'),
     required: true,
     component: 'Input',
     rules: [{ max: 30 }],
   },
-    
   {
-    field: 'venue',
-    component: 'ApiSelect',
-    label: '场馆',
+    field: 'mobile',
+    label: t('sys.login.mobile'),
+    component: 'Input',
+    rules: [{ max: 18 }],
+  },
+  {
+    field: 'email',
+    label: t('sys.login.email'),
     required: true,
+    component: 'Input',
+    rules: [{ type: 'email' }],
+  },
+  {
+    field: 'password',
+    label: t('sys.login.password'),
+    component: 'Input',
+    rules: [{ min: 6, max: 30 }],
+  },
+  {
+    field: 'roleID',
+    label: t('sys.role.roleTitle'),
+    required: true,
+    component: 'Select',
     componentProps: {
-      api: getAllVenue,
-      params: {
-        // name: 1,
-      },
-      resultField: 'data',
-      // use name as label
-      labelField: 'name',
-      // use id as value
-      valueField: 'id',
-      // not request untill to select
-      immediate: true,
-      onChange: (e, v) => {
-        console.log('ApiSelect====>:', e, v);
-      },
-      // atfer request callback
-      onOptionsChange: (options) => {
-        console.log('get options', options.length, options);
-      },
+      options: [],
     },
   },
-  {
-    field: 'price',
-    label: t('价格'),
-    required: true,
-    component: 'InputNumber',
-    // rules: [{ max: 30 }],
-  },
-  {
-    field: 'stock',
-    label: t('库存'),
-    required: true,
-    component: 'InputNumber',
-    // rules: [{ max: 30 }],
-  },
-
   {
     field: 'status',
     label: t('sys.menu.statusName'),

@@ -7,7 +7,6 @@ import { Switch } from 'ant-design-vue';
 import { useMessage } from '/@/hooks/web/useMessage';
 import { setProductStatus } from '/@/api/sys/product';
 import { RoleInfo } from '/@/api/sys/model/roleModel';
-import {getAllVenue} from "/@/api/sys/universal";
 
 const { t } = useI18n();
 interface compOption {
@@ -135,6 +134,7 @@ export const searchFormSchema: FormSchema[] = [
   //   rules: [{ type: 'email' }],
   // },
 ];
+
 export const formSchema: FormSchema[] = [
   {
     field: 'pic',
@@ -155,41 +155,6 @@ export const formSchema: FormSchema[] = [
     required: true,
     component: 'Input',
     rules: [{ max: 30 }],
-  },
-
-  {
-    field: 'name',
-    label: t('产品名'),
-    required: true,
-    component: 'Input',
-    rules: [{ max: 30 }],
-  },
-    
-  {
-    field: 'venue',
-    component: 'ApiSelect',
-    label: '场馆',
-    required: true,
-    componentProps: {
-      api: getAllVenue,
-      params: {
-        // name: 1,
-      },
-      resultField: 'data',
-      // use name as label
-      labelField: 'name',
-      // use id as value
-      valueField: 'id',
-      // not request untill to select
-      immediate: true,
-      onChange: (e, v) => {
-        console.log('ApiSelect====>:', e, v);
-      },
-      // atfer request callback
-      onOptionsChange: (options) => {
-        console.log('get options', options.length, options);
-      },
-    },
   },
   {
     field: 'price',

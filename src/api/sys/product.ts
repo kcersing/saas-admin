@@ -51,7 +51,6 @@ export const getPropertyList = (params: PropertyListReq) => {
 export const setPropertyStatus = (id: number, status: number) =>
     defHttp.post({ url: Api.SetPropertyStatus, params: { id, status } });
 
-
 export const createOrAddProperty = (params: PropertyInfo, mode: ErrorMessageMode = 'message') => {
     return defHttp.post<BaseResp>(
         { url: Api.CreateOrAddProperty, params: params },

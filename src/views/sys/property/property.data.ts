@@ -6,6 +6,7 @@ import { h } from 'vue';
 import { Switch } from 'ant-design-vue';
 import { useMessage } from '/@/hooks/web/useMessage';
 import { setPropertyStatus } from '/@/api/sys/product';
+import {getAllVenue} from "/@/api/sys/universal";
 
 const { t } = useI18n();
 
@@ -188,10 +189,30 @@ export const formSchema: FormSchema[] = [
   },
   {
     field: 'venue',
-    label: t('使用场馆'),
     component: 'ApiSelect',
-    colProps: { span: 8 },
-    // rules: [{ max: 30 }],
+    label: '场馆',
+    required: true,
+    componentProps: {
+      api: getAllVenue,
+      params: {
+        // name: 1,
+      },
+      resultField: 'data',
+      // use name as label
+      labelField: 'name',
+      // use id as value
+      valueField: 'id',
+      // not request untill to select
+      immediate: true,
+      mode: 'multiple',
+      onChange: (e, v) => {
+        console.log('ApiSelect====>:', e, v);
+      },
+      // atfer request callback
+      onOptionsChange: (options) => {
+        console.log('get options', options.length, options);
+      },
+    },
   },
   {
     field: 'status',

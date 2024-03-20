@@ -13,22 +13,21 @@
 <script lang="ts">
   import { defineComponent, ref, computed, unref } from 'vue';
   import { BasicForm, useForm } from '/@/components/Form/index';
-  import { formSchema, roleOptionData } from './member.data';
+  import { formSchema } from './product.data';
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
   import { useI18n } from 'vue-i18n';
-  import { UserInfo } from '/@/api/sys/model/userModel';
-  import { createOrUpdateUser, createOrAddUser } from '/@/api/sys/user';
-  import { getRoleList } from '/@/api/sys/role';
+  import {createOrAddProduct, createOrUpdateProduct} from '/@/api/sys/product';
+  import {ProductInfo} from "/@/api/sys/model/productModel";
 
   export default defineComponent({
-    name: 'UserDrawer',
+    name: 'ProductDrawer',
     components: { BasicDrawer, BasicForm },
     emits: ['success', 'register'],
     setup(_, { emit }) {
       const isUpdate = ref(true);
       const { t } = useI18n();
 
-      const [registerForm, { resetFields, setFieldsValue, validate, updateSchema }] = useForm({
+      const [registerForm, { resetFields, setFieldsValue, validate }] = useForm({
         labelWidth: 90,
         baseColProps: { span: 24 },
         schemas: formSchema,
@@ -36,32 +35,20 @@
       });
 
       const [registerDrawer, { setDrawerProps, closeDrawer }] = useDrawerInner(async (data) => {
-        resetFields();
+        await resetFields();
         setDrawerProps({ confirmLoading: false });
 
         isUpdate.value = !!data?.isUpdate;
 
         if (unref(isUpdate)) {
-          setFieldsValue({
+          await setFieldsValue({
             ...data.record,
           });
         }
-
-        const roleData = await getRoleList({
-          page: 1,
-          pageSize: 1000,
-        });
-        // 更新抽屉的角色模式
-        updateSchema({
-          field: 'roleID',
-          componentProps: {
-            options: roleOptionData(roleData.data, 0),
-          },
-        });
       });
 
       const getTitle = computed(() =>
-        !unref(isUpdate) ? t('sys.user.addUser') : t('sys.user.editUser'),
+        !unref(isUpdate) ? t('添加产品') : t('更新产品'),
       );
 
       async function handleSubmit() {
@@ -69,34 +56,25 @@
         console.log(values);
         setDrawerProps({ confirmLoading: true });
         // defined user id
-        let userId: number;
-        let password: string;
+        let productId: number;
         if (unref(isUpdate)) {
-          userId = Number(values['id']);
-          if (values['password'] == undefined) {
-            password = '';
-          } else {
-            password = values['password'];
-          }
-        } else {
-          userId = 0;
-        }
-        let params: UserInfo = {
-          id: userId,
-          username: values['username'],
-          nickname: values['nickname'],
-          mobile: values['mobile'],
-          email: values['email'],
+          productId = Number(values['id']);
+        }   else {
+          productId = 0;
+      }
+        let params: ProductInfo = {
+          id:productId,
+          description: "",
+          pic: "",
+          price: values['price'],
+          stock: values['stock'],
+          venueId: 0,
+          name: values['name'],
           status: values['status'],
-          roleID: values['roleID'],
-          avatar: values['avatar'],
-          password: password,
-          createdAt: 0, // do not need to set
-          updatedAt: 0, // do not need to set
         };
 
         if (params.id == 0) {
-          const result = await createOrAddUser(params, 'message');
+          const result = await createOrAddProduct(params, 'message');
           if (result.code === 0) {
             closeDrawer();
             emit('success');
@@ -105,7 +83,7 @@
           }
           return;
         }
-        const result = await createOrUpdateUser(params, 'message');
+        const result = await createOrUpdateProduct(params, 'message');
         if (result.code === 0) {
           closeDrawer();
           emit('success');
