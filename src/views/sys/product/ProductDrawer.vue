@@ -68,7 +68,7 @@
           pic: "",
           price: values['price'],
           stock: values['stock'],
-          venueId:values['venue'] ,
+          propertyId:values['property'] ,
           name: values['name'],
           status: values['status'],
         };

@@ -16,7 +16,7 @@ export interface ProductInfo {
   price: string;
   stock: string;
   status: number;
-  venueId: number;
+  propertyId: number[];
   createdAt?: number;
   updatedAt?: number;
 }

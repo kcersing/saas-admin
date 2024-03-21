@@ -205,7 +205,6 @@ export const formSchema: FormSchema[] = [
       valueField: 'id',
       // not request untill to select
       immediate: true,
-      mode: 'multiple',
       onChange: (e, v) => {
         console.log('ApiSelect====>:', e, v);
       },

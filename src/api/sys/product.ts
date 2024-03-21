@@ -48,6 +48,7 @@ export const createOrUpdateProduct = (params: ProductInfo, mode: ErrorMessageMod
 export const getPropertyList = (params: PropertyListReq) => {
     return defHttp.post<BaseDataResp<PropertyListResp>>({ url: Api.PropertyList, params });
 };
+
 export const setPropertyStatus = (id: number, status: number) =>
     defHttp.post({ url: Api.SetPropertyStatus, params: { id, status } });
 

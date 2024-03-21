@@ -5,9 +5,8 @@ import { formatToDateTime } from '/@/utils/dateUtil';
 import { h } from 'vue';
 import { Switch } from 'ant-design-vue';
 import { useMessage } from '/@/hooks/web/useMessage';
-import { setProductStatus } from '/@/api/sys/product';
+import {getPropertyList, setProductStatus} from '/@/api/sys/product';
 import { RoleInfo } from '/@/api/sys/model/roleModel';
-import {getAllVenue} from "/@/api/sys/universal";
 
 const { t } = useI18n();
 interface compOption {
@@ -164,33 +163,34 @@ export const formSchema: FormSchema[] = [
     component: 'Input',
     rules: [{ max: 30 }],
   },
-    
-  // {
-  //   field: 'venue',
-  //   component: 'ApiSelect',
-  //   label: '场馆',
-  //   required: true,
-  //   componentProps: {
-  //     api: getAllVenue,
-  //     params: {
-  //       // name: 1,
-  //     },
-  //     resultField: 'data',
-  //     // use name as label
-  //     labelField: 'name',
-  //     // use id as value
-  //     valueField: 'id',
-  //     // not request untill to select
-  //     immediate: true,
-  //     onChange: (e, v) => {
-  //       console.log('ApiSelect====>:', e, v);
-  //     },
-  //     // atfer request callback
-  //     onOptionsChange: (options) => {
-  //       console.log('get options', options.length, options);
-  //     },
-  //   },
-  // },
+  {
+    field: 'property',
+    component: 'ApiSelect',
+    label: '产品属性',
+    required: true,
+    componentProps: {
+      mode: 'multiple',
+      api: getPropertyList,
+      params: {
+         page:1,
+         pageSize:9999,
+      },
+      resultField: 'data',
+      // use name as label
+      labelField: 'name',
+      // use id as value
+      valueField: 'id',
+      // not request untill to select
+      immediate: true,
+      onChange: (e, v) => {
+        console.log('ApiSelect====>:', e, v);
+      },
+      // atfer request callback
+      onOptionsChange: (options) => {
+        console.log('get options', options.length, options);
+      },
+    },
+  },
   {
     field: 'price',
     label: t('价格'),
