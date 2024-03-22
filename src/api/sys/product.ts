@@ -24,9 +24,9 @@ enum Api {
 export const getProductList = (params: ProductListReq) => {
   return defHttp.post<BaseDataResp<ProductListResp>>({ url: Api.ProductList, params });
 };
+
 export const setProductStatus = (id: number, status: number) =>
   defHttp.post({ url: Api.SetProductStatus, params: { id, status } });
-
 
 export const createOrAddProduct = (params: ProductInfo, mode: ErrorMessageMode = 'message') => {
   return defHttp.post<BaseResp>(

@@ -17,7 +17,7 @@
         </template>
       </template>
     </BasicTable>
-    <ProductDrawer @register="registerDrawer" @success="handleSuccess" />
+    <OrderDrawer @register="registerDrawer" @success="handleSuccess" />
   </div>
 </template>
 <script lang="ts">
@@ -26,22 +26,22 @@
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
 
   import { useDrawer } from '/@/components/Drawer';
-  import ProductDrawer from './ProductDrawer.vue';
+  import OrderDrawer from './OrderDrawer.vue';
   import { useI18n } from 'vue-i18n';
 
-  import { columns, searchFormSchema } from './product.data';
-  import { getProductList } from '/@/api/sys/product';
+  import { columns, searchFormSchema } from './order.data';
+  import { getOrderList } from '/@/api/sys/order';
 
   export default defineComponent({
     name: 'UserManagement',
-    components: { BasicTable, ProductDrawer, TableAction },
+    components: { BasicTable, OrderDrawer, TableAction },
     setup() {
       const { t } = useI18n();
       const [registerDrawer, { openDrawer }] = useDrawer();
 
       const [registerTable, { reload }] = useTable({
         title: t('产品列表'),
-        api: getProductList,
+        api: getOrderList,
         columns,
         formConfig: {
           labelWidth: 120,

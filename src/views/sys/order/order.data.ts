@@ -5,7 +5,7 @@ import { formatToDateTime } from '/@/utils/dateUtil';
 import { h } from 'vue';
 import { Switch } from 'ant-design-vue';
 import { useMessage } from '/@/hooks/web/useMessage';
-import { setProductStatus } from '/@/api/sys/product';
+import { setOrderStatus } from '/@/api/sys/order';
 import { RoleInfo } from '/@/api/sys/model/roleModel';
 
 const { t } = useI18n();
@@ -63,7 +63,7 @@ export const columns: BasicColumn[] = [
           record.pendingStatus = true;
           const newStatus = checked ? 1 : 0;
           const { createMessage } = useMessage();
-          setProductStatus(record.id, newStatus)
+          setOrderStatus(record.id, newStatus)
             .then(() => {
               record.status = newStatus;
               createMessage.success(t('common.changeStatusSuccess'));

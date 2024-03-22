@@ -13,14 +13,14 @@
 <script lang="ts">
   import { defineComponent, ref, computed, unref } from 'vue';
   import { BasicForm, useForm } from '/@/components/Form/index';
-  import { formSchema } from './product.data';
+  import { formSchema } from './order.data';
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
   import { useI18n } from 'vue-i18n';
-  import {createOrAddProduct, createOrUpdateProduct} from '/@/api/sys/product';
-  import {ProductInfo} from "/@/api/sys/model/productModel";
+  import {createOrAddOrder, createOrUpdateOrder} from '/@/api/sys/order';
+  import {OrderInfo} from "/@/api/sys/model/orderModel";
 
   export default defineComponent({
-    name: 'ProductDrawer',
+    name: 'OrderDrawer',
     components: { BasicDrawer, BasicForm },
     emits: ['success', 'register'],
     setup(_, { emit }) {
@@ -56,25 +56,21 @@
         console.log(values);
         setDrawerProps({ confirmLoading: true });
         // defined user id
-        let productId: number;
+        let orderId: number;
         if (unref(isUpdate)) {
-          productId = Number(values['id']);
+          orderId = Number(values['id']);
         }   else {
-          productId = 0;
+          orderId = 0;
       }
-        let params: ProductInfo = {
-          id:productId,
-          description: "",
-          pic: "",
-          price: values['price'],
-          stock: values['stock'],
-          venueId: 0,
-          name: values['name'],
+        let params: OrderInfo = {
+          id:orderId,
+          venueId: values['venueId'],
+          sn: values['sn'],
           status: values['status'],
         };
 
         if (params.id == 0) {
-          const result = await createOrAddProduct(params, 'message');
+          const result = await createOrAddOrder(params, 'message');
           if (result.code === 0) {
             closeDrawer();
             emit('success');
@@ -83,7 +79,7 @@
           }
           return;
         }
-        const result = await createOrUpdateProduct(params, 'message');
+        const result = await createOrUpdateOrder(params, 'message');
         if (result.code === 0) {
           closeDrawer();
           emit('success');
