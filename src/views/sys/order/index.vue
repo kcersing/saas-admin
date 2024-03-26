@@ -2,7 +2,7 @@
   <div>
     <BasicTable @register="registerTable">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate"> {{ t('新增产品') }} </a-button>
+        <a-button type="primary" @click="handleCreate"> {{ t('新增订单') }} </a-button>
       </template>
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'action'">
