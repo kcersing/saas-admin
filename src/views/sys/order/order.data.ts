@@ -2,14 +2,18 @@ import { BasicColumn } from '/@/components/Table';
 import { FormSchema } from '/@/components/Table';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { formatToDateTime } from '/@/utils/dateUtil';
-import { h } from 'vue';
+import { h} from 'vue';
 import { Switch } from 'ant-design-vue';
 import { useMessage } from '/@/hooks/web/useMessage';
 import { setOrderStatus } from '/@/api/sys/order';
 import {getAllVenue} from "/@/api/sys/universal";
+import {getUserList} from "/@/api/sys/user";
+import {getMemberList} from "/@/api/sys/member";
+import {getProductList} from "/@/api/sys/product";
 
 const { t } = useI18n();
 
+const memberList = await getMemberList
 
 export const columns: BasicColumn[] = [
   {
@@ -69,79 +73,57 @@ export const columns: BasicColumn[] = [
   },
 ];
 
+
+
 export const searchFormSchema: FormSchema[] = [
   {
-    field: 'sn',
-    label: t('产品名'),
-    component: 'Input',
-    colProps: { span: 8 },
-    rules: [{ max: 30 }],
-  },
-  {
     field: 'memberId',
-    component: 'ApiSelect',
+    component: 'Input',
     label: '会员',
-    required: true,
+    helpMessage: ['输入会员手机号搜索会员'],
+    required: false,
     colProps: { span: 8 },
-    componentProps: {
-      mode: 'multiple',
-      api: getAllVenue,
-      params: {
-        // name: 1,
-      },
-      resultField: 'data',
-      // use name as label
-      labelField: 'name',
-      // use id as value
-      valueField: 'id',
-      // not request untill to select
-      immediate: true,
-      onChange: (e, v) => {
-        console.log('ApiSelect====>:', e, v);
-      },
-      // atfer request callback
-      onOptionsChange: (options) => {
-        console.log('get options', options.length, options);
-      },
-    },
+    // componentProps: {
+    //   onChange: (e: any) => {
+    //     console.log(e.srcElement.value);
+    //   },
+    //   api: getUserList,
+    //   params:(e) => {
+    //     console.log(e);
+    //   },
+    // },
   },
+
   {
     field: 'sell',
     component: 'ApiSelect',
     label: '销售',
-    required: true,
+    required: false,
     colProps: { span: 8 },
-    componentProps: {
-      mode: 'multiple',
-      api: getAllVenue,
-      params: {
-        // name: 1,
-      },
-      resultField: 'data',
-      // use name as label
-      labelField: 'name',
-      // use id as value
-      valueField: 'id',
-      // not request untill to select
-      immediate: true,
-      onChange: (e, v) => {
-        console.log('ApiSelect====>:', e, v);
-      },
-      // atfer request callback
-      onOptionsChange: (options) => {
-        console.log('get options', options.length, options);
-      },
+    componentProps:  {
+        placeholder: '请选择',
+        multiple: false,
+        showSearch: true,
+        api: getUserList,
+        params: {
+          // name:""
+        },
+        resultField: 'data',
+        labelField: 'nickname',
+        valueField: 'id',
+        immediate: false,
     },
   },
   {
     field: 'product',
     component: 'ApiSelect',
     label: '产品',
-    required: true,
+    required: false,
     colProps: { span: 8 },
     componentProps: {
-      mode: 'multiple',
-      api: getAllVenue,
+      multiple: false,
+      showSearch: true,
+      api: getProductList,
       params: {
         // name: 1,
       },
@@ -151,75 +133,46 @@ export const searchFormSchema: FormSchema[] = [
       // use id as value
       valueField: 'id',
       // not request untill to select
-      immediate: true,
-      onChange: (e, v) => {
-        console.log('ApiSelect====>:', e, v);
-      },
-      // atfer request callback
-      onOptionsChange: (options) => {
-        console.log('get options', options.length, options);
-      },
+      immediate: false,
+      // onChange: (e, v) => {
+      //   console.log('ApiSelect====>:', e, v);
+      // },
+      // // atfer request callback
+      // onOptionsChange: (options) => {
+      //   console.log('get options', options.length, options);
+      // },
     },
   },
   {
     field: 'venue',
     component: 'ApiSelect',
     label: '场馆',
-    required: true,
+    required: false,
     colProps: { span: 8 },
     componentProps: {
-      mode: 'multiple',
+      // mode: 'multiple',
       api: getAllVenue,
       params: {
         // name: 1,
       },
+      multiple: false,
+      showSearch: true,
       resultField: 'data',
       // use name as label
       labelField: 'name',
       // use id as value
       valueField: 'id',
       // not request untill to select
-      immediate: true,
-      onChange: (e, v) => {
-        console.log('ApiSelect====>:', e, v);
-      },
-      // atfer request callback
-      onOptionsChange: (options) => {
-        console.log('get options', options.length, options);
-      },
+      immediate: false,
+      // onChange: (e, v) => {
+      //   console.log('ApiSelect====>:', e, v);
+      // },
+      // // atfer request callback
+      // onOptionsChange: (options) => {
+      //   console.log('get options', options.length, options);
+      // },
     },
   },
-
-  // {
-  //   field: 'roleID',
-  //   label: t('sys.role.roleTitle'),
-  //   component: 'Select',
-  //   colProps: { span: 8 },
-  //   componentProps: {
-  //     // search form does not support updateSchema function yet
-  //     // therefore we have to manually set the options
-  //     options: [
-  //       { label: t('common.all'), value: 0 },
-  //       { label: t('卡'), value: 1 },
-  //       { label: t('私教课'), value: 2 },
-  //       { label: t('团课'), value: 3 },
-  //     ],
-  //   },
-  // },
-  // {
-  //   field: 'mobile',
-  //   label: t('sys.login.mobile'),
-  //   component: 'Input',
-  //   colProps: { span: 8 },
-  //   rules: [{ max: 18 }],
-  // },
-  // {
-  //   field: 'email',
-  //   label: t('sys.login.email'),
-  //   component: 'Input',
-  //   colProps: { span: 8 },
-  //   rules: [{ type: 'email' }],
-  // },
 ];
 
 export const formSchema: FormSchema[] = [
@@ -229,24 +182,24 @@ export const formSchema: FormSchema[] = [
     component: 'Input',
     show: false,
   },
-
   {
     field: 'memberId',
     component: 'ApiSelect',
     label: '会员',
     required: true,
     componentProps: {
-      api: getAllVenue,
+      api: memberList,
       params: {
-        // name: 1,
+        page: 1,
+        pageSize: 999,
       },
       resultField: 'data',
       // use name as label
-      labelField: 'name',
+      labelField: 'nickname',
       // use id as value
       valueField: 'id',
       // not request untill to select
-      immediate: true,
+      immediate: false,
       onChange: (e, v) => {
         console.log('ApiSelect====>:', e, v);
       },
@@ -262,8 +215,10 @@ export const formSchema: FormSchema[] = [
     label: '销售',
     required: true,
     componentProps: {
-      mode: 'multiple',
-      api: getAllVenue,
+      // mode: 'multiple',
+      multiple: true,
+      showSearch: true,
+      api: getUserList,
       params: {
         // name: 1,
       },
@@ -273,14 +228,14 @@ export const formSchema: FormSchema[] = [
       // use id as value
       valueField: 'id',
       // not request untill to select
-      immediate: true,
-      onChange: (e, v) => {
-        console.log('ApiSelect====>:', e, v);
-      },
-      // atfer request callback
-      onOptionsChange: (options) => {
-        console.log('get options', options.length, options);
-      },
+      immediate: false,
+      // onChange: (e, v) => {
+      //   console.log('ApiSelect====>:', e, v);
+      // },
+      // // atfer request callback
+      // onOptionsChange: (options) => {
+      //   console.log('get options', options.length, options);
+      // },
     },
   },
   {
@@ -297,7 +252,7 @@ export const formSchema: FormSchema[] = [
     label: '产品',
     required: true,
     componentProps: {
-      api: getAllVenue,
+      api: getProductList,
       params: {
         // name: 1,
       },
@@ -307,14 +262,14 @@ export const formSchema: FormSchema[] = [
       // use id as value
       valueField: 'id',
       // not request untill to select
-      immediate: true,
-      onChange: (e, v) => {
-        console.log('ApiSelect====>:', e, v);
-      },
-      // atfer request callback
-      onOptionsChange: (options) => {
-        console.log('get options', options.length, options);
-      },
+      immediate: false,
+      // onChange: (e, v) => {
+      //   console.log('ApiSelect====>:', e, v);
+      // },
+      // // atfer request callback
+      // onOptionsChange: (options) => {
+      //   console.log('get options', options.length, options);
+      // },
     },
   },
 
@@ -337,13 +292,6 @@ export const formSchema: FormSchema[] = [
     },
   },
 
-  // {
-  //   field: 'stockNum',
-  //   label: '续约',
-  //   component: 'Input',
-  //   show: false,
-  // },
-
   {
     field: 'activationTime',
     component: 'DatePicker',
@@ -365,7 +313,7 @@ export const formSchema: FormSchema[] = [
     field: 'venue',
     component: 'ApiSelect',
     label: '场馆',
-    required: true,
+    required: false,
     componentProps: {
       api: getAllVenue,
       params: {
@@ -377,14 +325,14 @@ export const formSchema: FormSchema[] = [
       // use id as value
       valueField: 'id',
       // not request untill to select
-      immediate: true,
-      onChange: (e, v) => {
-        console.log('ApiSelect====>:', e, v);
-      },
-      // atfer request callback
-      onOptionsChange: (options) => {
-        console.log('get options', options.length, options);
-      },
+      immediate: false,
+      // onChange: (e, v) => {
+      //   console.log('ApiSelect====>:', e, v);
+      // },
+      // // atfer request callback
+      // onOptionsChange: (options) => {
+      //   console.log('get options', options.length, options);
+      // },
     },
   },
 
@@ -430,12 +378,12 @@ export const formSchema: FormSchema[] = [
               componentProps: {
                 api: getAllVenue,
                 params: {
-                   name:  ''
+                   name:  '1234'
                 },
                 resultField: 'data',
                 labelField: 'name',
                 valueField: 'id',
-                immediate: true,
+                immediate: false,
               },
             });
           }
@@ -476,22 +424,3 @@ const provincesOptions = [
     key: '2',
   },
 ];
-// const citiesOptionsData = {
-//   xuyue: [
-//     {
-//       label: '南京市',
-//       value: '1',
-//       key: '1',
-//     },
-//     {
-//       label: '无锡市',
-//       value: '2',
-//       key: '2',
-//     },
-//     {
-//       label: '苏州市',
-//       value: '3',
-//       key: '3',
-//     },
-//   ],
-// };
