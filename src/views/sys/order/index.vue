@@ -4,6 +4,11 @@
       <template #toolbar>
         <a-button type="primary" @click="handleCreate"> {{ t('新增订单') }} </a-button>
         <a-button type="primary" class="my-4" @click="send"> 打开弹窗并传递数据 </a-button>
+
+        <a-button type="primary" class="mr-2" @click="toAddOrder()">
+           {{ t('新增订单') }}
+        </a-button>
+
       </template>
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'action'">
@@ -36,6 +41,9 @@
   import { getOrderList } from '/@/api/sys/order';
   import { useModal } from '/@/components/Modal';
 
+  import { useGo } from '/@/hooks/web/usePage';
+  import {PageEnum} from "/@/enums/pageEnum";
+  const go = useGo();
 
   const { t } = useI18n();
   const [registerDrawer, { openDrawer }] = useDrawer();
@@ -148,4 +156,8 @@
   //     };
   //   },
   // });
+
+  function toAddOrder() {
+    go(PageEnum.ADD_ORDER);
+  }
 </script>

@@ -17,18 +17,6 @@ const memberList = await getMemberList
 
 export const columns: BasicColumn[] = [
 
-  //    `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'primary key',
-    //   `created_at` timestamp NOT NULL COMMENT 'created time',
-    //   `updated_at` timestamp NOT NULL COMMENT 'last update time',
-    //   `order_sn` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '订单编号',
-    //   `venue_id` bigint DEFAULT NULL COMMENT '场馆id',
-    //   `member_id` bigint DEFAULT NULL COMMENT '会员id',
-    //   `status` bigint DEFAULT '0' COMMENT '状态',
-    //   `source` varchar(255) COLLATE utf8mb4_bin DEFAULT '' COMMENT '订单来源',
-    //   `device` varchar(255) COLLATE utf8mb4_bin DEFAULT '' COMMENT '设备来源',
-    //   `completion_at` timestamp NULL DEFAULT NULL COMMENT '订单完成时间',
-    //   `create_id` bigint DEFAULT NULL COMMENT '创建人id',
-
   {
     title: t('订单编号'),
     dataIndex: 'order_sn',

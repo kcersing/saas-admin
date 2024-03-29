@@ -11,4 +11,7 @@ export enum PageEnum {
   ERROR_LOG_PAGE = '/error-log/list',
   // oauth callback page
   OAUTH_CALLBACK = '/base/oauth/callback',
+
+
+  ADD_ORDER = '/sys/order/add',
 }
