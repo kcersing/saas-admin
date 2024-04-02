@@ -7,8 +7,8 @@
   >
     <div class="step-form-form">
       <Steps :current="current">
-        <Steps.Step title="填写转账信息" />
-        <Steps.Step title="确认转账信息" />
+        <Steps.Step title="填写信息" />
+        <Steps.Step title="确认信息" />
         <Steps.Step title="完成" />
       </Steps>
     </div>

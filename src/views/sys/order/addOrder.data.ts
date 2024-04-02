@@ -4,23 +4,8 @@ import {getProductList} from "/@/api/sys/product";
 import {getAllVenue} from "/@/api/sys/universal";
 import {getMemberList} from "/@/api/sys/member";
 
-const memberList = await getMemberList
-
 
 export const step1Schemas: FormSchema[] = [
-  {
-    field: 'pay',
-    component: 'Input',
-    label: '',
-    defaultValue: 'zfb',
-    show: false,
-  },
-  {
-    field: 'id',
-    label: 'id',
-    component: 'Input',
-    show: false,
-  },
   {
     field: 'memberId',
     component: 'ApiSelect',
@@ -30,7 +15,7 @@ export const step1Schemas: FormSchema[] = [
       span: 24,
     },
     componentProps: {
-      api: memberList,
+      api: await getMemberList,
       params: {
         page: 1,
         pageSize: 999,
@@ -56,6 +41,9 @@ export const step1Schemas: FormSchema[] = [
     component: 'ApiSelect',
     label: '销售',
     required: false,
+    colProps: {
+      span: 24,
+    },
     componentProps: {
       // mode: 'multiple',
       multiple: true,
@@ -93,6 +81,9 @@ export const step1Schemas: FormSchema[] = [
     component: 'ApiSelect',
     label: '产品',
     required: false,
+    colProps: {
+      span: 24,
+    },
     componentProps: {
       api: getProductList,
       params: {
@@ -120,25 +111,34 @@ export const step1Schemas: FormSchema[] = [
     label: '数量',
     component: 'InputNumber',
     defaultValue: 1,
-  },
-
-  {
-    field: 'reason',
-    label: '购买类型',
-    component: 'Select',
-    componentProps: {
-      options: [
-        { label: '新购', value: 1 },
-        { label: '续约', value: 2 },
-      ],
+    colProps: {
+      span: 24,
     },
   },
 
-  {
-    field: 'activationTime',
-    component: 'DatePicker',
-    label: '激活时间',
-  },
+  // {
+  //   field: 'reason',
+  //   label: '购买类型',
+  //   component: 'Select',
+  //   colProps: {
+  //     span: 24,
+  //   },
+  //   componentProps: {
+  //     options: [
+  //       { label: '新购', value: 1 },
+  //       { label: '续约', value: 2 },
+  //     ],
+  //   },
+  // },
+
+  // {
+  //   field: 'activationTime',
+  //   component: 'DatePicker',
+  //   label: '激活时间',
+  //   colProps: {
+  //     span: 24,
+  //   },
+  // },
 
   {
     field: 'money',
@@ -160,12 +160,18 @@ export const step1Schemas: FormSchema[] = [
     field: 'divider-linked2',
     component: 'Divider',
     label: '订单归属场馆',
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'venue',
     component: 'ApiSelect',
     label: '场馆',
     required: false,
+    colProps: {
+      span: 24,
+    },
     componentProps: {
       api: getAllVenue,
       params: {
@@ -192,13 +198,16 @@ export const step1Schemas: FormSchema[] = [
     field: 'divider-linked3',
     component: 'Divider',
     label: '类型',
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'province',
     component: 'Select',
     label: '购买类型',
     colProps: {
-      span: 8,
+      span: 24,
     },
     componentProps: ({ formModel, formActionType }) => {
       return {
@@ -248,7 +257,7 @@ export const step1Schemas: FormSchema[] = [
     component: 'Select',
     label: '会员产品',
     colProps: {
-      span: 8,
+      span: 24,
     },
     componentProps: {
       options: [],
@@ -278,8 +287,9 @@ const provincesOptions = [
 export const step2Schemas: FormSchema[] = [
   {
     field: 'fac',
-    label: '支付方式',
+    label: '收款账户',
     required: false,
+    defaultValue: '',
     slot: 'fac',
     colProps: {
       span: 24,
