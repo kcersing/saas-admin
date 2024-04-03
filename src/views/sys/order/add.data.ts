@@ -266,9 +266,6 @@ export const step1Schemas: FormSchema[] = [
     },
   },
 
-
-
-
 ];
 
 const provincesOptions = [
@@ -286,69 +283,26 @@ const provincesOptions = [
   },
 ];
 export const step2Schemas: FormSchema[] = [
-  {
-    field: 'fac',
-    component: 'InputGroup',
-    label: '收款方式',
-    required: true,
-    defaultValue: 'wx',
-    slot: 'fac',
-    colProps: {
-      span: 24,
-    },
-  },
+  // {
+  //   field: 'fac',
+  //   component: 'InputGroup',
+  //   label: '收款方式',
+  //   required: true,
+  //   defaultValue: 'wx',
+  //   slot: 'fac',
+  //   colProps: {
+  //     span: 24,
+  //   },
+  // },
   {
     field: 'pay',
     component: 'Input',
-    label: '',
+    label: '金额',
     defaultValue: 'zfb',
-    show: false,
+    show: true,
   },
 ];
 
-export const orderSchema: DescItem[] = [
-  {
-    field: 'username',
-    label: '用户名',
-  },
-  {
-    field: 'nickName',
-    label: '昵称',
-  },
-  {
-    field: 'phone',
-    label: '联系电话',
-  },
-  {
-    field: 'email',
-    label: '邮箱',
-  },
-  {
-    field: 'addr',
-    label: '地址',
-  },
-
-];
-
-
-export const orderData: any = {
-  username: 'test',
-  nickName: 'VB',
-  age: 123,
-  phone: '15695909xxx',
-  email: '190848757@qq.com',
-  addr: '厦门市思明区',
-  sex: '男',
-  certy: '3504256199xxxxxxxxx',
-  tag: 'orange',
-};
-
-export const refundData = {
-  a1: '1000000000',
-  a2: '已取货',
-  a3: '1234123421',
-  a4: '3214321432',
-};
 export const refundSchema: DescItem[] = [
   {
     field: 'a1',
@@ -389,7 +343,12 @@ export const personSchema: DescItem[] = [
     label: '备注',
   },
 ];
-
+export const refundData = {
+  a1: '1000000000',
+  a2: '已取货',
+  a3: '1234123421',
+  a4: '3214321432',
+};
 export const personData = {
   b1: '付小小',
   b2: '18100000000',
@@ -397,3 +356,36 @@ export const personData = {
   b4: '浙江省杭州市西湖区万塘路18号',
   b5: '无',
 };
+
+//    <BasicForm @register="register">
+//       <template #fac="{ model, field }">
+//         <a-input-group compact>
+//           <a-select v-model:value="model['pay']" class="pay-select">
+//             <a-select-option value="wx"> 微信 </a-select-option>
+//             <a-select-option value="zfb"> 支付宝 </a-select-option>
+//             <a-select-option value="yl"> 银联 </a-select-option>
+//             <a-select-option value="xxck"> 线下收款 </a-select-option>
+//           </a-select>
+//           <a-input class="pay-input" v-model:value="model[field]" />
+//         </a-input-group>
+//       </template>
+//     </BasicForm>
+
+//  <Description
+//       size="middle"
+//       title="退款申请"
+//       :bordered="false"
+//       :column="3"
+//       :data="refundData"
+//       :schema="refundSchema"
+//   />
+//   <a-divider />
+//   <Description
+//       size="middle"
+//       title="用户信息"
+//       :bordered="false"
+//       :column="3"
+//       :data="personData"
+//       :schema="personSchema"
+//   />
+//   <a-divider />

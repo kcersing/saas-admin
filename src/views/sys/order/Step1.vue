@@ -2,6 +2,15 @@
   <div class="step1">
     <div class="step1-form">
       <BasicForm @register="register">
+        <template #fac="{ model, field }">
+          <a-input-group compact>
+            <a-select v-model:value="model['pay']" class="pay-select">
+              <a-select-option value="zfb"> 支付宝 </a-select-option>
+              <a-select-option value="yl"> 银联 </a-select-option>
+            </a-select>
+            <a-input class="pay-input" v-model:value="model[field]" />
+          </a-input-group>
+        </template>
       </BasicForm>
     </div>
     <a-divider />
@@ -17,9 +26,6 @@
     </p>
   </div>
 </template>
-
-
-
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { BasicForm, useForm } from '/@/components/Form';
