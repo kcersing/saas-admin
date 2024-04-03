@@ -1,30 +1,27 @@
 <template>
   <div class="step1">
     <div class="step1-form">
-
-      <BasicForm @register="register" />
+      <BasicForm @register="register">
+      </BasicForm>
     </div>
     <Divider />
     <h3>说明</h3>
-    <h4>添加订单</h4>
+    <h4>转账到支付宝账户</h4>
     <p>
-      添加订单添加订单添加订单添加订单添加订单添加订单添加订单添加订单添加订单添加订单添加订单。
+      如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。
     </p>
-    <h4>选择会员</h4>
+
+    <h4>转账到银行卡</h4>
     <p>
-      选择会员选择会员选择会员选择会员选择会员选择会员选择会员选择会员选择会员选择会员选择会员选择会员选择会员。
+      如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。
     </p>
   </div>
 </template>
 <script lang="ts" setup>
   import { BasicForm, useForm } from '/@/components/Form';
-  import { step1Schemas } from './addOrder.data';
+  import { step1Schemas } from './add.data';
 
   import { Select, Input, Divider } from 'ant-design-vue';
-
-
-  import {createOrAddOrder} from '/@/api/sys/order';
-  import {OrderInfo} from "/@/api/sys/model/orderModel";
 
   const emit = defineEmits(['next']);
 
@@ -44,23 +41,6 @@
   async function customSubmitFunc() {
     try {
       const values = await validate();
-
-
-      console.log("111111111111111111111111111111111111")
-      console.log(values)
-      console.log("111111111111111111111111111111111111")
-
-      // let params: OrderInfo = {
-      //   price: values['price'],
-      //   stock: values['stock'],
-      //   propertyId:values['property'] ,
-      //   name: values['name'],
-      //   status: values['status'],
-      // };
-      //
-      //   const result = await createOrAddOrder(params, 'message');
-
-
       emit('next', values);
     } catch (error) {
       //

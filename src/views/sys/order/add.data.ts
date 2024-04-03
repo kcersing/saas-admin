@@ -287,26 +287,20 @@ const provincesOptions = [
 export const step2Schemas: FormSchema[] = [
   {
     field: 'fac',
+    component:'InputGroup',
     label: '收款账户',
-    required: false,
-    defaultValue: '',
+    required: true,
+    defaultValue: 'test@example.com',
     slot: 'fac',
     colProps: {
       span: 24,
     },
   },
   {
-    field: 'paymentAmount',
+    field: 'pay',
     component: 'Input',
-    label: '支付金额',
-    required: false,
-    renderComponentContent: () => {
-      return {
-        prefix: () => '￥',
-      };
-    },
-    colProps: {
-      span: 24,
-    },
+    label: '',
+    defaultValue: 'zfb',
+    show: false,
   },
 ];
