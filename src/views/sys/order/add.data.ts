@@ -3,7 +3,7 @@ import {getUserList} from "/@/api/sys/user";
 import {getProductList} from "/@/api/sys/product";
 import {getAllVenue} from "/@/api/sys/universal";
 import {getMemberList} from "/@/api/sys/member";
-
+import {DescItem} from "/@/components/Description";
 
 export const step1Schemas: FormSchema[] = [
   {
@@ -270,6 +270,7 @@ export const step1Schemas: FormSchema[] = [
 
 
 ];
+
 const provincesOptions = [
   {
     id: '1',
@@ -287,10 +288,10 @@ const provincesOptions = [
 export const step2Schemas: FormSchema[] = [
   {
     field: 'fac',
-    component:'InputGroup',
-    label: '收款账户',
+    component: 'InputGroup',
+    label: '收款方式',
     required: true,
-    defaultValue: 'test@example.com',
+    defaultValue: 'wx',
     slot: 'fac',
     colProps: {
       span: 24,
@@ -304,3 +305,95 @@ export const step2Schemas: FormSchema[] = [
     show: false,
   },
 ];
+
+export const orderSchema: DescItem[] = [
+  {
+    field: 'username',
+    label: '用户名',
+  },
+  {
+    field: 'nickName',
+    label: '昵称',
+  },
+  {
+    field: 'phone',
+    label: '联系电话',
+  },
+  {
+    field: 'email',
+    label: '邮箱',
+  },
+  {
+    field: 'addr',
+    label: '地址',
+  },
+
+];
+
+
+export const orderData: any = {
+  username: 'test',
+  nickName: 'VB',
+  age: 123,
+  phone: '15695909xxx',
+  email: '190848757@qq.com',
+  addr: '厦门市思明区',
+  sex: '男',
+  certy: '3504256199xxxxxxxxx',
+  tag: 'orange',
+};
+
+export const refundData = {
+  a1: '1000000000',
+  a2: '已取货',
+  a3: '1234123421',
+  a4: '3214321432',
+};
+export const refundSchema: DescItem[] = [
+  {
+    field: 'a1',
+    label: '取货单号',
+  },
+  {
+    field: 'a2',
+    label: '状态',
+  },
+  {
+    field: 'a3',
+    label: '销售单号',
+  },
+  {
+    field: 'a4',
+    label: '子订单',
+  },
+];
+export const personSchema: DescItem[] = [
+  {
+    field: 'b1',
+    label: '用户姓名',
+  },
+  {
+    field: 'b2',
+    label: '联系电话',
+  },
+  {
+    field: 'b3',
+    label: '常用快递',
+  },
+  {
+    field: 'b4',
+    label: '取货地址',
+  },
+  {
+    field: 'b5',
+    label: '备注',
+  },
+];
+
+export const personData = {
+  b1: '付小小',
+  b2: '18100000000',
+  b3: '菜鸟仓储',
+  b4: '浙江省杭州市西湖区万塘路18号',
+  b5: '无',
+};
