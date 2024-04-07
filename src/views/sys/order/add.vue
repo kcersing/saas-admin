@@ -7,8 +7,8 @@
   >
     <div class="step-form-form">
       <a-steps :current="current">
-        <a-step title="填写转账信息" />
-        <a-step title="确认转账信息" />
+        <a-step title="填写订单信息" />
+        <a-step title="确认订单信息" />
         <a-step title="完成" />
       </a-steps>
     </div>

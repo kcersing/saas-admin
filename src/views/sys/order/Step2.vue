@@ -8,19 +8,35 @@
       <a-descriptions-item label="转账金额"> 500元 </a-descriptions-item>
     </a-descriptions>
     <a-divider />
-    <BasicForm @register="register" />
+    <BasicForm @register="register">
+      <template #fac="{ model, field }">
+        <a-input-group compact>
+          <a-select v-model:value="model['pay']" class="pay-select">
+            <a-select-option value="wx"> 微信 </a-select-option>
+            <a-select-option value="zfb"> 支付宝 </a-select-option>
+            <a-select-option value="yl"> 银联 </a-select-option>
+            <a-select-option value="xxsk"> 线下收款 </a-select-option>
+          </a-select>
+          <a-input class="pay-input" v-model:value="model[field]" />
+        </a-input-group>
+      </template>
+    </BasicForm>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { BasicForm, useForm } from '/@/components/Form';
 import { step2Schemas } from './add.data';
-import { Alert, Divider, Descriptions } from 'ant-design-vue';
+import { Alert,Select,Input, Divider, Descriptions } from 'ant-design-vue';
 
 export default defineComponent({
   components: {
     BasicForm,
     [Alert.name]: Alert,
+    [Input.name]: Input,
+    [Input.Group.name]: Input.Group,
+    [Select.name]: Select,
+    ASelectOption: Select.Option,
     [Divider.name]: Divider,
     [Descriptions.name]: Descriptions,
     [Descriptions.Item.name]: Descriptions.Item,
@@ -74,5 +90,12 @@ export default defineComponent({
 .step2 {
   width: 450px;
   margin: 0 auto;
+}
+.pay-select {
+  width: 20%;
+}
+
+.pay-input {
+  width: 70%;
 }
 </style>

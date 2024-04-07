@@ -2,40 +2,23 @@ import { FormSchema } from '/@/components/Form';
 import {getUserList} from "/@/api/sys/user";
 import {getProductList} from "/@/api/sys/product";
 import {getAllVenue} from "/@/api/sys/universal";
-import {getMemberList} from "/@/api/sys/member";
 import {DescItem} from "/@/components/Description";
 
+let labelField;
 export const step1Schemas: FormSchema[] = [
+
   {
     field: 'memberId',
-    component: 'ApiSelect',
-    label: '会员',
-    required: false,
+    component: 'Input',
+    label: '会员搜索',
+    helpMessage: ['ApiSelect组件', '将关键词发送到接口进行远程搜索'],
+    required: true,
+    slot: 'remoteSearch',
     colProps: {
       span: 24,
     },
-    componentProps: {
-      api: await getMemberList,
-      params: {
-        page: 1,
-        pageSize: 999,
-      },
-      resultField: 'data',
-      // use name as label
-      labelField: 'nickname',
-      // use id as value
-      valueField: 'id',
-      // not request untill to select
-      immediate: false,
-      onChange: (e, v) => {
-        console.log('ApiSelect====>:', e, v);
-      },
-      // atfer request callback
-      onOptionsChange: (options) => {
-        console.log('get options', options.length, options);
-      },
-    },
   },
+
   {
     field: 'sell',
     component: 'ApiSelect',
@@ -45,27 +28,30 @@ export const step1Schemas: FormSchema[] = [
       span: 24,
     },
     componentProps: {
-      // mode: 'multiple',
       multiple: true,
       showSearch: true,
       api: getUserList,
       params: {
-        // name: 1,
+         name: labelField,
       },
       resultField: 'data',
       // use name as label
-      labelField: 'name',
+      labelField: 'username',
       // use id as value
       valueField: 'id',
       // not request untill to select
       immediate: false,
-      // onChange: (e, v) => {
-      //   console.log('ApiSelect====>:', e, v);
-      // },
-      // // atfer request callback
-      // onOptionsChange: (options) => {
-      //   console.log('get options', options.length, options);
-      // },
+      onChange: (e, v) => {
+        console.log('ApiSelect====>:',  v.nickname);
+      },
+      // atfer request callback
+      onOptionsChange: (options) => {
+        // labelField=options.value
+
+
+        
+        console.log('get options', options.length, options);
+      },
     },
   },
   {
@@ -283,23 +269,23 @@ const provincesOptions = [
   },
 ];
 export const step2Schemas: FormSchema[] = [
-  // {
-  //   field: 'fac',
-  //   component: 'InputGroup',
-  //   label: '收款方式',
-  //   required: true,
-  //   defaultValue: 'wx',
-  //   slot: 'fac',
-  //   colProps: {
-  //     span: 24,
-  //   },
-  // },
+  {
+    field: 'fac',
+    component: 'InputGroup',
+    label: '收款方式',
+    required: true,
+    defaultValue: 'wx',
+    slot: 'fac',
+    colProps: {
+      span: 24,
+    },
+  },
   {
     field: 'pay',
     component: 'Input',
-    label: '金额',
+    label: '',
     defaultValue: 'zfb',
-    show: true,
+    show: false,
   },
 ];
 

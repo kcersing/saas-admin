@@ -2,14 +2,18 @@
   <div class="step1">
     <div class="step1-form">
       <BasicForm @register="register">
-        <template #fac="{ model, field }">
-          <a-input-group compact>
-            <a-select v-model:value="model['pay']" class="pay-select">
-              <a-select-option value="zfb"> 支付宝 </a-select-option>
-              <a-select-option value="yl"> 银联 </a-select-option>
-            </a-select>
-            <a-input class="pay-input" v-model:value="model[field]" />
-          </a-input-group>
+        <template #remoteSearch="{ model, field }">
+          <ApiSelect
+              :api="getMemberList"
+              showSearch
+              v-model:value="model[field]"
+              :filterOption="false"
+              resultField="data"
+              labelField="nickname"
+              valueField="id"
+              :params="searchParams"
+              @search="onSearch"
+          />
         </template>
       </BasicForm>
     </div>
@@ -27,19 +31,17 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { BasicForm, useForm } from '/@/components/Form';
+import { computed, defineComponent, unref, ref } from 'vue';
 import { step1Schemas } from './add.data';
+import { BasicForm, useForm ,ApiSelect} from '/@/components/Form';
 
-import { Select, Input, Divider } from 'ant-design-vue';
+import {getMemberList} from "/@/api/sys/member";
+import { useDebounceFn } from '@vueuse/core';
 export default defineComponent({
+  methods: {getMemberList},
   components: {
     BasicForm,
-    [Select.name]: Select,
-    ASelectOption: Select.Option,
-    [Input.name]: Input,
-    [Input.Group.name]: Input.Group,
-    [Divider.name]: Divider,
+    ApiSelect,
   },
   emits: ['next'],
   setup(_, { emit }) {
@@ -56,6 +58,15 @@ export default defineComponent({
       submitFunc: customSubmitFunc,
     });
 
+    const name = ref<string>('');
+    const searchParams = computed<Recordable>(() => {
+      return { name: unref(name) };
+    });
+
+    function onSearch(value: string) {
+      name.value = value;
+    }
+
     async function customSubmitFunc() {
       try {
         const values = await validate();
@@ -63,7 +74,13 @@ export default defineComponent({
       } catch (error) {}
     }
 
-    return { register };
+    return {
+      register,
+      getMemberList,
+      onSearch: useDebounceFn(onSearch, 900),
+      searchParams,
+
+    };
   },
 });
 </script>
