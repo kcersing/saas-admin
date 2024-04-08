@@ -15,6 +15,7 @@
               @search="onSearch"
           />
         </template>
+        <Alert message="内外同时同时显示隐藏" show-icon />
       </BasicForm>
     </div>
     <a-divider />
@@ -35,13 +36,15 @@ import { computed, defineComponent, unref, ref } from 'vue';
 import { step1Schemas } from './add.data';
 import { BasicForm, useForm ,ApiSelect} from '/@/components/Form';
 
+import { Alert } from 'ant-design-vue';
+
 import {getMemberList} from "/@/api/sys/member";
 import { useDebounceFn } from '@vueuse/core';
 export default defineComponent({
   methods: {getMemberList},
   components: {
     BasicForm,
-    ApiSelect,
+    ApiSelect,Alert,
   },
   emits: ['next'],
   setup(_, { emit }) {

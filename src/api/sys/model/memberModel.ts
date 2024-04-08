@@ -44,12 +44,11 @@ export interface MemberListReq {
 
 export interface MemberInfo {
     id: number;
-    UUID?: string;
     username: string;
+    name: string;
     nickname: string;
     email: string;
     mobile: string;
-    roleId: number;
     avatar: string;
     status: number;
     password?: string;

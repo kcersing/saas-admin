@@ -6,29 +6,9 @@ import { h } from 'vue';
 import { Switch } from 'ant-design-vue';
 import { useMessage } from '/@/hooks/web/useMessage';
 import { setUserStatus } from '/@/api/sys/user';
-import { RoleInfo } from '/@/api/sys/model/roleModel';
+import {validateIdNo} from "/@/utils/verification";
 
 const { t } = useI18n();
-interface compOption {
-  label: string;
-  value: string | number;
-}
-
-// get role options data
-export const roleOptionData = (roleInfoInStore: RoleInfo[], type: number): compOption[] => {
-  const result: compOption[] = [];
-  // type 1 means search schema
-  if (type === 1) {
-    result.push({ label: '全部', value: 0 });
-  }
-  for (let i = 0; i < roleInfoInStore.length; i++) {
-    result.push({
-      label: roleInfoInStore[i].remark,
-      value: roleInfoInStore[i].id,
-    });
-  }
-  return result;
-};
 
 export const columns: BasicColumn[] = [
   {
@@ -37,14 +17,9 @@ export const columns: BasicColumn[] = [
     width: 30,
   },
   {
-    title: t('sys.user.nickname'),
+    title: '姓名',
     dataIndex: 'nickname',
     width: 30,
-  },
-  {
-    title: t('sys.login.email'),
-    dataIndex: 'email',
-    width: 80,
   },
   {
     title: t('common.statusName'),
@@ -90,34 +65,11 @@ export const columns: BasicColumn[] = [
 
 export const searchFormSchema: FormSchema[] = [
   {
-    field: 'username',
-    label: t('sys.login.username'),
-    component: 'Input',
-    colProps: { span: 8 },
-    rules: [{ max: 30 }],
-  },
-  {
     field: 'nickname',
-    label: t('sys.user.nickname'),
+    label: '姓名',
     component: 'Input',
     colProps: { span: 8 },
     rules: [{ max: 30 }],
-  },
-  {
-    field: 'roleID',
-    label: t('sys.role.roleTitle'),
-    component: 'Select',
-    colProps: { span: 8 },
-    componentProps: {
-      // search form does not support updateSchema function yet
-      // therefore we have to manually set the options
-      options: [
-        { label: t('common.all'), value: 0 },
-        { label: t('sys.role.admin'), value: 1 },
-        { label: t('sys.role.stuff'), value: 2 },
-        { label: t('sys.role.member'), value: 3 },
-      ],
-    },
   },
   {
     field: 'mobile',
@@ -126,13 +78,7 @@ export const searchFormSchema: FormSchema[] = [
     colProps: { span: 8 },
     rules: [{ max: 18 }],
   },
-  {
-    field: 'email',
-    label: t('sys.login.email'),
-    component: 'Input',
-    colProps: { span: 8 },
-    rules: [{ type: 'email' }],
-  },
+
 ];
 
 export const formSchema: FormSchema[] = [
@@ -151,44 +97,106 @@ export const formSchema: FormSchema[] = [
   },
   {
     field: 'username',
+    show: false,
     label: t('sys.login.username'),
+    required: false,
+    component: 'Input',
+    rules: [{ max: 30 }],
+    colProps: {
+      span: 24,
+    },
+  },
+  {
+    field: 'name',
+    label: '姓名',
     required: true,
     component: 'Input',
     rules: [{ max: 30 }],
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'nickname',
-    label: t('sys.user.nickname'),
-    required: true,
+    label: '昵称',
+    required: false,
     component: 'Input',
     rules: [{ max: 30 }],
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'mobile',
+    required: true,
     label: t('sys.login.mobile'),
     component: 'Input',
     rules: [{ max: 18 }],
+    colProps: {
+      span: 24,
+    },
+  },
+  {
+    field: 'gender',
+    component: 'RadioGroup',
+    label: '性别',
+    componentProps: {
+      options: [
+        {
+          label: '男性',
+          value: 1,
+        },
+        {
+          label: '女性',
+          value: 0,
+        },
+        {
+          label: '保密',
+          value: 3,
+        },
+      ],
+    },
+    defaultValue: 3,
+    colProps: {
+      span: 24,
+    },
+  },
+  {
+    field: 'identityCard',
+    label: '身份证',
+    required: false,
+    component: 'Input',
+    rules:  [{ required: false, validator: validateIdNo, trigger: 'blur' }],
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'email',
     label: t('sys.login.email'),
-    required: true,
+    required: false,
     component: 'Input',
     rules: [{ type: 'email' }],
+    colProps: {
+      span: 24,
+    },
+  },
+  {
+    field: 'birthday',
+    component: 'DatePicker',
+    label: '出生日期',
+    required: false,
+    colProps: {
+      span: 24,
+    },
   },
   {
     field: 'password',
     label: t('sys.login.password'),
     component: 'Input',
     rules: [{ min: 6, max: 30 }],
-  },
-  {
-    field: 'roleID',
-    label: t('sys.role.roleTitle'),
-    required: true,
-    component: 'Select',
-    componentProps: {
-      options: [],
+    colProps: {
+      span: 24,
     },
   },
   {
@@ -202,5 +210,9 @@ export const formSchema: FormSchema[] = [
         { label: t('common.off'), value: 0 },
       ],
     },
+    colProps: {
+      span: 24,
+    },
   },
 ];
+

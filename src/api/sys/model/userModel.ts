@@ -62,6 +62,7 @@ export interface GetUserInfoModel {
 export interface CaptchaResp {
   id: string;
   imgPath: string;
+  captchaId: string;
 }
 
 export interface UserListReq {

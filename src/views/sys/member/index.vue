@@ -3,7 +3,9 @@
     <BasicTable @register="registerTable">
       <template #toolbar>
         <a-button type="primary" @click="handleCreate"> {{ t('sys.user.addUser') }} </a-button>
+
       </template>
+
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'action'">
           <TableAction
@@ -12,30 +14,13 @@
                 icon: 'clarity:note-edit-line',
                 onClick: handleEdit.bind(null, record),
               },
-              {
-                icon: 'bx:log-out-circle',
-                color: 'error',
-                popConfirm: {
-                  title: t('sys.user.forceLoggingOut') + '?',
-                  placement: 'left',
-                  confirm: handleLogout.bind(null, record),
-                },
-              },
-              {
-                icon: 'ant-design:delete-outlined',
-                color: 'error',
-                popConfirm: {
-                  title: t('common.deleteConfirm'),
-                  placement: 'left',
-                  confirm: handleDelete.bind(null, record),
-                },
-              },
             ]"
           />
         </template>
       </template>
     </BasicTable>
-    <UserDrawer @register="registerDrawer" @success="handleSuccess" />
+
+    <Modal1 @register="register1" :minHeight="100" />
   </div>
 </template>
 <script lang="ts">
@@ -44,30 +29,28 @@
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
   import { useUserStore } from '/@/store/modules/user';
 
-  import { useDrawer } from '/@/components/Drawer';
-  import UserDrawer from './UserDrawer.vue';
   import { useI18n } from 'vue-i18n';
 
   import { columns, searchFormSchema } from './user.data';
-  import { getUserList, deleteUser } from '/@/api/sys/user';
-  import { useRoleStore } from '/@/store/modules/role';
-  import { logout } from '/@/api/sys/token';
+  import { getMemberList } from '/@/api/sys/member';
 
+  import { useModal } from '/@/components/Modal';
+  import Modal1 from './Modal1.vue';
   export default defineComponent({
     name: 'UserManagement',
-    components: { BasicTable, UserDrawer, TableAction },
+    components: { BasicTable, TableAction,Modal1 },
     setup() {
-      const { t } = useI18n();
-      const [registerDrawer, { openDrawer }] = useDrawer();
-      const roleStoreData = useRoleStore();
       const userStore = useUserStore();
+      console.log('userStore', userStore.userInfo);
 
+      const { t } = useI18n();
+
+      const [register1, { openModal: openModal1 }] = useModal();
       // get role data
-      roleStoreData.getRoleInfoFromServer();
 
-      const [registerTable, { reload }] = useTable({
-        title: t('sys.user.userList'),
-        api: getUserList,
+      const [registerTable, {reload}] = useTable({
+        title: '会员列表',
+        api: getMemberList,
         columns,
         formConfig: {
           labelWidth: 120,
@@ -86,46 +69,49 @@
       });
 
       function handleCreate() {
-        openDrawer(true, {
+        openModal1(true, {
           isUpdate: false,
         });
       }
 
       function handleEdit(record: Recordable) {
-        openDrawer(true, {
+        // openDrawer(true, {
+        //   record,
+        //   isUpdate: true,
+        // });
+
+        openModal1(true, {
           record,
           isUpdate: true,
         });
+
       }
 
-      async function handleDelete(record: Recordable) {
-        const result = await deleteUser({ id: record.id }, 'modal');
-        if (result.code === 0) {
-          message.success(result.message, 3);
-          reload();
-        } else {
-          message.error(result.message);
-        }
-      }
-
-      async function handleLogout(record: Recordable) {
-        const result = await logout(record.UUID);
-        userStore.confirmLoginOut();
-      }
 
       function handleSuccess() {
         reload();
       }
 
+      function openModalLoading() {
+        openModal1(true, {
+          data: 'content',
+          info: 'Info',
+        });
+        // setModalProps({ loading: true });
+        // setTimeout(() => {
+        //   setModalProps({ loading: false });
+        // }, 2000);
+      }
+
       return {
         t,
         registerTable,
-        registerDrawer,
         handleCreate,
         handleEdit,
-        handleLogout,
-        handleDelete,
         handleSuccess,
+        openModalLoading,
+        register1,
+        openModal1,
       };
     },
   });

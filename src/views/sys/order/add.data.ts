@@ -42,7 +42,7 @@ export const step1Schemas: FormSchema[] = [
       // not request untill to select
       immediate: false,
       onChange: (e, v) => {
-        console.log('ApiSelect====>:',  v.nickname);
+        console.log('ApiSelect====>:', e, v.nickname);
       },
       // atfer request callback
       onOptionsChange: (options) => {
