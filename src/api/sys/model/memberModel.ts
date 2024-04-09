@@ -42,18 +42,34 @@ export interface MemberListReq {
     mobile: string;
 }
 
-export interface MemberInfo {
+export interface CreateOrUpdateMemberReq{
     id: number;
-    username: string;
     name: string;
     nickname: string;
     email: string;
     mobile: string;
     avatar: string;
     status: number;
-    password?: string;
     createdAt?: number;
     updatedAt?: number;
+    birthday: string;
+    gender: number;
+    wecom:string;
+}
+export interface MemberInfo {
+    id: number;
+    name: string;
+    nickname: string;
+    email: string;
+    mobile: string;
+    avatar: string;
+    status: number;
+    createdAt?: number;
+    updatedAt?: number;
+    birthday: string;
+    gender: number;
+    wecom:string;
+
 }
 
 export interface MemberListResp {

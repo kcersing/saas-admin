@@ -6,19 +6,19 @@ import { h } from 'vue';
 import { Switch } from 'ant-design-vue';
 import { useMessage } from '/@/hooks/web/useMessage';
 import { setUserStatus } from '/@/api/sys/user';
-import {validateIdNo} from "/@/utils/verification";
+import {uploadApi} from "/@/api/sys/upload";
 
 const { t } = useI18n();
 
 export const columns: BasicColumn[] = [
   {
-    title: t('sys.login.username'),
-    dataIndex: 'username',
+    title: '姓名',
+    dataIndex: 'name',
     width: 30,
   },
   {
-    title: '姓名',
-    dataIndex: 'nickname',
+    title: '手机号',
+    dataIndex: 'mobile',
     width: 30,
   },
   {
@@ -65,7 +65,7 @@ export const columns: BasicColumn[] = [
 
 export const searchFormSchema: FormSchema[] = [
   {
-    field: 'nickname',
+    field: 'name',
     label: '姓名',
     component: 'Input',
     colProps: { span: 8 },
@@ -83,27 +83,24 @@ export const searchFormSchema: FormSchema[] = [
 
 export const formSchema: FormSchema[] = [
   {
-    field: 'avatar',
-    label: t('sys.user.avatar'),
-    defaultValue: '',
-    component: 'Input',
-    show: false,
-  },
-  {
     field: 'id',
     label: 'id',
     component: 'Input',
     show: false,
   },
   {
-    field: 'username',
-    show: false,
-    label: t('sys.login.username'),
-    required: false,
-    component: 'Input',
-    rules: [{ max: 30 }],
-    colProps: {
-      span: 24,
+    field: 'avatar',
+    component: 'Upload',
+    label: '上传图片',
+    required: true,
+    defaultValue: [
+      'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    ],
+    componentProps: {
+      api: uploadApi,
+      accept: ['png', 'jpeg', 'jpg'],
+      maxSize: 2,
+      maxNumber: 1,
     },
   },
   {
@@ -137,6 +134,16 @@ export const formSchema: FormSchema[] = [
     },
   },
   {
+    field: 'wecom',
+    required: false,
+    label: '微信号',
+    component: 'Input',
+    rules: [{ max: 18 }],
+    colProps: {
+      span: 24,
+    },
+  },
+  {
     field: 'gender',
     component: 'RadioGroup',
     label: '性别',
@@ -161,16 +168,16 @@ export const formSchema: FormSchema[] = [
       span: 24,
     },
   },
-  {
-    field: 'identityCard',
-    label: '身份证',
-    required: false,
-    component: 'Input',
-    rules:  [{ required: false, validator: validateIdNo, trigger: 'blur' }],
-    colProps: {
-      span: 24,
-    },
-  },
+  // {
+  //   field: 'identityCard',
+  //   label: '身份证',
+  //   required: false,
+  //   component: 'Input',
+  //   rules:  [{ required: false, validator: validateIdNo, trigger: 'blur' }],
+  //   colProps: {
+  //     span: 24,
+  //   },
+  // },
   {
     field: 'email',
     label: t('sys.login.email'),
@@ -186,15 +193,6 @@ export const formSchema: FormSchema[] = [
     component: 'DatePicker',
     label: '出生日期',
     required: false,
-    colProps: {
-      span: 24,
-    },
-  },
-  {
-    field: 'password',
-    label: t('sys.login.password'),
-    component: 'Input',
-    rules: [{ min: 6, max: 30 }],
     colProps: {
       span: 24,
     },

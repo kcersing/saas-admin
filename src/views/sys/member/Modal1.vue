@@ -17,7 +17,7 @@ import {BasicForm, useForm} from '/@/components/Form/index';
 import {formSchema} from "/@/views/sys/member/user.data";
 import {BasicDrawer} from "/@/components/Drawer";
 import {createOrAddMember} from "/@/api/sys/member";
-import {MemberInfo} from "/@/api/sys/model/memberModel";
+import {CreateOrUpdateMemberReq, MemberInfo} from "/@/api/sys/model/memberModel";
 
 export default defineComponent({
   components: {BasicDrawer, BasicModal, BasicForm},
@@ -94,28 +94,23 @@ export default defineComponent({
       setModalProps({confirmLoading: true});
       // defined user id
       let userId: number;
-      let password: string;
       if (unref(isUpdate)) {
         userId = Number(values['id']);
-        if (values['password'] == undefined) {
-          password = '';
-        } else {
-          password = values['password'];
-        }
       } else {
         userId = 0;
       }
       console.log('username', values['username']);
-      let params: MemberInfo = {
+      let params: CreateOrUpdateMemberReq = {
         id: userId,
-        username: values['mobile'],
         name: values['name'],
         nickname: values['nickname'],
         mobile: values['mobile'],
         email: values['email'],
         status: values['status'],
-        avatar: values['avatar'],
-        password: password,
+        birthday: values['birthday'],
+        gender: values['gender'],
+        wecom: values['wecom'],
+        avatar:  values['avatar'],
       };
       console.log('params', params);
 
