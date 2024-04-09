@@ -89,21 +89,6 @@ export const formSchema: FormSchema[] = [
     show: false,
   },
   {
-    field: 'avatar',
-    component: 'Upload',
-    label: '上传图片',
-    required: true,
-    defaultValue: [
-      'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    ],
-    componentProps: {
-      api: uploadApi,
-      accept: ['png', 'jpeg', 'jpg'],
-      maxSize: 2,
-      maxNumber: 1,
-    },
-  },
-  {
     field: 'name',
     label: '姓名',
     required: true,

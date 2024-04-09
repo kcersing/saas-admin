@@ -6,7 +6,13 @@
       @ok="handleSubmit"
   >
     <div class="pt-3px pr-3px">
-      <BasicForm @register="registerForm" :model="model"/>
+
+      <CollapseContainer title="头像上传">
+        <CropperAvatar :uploadApi="uploadApi" :value="avatar" />
+      </CollapseContainer>
+
+      <BasicForm @register="registerForm" :model="model" />
+
     </div>
   </BasicModal>
 </template>
@@ -17,10 +23,19 @@ import {BasicForm, useForm} from '/@/components/Form/index';
 import {formSchema} from "/@/views/sys/member/user.data";
 import {BasicDrawer} from "/@/components/Drawer";
 import {createOrAddMember} from "/@/api/sys/member";
-import {CreateOrUpdateMemberReq, MemberInfo} from "/@/api/sys/model/memberModel";
+import {CreateOrUpdateMemberReq} from "/@/api/sys/model/memberModel";
+import { uploadApi } from '/@/api/sys/upload';
 
+import { CollapseContainer } from '/@/components/Container';
+import { CropperImage, CropperAvatar } from '/@/components/Cropper';
+import { useUserStore } from '/@/store/modules/user';
+import img from '/@/assets/images/header.jpg';
 export default defineComponent({
-  components: {BasicDrawer, BasicModal, BasicForm},
+  components: {BasicDrawer, BasicModal, BasicForm,
+    CropperImage,
+    CollapseContainer,
+    CropperAvatar,
+  },
   props: {
     userData: {type: Object},
   },
@@ -128,7 +143,45 @@ export default defineComponent({
 
     }
 
-    return {register, formSchema, registerForm, model: modelRef, handleSubmit,getTitle};
+    const info = ref('');
+    const cropperImg = ref('');
+    const circleInfo = ref('');
+    const circleImg = ref('');
+    const userStore = useUserStore();
+    const avatar = ref(userStore.getUserInfo?.avatar || '');
+
+
+    return {register, formSchema, registerForm, model: modelRef, handleSubmit,getTitle,
+
+
+      img,
+      info,
+      circleInfo,
+      cropperImg,
+      circleImg,
+      avatar,
+      uploadApi: uploadApi as any,
+
+    };
   },
 });
 </script>
+<style scoped>
+.container {
+  display: flex;
+  width: 100vw;
+  align-items: center;
+}
+
+.cropper-container {
+  width: 40vw;
+}
+
+.croppered {
+  height: 360px;
+}
+
+p {
+  margin: 10px;
+}
+</style>
