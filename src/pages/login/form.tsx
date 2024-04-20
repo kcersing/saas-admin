@@ -31,31 +31,8 @@ export default function LoginForm() {
   const check = ()=>{
     setisShow(!isShow)
   }
-  const [captchaId, setcaptchaId] = React.useState(null);
-  const [imgPath, setimgPath] = React.useState(null);
-  React.useEffect(() => {
-    axios.post('/api/captcha')
-    .then((res)=> {
-      const { data, code } = res.data;
-      if (code === 0) {
-        setcaptchaId(data.captchaId);
-        setimgPath(data.imgPath);
-
-        console.log(data)
-        console.log(captchaId);
-        console.log(imgPath);
-      } else {
-        setErrorMessage('获取验证码失败');
-      }
-    })
-    .catch(function (error) {
-    // 处理错误情况
-    console.log(error);
-  })
-  .finally(function () {
-    // 总是会执行
-  });
-  }, []);
+  const [captchaId, setcaptchaId] = useState(null);
+  const [imgPath, setimgPath] = useState(null);
 
   function afterLoginSuccess(params) {
     // 记住密码
@@ -107,6 +84,28 @@ export default function LoginForm() {
       const parseParams = JSON.parse(loginParams);
       formRef.current.setFieldsValue(parseParams);
     }
+    axios.post('/api/captcha')
+    .then((res)=> {
+      const { data, code } = res.data;
+      if (code === 0) {
+        setcaptchaId(data.captchaId);
+        setimgPath(data.imgPath);
+
+        console.log(data)
+        console.log(captchaId);
+        console.log(imgPath);
+      } else {
+        setErrorMessage('获取验证码失败');
+      }
+    })
+    .catch(function (error) {
+    // 处理错误情况
+    console.log(error);
+  })
+  .finally(function () {
+    // 总是会执行
+  });
+  
   }, [loginParams]);
 
 
