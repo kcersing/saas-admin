@@ -26,24 +26,8 @@ export default function LoginForm() {
   const t = useLocale(locale);
 
   const [rememberPassword, setRememberPassword] = useState(!!loginParams);
-
-
-  // const [imgPath, captchaId];
-  
-  const  imgPath = ""
-  const captchaId = ""
-    GetImgCaptcha().then((res) => {
-      // setImgPath(res.imgPath)
-      // setCaptchaId(res.captchaId)
-      const  imgPath = res.imgPath
-      const captchaId = res.captchaId 
-    }).catch(err => {
-      //登录失败。处理区域...
-    });
-
-  console.log(imgPath,captchaId)
-
-
+  const [imgPath, setImgPath] = useState('');
+  const [captchaId, setCaptchaId] = useState('');
 
   function afterLoginSuccess(params) {
     // 记住密码
@@ -61,7 +45,7 @@ export default function LoginForm() {
   function login(params) {
     setErrorMessage('');
     setLoading(true);
-    params['captchaId']= "";
+    params['captchaId']= captchaId;
     console.log(params)
     axios
       .post('/api/login', params)
@@ -95,10 +79,18 @@ export default function LoginForm() {
       const parseParams = JSON.parse(loginParams);
       formRef.current.setFieldsValue(parseParams);
     }
+
+    GetImgCaptcha().then((res) => {
+      setImgPath(res.imgPath)
+      setCaptchaId(res.captchaId)
+      // const  imgPath = res.imgPath
+      // const captchaId = res.captchaId 
+    }).catch(err => {
+      //登录失败。处理区域...
+    });
+
     // handleOnClick()
   }, [loginParams]);
-
-
 
   return (
     <div className={styles['login-form-wrapper']}>
@@ -134,7 +126,7 @@ export default function LoginForm() {
             onPressEnter={onSubmitClick}
           />
         </Form.Item> 
-        <Image width={200} src="" alt='lamp' />
+        <Image width={200} src={imgPath} alt='lamp' />
         <Form.Item
           field="captcha"
           rules={[{ required: true, message: '请输入验证码'} ]} 

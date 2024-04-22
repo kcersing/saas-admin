@@ -12,32 +12,32 @@ const baseURL = process.env.NODE_ENV === 'development'? '' : '/';
 const timeout = 30000;
 
 //创建axios实例
-// const service = axios.create({
-//   timeout,
-//   baseURL,
-//   //如需要携带cookie 该值需设为true
-//   withCredentials: true
-// });
-
-
 const service = axios.create({
-    timeout,
-    baseURL: baseURL,
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/x-www-form-urlencoded"
-    },
-    transformRequest: [
-      function(data) {
-        //由于使用的 form-data传数据所以要格式化
-        delete data.Authorization;
-        data = qs.stringify(data);
-        return data;
-      }
-    ],
-      //如需要携带cookie 该值需设为true
-    withCredentials: true,
-  });
+  timeout,
+  baseURL,
+  //如需要携带cookie 该值需设为true
+  // withCredentials: true
+});
+
+
+// const service = axios.create({
+//     timeout,
+//     baseURL: baseURL,
+//     headers: {
+//       Accept: "application/json",
+//       "Content-Type": "application/x-www-form-urlencoded"
+//     },
+//     transformRequest: [
+//       function(data) {
+//         //由于使用的 form-data传数据所以要格式化
+//         delete data.Authorization;
+//         data = qs.stringify(data);
+//         return data;
+//       }
+//     ],
+//       //如需要携带cookie 该值需设为true
+//     withCredentials: true,
+//   });
 
 
 // axios实例拦截响应
@@ -50,7 +50,7 @@ service.interceptors.response.use(
           localStorage.setItem('token', response.data.token);
         }
       }
-  
+      console.log(response.data.token)
       if (response.status === 200) {
         return response;
       } else {
@@ -84,6 +84,7 @@ service.interceptors.request.use(
     config.headers = customHeaders;
 
     const token = localStorage.getItem('token');
+    console.log(token)
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
     }
@@ -152,6 +153,7 @@ const requestHandler = <T>(method: 'get' | 'post' | 'put' | 'delete', url: strin
       }
 
     }).catch(error => {
+      console.log(error)
       const e = JSON.stringify(error);
       Message.info(`网络错误：${e}`);
       console.log(`网络错误：${e}`)

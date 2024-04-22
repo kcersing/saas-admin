@@ -1,5 +1,6 @@
 import auth, { AuthParams } from '@/utils/authentication';
 import { useEffect, useMemo, useState } from 'react';
+import { getUserMenu } from './api/muen';
 
 export type IRoute = AuthParams & {
   name: string;
@@ -11,7 +12,7 @@ export type IRoute = AuthParams & {
   ignore?: boolean;
 };
 
-export const routes: IRoute[] = [
+export const routes: IRoute[] =  [
   {
     name: 'menu.dashboard',
     key: 'dashboard',
@@ -26,7 +27,10 @@ export const routes: IRoute[] = [
     name: 'Example',
     key: 'example',
   },
+  getUserMenu,
 ];
+
+console.log( getUserMenu())
 
 export const getName = (path: string, routes) => {
   return routes.find((item) => {
@@ -82,10 +86,18 @@ const useRoute = (userPermission): [IRoute[], string] => {
   };
 
   const [permissionRoute, setPermissionRoute] = useState(routes);
-
+  const [menus, setMenus] = useState([]);
   useEffect(() => {
     const newRoutes = filterRoute(routes);
     setPermissionRoute(newRoutes);
+
+
+    // GetMenu().then((res) => {
+    //   setMenus(res)
+    // }).catch(err => {
+    //   //登录失败。处理区域...
+    // });
+
   }, [JSON.stringify(userPermission)]);
 
   const defaultRoute = useMemo(() => {
