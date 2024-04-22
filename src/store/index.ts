@@ -41,14 +41,3 @@ export default function store(state = initialState, action) {
       return state;
   }
 }
-
-
-
-// 根据token获取用户的权限菜单
-const getMenus = async () => {
-  const { data: data } = await $api.login.getMenus()
-  console.log(data);
-  let ary = transformMenu(data)
-  setMenuitems(ary)
-}
-
