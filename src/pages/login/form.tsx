@@ -27,26 +27,21 @@ export default function LoginForm() {
 
   const [rememberPassword, setRememberPassword] = useState(!!loginParams);
 
-  const [captcha, setcaptcha] = useState(null);
 
- 
+  // const [imgPath, captchaId];
+  
+  const  imgPath = ""
+  const captchaId = ""
+    GetImgCaptcha().then((res) => {
+      // setImgPath(res.imgPath)
+      // setCaptchaId(res.captchaId)
+      const  imgPath = res.imgPath
+      const captchaId = res.captchaId 
+    }).catch(err => {
+      //登录失败。处理区域...
+    });
 
-
-//  async () => {
-//     // 调用登录Api，获取结果
-//     const res=  await GetImgCaptcha
-//     // 处理结果
-//     console.log("==========================")
-//     console.log(res)
-//     console.log("==========================")
-//   };
-
-
-  GetImgCaptcha.then((res) => { return
-      console.log(res);
-
-    })
-
+  console.log(imgPath,captchaId)
 
 
 
@@ -100,7 +95,7 @@ export default function LoginForm() {
       const parseParams = JSON.parse(loginParams);
       formRef.current.setFieldsValue(parseParams);
     }
-
+    // handleOnClick()
   }, [loginParams]);
 
 

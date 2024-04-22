@@ -133,13 +133,13 @@ const requestHandler = <T>(method: 'get' | 'post' | 'put' | 'delete', url: strin
 
       //业务代码 可根据需求自行处理
       const data = res.data;
-      if(data.code !== 200){
+      if(data.code !== 0){
         
-        //特定状态码 处理特定的需求
-        if(data.code == 401){
-            Message.info('您的账号已登出或超时，即将登出...');
-            console.log('登录异常，执行登出...');
-        }
+        // //特定状态码 处理特定的需求
+        // if(data.code == 401){
+        //     Message.info('您的账号已登出或超时，即将登出...');
+        //     console.log('登录异常，执行登出...');
+        // }
 
         const e = JSON.stringify(data);
         Message.info(`请求错误：${e}`);
