@@ -1,36 +1,7 @@
-import auth, { AuthParams } from '@/utils/authentication';
+import auth from '@/utils/authentication';
 import { useEffect, useMemo, useState } from 'react';
-
-
-export type IRoute = AuthParams & {
-  name: string;
-  key: string;
-  // 当前页是否展示面包屑
-  breadcrumb?: boolean;
-  children?: IRoute[];
-  // 当前路由是否渲染菜单项，为 true 的话不会在菜单中显示，但可通过路由地址访问。
-  ignore?: boolean;
-};
-
-export const routes: IRoute[] =  [
-  {
-    name: 'menu.dashboard',
-    key: 'dashboard',
-    children: [
-      {
-        name: 'menu.dashboard.workplace',
-        key: 'dashboard/workplace',
-      },
-    ],
-  },
-  {
-    name: 'Example',
-    key: 'example',
-  },
-
-];
-
-
+import { IRoute, routes } from '../types/routes';
+import userMuen from '@/api/menu';
 
 export const getName = (path: string, routes) => {
   return routes.find((item) => {
@@ -85,20 +56,30 @@ const useRoute = (userPermission): [IRoute[], string] => {
     return arr;
   };
 
+
   const [permissionRoute, setPermissionRoute] = useState(routes);
-  const [menus, setMenus] = useState([]);
+
+  const [menuData, setMenuData] = useState([]);
+
   useEffect(() => {
-    const newRoutes = filterRoute(routes);
+    // const newRoutes = filterRoute(routes);
+
+    userMuen.getUserMenu().then((res) => {
+      // @ts-ignore
+      setMenuData(res);
+    });
+
+console.log(menuData)
+    
+    const newRoutes = filterRoute(menuData);
     setPermissionRoute(newRoutes);
 
 
-    // GetMenu().then((res) => {
-    //   setMenus(res)
-    // }).catch(err => {
-    //   //登录失败。处理区域...
-    // });
+
 
   }, [JSON.stringify(userPermission)]);
+
+
 
   const defaultRoute = useMemo(() => {
     const first = permissionRoute[0];

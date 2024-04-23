@@ -10,12 +10,16 @@ export interface LoginData {
 enum Api {
   //用户
   Login = '/api/login',
+
+  UserInfo ='/api/admin/user/info',
 }
 
 export const login = (params: LoginData) => request.post(Api.Login, params);
 
+export const userInfo = () => request.get(Api.UserInfo);
 
 
 export default {
-  login
+  login,
+  userInfo
 };

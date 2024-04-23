@@ -10,13 +10,12 @@ import {
 import { FormInstance } from '@arco-design/web-react/es/Form';
 import { IconLock, IconUser,IconCode} from '@arco-design/web-react/icon';
 import React, { useEffect, useRef, useState } from 'react';
-import axios from 'axios';
 import useStorage from '@/utils/useStorage';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import styles from './style/index.module.less';
 import { getImgCaptcha } from '@/api/captcha';
-import userService, { LoginData} from '@/api/user';
+import userService from '@/api/user';
 import { setToken } from '@/utils/auth';
 export default function LoginForm() {
   const formRef = useRef<FormInstance>();

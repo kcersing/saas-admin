@@ -13,12 +13,13 @@ import Link from 'next/link';
 import qs from 'query-string';
 import Navbar from '../components/NavBar';
 import Footer from '../components/Footer';
-import useRoute, { IRoute } from '@/routes';
+ import useRoute from '@/routes';
 import useLocale from '@/utils/useLocale';
-import { GlobalState } from '@/store';
 import getUrlParams from '@/utils/getUrlParams';
 import styles from '@/style/layout.module.less';
 import NoAccess from '@/pages/exception/403';
+import { GlobalState } from '@/../types/global';
+import { IRoute } from '../../types/routes';
 
 const MenuItem = Menu.Item;
 const SubMenu = Menu.SubMenu;

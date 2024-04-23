@@ -11,14 +11,16 @@ import zhCN from '@arco-design/web-react/es/locale/zh-CN';
 import enUS from '@arco-design/web-react/es/locale/en-US';
 import axios from 'axios';
 import NProgress from 'nprogress';
-import rootReducer from '../store';
+
 import { GlobalContext } from '../context';
 import checkLogin from '@/utils/checkLogin';
 import changeTheme from '@/utils/changeTheme';
 import useStorage from '@/utils/useStorage';
 import Layout from './layout';
 import '../mock';
-
+import userService from '@/api/user';
+import userMuen from '@/api/menu';
+import rootReducer from '../store';
 const store = createStore(rootReducer);
 
 interface RenderConfig {
@@ -52,19 +54,22 @@ export default function MyApp({
       type: 'update-userInfo',
       payload: { userLoading: true },
     });
-    axios.get('/api/admin/user/info').then((res) => {
+    userService.userInfo().then((res) => {
       store.dispatch({
         type: 'update-userInfo',
-        payload: { userInfo: res.data, userLoading: false },
+        payload: { userInfo: res, userLoading: false },
+      });
+    });
+    userMuen.getUserMenu().then((res) => {
+      store.dispatch({
+        type: 'update-UserMenuRole',
+        payload: { userMenu: res},
       });
     });
   }
 
   useEffect(() => {
-    if (checkLogin()) { 
-      // let token = localStorage.getItem('token');
-      const token = sessionStorage.getItem('token');
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    if (checkLogin()) {
       fetchUserInfo();
     } else if (window.location.pathname.replace(/\//g, '') !== 'login') {
       window.location.pathname = '/login';
