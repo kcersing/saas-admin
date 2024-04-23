@@ -42,44 +42,44 @@ const service = axios.create({
 
 // axios实例拦截响应
 service.interceptors.response.use(
-    (response: AxiosResponse) => {
-      if (response.headers.authorization) {
-        localStorage.setItem('token', response.headers.authorization);
-      } else {
-        if (response.data && response.data.token) {
-          localStorage.setItem('token', response.data.token);
-        }
-      }
-      console.log(response.data.token)
-      if (response.status === 200) {
-        return response;
-      } else {
-        console.log(response.status);
-        showMessage(response.status);
-        return response;
-      }
-    },
-    // 请求失败
-    error => {
-      const {response} = error;
-      if (response) {
-        // 请求已发出，但是不在2xx的范围
-        console.log(response.status);
-        showMessage(response.status);
-        return Promise.reject(response.data);
-      } else {
-        Message.error('网络连接异常,请稍后再试!');
+  (response: AxiosResponse) => {
+    if (response.headers.authorization) {
+      localStorage.setItem('token', response.headers.authorization);
+    } else {
+      if (response.data && response.data.token) {
+        localStorage.setItem('token', response.data.token);
       }
     }
-  );
+    console.log(response.data.token)
+    if (response.status === 200) {
+      return response;
+    } else {
+      console.log(response.status);
+      showMessage(response.status);
+      return response;
+    }
+  },
+  // 请求失败
+  error => {
+    const {response} = error;
+    if (response) {
+      // 请求已发出，但是不在2xx的范围
+      console.log(response.status);
+      showMessage(response.status);
+      return Promise.reject(response.data);
+    } else {
+      Message.error('网络连接异常,请稍后再试!');
+    }
+  }
+);
 
 
 //统一请求拦截 可配置自定义headers 例如 language、token等
 service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     //配置自定义请求头
-    const customHeaders: AxiosRequestHeaders = { 
-      language: 'zh-cn' 
+    const customHeaders: AxiosRequestHeaders = {
+      language: 'zh-cn'
     };
     config.headers = customHeaders;
 
@@ -99,15 +99,15 @@ service.interceptors.request.use(
 
 //axios返回格式
 interface axiosTypes<T>{
-    data: T;
-    status: number;
-    statusText: string;
+  data: T;
+  status: number;
+  statusText: string;
 }
 
 interface responseTypes<T>{
-    code: number | string,
-    message: string,
-    data: T,
+  code: number | string,
+  message: string,
+  data: T,
 
 }
 
@@ -128,14 +128,14 @@ const requestHandler = <T>(method: 'get' | 'post' | 'put' | 'delete', url: strin
       response = service.delete(url, {params: { ...params }, ...config});
       break;
   }
-  
+
   return new Promise<T>((resolve, reject) => {
     response.then(res => {
 
       //业务代码 可根据需求自行处理
       const data = res.data;
       if(data.code !== 0){
-        
+
         // //特定状态码 处理特定的需求
         // if(data.code == 401){
         //     Message.info('您的账号已登出或超时，即将登出...');

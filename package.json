@@ -17,6 +17,7 @@
     "@arco-design/web-react": "^2.32.2",
     "@arco-themes/react-arco-pro": "^0.0.7",
     "@loadable/component": "^5.13.2",
+    "@tanstack/react-query": "^5.31.0",
     "@turf/turf": "^6.5.0",
     "arco-design-pro": "^2.8.0",
     "axios": "^0.24.0",

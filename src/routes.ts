@@ -1,6 +1,6 @@
 import auth, { AuthParams } from '@/utils/authentication';
 import { useEffect, useMemo, useState } from 'react';
-import { getUserMenu } from './api/muen';
+
 
 export type IRoute = AuthParams & {
   name: string;
@@ -27,10 +27,10 @@ export const routes: IRoute[] =  [
     name: 'Example',
     key: 'example',
   },
-  getUserMenu,
+
 ];
 
-console.log( getUserMenu())
+
 
 export const getName = (path: string, routes) => {
   return routes.find((item) => {

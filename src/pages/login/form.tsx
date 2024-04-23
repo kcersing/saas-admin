@@ -15,8 +15,9 @@ import useStorage from '@/utils/useStorage';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import styles from './style/index.module.less';
-import { GetImgCaptcha } from '@/api/captcha';
-
+import { getImgCaptcha } from '@/api/captcha';
+import userService, { LoginData} from '@/api/user';
+import { setToken } from '@/utils/auth';
 export default function LoginForm() {
   const formRef = useRef<FormInstance>();
   const [errorMessage, setErrorMessage] = useState('');
@@ -28,6 +29,15 @@ export default function LoginForm() {
   const [rememberPassword, setRememberPassword] = useState(!!loginParams);
   const [imgPath, setImgPath] = useState('');
   const [captchaId, setCaptchaId] = useState('');
+
+
+
+
+
+
+
+
+
 
   function afterLoginSuccess(params) {
     // 记住密码
@@ -46,15 +56,12 @@ export default function LoginForm() {
     setErrorMessage('');
     setLoading(true);
     params['captchaId']= captchaId;
-    console.log(params)
-    axios
-      .post('/api/login', params)
+    userService.login(params).then()
       .then((res) => {
-        const { code, token,message } = res.data;
+        const { code,message,token } = res;
         if (code === 200) {
+          setToken(token)
           afterLoginSuccess(params);
-          localStorage.setItem('token',token);
-          sessionStorage.setItem('token',token);
         } else {
           setErrorMessage(message || t['login.form.login.errMsg']);
         }
@@ -80,11 +87,9 @@ export default function LoginForm() {
       formRef.current.setFieldsValue(parseParams);
     }
 
-    GetImgCaptcha().then((res) => {
+    getImgCaptcha().then((res) => {
       setImgPath(res.imgPath)
       setCaptchaId(res.captchaId)
-      // const  imgPath = res.imgPath
-      // const captchaId = res.captchaId 
     }).catch(err => {
       //登录失败。处理区域...
     });
