@@ -10,8 +10,7 @@ export type IRoute = AuthParams & {
   ignore?: boolean;
 };
 
-
-export const routes: IRoute[] =  [
+export const routes: IRoute[] = [
   {
     name: 'menu.dashboard',
     key: 'dashboard',
@@ -25,5 +24,15 @@ export const routes: IRoute[] =  [
   {
     name: 'Example',
     key: 'example',
+  },
+  {
+    name: '产品',
+    key: 'sys/product',
+    children: [
+      {
+        name: '产品列表',
+        key: 'sys/product',
+      },
+    ],
   },
 ];

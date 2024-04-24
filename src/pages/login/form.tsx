@@ -8,8 +8,9 @@ import {
   Image,
 } from '@arco-design/web-react';
 import { FormInstance } from '@arco-design/web-react/es/Form';
-import { IconLock, IconUser,IconCode} from '@arco-design/web-react/icon';
+import { IconLock, IconUser,IconCode } from '@arco-design/web-react/icon';
 import React, { useEffect, useRef, useState } from 'react';
+
 import useStorage from '@/utils/useStorage';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
@@ -21,21 +22,15 @@ export default function LoginForm() {
   const formRef = useRef<FormInstance>();
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
-  const [loginParams, setLoginParams, removeLoginParams] = useStorage('loginParams');
+  const [loginParams, setLoginParams, removeLoginParams] =
+    useStorage('loginParams');
 
   const t = useLocale(locale);
 
   const [rememberPassword, setRememberPassword] = useState(!!loginParams);
+
   const [imgPath, setImgPath] = useState('');
   const [captchaId, setCaptchaId] = useState('');
-
-
-
-
-
-
-
-
 
 
   function afterLoginSuccess(params) {
@@ -54,8 +49,9 @@ export default function LoginForm() {
   function login(params) {
     setErrorMessage('');
     setLoading(true);
+
     params['captchaId']= captchaId;
-    userService.login(params).then()
+    userService.login(params)
       .then((res) => {
         const { code,message,token } = res;
         if (code === 200) {
@@ -65,6 +61,7 @@ export default function LoginForm() {
           setErrorMessage(message || t['login.form.login.errMsg']);
         }
       })
+
       .finally(() => {
         setLoading(false);
       });
@@ -75,8 +72,7 @@ export default function LoginForm() {
       login(values);
     });
   }
- 
- 
+
   // 读取 localStorage，设置初始值
   useEffect(() => {
     const rememberPassword = !!loginParams;
@@ -93,7 +89,7 @@ export default function LoginForm() {
       //登录失败。处理区域...
     });
 
-    // handleOnClick()
+
   }, [loginParams]);
 
   return (
@@ -119,7 +115,6 @@ export default function LoginForm() {
             onPressEnter={onSubmitClick}
           />
         </Form.Item>
-
         <Form.Item
           field="password"
           rules={[{ required: true, message: t['login.form.password.errMsg'] }]}
@@ -129,11 +124,12 @@ export default function LoginForm() {
             placeholder={t['login.form.password.placeholder']}
             onPressEnter={onSubmitClick}
           />
-        </Form.Item> 
+        </Form.Item>
+
         <Image width={200} src={imgPath} alt='lamp' />
         <Form.Item
           field="captcha"
-          rules={[{ required: true, message: '请输入验证码'} ]} 
+          rules={[{ required: true, message: '请输入验证码'} ]}
         >
           <Input
             prefix={<IconCode />}

@@ -2,7 +2,6 @@ import auth from '@/utils/authentication';
 import { useEffect, useMemo, useState } from 'react';
 import { IRoute, routes } from '../types/routes';
 import userMuen from '@/api/menu';
-
 export const getName = (path: string, routes) => {
   return routes.find((item) => {
     const itemPath = `/${item.key}`;
@@ -56,30 +55,17 @@ const useRoute = (userPermission): [IRoute[], string] => {
     return arr;
   };
 
-
   const [permissionRoute, setPermissionRoute] = useState(routes);
-
   const [menuData, setMenuData] = useState([]);
-
   useEffect(() => {
-    // const newRoutes = filterRoute(routes);
-
     userMuen.getUserMenu().then((res) => {
-      // @ts-ignore
       setMenuData(res);
     });
-
-console.log(menuData)
-    
     const newRoutes = filterRoute(menuData);
+    console.log(newRoutes)
+    // const newRoutes = filterRoute(routes);
     setPermissionRoute(newRoutes);
-
-
-
-
   }, [JSON.stringify(userPermission)]);
-
-
 
   const defaultRoute = useMemo(() => {
     const first = permissionRoute[0];

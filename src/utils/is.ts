@@ -1,12 +1,12 @@
 const opt = Object.prototype.toString;
 export function isArray(val): boolean {
-  return Object.prototype.toString.call(val) === '[object Array]';
+  return opt.call(val) === '[object Array]';
 }
 export function isObject(val): boolean {
-  return Object.prototype.toString.call(val) === '[object Object]';
+  return opt.call(val) === '[object Object]';
 }
 export function isString(val): boolean {
-  return Object.prototype.toString.call(val) === '[object String]';
+  return opt.call(val) === '[object String]';
 }
 
 export const isSSR = (function () {
@@ -16,7 +16,6 @@ export const isSSR = (function () {
     return true;
   }
 })();
-
 
 
 export function isNumber(obj: any): obj is number {
@@ -63,6 +62,3 @@ export function isUrl(path: string): boolean {
     /^(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?(\/#\/)?(?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)$/;
   return reg.test(path);
 }
-
-
-

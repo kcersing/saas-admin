@@ -1,7 +1,9 @@
 /**
  * { data-analysis:  ['read', 'write'] }
  */
-import { Auth, AuthParams, UserPermission } from '../../types/auth';
+import { Auth, AuthParams } from '../../types/auth';
+
+export type UserPermission = Record<string, string[]>;
 
 const judge = (actions: string[], perm: string[]) => {
   if (!perm || !perm.length) {

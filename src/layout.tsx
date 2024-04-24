@@ -1,4 +1,5 @@
-import React, { useState, ReactNode, useRef, useEffect } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
+import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
 import { Layout, Menu, Breadcrumb, Spin } from '@arco-design/web-react';
 import cs from 'classnames';
 import {
@@ -8,18 +9,17 @@ import {
   IconMenuUnfold,
 } from '@arco-design/web-react/icon';
 import { useSelector } from 'react-redux';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
 import qs from 'query-string';
-import Navbar from '../components/NavBar';
-import Footer from '../components/Footer';
- import useRoute from '@/routes';
-import useLocale from '@/utils/useLocale';
-import getUrlParams from '@/utils/getUrlParams';
-import styles from '@/style/layout.module.less';
-import NoAccess from '@/pages/exception/403';
-import { GlobalState } from '@/../types/global';
-import { IRoute } from '../../types/routes';
+import NProgress from 'nprogress';
+import Navbar from './components/NavBar';
+import Footer from './components/Footer';
+import useRoute, { IRoute } from '@/routes';
+import { isArray } from './utils/is';
+import useLocale from './utils/useLocale';
+import getUrlParams from './utils/getUrlParams';
+import lazyload from './utils/lazyload';
+import { GlobalState } from './store';
+import styles from './style/layout.module.less';
 
 const MenuItem = Menu.Item;
 const SubMenu = Menu.SubMenu;
@@ -33,49 +33,74 @@ function getIconFromKey(key) {
       return <IconDashboard className={styles.icon} />;
     case 'example':
       return <IconTag className={styles.icon} />;
+    case 'sys/product':
+      return <IconTag className={styles.icon} />;
     default:
       return <div className={styles['icon-empty']} />;
   }
 }
 
-function PageLayout({ children }: { children: ReactNode }) {
+function getFlattenRoutes(routes) {
+  const mod = import.meta.glob('./pages/**/[a-z[]*.tsx');
+  const res = [];
+  function travel(_routes) {
+    _routes.forEach((route) => {
+      if (route.key && !route.children) {
+        route.component = lazyload(mod[`./pages/${route.key}/index.tsx`]);
+        res.push(route);
+      } else if (isArray(route.children) && route.children.length) {
+        travel(route.children);
+      }
+    });
+  }
+  travel(routes);
+  return res;
+}
+
+function PageLayout() {
   const urlParams = getUrlParams();
-  const router = useRouter();
-  const pathname = router.pathname;
+  const history = useHistory();
+  const pathname = history.location.pathname;
   const currentComponent = qs.parseUrl(pathname).url.slice(1);
   const locale = useLocale();
-  const { userInfo, settings, userLoading } = useSelector(
+  const { settings, userLoading, userInfo } = useSelector(
     (state: GlobalState) => state
   );
 
-  const [collapsed, setCollapsed] = useState<boolean>(false);
-
   const [routes, defaultRoute] = useRoute(userInfo?.permissions);
-
   const defaultSelectedKeys = [currentComponent || defaultRoute];
   const paths = (currentComponent || defaultRoute).split('/');
   const defaultOpenKeys = paths.slice(0, paths.length - 1);
 
+  const [breadcrumb, setBreadCrumb] = useState([]);
+  const [collapsed, setCollapsed] = useState<boolean>(false);
   const [selectedKeys, setSelectedKeys] =
     useState<string[]>(defaultSelectedKeys);
   const [openKeys, setOpenKeys] = useState<string[]>(defaultOpenKeys);
 
-  const navbarHeight = 60;
-  const menuWidth = collapsed ? 48 : settings?.menuWidth;
-
-  const showNavbar = settings?.navbar && urlParams.navbar !== false;
-  const showMenu = settings?.menu && urlParams.menu !== false;
-  const showFooter = settings?.footer && urlParams.footer !== false;
-
-  const routeMap = useRef<Map<string, ReactNode[]>>(new Map());
+  const routeMap = useRef<Map<string, React.ReactNode[]>>(new Map());
   const menuMap = useRef<
     Map<string, { menuItem?: boolean; subMenu?: boolean }>
   >(new Map());
 
-  const [breadcrumb, setBreadCrumb] = useState([]);
+  const navbarHeight = 60;
+  const menuWidth = collapsed ? 48 : settings.menuWidth;
+
+  const showNavbar = settings.navbar && urlParams.navbar !== false;
+  const showMenu = settings.menu && urlParams.menu !== false;
+  const showFooter = settings.footer && urlParams.footer !== false;
+
+  const flattenRoutes = useMemo(() => getFlattenRoutes(routes) || [], [routes]);
 
   function onClickMenuItem(key) {
-    setSelectedKeys([key]);
+    const currentRoute = flattenRoutes.find((r) => r.key === key);
+    const component = currentRoute.component;
+    const preload = component.preload();
+    NProgress.start();
+    preload.then(() => {
+      history.push(currentRoute.path ? currentRoute.path : `/${key}`);
+      NProgress.done();
+    });
   }
 
   function toggleCollapse() {
@@ -127,13 +152,7 @@ function PageLayout({ children }: { children: ReactNode }) {
           );
         }
         menuMap.current.set(route.key, { menuItem: true });
-        return (
-          <MenuItem key={route.key}>
-            <Link href={`/${route.key}`}>
-              <a>{titleDom}</a>
-            </Link>
-          </MenuItem>
-        );
+        return <MenuItem key={route.key}>{titleDom}</MenuItem>;
       });
     };
   }
@@ -163,7 +182,6 @@ function PageLayout({ children }: { children: ReactNode }) {
     setBreadCrumb(routeConfig || []);
     updateMenuStatus();
   }, [pathname]);
-
   return (
     <Layout className={styles.layout}>
       <div
@@ -220,7 +238,24 @@ function PageLayout({ children }: { children: ReactNode }) {
                 </div>
               )}
               <Content>
-                {routeMap.current.has(pathname) ? children : <NoAccess />}
+                <Switch>
+                  {flattenRoutes.map((route, index) => {
+                    return (
+                      <Route
+                        key={index}
+                        path={`/${route.key}`}
+                        component={route.component}
+                      />
+                    );
+                  })}
+                  <Route exact path="/">
+                    <Redirect to={`/${defaultRoute}`} />
+                  </Route>
+                  <Route
+                    path="*"
+                    component={lazyload(() => import('./pages/exception/403'))}
+                  />
+                </Switch>
               </Content>
             </div>
             {showFooter && <Footer />}

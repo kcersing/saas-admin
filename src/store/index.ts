@@ -1,7 +1,4 @@
-
 import { initialState } from '../../types/global';
-
-
 
 export default function store(state = initialState, action) {
   switch (action.type) {
