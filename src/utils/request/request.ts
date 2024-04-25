@@ -100,7 +100,7 @@ const requestHandler = <T>(method: 'get' | 'post' | 'put' | 'delete', url: strin
 
   return new Promise<T>((resolve, reject) => {
     response.then(res => {
-      console.log(res)
+      // console.log(res)
       //业务代码 可根据需求自行处理
       const data = res.data;
 
