@@ -5,12 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="febb57be-281a-4d53-b36f-ad64d8b5c0e2" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/sys/property/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/contract/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/dictionary/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/logs/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/member/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/menu/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/order/add/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/order/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/place/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/role/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/schedule/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/statistical/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/user/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/venue/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/product/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/product/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/lazyload.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/lazyload.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/request/request.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/request/request.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,38 +40,41 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2fTtEBgteZ6iTIj9bIB9s1xBgYI" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;arco&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/www/saas/saas-admin/src/pages/sys/property&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.stylelint&quot;: &quot;D:\\www\\saas\\saas-admin\\node_modules\\stylelint&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\www\\saas\\saas-admin\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "arco",
+    "last_opened_file_path": "D:/www/saas/arco/saas-pro1",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.stylelint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.stylelint": "D:\\www\\saas\\saas-admin\\node_modules\\stylelint",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "ts.external.directory.path": "D:\\www\\saas\\saas-admin\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\www\saas\saas-admin\src\pages\sys\property" />
-      <recent name="D:\www\saas\saas-admin\src\pages\sys" />
-      <recent name="D:\www\saas\saas-admin\src\pages\sys\product" />
-      <recent name="D:\www\saas\saas-admin\src\utils\http" />
-      <recent name="D:\www\saas\saas-admin\src\utils" />
+      <recent name="D:\www\saas\saas-admin\src\pages\sys\menu" />
+      <recent name="D:\www\saas\saas-admin\src\pages\sys\member" />
+      <recent name="D:\www\saas\saas-admin\src\pages\sys\logs" />
+      <recent name="D:\www\saas\saas-admin\src\pages\sys\api" />
+      <recent name="D:\www\saas\saas-admin\src\pages\sys\order" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\www\saas\saas-admin\src\pages\sys\product" />
       <recent name="D:\www\saas\saas-admin\src\pages\sys" />
+      <recent name="D:\www\saas\saas-admin\src\pages\sys\product" />
       <recent name="D:\www\saas\saas-admin\src\pages" />
       <recent name="D:\www\saas\saas-admin\src\utils\request" />
       <recent name="D:\www\saas\saas-admin\src\utils" />
@@ -82,6 +95,7 @@
       <workItem from="1713946034696" duration="5043000" />
       <workItem from="1714009558647" duration="3230000" />
       <workItem from="1714033917228" duration="1731000" />
+      <workItem from="1714092957971" duration="13717000" />
     </task>
     <servers />
   </component>
