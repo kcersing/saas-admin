@@ -12,14 +12,17 @@ enum Api {
   Login = '/api/login',
 
   UserInfo ='/api/admin/user/info',
+  UserList = '/api/admin/member/list',
 }
 
 export const login = (params: LoginData) => request.post(Api.Login, params);
 
 export const userInfo = () => request.get(Api.UserInfo);
 
+export const userList = (params: object) => request.post(Api.UserList,params);
 
 export default {
   login,
-  userInfo
+  userInfo,
+  userList
 };

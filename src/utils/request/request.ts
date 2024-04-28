@@ -124,7 +124,7 @@ const requestHandler = <T>(method: 'get' | 'post' | 'put' | 'delete', url: strin
         reject(data);
       }else{
         //数据请求正确 使用resolve将结果返回
-        resolve(data.data);
+        resolve(data);
       }
 
     }).catch(error => {
