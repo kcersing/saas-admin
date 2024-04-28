@@ -1,6 +1,9 @@
 import { useState } from 'react';
-import { Modal, Button, Form, Input, Select, Message ,Upload,InputNumber,Progress  } from '@arco-design/web-react';
+import { Modal, Button, Form, Input, Select, Message ,Avatar,Upload,InputNumber,Progress  } from '@arco-design/web-react';
+
+
 import { IconPlus, IconEdit } from '@arco-design/web-react/icon';
+import AvatarUpload from '@/pages/sys/member/avatar';
 const FormItem = Form.Item;
 
 function EditMember({ props }) {
@@ -63,25 +66,7 @@ function EditMember({ props }) {
               },
             ]}
           >
-          <Upload
-            listType='picture-card'
-            name='files'
-            action='/'
-            onPreview={(file) => {
-              Modal.info({
-                title: 'Preview',
-                content: (
-                  <img
-                    src={file.url || URL.createObjectURL(file.originFile)}
-                    style={{
-                      maxWidth: '100%',
-                    }}
-                  ></img>
-                ),
-              });
-            }}
-          />
-
+          <AvatarUpload />
 
         </Form.Item>
           <FormItem label="手机号" field="mobile" rules={[{ required: true }]}>
