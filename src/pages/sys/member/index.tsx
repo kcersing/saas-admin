@@ -11,7 +11,7 @@ import PermissionWrapper from '@/components/PermissionWrapper';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import { getColumns } from './constants';
-import userService from '@/api/user';
+import memberService from '@/api/member';
 import SearchForm from './form';
 import { IconDownload, IconPlus } from '@arco-design/web-react/icon';
 import styles from './style/index.module.less';
@@ -20,9 +20,9 @@ import CreateMember from './create';
 // ======================================
 
 const { Title } = Typography;
-export const ContentType = ['图文', '横版短视频', '竖版短视频'];
+export const ContentType = ['有进馆', '有私教课', '有团课','无进馆', '无私教课', '无团课'];
 export const FilterType = ['规则筛选', '人工'];
-export const Status = ['已上线', '未上线'];
+export const Status = ['禁用', '可用'];
 
 function Member() {
   const t = useLocale(locale);
@@ -54,7 +54,7 @@ function Member() {
       pageSize,
       ...formParams
     };
-    userService.userList(params)
+    memberService.memberList(params)
       .then((res) => {
         setData(res.data);
         setPatination({

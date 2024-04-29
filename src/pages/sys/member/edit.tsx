@@ -1,9 +1,19 @@
 import { useState } from 'react';
-import { Modal, Button, Form, Input, Select, Message ,Avatar,Upload,InputNumber,Progress  } from '@arco-design/web-react';
+import {
+  Modal,
+  Button,
+  Form,
+  Input,
+  Select,
+  Message,
+  Avatar,
+  Upload,
+  InputNumber,
+  Progress,
+  DatePicker
+} from '@arco-design/web-react';
+import memberService from '@/api/member';
 
-
-import { IconPlus, IconEdit } from '@arco-design/web-react/icon';
-import AvatarUpload from '@/pages/sys/member/avatar';
 const FormItem = Form.Item;
 
 function EditMember({ props }) {
@@ -13,13 +23,43 @@ function EditMember({ props }) {
 
   function onOk() {
     form.validate().then((res) => {
-      console.log(res);
-      setConfirmLoading(true);
-      setTimeout(() => {
-        Message.success('Success !');
-        setVisible(false);
-        setConfirmLoading(false);
-      }, 1500);
+
+     const params = {
+        "id":props.id,
+       "avatar":"",
+       "mobile":res.mobile,
+       "email":res.email,
+       "status":res.status,
+       "name":res.name,
+       "age":res.age,
+       "gender":res.gender,
+       "wecom":res.wecom,
+       "birthday":res.birthday,
+      }
+      console.log(params);
+      if (res.files !== undefined){
+        params.avatar = res.files[0].response.data.path
+      }
+
+
+
+
+
+      // memberService.memberUpdate(params).then(
+      //
+      //
+      // ).catch(
+      //
+      // )
+
+ 
+
+      // setConfirmLoading(true);
+      // setTimeout(() => {
+      //   Message.success('Success !');
+      //   setVisible(false);
+      //   setConfirmLoading(false);
+      // }, 1500);
     });
   }
 
@@ -51,23 +91,34 @@ function EditMember({ props }) {
           wrapperCol={{
             style: { flexBasis: 'calc(100% - 90px)' }
           }}
-          initialValues={{ name: props.name,mobile: props.mobile,email: props.email,gender: props.gender }}
+          initialValues={{ name: props.name,mobile: props.mobile,email: props.email,gender: props.gender ,avatar:{ "name": props.avatar.gender, "path": props.avatar.path, "url": props.avatar.url} }}
         >
 
           <Form.Item
             label='头像'
-            field='avatar'
+            field='files'
             triggerPropName='fileList'
-            initialValue={[
-              {
-                uid: '-1',
-                url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/e278888093bef8910e829486fb45dd69.png~tplv-uwbnlip3yd-webp.webp',
-                name: '20200717',
-              },
-            ]}
           >
-          <AvatarUpload />
-
+            <Upload
+              listType='picture-card'
+              multiple
+              name='files'
+              action='/api/pub/upload'
+              limit={1}
+              onPreview={(file) => {
+                Modal.info({
+                  title: 'Preview',
+                  content: (
+                    <img
+                      src={file.url || URL.createObjectURL(file.originFile)}
+                      style={{
+                        maxWidth: '100%',
+                      }}
+                    ></img>
+                  ),
+                });
+              }}
+            />
         </Form.Item>
           <FormItem label="手机号" field="mobile" rules={[{ required: true }]}>
             <Input placeholder=""  />
@@ -78,13 +129,18 @@ function EditMember({ props }) {
           <FormItem label="性别" field="gender" rules={[{ required: false }]}>
             <Select options={['男', '女', '保密']} />
           </FormItem>
-          <FormItem label='年龄' field='age' rules={[{ type: 'number', required: true }]}>
+
+          <FormItem label="生日" field="birthday" rules={[{ required: false }]}>
+            <DatePicker  placeholder=""  />
+          </FormItem>
+
+          <FormItem label='年龄' field='age' rules={[{ type: 'number',required: false}]}>
             <InputNumber placeholder='' />
           </FormItem>
           <FormItem label="邮箱" field="email" rules={[{ required: false }]}>
             <Input placeholder=""  />
           </FormItem>
-          <FormItem label="微信" field="wecom" rules={[{ required: true }]}>
+          <FormItem label="微信" field="wecom" rules={[{ required: false }]}>
             <Input placeholder=""  />
           </FormItem>
         </Form>

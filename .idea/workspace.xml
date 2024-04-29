@@ -5,9 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="febb57be-281a-4d53-b36f-ad64d8b5c0e2" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/sys/member/avatar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/member.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/member/details.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/member/avatar.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/member/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/member/constants.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/member/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/member/create.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/sys/member/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/member/edit.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/member/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/member/form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/member/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/member/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,23 +42,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "arco",
-    "last_opened_file_path": "D:/www/saas/saas-admin/src/pages/sys/member",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.stylelint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.stylelint": "D:\\www\\saas\\saas-admin\\node_modules\\stylelint",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "ts.external.directory.path": "D:\\www\\saas\\saas-admin\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;arco&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/www/saas/saas-admin/src/pages/sys/member&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.stylelint&quot;: &quot;D:\\www\\saas\\saas-admin\\node_modules\\stylelint&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\www\\saas\\saas-admin\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\www\saas\saas-admin\src\pages\sys\member" />
@@ -84,6 +92,7 @@
       <workItem from="1714033917228" duration="1731000" />
       <workItem from="1714092957971" duration="13717000" />
       <workItem from="1714265806411" duration="14458000" />
+      <workItem from="1714352358015" duration="11059000" />
     </task>
     <servers />
   </component>

@@ -4,15 +4,13 @@ import IconText from './icons/text.svg';
 import IconHorizontalVideo from './icons/horizontal.svg';
 import IconVerticalVideo from './icons/vertical.svg';
 import dayjs from 'dayjs';
-import styles from './style/index.module.less';
-import Edit from '@/pages/sys/member/edit';
+
 import EditMember from '@/pages/sys/member/edit';
+import { ContentType, FilterType, Status } from './index';
 
 const { Text } = Typography;
 
-export const ContentType = ['图文', '横版短视频', '竖版短视频'];
-export const FilterType = ['规则筛选', '人工'];
-export const Status = ['禁用', '可用'];
+
 
 const ContentIcon = [
   <IconText key={0} />,
