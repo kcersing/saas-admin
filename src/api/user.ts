@@ -11,11 +11,20 @@ enum Api {
   //用户
   Login = '/api/login',
 
+
   UserInfo ='/api/admin/user/info',
   UserList = '/api/admin/user/list',
-  UserUpdate = ' /api/admin/user/update'
+  UserUpdate = ' /api/admin/user/update',
 
 
+  Logout = '/api/admin/token',
+  GetPermCode = '/api/admin/user/perm',
+  GetCaptcha = '/api/captcha',
+  CreateOrAddUser = '/api/admin/user/create',
+  DeleteUser = '/api/admin/user',
+  SetUserStatus = '/api/admin/user/status',
+  GetProfile = '/api/admin/user/profile',
+  ChangePassword = '/api/admin/user/change-password',
 }
 
 export const login = (params: LoginData) => request.post(Api.Login, params);

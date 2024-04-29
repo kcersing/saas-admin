@@ -9,6 +9,12 @@ enum Api {
   MemberUpdate = ' /api/admin/member/update',
   MemberCreate = '/api/admin/member/create',
 
+
+  MemberStatus = '/api/admin/member/status',
+  ChangePassword = '/api/admin/member/change-password',
+  Logout = '/api/member/token',
+  GetPermCode = '/api/admin/member/perm',
+
 }
 
 export const memberLogin = (params: LoginData) => request.post(Api.MemberLogin, params);

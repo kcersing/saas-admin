@@ -15,7 +15,7 @@ import useStorage from '@/utils/useStorage';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import styles from './style/index.module.less';
-import { getImgCaptcha } from '@/api/captcha';
+import captchaService  from '@/api/captcha';
 import userService from '@/api/user';
 import { setToken } from '@/utils/auth';
 export default function LoginForm() {
@@ -81,10 +81,10 @@ export default function LoginForm() {
       const parseParams = JSON.parse(loginParams);
       formRef.current.setFieldsValue(parseParams);
     }
-
-    getImgCaptcha().then((res) => {
-      setImgPath(res.imgPath)
-      setCaptchaId(res.captchaId)
+    captchaService.getImgCaptcha().then((res) => {
+      console.log(res)
+      setImgPath(res.data.imgPath)
+      setCaptchaId(res.data.captchaId)
     }).catch(err => {
       //登录失败。处理区域...
     });

@@ -87,27 +87,9 @@ import {
    'Beijing',
    'China',
  ];
- const Listss =(
-
-   <List
-     style={{ width: 622 }}
-     size='small'
-     header='List title'
-     dataSource={dataSource}
-     render={render.bind((item, index) => <List.Item key={index}>{item}</List.Item>, [
-       <span className='list-demo-actions-icon'>
-            <IconEdit />
-          </span>,
-       <span className='list-demo-actions-icon'>
-            <IconDelete />
-          </span>,
-     ])}
-   />
- );
 export default function Dictionary() {
   return (<>
     <Card style={{ width: '20%' , float:'left'}}>
-      {Listss}
 
     </Card>
       <Card style={{ width: '79%', float:'right' }}>

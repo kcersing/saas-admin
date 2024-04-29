@@ -8,7 +8,6 @@ const getUserMenu = () => {
   return request.get(Api.GetUserMenu);
 };
 
-
 export default {
   getUserMenu
 };
