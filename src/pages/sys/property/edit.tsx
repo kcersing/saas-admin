@@ -12,11 +12,11 @@ import {
   Progress,
   DatePicker
 } from '@arco-design/web-react';
-import orderService from '@/api/order';
+import productService from '@/api/product';
 
 const FormItem = Form.Item;
 
-function EditOrder({ props }) {
+function Edit({ props }) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
@@ -40,17 +40,6 @@ function EditOrder({ props }) {
       if (res.files !== undefined){
         params.avatar = res.files[0].response.data.path
       }
-
-
-
-
-
-      // orderService.orderUpdate(params).then(
-      //
-      //
-      // ).catch(
-      //
-      // )
 
  
 
@@ -94,32 +83,6 @@ function EditOrder({ props }) {
           // initialValues={{}}
         >
 
-          <Form.Item
-            label='头像'
-            field='files'
-            triggerPropName='fileList'
-          >
-            <Upload
-              listType='picture-card'
-              multiple
-              name='files'
-              action='/api/pub/upload'
-              limit={1}
-              onPreview={(file) => {
-                Modal.info({
-                  title: 'Preview',
-                  content: (
-                    <img
-                      src={file.url || URL.createObjectURL(file.originFile)}
-                      style={{
-                        maxWidth: '100%',
-                      }}
-                    ></img>
-                  ),
-                });
-              }}
-            />
-        </Form.Item>
           <FormItem label="手机号" field="mobile" rules={[{ required: true }]}>
             <Input placeholder=""  />
           </FormItem>
@@ -149,4 +112,4 @@ function EditOrder({ props }) {
   );
 }
 
-export default EditOrder;
+export default Edit;

@@ -83,8 +83,10 @@ function Member() {
       <SearchForm onSearch={handleSearch} />
       <PermissionWrapper>
         <div className={styles['button-group']}>
-          <Space>
+        <Space>
             <CreateMember />
+          </Space>
+          <Space>
             <Button>{t['searchTable.operations.upload']}</Button>
           </Space>
           <Space>

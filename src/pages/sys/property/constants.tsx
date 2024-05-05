@@ -23,24 +23,42 @@ export function getColumns(
 ) {
   return [
     {
-      title: '编号',
-      dataIndex: 'order_sn',
+      title: '类型',
+      dataIndex: 'type',
+      render: (value) => <Text copyable>{value}</Text>,
+    },
+
+    {
+      title: '名称',
+      dataIndex: 'name',
+      render: (value) => <Text copyable>{value}</Text>,
+    },
+    {
+      title: '定价',
+      dataIndex: 'price',
+      render: (value) => <Text copyable>{value}</Text>,
+    },
+    {
+      title: '总时长',
+      dataIndex: 'duration',
+      render: (value) => <Text copyable>{value}</Text>,
+    },
+    {
+      title: '单次时长',
+      dataIndex: 'length',
+      render: (value) => <Text copyable>{value}</Text>,
+    },
+    {
+      title: '次数',
+      dataIndex: 'count',
       render: (value) => <Text copyable>{value}</Text>,
     },
     {
       title: '场馆',
       dataIndex: 'venue_id',
     },
-    {
-      title: '会员',
-      dataIndex: 'member_id',
-      render: (value) => <Text copyable>{value}</Text>,
-    },
-    {
-      title: '产品',
-      dataIndex: 'venue_id',
-      render: (value) => <Text copyable>{value}</Text>,
-    },
+   
+    
     {
       title: '状态',
       dataIndex: 'status',
@@ -69,19 +87,13 @@ export function getColumns(
        render: (x) => dayjs(x).format('YYYY-MM-DD HH:mm:ss'),
        sorter: (a, b) => b.createdTime - a.createdTime,
     },
-    {
-      title: '支付完成时间',
-      dataIndex: 'completionAt',
-      render: (x) => dayjs(x).format('YYYY-MM-DD HH:mm:ss'),
-      sorter: (a, b) => b.createdTime - a.createdTime,
-    },
+
     {
       title: '操作',
       dataIndex: 'operations',
       headerCellStyle: { paddingLeft: '15px' },
       render: (_, record) => (
         <>
-
           <EditOrder props={record}/>
           <Button
             type="text"

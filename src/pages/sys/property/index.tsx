@@ -11,14 +11,15 @@ import PermissionWrapper from '@/components/PermissionWrapper';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import { getColumns } from './constants';
-import orderService from '@/api/order';
+import productService from '@/api/product';
 import SearchForm from './form';
 import { IconDownload, IconPlus } from '@arco-design/web-react/icon';
 import styles from './style/index.module.less';
-
+import CreateProperty from './create';
 // ======================================
 
 const { Title } = Typography;
+
 export const ContentType = ['有进馆', '有私教课', '有团课','无进馆', '无私教课', '无团课'];
 export const FilterType = ['规则筛选', '人工'];
 export const Status = ['未付款','部分付款', '已付款','已退款','错误'];
@@ -53,7 +54,7 @@ function Property() {
       pageSize,
       ...formParams
     };
-    orderService.orderList(params)
+    productService.propertyList(params)
       .then((res) => {
         setData(res.data);
         setPatination({
@@ -78,11 +79,14 @@ function Property() {
   }
   return (
     <Card>
-      <Title heading={6}>订单列表</Title>
+      <Title heading={6}>属性列表</Title>
       <SearchForm onSearch={handleSearch} />
       <PermissionWrapper>
         <div className={styles['button-group']}>
+
           <Space>
+            
+          <CreateProperty />
             <Button>{t['searchTable.operations.upload']}</Button>
           </Space>
           <Space>
