@@ -80,8 +80,7 @@ const useRoute = (userPermission): [IRoute[], string] => {
   const defaultRoute = useMemo(() => {
     const first = permissionRoute[0];
     if (first) {
-      const firstRoute = first?.children?.[0]?.key || first.key;
-      return firstRoute;
+      return first?.children?.[0]?.key || first.key;
     }
     return '';
   }, [permissionRoute]);

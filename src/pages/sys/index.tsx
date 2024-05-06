@@ -15,5 +15,5 @@
 import React from 'react';
 
 export default function Sys() {
-  return <div>监控页</div>;
+  return <div></div>;
 }

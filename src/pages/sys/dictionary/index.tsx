@@ -75,10 +75,7 @@ import {
  ];
 
 
-
-
  import { IconEdit, IconDelete, IconDown, IconLoading } from '@arco-design/web-react/icon';
-
 
  const dataSource = [
    'Beijing ',
@@ -87,6 +84,7 @@ import {
    'Beijing',
    'China',
  ];
+
 export default function Dictionary() {
   return (<>
     <Card style={{ width: '20%' , float:'left'}}>

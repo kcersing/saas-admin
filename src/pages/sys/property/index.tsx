@@ -19,10 +19,7 @@ import CreateProperty from './create';
 // ======================================
 
 const { Title } = Typography;
-
-export const ContentType = ['有进馆', '有私教课', '有团课','无进馆', '无私教课', '无团课'];
-export const FilterType = ['规则筛选', '人工'];
-export const Status = ['未付款','部分付款', '已付款','已退款','错误'];
+export const Status = ['可用','禁用'];
 
 function Property() {
   const t = useLocale(locale);

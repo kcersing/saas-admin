@@ -5,8 +5,8 @@ import IconHorizontalVideo from './icons/horizontal.svg';
 import IconVerticalVideo from './icons/vertical.svg';
 import dayjs from 'dayjs';
 
-import EditOrder from '@/pages/sys/order/edit';
-import { ContentType, FilterType, Status } from './index';
+import EditOrder from '@/pages/sys/property/edit';
+import { Status } from './index';
 
 const { Text } = Typography;
 

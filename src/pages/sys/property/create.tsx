@@ -1,6 +1,11 @@
-import { useState } from 'react';
-import { Modal, Button, Form, Input, Select, Message, Upload, DatePicker, InputNumber } from '@arco-design/web-react';
-import productService from '@/api/product';
+import React, { useState, useEffect, useMemo,useContext } from 'react';
+import { Button, Form, Input, Message, Modal, Select } from '@arco-design/web-react';
+import sysService, { venueData } from '@/api/sys';
+import SelectPropertyType,{PropertyTypeStateContext} from '@/pages/sys/components/selectPropertyType';
+import SelectVenueList from '@/pages/sys/components/selectVenueList';
+
+
+// ======================================
 
 const FormItem = Form.Item;
 
@@ -9,9 +14,22 @@ function CreateProperty() {
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
 
+  const [propertyType, setPropertyType] = useState([])
+
+  useEffect(() => {
+    propertyTypeData();
+  }, []);
+
+  function propertyTypeData() {
+    sysService.propertyType()
+      .then((res) => {
+        setPropertyType(res.data);
+      });
+  }
+
   function onOk() {
     form.validate().then((res) => {
-      console.log(res)
+      console.log(res);
       setConfirmLoading(true);
       setTimeout(() => {
         Message.success('Success !');
@@ -23,20 +41,29 @@ function CreateProperty() {
 
   const formItemLayout = {
     labelCol: {
-      span: 4,
+      span: 4
     },
     wrapperCol: {
-      span: 20,
-    },
+      span: 20
+    }
   };
 
   const Option = Select.Option;
-const options = ['Beijing', 'Shanghai', 'Guangzhou', 'Shenzhen', 'Chengdu', 'Wuhan'];
+
+  const [typeDisabled, setTypeDisabled ] = useState(true)
+  function types(value){
+    console.log(value)
+  if (value===1) {   setTypeDisabled(true)}
+    if (value===2) {   setTypeDisabled(false)}
+    if (value===3) {   setTypeDisabled(false)}
+  }
+
+  console.log(typeDisabled)
   return (
     <>
-      <Button onClick={() => setVisible(true)} type='primary'>新建</Button>
+      <Button onClick={() => setVisible(true)} type="primary">新建</Button>
       <Modal
-        title='新建属性'
+        title="新建属性"
         visible={visible}
         onOk={onOk}
         confirmLoading={confirmLoading}
@@ -46,51 +73,43 @@ const options = ['Beijing', 'Shanghai', 'Guangzhou', 'Shenzhen', 'Chengdu', 'Wuh
           {...formItemLayout}
           form={form}
           labelCol={{
-            style: { flexBasis: 90 },
+            style: { flexBasis: 90 }
           }}
           wrapperCol={{
-            style: { flexBasis: 'calc(100% - 90px)' },
+            style: { flexBasis: 'calc(100% - 90px)' }
           }}
         >
-
           <FormItem label="类型" field="type" rules={[{ required: false }]}>
-            <Select options={['男', '女', '保密']} />
+
+            <Select
+              onChange={(value) => types(value)}
+            >
+              {propertyType.map((option) => (
+                <Option key={option.id} value={option.id}>
+                  {option.title}
+                </Option>
+              ))}
+            </Select>
           </FormItem>
-    
+
           <FormItem label="名称" field="name" rules={[{ required: true }]}>
-            <Input placeholder=""  />
+            <Input placeholder="" />
           </FormItem>
           <FormItem label="总时长" field="duration" rules={[{ required: false }]}>
-          <Input placeholder=""  />
+            <Input disabled={!typeDisabled}  placeholder="" />
           </FormItem>
-          <FormItem label="单次时长" field="length" rules={[{ required: false }]}>
-            <Input placeholder=""  />
+          <FormItem label="单次时长"  field="length" rules={[{ required: false }]}>
+            <Input disabled={typeDisabled}  placeholder="" />
           </FormItem>
           <FormItem label="次数" field="count" rules={[{ required: false }]}>
-            <Input placeholder=""  />
+            <Input placeholder="" />
           </FormItem>
           <FormItem label="定价" field="price" rules={[{ required: false }]}>
-            <Input placeholder=""  />
-          </FormItem>
-
-          <FormItem label="场馆" field="venue" rules={[{ required: false }]}>
-          <Select
-            mode='multiple'
-            placeholder='Please select'
-            style={{ width: 345 }}
-            defaultValue={['Beijing', 'Shenzhen']}
-            allowClear
-          >
-        {options.map((option) => (-+
-          <Option key={option} value={option}>
-            {option}
-          </Option>
-        ))}
-      </Select>
+            <Input placeholder="" />
           </FormItem>
 
 
-
+            <SelectVenueList />
 
 
         </Form>
