@@ -24,6 +24,7 @@ export const Status = ['可用','禁用'];
 function Property() {
   const t = useLocale(locale);
   const tableCallback = async (record, type) => {
+
     console.log(record, type);
   };
   const columns = useMemo(() => getColumns(t, tableCallback), [t]);
@@ -80,9 +81,7 @@ function Property() {
       <SearchForm onSearch={handleSearch} />
       <PermissionWrapper>
         <div className={styles['button-group']}>
-
           <Space>
-            
           <CreateProperty />
             <Button>{t['searchTable.operations.upload']}</Button>
           </Space>
@@ -100,6 +99,7 @@ function Property() {
         pagination={pagination}
         columns={columns}
         data={data}
+        virtualized
       />
 
 

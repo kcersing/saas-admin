@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Modal,
   Button,
@@ -13,6 +13,8 @@ import {
   DatePicker
 } from '@arco-design/web-react';
 import productService from '@/api/product';
+import SelectVenueList from '@/pages/sys/components/selectVenueList';
+import sysService from '@/api/sys';
 
 const FormItem = Form.Item;
 
@@ -20,6 +22,17 @@ function Edit({ props }) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
+  const [propertyType, setPropertyType] = useState([])
+
+  useEffect(() => {
+    propertyTypeData();
+  }, []);
+  function propertyTypeData() {
+    sysService.propertyType()
+      .then((res) => {
+        setPropertyType(res.data);
+      });
+  }
 
   function onOk() {
     form.validate().then((res) => {
@@ -60,7 +73,14 @@ function Edit({ props }) {
       span: 20
     }
   };
+  const Option = Select.Option;
 
+  const [typeDisabled, setTypeDisabled ] = useState(true)
+  function types(value){
+    if (value===1) {   setTypeDisabled(true)}
+    if (value===2) {   setTypeDisabled(false)}
+    if (value===3) {   setTypeDisabled(false)}
+  }
   return (
     <div>
       <Button onClick={() => setVisible(true)} type="primary">编辑</Button>
@@ -80,32 +100,37 @@ function Edit({ props }) {
           wrapperCol={{
             style: { flexBasis: 'calc(100% - 90px)' }
           }}
-          // initialValues={{}}
+          initialValues={{type:props.type,duration:props.duration,length:props.length,count:props.count,name:props.name,venueId:props.venueId}}
         >
-
-          <FormItem label="手机号" field="mobile" rules={[{ required: true }]}>
-            <Input placeholder=""  />
-          </FormItem>
-          <FormItem label="姓名" field="name" rules={[{ required: true }]}>
-            <Input placeholder=""  />
-          </FormItem>
-          <FormItem label="性别" field="gender" rules={[{ required: false }]}>
-            <Select options={['男', '女', '保密']} />
-          </FormItem>
-
-          <FormItem label="生日" field="birthday" rules={[{ required: false }]}>
-            <DatePicker  placeholder=""  />
+          <FormItem label="类型" field="type" rules={[{ required: false }]}>
+            <Select
+              disabled
+              onChange={(value) => types(value)}
+            >
+              {propertyType.map((option) => (
+                <Option key={option.id} value={option.id}>
+                  {option.title}
+                </Option>
+              ))}
+            </Select>
           </FormItem>
 
-          <FormItem label='年龄' field='age' rules={[{ type: 'number',required: false}]}>
-            <InputNumber placeholder='' />
+          <FormItem label="名称" field="name" rules={[{ required: true }]}>
+            <Input placeholder="" />
           </FormItem>
-          <FormItem label="邮箱" field="email" rules={[{ required: false }]}>
-            <Input placeholder=""  />
+          <FormItem label="总时长" field="duration" rules={[{ required: false }]}>
+            <Input disabled={!typeDisabled}  placeholder="" />
           </FormItem>
-          <FormItem label="微信" field="wecom" rules={[{ required: false }]}>
-            <Input placeholder=""  />
+          <FormItem label="单次时长"  field="length" rules={[{ required: false }]}>
+            <Input disabled={typeDisabled}  placeholder="" />
           </FormItem>
+          <FormItem label="次数" field="count" rules={[{ required: false }]}>
+            <Input placeholder="" />
+          </FormItem>
+          <FormItem label="定价" field="price" rules={[{ required: false }]}>
+            <Input placeholder="" />
+          </FormItem>
+          <SelectVenueList venue={props.venueId}/>
         </Form>
       </Modal>
     </div>

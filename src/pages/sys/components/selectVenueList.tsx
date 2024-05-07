@@ -3,13 +3,12 @@ import { Form, Select, Space } from '@arco-design/web-react';
 import sysService from '@/api/sys';
 
 const FormItem = Form.Item;
-function SelectVenueList() {
+function SelectVenueList(venue) {
   const [venueList, setVenueList] = useState([])
 
   useEffect(() => {
     venueData();
   }, []);
-
   function venueData() {
     const data = [];
     sysService.venueData()

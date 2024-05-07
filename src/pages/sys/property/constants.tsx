@@ -10,15 +10,13 @@ import { Status } from './index';
 
 const { Text } = Typography;
 
-
-
 const ContentIcon = [
   <IconText key={0} />,
   <IconHorizontalVideo key={1} />,
   <IconVerticalVideo key={2} />,
 ];
 export function getColumns(
-  t: any,
+  t:any,
   callback: (record: Record<string, any>, type: string) => Promise<void>
 ) {
   return [
@@ -27,7 +25,6 @@ export function getColumns(
       dataIndex: 'type',
       render: (value) => <Text copyable>{value}</Text>,
     },
-
     {
       title: '名称',
       dataIndex: 'name',
@@ -55,15 +52,13 @@ export function getColumns(
     },
     {
       title: '场馆',
-      dataIndex: 'venue_id',
+      dataIndex: 'venue',
+      key:0
     },
-   
-    
     {
       title: '状态',
       dataIndex: 'status',
       render: (x: number) => {
-        console.log(x)
         if (x === 0) {
           return <Badge status="default" text={Status[x]}></Badge>;
         }else if (x === 1){

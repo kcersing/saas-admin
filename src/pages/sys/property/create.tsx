@@ -52,13 +52,10 @@ function CreateProperty() {
 
   const [typeDisabled, setTypeDisabled ] = useState(true)
   function types(value){
-    console.log(value)
   if (value===1) {   setTypeDisabled(true)}
     if (value===2) {   setTypeDisabled(false)}
     if (value===3) {   setTypeDisabled(false)}
   }
-
-  console.log(typeDisabled)
   return (
     <>
       <Button onClick={() => setVisible(true)} type="primary">新建</Button>
@@ -80,7 +77,6 @@ function CreateProperty() {
           }}
         >
           <FormItem label="类型" field="type" rules={[{ required: false }]}>
-
             <Select
               onChange={(value) => types(value)}
             >
@@ -107,11 +103,7 @@ function CreateProperty() {
           <FormItem label="定价" field="price" rules={[{ required: false }]}>
             <Input placeholder="" />
           </FormItem>
-
-
-            <SelectVenueList />
-
-
+          <SelectVenueList />
         </Form>
       </Modal>
     </>
