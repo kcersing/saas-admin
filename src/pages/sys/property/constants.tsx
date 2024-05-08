@@ -53,7 +53,18 @@ export function getColumns(
     {
       title: '场馆',
       dataIndex: 'venue',
-      key:0
+      render: (value) => {
+
+   return (
+     <>
+       {value.map((v) => (
+      <span>{ v.name};</span>
+       ))}
+     </>
+
+   )
+
+      },
     },
     {
       title: '状态',

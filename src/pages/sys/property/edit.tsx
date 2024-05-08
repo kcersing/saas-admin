@@ -12,7 +12,7 @@ import {
   Progress,
   DatePicker
 } from '@arco-design/web-react';
-import productService from '@/api/product';
+import productService, { propertyEdit } from '@/api/product';
 import SelectVenueList from '@/pages/sys/components/selectVenueList';
 import sysService from '@/api/sys';
 
@@ -25,6 +25,12 @@ function Edit({ props }) {
   const [propertyType, setPropertyType] = useState([])
 
   useEffect(() => {
+
+    const ve = []
+    props.venue.map((v) => (
+      ve.push(v.id)
+    ))
+    setVenues(ve)
     propertyTypeData();
   }, []);
   function propertyTypeData() {
@@ -38,29 +44,32 @@ function Edit({ props }) {
     form.validate().then((res) => {
 
      const params = {
-        "id":props.id,
-       "avatar":"",
-       "mobile":res.mobile,
-       "email":res.email,
-       "status":res.status,
-       "name":res.name,
-       "age":res.age,
-       "gender":res.gender,
-       "wecom":res.wecom,
-       "birthday":res.birthday,
-      }
-      console.log(params);
-      if (res.files !== undefined){
-        params.avatar = res.files[0].response.data.path
+       id:props.id,
+       type:res.type,
+       price:res.price,
+       duration:res.duration,
+       length:res.length,
+       count:res.count,
+       name:res.name,
+       venueId:res.venue
       }
 
- 
+      setConfirmLoading(true);
+      productService.propertyEdit(params)
+        .then((res) => {
+          console.log(res);
+          setVisible(false);
+          setConfirmLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
 
-      // setConfirmLoading(true);
+
+
       // setTimeout(() => {
       //   Message.success('Success !');
-      //   setVisible(false);
-      //   setConfirmLoading(false);
+      //
       // }, 1500);
     });
   }
@@ -81,6 +90,12 @@ function Edit({ props }) {
     if (value===2) {   setTypeDisabled(false)}
     if (value===3) {   setTypeDisabled(false)}
   }
+
+  const [venues, setVenues] = useState([])
+
+  console.log(venues)
+
+
   return (
     <div>
       <Button onClick={() => setVisible(true)} type="primary">编辑</Button>
@@ -100,7 +115,7 @@ function Edit({ props }) {
           wrapperCol={{
             style: { flexBasis: 'calc(100% - 90px)' }
           }}
-          initialValues={{type:props.type,duration:props.duration,length:props.length,count:props.count,name:props.name,venueId:props.venueId}}
+          initialValues={{type:props.type,price:props.price,duration:props.duration,length:props.length,count:props.count,name:props.name,venue:venues}}
         >
           <FormItem label="类型" field="type" rules={[{ required: false }]}>
             <Select
@@ -130,7 +145,7 @@ function Edit({ props }) {
           <FormItem label="定价" field="price" rules={[{ required: false }]}>
             <Input placeholder="" />
           </FormItem>
-          <SelectVenueList venue={props.venueId}/>
+          <SelectVenueList />
         </Form>
       </Modal>
     </div>

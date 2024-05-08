@@ -75,6 +75,8 @@ function Property() {
     setPatination({ ...pagination, current: 1 });
     setFormParams(params);
   }
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+
   return (
     <Card>
       <Title heading={6}>属性列表</Title>
@@ -100,9 +102,32 @@ function Property() {
         columns={columns}
         data={data}
         virtualized
+        rowSelection={{
+          selectedRowKeys,
+          onChange: (selectedRowKeys, selectedRows) => {
+            console.log('selectedRowKeys', selectedRowKeys);
+            console.log('selectedRows', selectedRows);
+            setSelectedRowKeys(selectedRowKeys);
+          },
+        }}
+
+        renderPagination={(paginationNode) => (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              marginTop: 10,
+            }}
+          >
+            <Space>
+              <span>选中 {selectedRowKeys.length}</span>
+              {/*<Button size='mini'>Save</Button>*/}
+              <Button size='mini'>删除</Button>
+            </Space>
+            {paginationNode}
+          </div>
+        )}
       />
-
-
 
     </Card>
   );

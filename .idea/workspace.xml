@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="febb57be-281a-4d53-b36f-ad64d8b5c0e2" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/property/index2.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/product.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/product.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/sys/components/selectVenueList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/components/selectVenueList.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/sys/property/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/property/constants.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/property/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/property/create.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/sys/property/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/property/edit.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/sys/property/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/property/index.tsx" afterDir="false" />
     </list>
@@ -42,7 +43,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;arco&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/www/saas/saas-admin/src/pages/sys/place&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/www/saas/saas-admin/src/pages/sys/property&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -57,11 +58,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\www\saas\saas-admin\src\pages\sys\property" />
       <recent name="D:\www\saas\saas-admin\src\pages\sys\place" />
       <recent name="D:\www\saas\saas-admin\src\pages\sys\venue" />
       <recent name="D:\www\saas\saas-admin\src\pages\sys\role" />
       <recent name="D:\www\saas\saas-admin\src\pages\sys\user" />
-      <recent name="D:\www\saas\saas-admin\src\pages\sys\property" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\www\saas\saas-admin\src\pages\sys" />
@@ -94,6 +95,8 @@
       <workItem from="1714467931843" duration="717000" />
       <workItem from="1714960587103" duration="18566000" />
       <workItem from="1715044492607" duration="10068000" />
+      <workItem from="1715139169590" duration="4706000" />
+      <workItem from="1715151986706" duration="6628000" />
     </task>
     <servers />
   </component>

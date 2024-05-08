@@ -17,7 +17,11 @@ enum Api {
 
 export const productList = (params: object) => request.post(Api.ProductList, params);
 export const propertyList = (params: object) => request.post(Api.PropertyList, params);
+export const propertyEdit = (params: object) => request.post(Api.CreateOrUpdateProperty, params);
+
 export default {
   productList,
   propertyList,
+  propertyEdit
+
 };

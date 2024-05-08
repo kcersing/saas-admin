@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Form, Select, Space } from '@arco-design/web-react';
 import sysService from '@/api/sys';
-
+import { IconStar, IconDelete } from '@arco-design/web-react/icon';
 const FormItem = Form.Item;
-function SelectVenueList(venue) {
+function SelectVenueList() {
+
   const [venueList, setVenueList] = useState([])
 
   useEffect(() => {
@@ -34,6 +35,21 @@ function SelectVenueList(venue) {
         filterOption={(inputValue, option) =>
            option.props.children.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0
         }
+        removeIcon={<IconDelete />}
+        renderFormat={(option, value) => {
+          return option ? (
+            <span>
+              <IconStar
+                style={{
+                  color: '#f7ba1e',
+                }}
+              />
+              {` ${option._key}  `}
+            </span>
+          ) : (
+            value
+          );
+        }}
       >
         {venueList.map((option) => (
           <Option key={option.value} value={option.key}>
