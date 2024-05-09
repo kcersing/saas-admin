@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="febb57be-281a-4d53-b36f-ad64d8b5c0e2" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/sys/property/index2.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/product.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/product.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/components/selectVenueList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/components/selectVenueList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/components/selectPropertyType.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/components/selectPropertyType.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/sys/property/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/property/constants.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/property/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/property/create.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/sys/property/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/property/edit.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/property/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/property/form.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/sys/property/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/property/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,6 +98,7 @@
       <workItem from="1715044492607" duration="10068000" />
       <workItem from="1715139169590" duration="4706000" />
       <workItem from="1715151986706" duration="6628000" />
+      <workItem from="1715219631983" duration="9386000" />
     </task>
     <servers />
   </component>

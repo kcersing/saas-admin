@@ -26,7 +26,7 @@ function SelectPropertyType() {
 
     <Select>
       {propertyType.map((option) => (
-          <Option key={option.id} value={option.id}>
+          <Option key={option.id} value={option.key}>
         {option.title}
         </Option>
       ))}

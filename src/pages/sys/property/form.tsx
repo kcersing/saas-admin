@@ -50,6 +50,11 @@ function SearchForm(props: {
       >
         <Row gutter={24}>
           <Col span={colSpan}>
+            <Form.Item label='名称' field="name">
+              <Input allowClear placeholder='名称' />
+            </Form.Item>
+          </Col>
+          <Col span={colSpan}>
             <SelectPropertyType />
           </Col>
           <Col span={colSpan}>

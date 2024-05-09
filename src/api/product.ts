@@ -8,7 +8,7 @@ enum Api {
 
   PropertyList = '/api/admin/property/list',
   SetPropertyStatus = '/api/admin/property/status',
-  CreateOrAddProperty= '/api/admin/property/create',
+  CreateProperty= '/api/admin/property/create',
   CreateOrUpdateProperty = '/api/admin/property/update',
 
   GetProductInfo = '/api/admin/product/info',
@@ -19,9 +19,13 @@ export const productList = (params: object) => request.post(Api.ProductList, par
 export const propertyList = (params: object) => request.post(Api.PropertyList, params);
 export const propertyEdit = (params: object) => request.post(Api.CreateOrUpdateProperty, params);
 
+export const propertyCreate = (params: object) => request.post(Api.CreateProperty, params);
+
+
 export default {
   productList,
   propertyList,
-  propertyEdit
+  propertyEdit,
+  propertyCreate
 
 };

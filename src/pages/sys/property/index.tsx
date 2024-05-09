@@ -5,7 +5,8 @@ import {
   PaginationProps,
   Button,
   Space,
-  Typography
+  Typography,
+  Empty
 } from '@arco-design/web-react';
 import PermissionWrapper from '@/components/PermissionWrapper';
 import useLocale from '@/utils/useLocale';
@@ -54,7 +55,12 @@ function Property() {
     };
     productService.propertyList(params)
       .then((res) => {
-        setData(res.data);
+        if (res.total===0){
+          setData([]);
+        }else {
+          setData(res.data);
+        }
+
         setPatination({
           ...pagination,
           current,
@@ -64,6 +70,8 @@ function Property() {
         setLoading(false);
       });
   }
+
+
   function onChangeTable({ current, pageSize }) {
     setPatination({
       ...pagination,
@@ -102,6 +110,8 @@ function Property() {
         columns={columns}
         data={data}
         virtualized
+        noDataElement={(<Empty />)}
+        placeholder={(<Empty />)}
         rowSelection={{
           selectedRowKeys,
           onChange: (selectedRowKeys, selectedRows) => {

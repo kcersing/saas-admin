@@ -23,48 +23,50 @@ export function getColumns(
     {
       title: '类型',
       dataIndex: 'type',
+      placeholder: <>暂无</> ,
       render: (value) => <Text copyable>{value}</Text>,
     },
     {
       title: '名称',
       dataIndex: 'name',
+      placeholder: <>暂无</> ,
       render: (value) => <Text copyable>{value}</Text>,
     },
     {
       title: '定价',
       dataIndex: 'price',
+      placeholder: <>暂无</> ,
       render: (value) => <Text copyable>{value}</Text>,
     },
     {
       title: '总时长',
       dataIndex: 'duration',
+      placeholder: <>暂无</> ,
       render: (value) => <Text copyable>{value}</Text>,
     },
     {
       title: '单次时长',
       dataIndex: 'length',
+      placeholder: <>暂无</> ,
       render: (value) => <Text copyable>{value}</Text>,
     },
     {
       title: '次数',
       dataIndex: 'count',
+      placeholder: <>暂无</> ,
       render: (value) => <Text copyable>{value}</Text>,
     },
     {
       title: '场馆',
       dataIndex: 'venue',
       render: (value) => {
-
-   return (
-     <>
+   return (<>
        {value.map((v) => (
       <span>{ v.name};</span>
        ))}
-     </>
-
-   )
-
+     </>)
       },
+      placeholder: <>暂无</> ,
     },
     {
       title: '状态',
@@ -82,18 +84,20 @@ export function getColumns(
           return <Badge status="error" text={Status[x]}></Badge>;
         }
       },
+      placeholder: <>暂无</> ,
     },
     {
       title: '创建人',
       dataIndex: 'create_id',
+      placeholder: <>暂无</> ,
     },
     {
       title: '创建时间',
+      placeholder: <>暂无</> ,
       dataIndex: 'createdAt',
        render: (x) => dayjs(x).format('YYYY-MM-DD HH:mm:ss'),
        sorter: (a, b) => b.createdTime - a.createdTime,
     },
-
     {
       title: '操作',
       dataIndex: 'operations',

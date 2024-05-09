@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo,useContext } from 'react';
-import { Button, Form, Input, Message, Modal, Select } from '@arco-design/web-react';
-import sysService, { venueData } from '@/api/sys';
-import SelectPropertyType,{PropertyTypeStateContext} from '@/pages/sys/components/selectPropertyType';
+import { Button, Form, Input, Message, Modal, Select ,InputNumber} from '@arco-design/web-react';
+import sysService from '@/api/sys';
 import SelectVenueList from '@/pages/sys/components/selectVenueList';
+import productService from '@/api/product';
 
 
 // ======================================
@@ -29,13 +29,27 @@ function CreateProperty() {
 
   function onOk() {
     form.validate().then((res) => {
-      console.log(res);
+
+      const params = {
+        type:res.type,
+        price:res.price,
+        duration:res.duration,
+        length:res.length,
+        count:res.count,
+        name:res.name,
+        venueId:res.venue
+      }
+      console.log(params);
       setConfirmLoading(true);
-      setTimeout(() => {
-        Message.success('Success !');
-        setVisible(false);
-        setConfirmLoading(false);
-      }, 1500);
+      productService.propertyCreate(params)
+        .then((res) => {
+          console.log(res);
+          setVisible(false);
+          setConfirmLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     });
   }
 
@@ -81,7 +95,7 @@ function CreateProperty() {
               onChange={(value) => types(value)}
             >
               {propertyType.map((option) => (
-                <Option key={option.id} value={option.id}>
+                <Option key={option.key} value={option.key}>
                   {option.title}
                 </Option>
               ))}
@@ -92,16 +106,19 @@ function CreateProperty() {
             <Input placeholder="" />
           </FormItem>
           <FormItem label="总时长" field="duration" rules={[{ required: false }]}>
-            <Input disabled={!typeDisabled}  placeholder="" />
+            <InputNumber disabled={!typeDisabled}  placeholder="" />
           </FormItem>
           <FormItem label="单次时长"  field="length" rules={[{ required: false }]}>
-            <Input disabled={typeDisabled}  placeholder="" />
+            <InputNumber disabled={typeDisabled}  placeholder="" />
           </FormItem>
           <FormItem label="次数" field="count" rules={[{ required: false }]}>
-            <Input placeholder="" />
+            <InputNumber placeholder="" />
           </FormItem>
           <FormItem label="定价" field="price" rules={[{ required: false }]}>
-            <Input placeholder="" />
+            <InputNumber
+              placeholder=""
+              step={0.01}
+              precision={1} />
           </FormItem>
           <SelectVenueList />
         </Form>

@@ -1,18 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Modal,
-  Button,
-  Form,
-  Input,
-  Select,
-  Message,
-  Avatar,
-  Upload,
-  InputNumber,
-  Progress,
-  DatePicker
-} from '@arco-design/web-react';
-import productService, { propertyEdit } from '@/api/product';
+import { Button, Form, Input, Modal, Select } from '@arco-design/web-react';
+import productService from '@/api/product';
 import SelectVenueList from '@/pages/sys/components/selectVenueList';
 import sysService from '@/api/sys';
 
@@ -22,17 +10,18 @@ function Edit({ props }) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
-  const [propertyType, setPropertyType] = useState([])
+  const [propertyType, setPropertyType] = useState([]);
 
   useEffect(() => {
 
-    const ve = []
+    const ve = [];
     props.venue.map((v) => (
       ve.push(v.id)
-    ))
-    setVenues(ve)
+    ));
+    setVenues(ve);
     propertyTypeData();
   }, []);
+
   function propertyTypeData() {
     sysService.propertyType()
       .then((res) => {
@@ -43,16 +32,16 @@ function Edit({ props }) {
   function onOk() {
     form.validate().then((res) => {
 
-     const params = {
-       id:props.id,
-       type:res.type,
-       price:res.price,
-       duration:res.duration,
-       length:res.length,
-       count:res.count,
-       name:res.name,
-       venueId:res.venue
-      }
+      const params = {
+        id: props.id,
+        type: res.type,
+        price: res.price,
+        duration: res.duration,
+        length: res.length,
+        count: res.count,
+        name: res.name,
+        venueId: res.venue
+      };
 
       setConfirmLoading(true);
       productService.propertyEdit(params)
@@ -64,7 +53,6 @@ function Edit({ props }) {
         .catch((err) => {
           console.log(err);
         });
-
 
 
       // setTimeout(() => {
@@ -84,16 +72,23 @@ function Edit({ props }) {
   };
   const Option = Select.Option;
 
-  const [typeDisabled, setTypeDisabled ] = useState(true)
-  function types(value){
-    if (value===1) {   setTypeDisabled(true)}
-    if (value===2) {   setTypeDisabled(false)}
-    if (value===3) {   setTypeDisabled(false)}
+  const [typeDisabled, setTypeDisabled] = useState(true);
+
+  function types(value) {
+    if (value === 1) {
+      setTypeDisabled(true);
+    }
+    if (value === 2) {
+      setTypeDisabled(false);
+    }
+    if (value === 3) {
+      setTypeDisabled(false);
+    }
   }
 
-  const [venues, setVenues] = useState([])
+  const [venues, setVenues] = useState([]);
 
-  console.log(venues)
+  console.log(venues);
 
 
   return (
@@ -115,7 +110,15 @@ function Edit({ props }) {
           wrapperCol={{
             style: { flexBasis: 'calc(100% - 90px)' }
           }}
-          initialValues={{type:props.type,price:props.price,duration:props.duration,length:props.length,count:props.count,name:props.name,venue:venues}}
+          initialValues={{
+            type: props.type,
+            price: props.price,
+            duration: props.duration,
+            length: props.length,
+            count: props.count,
+            name: props.name,
+            venue: venues
+          }}
         >
           <FormItem label="类型" field="type" rules={[{ required: false }]}>
             <Select
@@ -134,10 +137,10 @@ function Edit({ props }) {
             <Input placeholder="" />
           </FormItem>
           <FormItem label="总时长" field="duration" rules={[{ required: false }]}>
-            <Input disabled={!typeDisabled}  placeholder="" />
+            <Input disabled={!typeDisabled} placeholder="" />
           </FormItem>
-          <FormItem label="单次时长"  field="length" rules={[{ required: false }]}>
-            <Input disabled={typeDisabled}  placeholder="" />
+          <FormItem label="单次时长" field="length" rules={[{ required: false }]}>
+            <Input disabled={typeDisabled} placeholder="" />
           </FormItem>
           <FormItem label="次数" field="count" rules={[{ required: false }]}>
             <Input placeholder="" />
