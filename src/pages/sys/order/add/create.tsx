@@ -1,33 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Form, Input, InputNumber, Modal, Select } from '@arco-design/web-react';
-import productService, { productEdit } from '@/api/product';
-import SelectVenueList from '@/pages/sys/components/selectVenueList';
+import React, { useState, useEffect, useMemo,useContext } from 'react';
+import { Button, Form, Input, Message, Modal, Select ,InputNumber} from '@arco-design/web-react';
 import sysService from '@/api/sys';
+import productService, { productCreate } from '@/api/product';
 
 const FormItem = Form.Item;
 
-function Edit({ props }) {
+function Create() {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
 
-  // useEffect(() => {
-  //
-  // }, []);
-
 
   function onOk() {
     form.validate().then((res) => {
-
       const params = {
-        id: props.id,
         price:res.price,
         name:res.name,
         stock:res.stock,
-      };
-
+      }
+      console.log(params);
       setConfirmLoading(true);
-      productService.productEdit(params)
+      productService.productCreate(params)
         .then((res) => {
           console.log(res);
           setVisible(false);
@@ -36,12 +29,6 @@ function Edit({ props }) {
         .catch((err) => {
           console.log(err);
         });
-
-
-      // setTimeout(() => {
-      //   Message.success('Success !');
-      //
-      // }, 1500);
     });
   }
 
@@ -54,11 +41,12 @@ function Edit({ props }) {
     }
   };
 
+
   return (
-    <div>
-      <Button onClick={() => setVisible(true)} type="primary">编辑</Button>
+    <>
+      <Button onClick={() => setVisible(true)} type="primary">新建</Button>
       <Modal
-        title="编辑"
+        title="新建"
         visible={visible}
         onOk={onOk}
         confirmLoading={confirmLoading}
@@ -73,28 +61,28 @@ function Edit({ props }) {
           wrapperCol={{
             style: { flexBasis: 'calc(100% - 90px)' }
           }}
-          initialValues={{
-            price: props.price,
-            name: props.name,
-            stock:props.stock,
-          }}
         >
 
           <FormItem label="名称" field="name" rules={[{ required: true }]}>
             <Input placeholder="" />
           </FormItem>
           <FormItem label="定价" field="price" rules={[{ required: false }]}>
-            <Input placeholder="" />
+            <InputNumber
+              placeholder=""
+              step={0.01}
+              precision={1} />
           </FormItem>
+
           <FormItem label="库存" field="stock" rules={[{ required: false }]}>
             <InputNumber
               placeholder=""
               precision={1} />
           </FormItem>
+
         </Form>
       </Modal>
-    </div>
+    </>
   );
 }
 
-export default Edit;
+export default Create;

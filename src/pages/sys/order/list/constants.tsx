@@ -5,12 +5,10 @@ import IconHorizontalVideo from './icons/horizontal.svg';
 import IconVerticalVideo from './icons/vertical.svg';
 import dayjs from 'dayjs';
 
-import EditOrder from '@/pages/sys/order/edit';
-import { ContentType, FilterType, Status } from './index';
+import Edit from './edit';
+import { Status } from './index';
 
 const { Text } = Typography;
-
-
 
 const ContentIcon = [
   <IconText key={0} />,
@@ -18,34 +16,31 @@ const ContentIcon = [
   <IconVerticalVideo key={2} />,
 ];
 export function getColumns(
-  t: any,
+  t:any,
   callback: (record: Record<string, any>, type: string) => Promise<void>
 ) {
   return [
     {
-      title: '编号',
+      title: '单号',
       dataIndex: 'order_sn',
       render: (value) => <Text copyable>{value}</Text>,
     },
     {
-      title: '场馆',
-      dataIndex: 'venue_id',
-    },
-    {
       title: '会员',
-      dataIndex: 'member_id',
+      dataIndex: 'member_name',
+      placeholder: <>暂无</> ,
       render: (value) => <Text copyable>{value}</Text>,
     },
     {
-      title: '产品',
-      dataIndex: 'venue_id',
+      title: '场馆',
+      dataIndex: 'venue_name',
+      placeholder: <>暂无</> ,
       render: (value) => <Text copyable>{value}</Text>,
     },
     {
       title: '状态',
       dataIndex: 'status',
       render: (x: number) => {
-        console.log(x)
         if (x === 0) {
           return <Badge status="default" text={Status[x]}></Badge>;
         }else if (x === 1){
@@ -58,22 +53,38 @@ export function getColumns(
           return <Badge status="error" text={Status[x]}></Badge>;
         }
       },
+      placeholder: <>暂无</> ,
     },
     {
       title: '创建人',
-      dataIndex: 'create_id',
+      dataIndex: 'create_name',
+      placeholder: <>暂无</> ,
     },
     {
       title: '创建时间',
+      placeholder: <>暂无</> ,
       dataIndex: 'createdAt',
        render: (x) => dayjs(x).format('YYYY-MM-DD HH:mm:ss'),
        sorter: (a, b) => b.createdTime - a.createdTime,
     },
     {
-      title: '支付完成时间',
-      dataIndex: 'completionAt',
+      title: '完成时间',
+      placeholder: <>暂无</> ,
+      dataIndex: 'completion_at',
       render: (x) => dayjs(x).format('YYYY-MM-DD HH:mm:ss'),
       sorter: (a, b) => b.createdTime - a.createdTime,
+    },
+    {
+      title: '来源',
+      dataIndex: 'source',
+      placeholder: <>暂无</> ,
+      render: (value) => <Text copyable>{value}</Text>,
+    },
+    {
+      title: '设备来源',
+      dataIndex: 'device',
+      placeholder: <>暂无</> ,
+      render: (value) => <Text copyable>{value}</Text>,
     },
     {
       title: '操作',
@@ -81,8 +92,7 @@ export function getColumns(
       headerCellStyle: { paddingLeft: '15px' },
       render: (_, record) => (
         <>
-
-          <EditOrder props={record}/>
+          <Edit props={record}/>
           <Button
             type="text"
             size="small"

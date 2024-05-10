@@ -5,14 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="febb57be-281a-4d53-b36f-ad64d8b5c0e2" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/order/add/create.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/order/list/edit.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/product/create.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/order.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/order.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/product.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/product.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/components/selectPropertyType.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/components/selectPropertyType.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/member/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/member/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/order/list/constants.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/details.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/order/list/details.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/edit.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/order/list/form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/icons/horizontal.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/order/list/icons/horizontal.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/icons/text.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/order/list/icons/text.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/icons/vertical.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/order/list/icons/vertical.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/order/list/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/locale/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/order/list/locale/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/style/index.module.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/order/list/style/index.module.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/product/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/product/constants.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/product/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/product/edit.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/product/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/product/form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/product/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/product/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/sys/property/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/property/constants.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/property/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/property/create.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/property/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/property/edit.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/property/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/property/form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/property/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/property/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,38 +53,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;arco&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/www/saas/saas-admin/src/pages/sys/property&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.stylelint&quot;: &quot;D:\\www\\saas\\saas-admin\\node_modules\\stylelint&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\www\\saas\\saas-admin\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "arco",
+    "last_opened_file_path": "D:/www/saas/saas-admin/src/pages/sys/components/tables",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.stylelint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.stylelint": "D:\\www\\saas\\saas-admin\\node_modules\\stylelint",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "D:\\www\\saas\\saas-admin\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\www\saas\saas-admin\src\pages\sys\property" />
-      <recent name="D:\www\saas\saas-admin\src\pages\sys\place" />
-      <recent name="D:\www\saas\saas-admin\src\pages\sys\venue" />
-      <recent name="D:\www\saas\saas-admin\src\pages\sys\role" />
-      <recent name="D:\www\saas\saas-admin\src\pages\sys\user" />
+      <recent name="D:\www\saas\saas-admin\src\pages\sys\components\tables" />
+      <recent name="D:\www\saas\saas-admin\src\pages\sys\order\add" />
+      <recent name="D:\www\saas\saas-admin\src\pages\sys\order" />
+      <recent name="D:\www\saas\saas-admin\src\pages\sys\order\list" />
+      <recent name="D:\www\saas\saas-admin\src\pages\sys\product" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\www\saas\saas-admin\src\pages\sys\components\tables" />
       <recent name="D:\www\saas\saas-admin\src\pages\sys" />
       <recent name="D:\www\saas\saas-admin\src\pages\sys\product" />
       <recent name="D:\www\saas\saas-admin\src\pages" />
       <recent name="D:\www\saas\saas-admin\src\utils\request" />
-      <recent name="D:\www\saas\saas-admin\src\utils" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
@@ -99,6 +113,7 @@
       <workItem from="1715139169590" duration="4706000" />
       <workItem from="1715151986706" duration="6628000" />
       <workItem from="1715219631983" duration="9386000" />
+      <workItem from="1715303770336" duration="8202000" />
     </task>
     <servers />
   </component>

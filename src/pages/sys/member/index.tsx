@@ -5,28 +5,29 @@ import {
   PaginationProps,
   Button,
   Space,
-  Typography
+  Typography,
+  Empty
 } from '@arco-design/web-react';
 import PermissionWrapper from '@/components/PermissionWrapper';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import { getColumns } from './constants';
-import memberService from '@/api/member';
+import memberService  from '@/api/member';
 import SearchForm from './form';
 import { IconDownload, IconPlus } from '@arco-design/web-react/icon';
 import styles from './style/index.module.less';
-import CreateMember from './create';
 
 // ======================================
 
 const { Title } = Typography;
+export const Status = ['可用','禁用'];
 export const ContentType = ['有进馆', '有私教课', '有团课','无进馆', '无私教课', '无团课'];
-export const FilterType = ['规则筛选', '人工'];
-export const Status = ['禁用', '可用'];
 
-function Member() {
+export const FilterType = ['有进馆', '有私教课', '有团课','无进馆', '无私教课', '无团课'];
+function Product() {
   const t = useLocale(locale);
   const tableCallback = async (record, type) => {
+
     console.log(record, type);
   };
   const columns = useMemo(() => getColumns(t, tableCallback), [t]);
@@ -56,7 +57,12 @@ function Member() {
     };
     memberService.memberList(params)
       .then((res) => {
-        setData(res.data);
+        if (res.total===0){
+          setData([]);
+        }else {
+          setData(res.data);
+        }
+
         setPatination({
           ...pagination,
           current,
@@ -66,6 +72,8 @@ function Member() {
         setLoading(false);
       });
   }
+
+
   function onChangeTable({ current, pageSize }) {
     setPatination({
       ...pagination,
@@ -77,18 +85,15 @@ function Member() {
     setPatination({ ...pagination, current: 1 });
     setFormParams(params);
   }
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+
   return (
     <Card>
-      <Title heading={6}>会员列表</Title>
+      <Title heading={6}>列表</Title>
       <SearchForm onSearch={handleSearch} />
       <PermissionWrapper>
         <div className={styles['button-group']}>
-        <Space>
-            <CreateMember />
-          </Space>
-          <Space>
-            <Button>{t['searchTable.operations.upload']}</Button>
-          </Space>
+
           <Space>
             <Button icon={<IconDownload />}>
               {t['searchTable.operation.download']}
@@ -103,9 +108,35 @@ function Member() {
         pagination={pagination}
         columns={columns}
         data={data}
+        virtualized
+        noDataElement={(<Empty />)}
+        placeholder={(<Empty />)}
+        rowSelection={{
+          selectedRowKeys,
+          onChange: (selectedRowKeys, selectedRows) => {
+            console.log('selectedRowKeys', selectedRowKeys);
+            console.log('selectedRows', selectedRows);
+            setSelectedRowKeys(selectedRowKeys);
+          },
+        }}
+
+        renderPagination={(paginationNode) => (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              marginTop: 10,
+            }}
+          >
+            <Space>
+              <span>选中 {selectedRowKeys.length}</span>
+              {/*<Button size='mini'>Save</Button>*/}
+              <Button size='mini'>删除</Button>
+            </Space>
+            {paginationNode}
+          </div>
+        )}
       />
-
-
 
     </Card>
   );
@@ -113,4 +144,4 @@ function Member() {
 
 }
 
-export default Member;
+export default Product;

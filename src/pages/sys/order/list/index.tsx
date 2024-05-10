@@ -5,13 +5,14 @@ import {
   PaginationProps,
   Button,
   Space,
-  Typography
+  Typography,
+  Empty
 } from '@arco-design/web-react';
 import PermissionWrapper from '@/components/PermissionWrapper';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import { getColumns } from './constants';
-import orderService from '@/api/order';
+import orderService  from '@/api/order';
 import SearchForm from './form';
 import { IconDownload, IconPlus } from '@arco-design/web-react/icon';
 import styles from './style/index.module.less';
@@ -19,13 +20,12 @@ import styles from './style/index.module.less';
 // ======================================
 
 const { Title } = Typography;
-export const ContentType = ['有进馆', '有私教课', '有团课','无进馆', '无私教课', '无团课'];
-export const FilterType = ['规则筛选', '人工'];
-export const Status = ['未付款','部分付款', '已付款','已退款','错误'];
+export const Status = ['可用','禁用'];
 
-function Order() {
+function Product() {
   const t = useLocale(locale);
   const tableCallback = async (record, type) => {
+
     console.log(record, type);
   };
   const columns = useMemo(() => getColumns(t, tableCallback), [t]);
@@ -55,7 +55,12 @@ function Order() {
     };
     orderService.orderList(params)
       .then((res) => {
-        setData(res.data);
+        if (res.total===0){
+          setData([]);
+        }else {
+          setData(res.data);
+        }
+
         setPatination({
           ...pagination,
           current,
@@ -65,6 +70,8 @@ function Order() {
         setLoading(false);
       });
   }
+
+
   function onChangeTable({ current, pageSize }) {
     setPatination({
       ...pagination,
@@ -76,15 +83,15 @@ function Order() {
     setPatination({ ...pagination, current: 1 });
     setFormParams(params);
   }
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+
   return (
     <Card>
-      <Title heading={6}>订单列表</Title>
+      <Title heading={6}>列表</Title>
       <SearchForm onSearch={handleSearch} />
       <PermissionWrapper>
         <div className={styles['button-group']}>
-          <Space>
-            <Button>{t['searchTable.operations.upload']}</Button>
-          </Space>
+
           <Space>
             <Button icon={<IconDownload />}>
               {t['searchTable.operation.download']}
@@ -99,9 +106,35 @@ function Order() {
         pagination={pagination}
         columns={columns}
         data={data}
+        virtualized
+        noDataElement={(<Empty />)}
+        placeholder={(<Empty />)}
+        rowSelection={{
+          selectedRowKeys,
+          onChange: (selectedRowKeys, selectedRows) => {
+            console.log('selectedRowKeys', selectedRowKeys);
+            console.log('selectedRows', selectedRows);
+            setSelectedRowKeys(selectedRowKeys);
+          },
+        }}
+
+        renderPagination={(paginationNode) => (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              marginTop: 10,
+            }}
+          >
+            <Space>
+              <span>选中 {selectedRowKeys.length}</span>
+              {/*<Button size='mini'>Save</Button>*/}
+              <Button size='mini'>删除</Button>
+            </Space>
+            {paginationNode}
+          </div>
+        )}
       />
-
-
 
     </Card>
   );
@@ -109,4 +142,4 @@ function Order() {
 
 }
 
-export default Order;
+export default Product;

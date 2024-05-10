@@ -1,16 +1,14 @@
 import React from 'react';
-import { Button, Typography, Badge } from '@arco-design/web-react';
+import { Button, Typography, Badge,Image } from '@arco-design/web-react';
 import IconText from './icons/text.svg';
 import IconHorizontalVideo from './icons/horizontal.svg';
 import IconVerticalVideo from './icons/vertical.svg';
 import dayjs from 'dayjs';
 
-import EditOrder from '@/pages/sys/order/edit';
-import { ContentType, FilterType, Status } from './index';
+import Edit from './edit';
+import { Status } from './index';
 
 const { Text } = Typography;
-
-
 
 const ContentIcon = [
   <IconText key={0} />,
@@ -18,34 +16,62 @@ const ContentIcon = [
   <IconVerticalVideo key={2} />,
 ];
 export function getColumns(
-  t: any,
+  t:any,
   callback: (record: Record<string, any>, type: string) => Promise<void>
 ) {
   return [
     {
-      title: '编号',
-      dataIndex: 'order_sn',
+      title: 'ID',
+      dataIndex: 'id',
       render: (value) => <Text copyable>{value}</Text>,
     },
     {
-      title: '场馆',
-      dataIndex: 'venue_id',
+      title: '图片',
+      dataIndex: 'pic',
+      placeholder: <>暂无</> ,
+      render: (value) => {
+        if (value!==""){
+          return (
+            <Image
+              width={50}
+              src={value}
+              alt='lamp'
+            />
+          );
+        }else{
+          return (
+            <Image
+              width={50}
+              src='//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp'
+              alt='lamp'
+            />
+          );
+        }
+
+      },
     },
     {
-      title: '会员',
-      dataIndex: 'member_id',
+      title: '名称',
+      dataIndex: 'name',
+      placeholder: <>暂无</> ,
       render: (value) => <Text copyable>{value}</Text>,
     },
     {
-      title: '产品',
-      dataIndex: 'venue_id',
+      title: '定价',
+      dataIndex: 'price',
+      placeholder: <>暂无</> ,
+      render: (value) => <Text copyable>{value}</Text>,
+    },
+    {
+      title: '库存',
+      dataIndex: 'stock',
+      placeholder: <>暂无</> ,
       render: (value) => <Text copyable>{value}</Text>,
     },
     {
       title: '状态',
       dataIndex: 'status',
       render: (x: number) => {
-        console.log(x)
         if (x === 0) {
           return <Badge status="default" text={Status[x]}></Badge>;
         }else if (x === 1){
@@ -58,22 +84,19 @@ export function getColumns(
           return <Badge status="error" text={Status[x]}></Badge>;
         }
       },
+      placeholder: <>暂无</> ,
     },
     {
       title: '创建人',
-      dataIndex: 'create_id',
+      dataIndex: 'create_name',
+      placeholder: <>暂无</> ,
     },
     {
       title: '创建时间',
+      placeholder: <>暂无</> ,
       dataIndex: 'createdAt',
        render: (x) => dayjs(x).format('YYYY-MM-DD HH:mm:ss'),
        sorter: (a, b) => b.createdTime - a.createdTime,
-    },
-    {
-      title: '支付完成时间',
-      dataIndex: 'completionAt',
-      render: (x) => dayjs(x).format('YYYY-MM-DD HH:mm:ss'),
-      sorter: (a, b) => b.createdTime - a.createdTime,
     },
     {
       title: '操作',
@@ -81,8 +104,7 @@ export function getColumns(
       headerCellStyle: { paddingLeft: '15px' },
       render: (_, record) => (
         <>
-
-          <EditOrder props={record}/>
+          <Edit props={record}/>
           <Button
             type="text"
             size="small"

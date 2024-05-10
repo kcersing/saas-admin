@@ -5,7 +5,7 @@ import IconHorizontalVideo from './icons/horizontal.svg';
 import IconVerticalVideo from './icons/vertical.svg';
 import dayjs from 'dayjs';
 
-import EditOrder from '@/pages/sys/property/edit';
+import Edit from './edit';
 import { Status } from './index';
 
 const { Text } = Typography;
@@ -104,7 +104,7 @@ export function getColumns(
       headerCellStyle: { paddingLeft: '15px' },
       render: (_, record) => (
         <>
-          <EditOrder props={record}/>
+          <Edit props={record}/>
           <Button
             type="text"
             size="small"

@@ -12,8 +12,10 @@ import { GlobalContext } from '@/context';
 import locale from './locale';
 import useLocale from '@/utils/useLocale';
 import { IconRefresh, IconSearch } from '@arco-design/web-react/icon';
-import { ContentType, FilterType, Status } from './index';
+import { Status } from './index';
 import styles from './style/index.module.less';
+import SelectVenueList from '@/pages/sys/components/selectVenueList';
+import SelectPropertyType from '@/pages/sys/components/selectPropertyType';
 
 const { Row, Col } = Grid;
 const { useForm } = Form;
@@ -47,56 +49,18 @@ function SearchForm(props: {
         wrapperCol={{ span: 19 }}
       >
         <Row gutter={24}>
+
           <Col span={colSpan}>
-            <Form.Item label='ID' field="id">
-              <Input placeholder='会员ID' allowClear />
+            <Form.Item label='名称' field="name">
+              <Input allowClear placeholder='名称' />
             </Form.Item>
           </Col>
-          <Col span={colSpan}>
-            <Form.Item label='姓名' field="name">
-              <Input
-                allowClear
-                placeholder='姓名'
-              />
-            </Form.Item>
-          </Col>
+
           <Col span={colSpan}>
             <Form.Item label={t['searchTable.columns.status']} field="status">
               <Select
                 placeholder={t['searchForm.all.placeholder']}
                 options={Status.map((item, index) => ({
-                  label: item,
-                  value: index,
-                }))}
-                mode="multiple"
-                allowClear
-              />
-            </Form.Item>
-          </Col>
-          <Col span={colSpan}>
-            <Form.Item
-              label='拥有产品'
-              field="filterType"
-            >
-              <Select
-                placeholder={t['searchForm.all.placeholder']}
-                options={FilterType.map((item, index) => ({
-                  label: item,
-                  value: index,
-                }))}
-                mode="multiple"
-                allowClear
-              />
-            </Form.Item>
-          </Col>
-          <Col span={colSpan}>
-            <Form.Item
-              label='有效属性'
-              field="contentType"
-            >
-              <Select
-                placeholder={t['searchForm.all.placeholder']}
-                options={ContentType.map((item, index) => ({
                   label: item,
                   value: index,
                 }))}

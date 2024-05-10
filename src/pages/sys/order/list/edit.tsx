@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Form, Input, InputNumber, Modal, Select } from '@arco-design/web-react';
-import productService, { productEdit } from '@/api/product';
-import SelectVenueList from '@/pages/sys/components/selectVenueList';
-import sysService from '@/api/sys';
+import orderService from '@/api/order';
+
 
 const FormItem = Form.Item;
 
@@ -27,7 +26,7 @@ function Edit({ props }) {
       };
 
       setConfirmLoading(true);
-      productService.productEdit(params)
+      orderService.orderUpdate(params)
         .then((res) => {
           console.log(res);
           setVisible(false);
