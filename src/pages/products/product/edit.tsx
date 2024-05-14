@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Form, Input, InputNumber, Modal, Select } from '@arco-design/web-react';
 import productService, { productEdit } from '@/api/product';
-import SelectVenueList from '@/pages/sys/components/selectVenueList';
+import SelectVenueList from '@/pages/components/selectVenueList';
 import sysService from '@/api/sys';
 
 const FormItem = Form.Item;

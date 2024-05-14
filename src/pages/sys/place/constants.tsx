@@ -5,7 +5,7 @@ import IconHorizontalVideo from './icons/horizontal.svg';
 import IconVerticalVideo from './icons/vertical.svg';
 import dayjs from 'dayjs';
 
-import EditMember from '@/pages/sys/a/member/list/edit';
+import EditMember from './edit';
 import { ContentType, FilterType, Status } from './index';
 
 const { Text } = Typography;
