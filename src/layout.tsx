@@ -6,7 +6,7 @@ import {
   IconDashboard,
   IconTag,
   IconMenuFold,
-  IconMenuUnfold,
+  IconMenuUnfold, IconUser, IconOrderedList, IconCalendarClock, IconSearch, IconTool, IconCompass, IconSettings
 } from '@arco-design/web-react/icon';
 import { useSelector } from 'react-redux';
 import qs from 'query-string';
@@ -33,8 +33,20 @@ function getIconFromKey(key) {
       return <IconDashboard className={styles.icon} />;
     case 'example':
       return <IconTag className={styles.icon} />;
-    case 'sys/product':
+    case 'sys':
+      return <IconSettings className={styles.icon} />;
+    case 'products':
       return <IconTag className={styles.icon} />;
+    case 'members':
+      return <IconUser className={styles.icon} />;
+    case 'orders':
+      return <IconOrderedList className={styles.icon} />;
+    case 'schedules':
+      return <IconCalendarClock className={styles.icon} />;
+    case 'statisticals':
+      return <IconCompass className={styles.icon} />;
+    case 'devops':
+      return <IconTool className={styles.icon} />;
     default:
       return <div className={styles['icon-empty']} />;
   }

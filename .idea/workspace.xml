@@ -5,28 +5,111 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="febb57be-281a-4d53-b36f-ad64d8b5c0e2" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/sys/order/add/create.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/sys/order/list/edit.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/sys/product/create.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/devops/logs/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/member/list/constants.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/member/list/create.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/member/list/details.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/member/list/edit.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/member/list/form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/member/list/icons/horizontal.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/member/list/icons/text.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/member/list/icons/vertical.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/member/list/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/member/list/locale/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/member/list/style/index.module.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/order/add/create.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/order/add/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/order/list/constants.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/order/list/details.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/order/list/edit.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/order/list/form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/order/list/icons/horizontal.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/order/list/icons/text.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/order/list/icons/vertical.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/order/list/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/order/list/locale/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/order/list/style/index.module.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/product/constants.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/product/create.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/product/details.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/product/edit.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/product/form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/product/icons/horizontal.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/product/icons/text.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/product/icons/vertical.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/product/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/product/locale/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/product/style/index.module.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/property/constants.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/property/create.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/property/details.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/property/edit.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/property/form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/property/icons/horizontal.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/property/icons/text.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/property/icons/vertical.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/property/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/property/index2.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/property/locale/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/property/style/index.module.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/schedule/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sys/a/statistical/all/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/order.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/order.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/product.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/product.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/member/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/member/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/order/list/constants.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/details.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/order/list/details.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/edit.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/order/list/form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/icons/horizontal.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/order/list/icons/horizontal.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/icons/text.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/order/list/icons/text.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/icons/vertical.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/order/list/icons/vertical.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/order/list/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/locale/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/order/list/locale/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/style/index.module.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/order/list/style/index.module.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/product/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/product/constants.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/product/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/product/edit.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/product/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/product/form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/product/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/product/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/property/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/property/constants.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/a/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/logs/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/devops/logs/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/member/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/members/list/constants.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/member/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/members/list/create.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/member/details.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/members/list/details.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/member/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/members/list/edit.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/member/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/members/list/form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/member/icons/horizontal.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/members/list/icons/horizontal.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/member/icons/text.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/members/list/icons/text.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/member/icons/vertical.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/members/list/icons/vertical.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/member/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/members/list/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/member/locale/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/members/list/locale/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/member/style/index.module.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/members/list/style/index.module.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/add/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/orders/add/create.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/add/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/orders/add/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/list/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/orders/list/constants.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/list/details.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/orders/list/details.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/list/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/orders/list/edit.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/list/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/orders/list/form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/list/icons/horizontal.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/orders/list/icons/horizontal.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/list/icons/text.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/orders/list/icons/text.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/list/icons/vertical.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/orders/list/icons/vertical.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/list/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/orders/list/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/list/locale/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/orders/list/locale/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/order/list/style/index.module.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/orders/list/style/index.module.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/place/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/place/constants.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/product/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/product/constants.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/product/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/product/create.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/product/details.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/product/details.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/product/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/product/edit.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/product/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/product/form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/product/icons/horizontal.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/product/icons/horizontal.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/product/icons/text.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/product/icons/text.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/product/icons/vertical.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/product/icons/vertical.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/product/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/product/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/product/locale/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/product/locale/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/product/style/index.module.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/product/style/index.module.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/property/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/constants.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/property/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/create.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/property/details.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/details.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/property/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/edit.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/property/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/property/icons/horizontal.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/icons/horizontal.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/property/icons/text.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/icons/text.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/property/icons/vertical.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/icons/vertical.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/property/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/property/index2.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/index2.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/property/locale/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/locale/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/property/style/index.module.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/style/index.module.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/role/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/role/constants.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/schedule/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/schedules/schedule/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/statistical/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/statisticals/all/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/user/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/user/constants.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/sys/venue/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/venue/constants.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +126,7 @@
     <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 0
+  &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2fTtEBgteZ6iTIj9bIB9s1xBgYI" />
   <component name="ProjectLevelVcsManager">
@@ -58,7 +141,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "arco",
-    "last_opened_file_path": "D:/www/saas/saas-admin/src/pages/sys/components/tables",
+    "last_opened_file_path": "D:/www/saas/saas-admin/src/pages",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.stylelint": "true",
     "node.js.detected.package.tslint": "true",
@@ -73,18 +156,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\www\saas\saas-admin\src\pages" />
+      <recent name="D:\www\saas\saas-admin\src\pages\schedules" />
+      <recent name="D:\www\saas\saas-admin\src\pages\sys" />
+      <recent name="D:\www\saas\saas-admin\src\pages\products" />
       <recent name="D:\www\saas\saas-admin\src\pages\sys\components\tables" />
-      <recent name="D:\www\saas\saas-admin\src\pages\sys\order\add" />
-      <recent name="D:\www\saas\saas-admin\src\pages\sys\order" />
-      <recent name="D:\www\saas\saas-admin\src\pages\sys\order\list" />
-      <recent name="D:\www\saas\saas-admin\src\pages\sys\product" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\www\saas\saas-admin\src\pages\sys\components\tables" />
-      <recent name="D:\www\saas\saas-admin\src\pages\sys" />
+      <recent name="D:\www\saas\saas-admin\src\pages\sys\a" />
+      <recent name="D:\www\saas\saas-admin\src\pages\products" />
       <recent name="D:\www\saas\saas-admin\src\pages\sys\product" />
-      <recent name="D:\www\saas\saas-admin\src\pages" />
-      <recent name="D:\www\saas\saas-admin\src\utils\request" />
+      <recent name="D:\www\saas\saas-admin\src\pages\sys\property" />
+      <recent name="D:\www\saas\saas-admin\src\pages\sys\property\list" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
@@ -114,6 +197,8 @@
       <workItem from="1715151986706" duration="6628000" />
       <workItem from="1715219631983" duration="9386000" />
       <workItem from="1715303770336" duration="8202000" />
+      <workItem from="1715566114986" duration="2088000" />
+      <workItem from="1715670348116" duration="8491000" />
     </task>
     <servers />
   </component>
