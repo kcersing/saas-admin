@@ -3,7 +3,7 @@ import { Form, Select, Space } from '@arco-design/web-react';
 import sysService from '@/api/sys';
 import { IconStar, IconDelete } from '@arco-design/web-react/icon';
 const FormItem = Form.Item;
-function SelectVenueList( props: { mode?: 'multiple' | 'tags'|'' }) {
+function SelectMemberList( props: { mode?: 'multiple' | 'tags'|'' }) {
 
   const [venueList, setVenueList] = useState([])
 
@@ -27,10 +27,10 @@ function SelectVenueList( props: { mode?: 'multiple' | 'tags'|'' }) {
   console.log(props)
   const Option = Select.Option;
   return (
-    <FormItem label="场馆" field="venue" rules={[{ required: false }]}>
+    <FormItem label="会员" field="member" rules={[{ required: false }]}>
       <Select
         mode={props.mode}
-        placeholder='选择场馆'
+        placeholder='选择会员'
         allowClear
         showSearch
         filterOption={(inputValue, option) =>
@@ -62,4 +62,4 @@ function SelectVenueList( props: { mode?: 'multiple' | 'tags'|'' }) {
   )
 }
 
-export default SelectVenueList;
+export default SelectMemberList;

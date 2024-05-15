@@ -3,9 +3,9 @@ import { Form, Select, Space } from '@arco-design/web-react';
 import sysService from '@/api/sys';
 import { IconStar, IconDelete } from '@arco-design/web-react/icon';
 const FormItem = Form.Item;
-function SelectVenueList( props: { mode?: 'multiple' | 'tags'|'' }) {
+function SelectContractList( props: { mode?: 'multiple' | 'tags'|'' }) {
 
-  const [venueList, setVenueList] = useState([])
+  const [list, setList] = useState([])
 
   useEffect(() => {
     venueData();
@@ -21,16 +21,16 @@ function SelectVenueList( props: { mode?: 'multiple' | 'tags'|'' }) {
               key:n.id,
             } )
         })
-        setVenueList(data);
+        setList(data);
       });
   }
   console.log(props)
   const Option = Select.Option;
   return (
-    <FormItem label="场馆" field="venue" rules={[{ required: false }]}>
+    <FormItem label="合同" field="contract" rules={[{ required: false }]}>
       <Select
         mode={props.mode}
-        placeholder='选择场馆'
+        placeholder='选择合同'
         allowClear
         showSearch
         filterOption={(inputValue, option) =>
@@ -52,7 +52,7 @@ function SelectVenueList( props: { mode?: 'multiple' | 'tags'|'' }) {
           );
         }}
       >
-        {venueList.map((option) => (
+        {list.map((option) => (
           <Option key={option.value} value={option.key}>
             {option.label}
           </Option>
@@ -62,4 +62,4 @@ function SelectVenueList( props: { mode?: 'multiple' | 'tags'|'' }) {
   )
 }
 
-export default SelectVenueList;
+export default SelectContractList;

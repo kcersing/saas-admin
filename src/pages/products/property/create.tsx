@@ -120,7 +120,7 @@ function CreateProperty() {
               step={0.01}
               precision={1} />
           </FormItem>
-          <SelectVenueList />
+          <SelectVenueList mode='multiple'/>
         </Form>
       </Modal>
     </>

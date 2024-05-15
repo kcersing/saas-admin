@@ -58,7 +58,7 @@ function SearchForm(props: {
             <SelectPropertyType />
           </Col>
           <Col span={colSpan}>
-            <SelectVenueList />
+            <SelectVenueList mode='multiple'/>
           </Col>
           <Col span={colSpan}>
             <Form.Item label={t['searchTable.columns.status']} field="status">

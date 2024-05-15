@@ -148,7 +148,7 @@ function Edit({ props }) {
           <FormItem label="定价" field="price" rules={[{ required: false }]}>
             <Input placeholder="" />
           </FormItem>
-          <SelectVenueList />
+          <SelectVenueList mode='multiple'/>
         </Form>
       </Modal>
     </div>
