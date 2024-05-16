@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo,useContext } from 'react';
 import { Button, Form, Input, Message, Modal, Select ,InputNumber} from '@arco-design/web-react';
 import sysService from '@/api/sys';
-import SelectVenueList from '@/pages/components/selectVenueList';
+import SelectVenueList from '@/pages/components/select/selectVenueList';
 import productService from '@/api/product';
 
 

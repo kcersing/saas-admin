@@ -20,6 +20,7 @@
     "@arco-themes/react-arco-pro": "^0.0.7",
     "@loadable/component": "^5.13.2",
     "@turf/turf": "^6.5.0",
+    "@types/react-signature-canvas": "^1.0.5",
     "arco-design-pro": "^2.8.0",
     "axios": "^0.24.0",
     "bizcharts": "^4.1.11",
@@ -36,6 +37,7 @@
     "react-redux": "^7.2.6",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
+    "react-signature-canvas": "^1.0.6",
     "redux": "^4.1.2"
   },
   "devDependencies": {

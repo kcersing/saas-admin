@@ -14,8 +14,8 @@ import useLocale from '@/utils/useLocale';
 import { IconRefresh, IconSearch } from '@arco-design/web-react/icon';
 import { Status } from './index';
 import styles from './style/index.module.less';
-import SelectVenueList from '@/pages/components/selectVenueList';
-import SelectPropertyType from '@/pages/components/selectPropertyType';
+import SelectVenueList from '@/pages/components/select/selectVenueList';
+import SelectPropertyType from '@/pages/components/select/selectPropertyType';
 
 const { Row, Col } = Grid;
 const { useForm } = Form;

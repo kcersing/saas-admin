@@ -16,13 +16,14 @@ import {
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import styles from './style/index.module.less';
-import SelectVenueList from '@/pages/components/selectVenueList';
-import SelectMemberList from '@/pages/components/selectMemberList';
-import SelectStaffList from '@/pages/components/selectStaffList';
-import SelectProductList from '@/pages/components/selectProductList';
-import SelectContractList from '@/pages/components/selectContractList';
+import SelectVenueList from '@/pages/components/select/selectVenueList';
+import SelectMemberList from '@/pages/components/select/selectMemberList';
+import SelectStaffList from '@/pages/components/select/selectStaffList';
+import SelectProductList from '@/pages/components/select/selectProductList';
+import SelectContractList from '@/pages/components/select/selectContractList';
+import SignPage from '@/pages/components/signature';
 
-const { Title, Paragraph } = Typography;
+const { Title } = Typography;
 function Add() {
   const t = useLocale(locale);
   const [current, setCurrent] = useState(1);
@@ -32,20 +33,39 @@ function Add() {
   const viewForm = () => {
     const values = form.getFields();
     form.setFields(values);
+    console.log(values);
     setCurrent(1);
   };
 
   const reCreateForm = () => {
     form.resetFields();
+    const values = form.getFields();
+    console.log(values);
+
     setCurrent(1);
   };
 
   const toNext = async () => {
     try {
       await form.validate();
+
+
+      const values = form.getFields();
+
+      console.log(values);
+      console.log(signImg)
       setCurrent(current + 1);
     } catch (_) {}
   };
+
+  const [signImg, setSignImg] = useState('');
+
+  const SignData = (sign) => {
+    setSignImg(sign)
+  }
+
+
+
 
 
   const Option = Select.Option;
@@ -128,6 +148,10 @@ function Add() {
 
                 <SelectContractList mode="multiple" />
 
+
+                <Form.Item label='会员签字'  field="basic.SignData">
+                  <SignPage SignData={SignData} />
+                </Form.Item>
 
                 <Form.Item
                   required

@@ -1,0 +1,42 @@
+.signContainer {
+
+    padding: 20px 20px 20px 0;
+    height: 100%;
+    box-sizing: border-box;
+
+    & .signContent {
+        position: relative;
+        width: 100%;
+
+
+        & .signTip {
+            color: #ccc;
+            font-size: 30px;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    & .canvasContainer {
+        border-radius: 10px;
+        background: #fff;
+        border:1px dashed #000;
+    }
+
+    & .buttonContainer {
+        display: flex;
+        flex-direction: row;
+        margin-top: 12px;
+
+        & .clearBtn {
+            left: 5px;
+        }
+
+        & .signBtn {
+            left: 30px;
+        }
+    }
+}
