@@ -4,27 +4,16 @@ import sysService from '@/api/sys';
 import { IconStar, IconDelete } from '@arco-design/web-react/icon';
 const FormItem = Form.Item;
 function SelectMemberList( props: { mode?: 'multiple' | 'tags'|'' }) {
-
-  const [venueList, setVenueList] = useState([])
-
+  const [list, setList] = useState([])
   useEffect(() => {
-    venueData();
+    listData();
   }, []);
-  function venueData() {
-    const data = [];
-    sysService.venueData()
+  function listData() {
+    sysService.memberList()
       .then((res) => {
-          res.data.map(function (n) {
-            data.push({
-              label: n.name,
-              value: n.name,
-              key:n.id,
-            } )
-        })
-        setVenueList(data);
+        setList(res.data);
       });
   }
-  console.log(props)
   const Option = Select.Option;
   return (
     <FormItem label="会员" field="member" rules={[{ required: false }]}>
@@ -52,9 +41,9 @@ function SelectMemberList( props: { mode?: 'multiple' | 'tags'|'' }) {
           );
         }}
       >
-        {venueList.map((option) => (
-          <Option key={option.value} value={option.key}>
-            {option.label}
+        {list.map((option) => (
+          <Option key={option.name} value={option.id}>
+            {option.name}
           </Option>
         ))}
       </Select>

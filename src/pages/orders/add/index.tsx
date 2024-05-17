@@ -22,6 +22,7 @@ import SelectStaffList from '@/pages/components/select/selectStaffList';
 import SelectProductList from '@/pages/components/select/selectProductList';
 import SelectContractList from '@/pages/components/select/selectContractList';
 import SignPage from '@/pages/components/signature';
+import Staffs from '@/pages/components/staffls';
 
 const { Title } = Typography;
 function Add() {
@@ -148,6 +149,7 @@ function Add() {
 
                 <SelectContractList mode="multiple" />
 
+<Staffs />
 
                 <Form.Item label='会员签字'  field="basic.SignData">
                   <SignPage SignData={SignData} />

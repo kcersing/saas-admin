@@ -5,25 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="febb57be-281a-4d53-b36f-ad64d8b5c0e2" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/components/signature/index.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/components/signature/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/components/staffls/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/selectContractList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectContractList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/selectMemberList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectMemberList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/selectProductList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectProductList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/selectPropertyList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectPropertyList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/selectPropertyType.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectPropertyType.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/selectStaffList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectStaffList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/selectVenueList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectVenueList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/sys.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/sys.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/components/select/selectContractList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectContractList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/components/select/selectMemberList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectMemberList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/components/select/selectProductList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectProductList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/components/select/selectPropertyList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectPropertyList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/components/select/selectPropertyType.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectPropertyType.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/components/select/selectStaffList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectStaffList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/components/select/selectVenueList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectVenueList.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/orders/add/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/orders/add/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/orders/list/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/orders/list/form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/product/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/product/edit.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/product/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/product/form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/property/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/create.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/property/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/edit.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/property/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,6 +108,7 @@
       <workItem from="1715680726331" duration="1469000" />
       <workItem from="1715737379315" duration="11452000" />
       <workItem from="1715825388534" duration="8057000" />
+      <workItem from="1715915979255" duration="10880000" />
     </task>
     <servers />
   </component>

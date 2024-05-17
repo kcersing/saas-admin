@@ -4,16 +4,14 @@ import sysService from '@/api/sys';
 const FormItem = Form.Item;
 function SelectPropertyType() {
 
-  const [propertyType, setPropertyType] = useState([])
-
+  const [list, setList] = useState([])
   useEffect(() => {
-    propertyTypeData();
+    listData();
   }, []);
-
-  function propertyTypeData() {
+  function listData() {
     sysService.propertyType()
       .then((res) => {
-        setPropertyType(res.data);
+        setList(res.data);
       });
   }
 
@@ -25,9 +23,9 @@ function SelectPropertyType() {
     <FormItem label="类型" field="type" rules={[{ required: false }]}>
 
     <Select>
-      {propertyType.map((option) => (
-          <Option key={option.id} value={option.key}>
-        {option.title}
+      {list.map((option) => (
+        <Option key={option.name} value={option.id}>
+          {option.name}
         </Option>
       ))}
   </Select>
