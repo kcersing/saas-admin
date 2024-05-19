@@ -11,7 +11,9 @@ function SelectMemberList( props: { mode?: 'multiple' | 'tags'|'' }) {
   function listData() {
     sysService.memberList()
       .then((res) => {
-        setList(res.data);
+        if (res.data.length>0){
+          setList(res.data);
+        }
       });
   }
   const Option = Select.Option;

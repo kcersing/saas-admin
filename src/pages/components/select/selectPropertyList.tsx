@@ -11,7 +11,9 @@ function SelectPropertyList( props: { mode?: 'multiple' | 'tags'|'' }) {
   function listData() {
     sysService.propertyList()
       .then((res) => {
-        setList(res.data);
+        if (res.data.length>0){
+          setList(res.data);
+        }
       });
   }
   const Option = Select.Option;

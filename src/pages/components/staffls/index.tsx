@@ -13,7 +13,9 @@ function Staffs() {
   function listData() {
     sysService.staffList()
       .then((res) => {
-        setList(res.data);
+        if (res.data.length>0){
+          setList(res.data);
+        }
       });
   }
 
@@ -21,21 +23,30 @@ function Staffs() {
   const options = [10,20,30,40,50,60,70,80,90,100];
   return (
     <>
-      <Form.List field="staffs">
+      <Form.List field="staffs"        
+      rules={[
+              {
+                validator(v, cb) {
+                  if (v?.length < 2) {
+                    return cb('必须超过两条');
+                  }
+                  return cb();
+                },
+              },
+            ]}>
 
         {(fields, { add, remove, move }) => {
           return (
             <div>
               {fields.map((item, index) => {
                 return (
-
                   <div key={item.key}>
                     <Form.Item label='销售'>
                       <Space  style={{ width: 120 }}>
                         <Form.Item
                           field={item.field + '.id'}
                           rules={[{ required: true }]}
-                          noStyle
+                        
                         >
                           <Select
                             placeholder="选择员工"
@@ -61,7 +72,7 @@ function Staffs() {
                             ))}
                           </Select>
                         </Form.Item>
-                        <Form.Item field={item.field + '.ratio'} rules={[{ required: true }]} noStyle>
+                        <Form.Item field={item.field + '.ratio'} rules={[{ required: true }]} >
                           <Select  style={{ width: 80 }} >
                             {options.map((option, index) => (
                               <Option key={option}  value={option}>

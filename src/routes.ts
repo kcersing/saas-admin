@@ -63,7 +63,6 @@ const useRoute = (userPermission): [IRoute[], string] => {
 
     setMenuData(routes);
     userMuen.getUserMenu().then((res) => {
-      console.log(res.data);
       setMenuData(res.data);
     });
 

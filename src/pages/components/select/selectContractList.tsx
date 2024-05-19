@@ -9,9 +9,11 @@ function SelectContractList( props: { mode?: 'multiple' | 'tags'|'' }) {
     listData();
   }, []);
   function listData() {
-    sysService.memberList()
+    sysService.contractList()
       .then((res) => {
-        setList(res.data);
+        if (res.data.length>0){
+          setList(res.data);
+        }
       });
   }
 

@@ -12,7 +12,9 @@ function SelectStaffList( props: { mode?: 'multiple' | 'tags'|'' }) {
   function listData() {
     sysService.staffList()
       .then((res) => {
-        setList(res.data);
+        if (res.data.length>0){
+          setList(res.data);
+        }
       });
   }
   const Option = Select.Option;
