@@ -3,6 +3,7 @@ import { Button, Form, Input, Message, Modal, Select ,InputNumber} from '@arco-d
 import sysService from '@/api/sys';
 import SelectVenueList from '@/pages/components/select/selectVenueList';
 import productService from '@/api/product';
+import SelectPropertyType from '@/pages/components/select/selectPropertyType';
 
 
 // ======================================
@@ -14,18 +15,10 @@ function CreateProperty() {
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
 
-  const [propertyType, setPropertyType] = useState([])
 
-  useEffect(() => {
-    propertyTypeData();
-  }, []);
+  // useEffect(() => {}, []);
 
-  function propertyTypeData() {
-    sysService.propertyType()
-      .then((res) => {
-        setPropertyType(res.data);
-      });
-  }
+
 
   function onOk() {
     form.validate().then((res) => {
@@ -62,14 +55,8 @@ function CreateProperty() {
     }
   };
 
-  const Option = Select.Option;
+ 
 
-  const [typeDisabled, setTypeDisabled ] = useState(true)
-  function types(value){
-  if (value===1) {   setTypeDisabled(true)}
-    if (value===2) {   setTypeDisabled(false)}
-    if (value===3) {   setTypeDisabled(false)}
-  }
   return (
     <>
       <Button onClick={() => setVisible(true)} type="primary">新建</Button>
@@ -90,26 +77,17 @@ function CreateProperty() {
             style: { flexBasis: 'calc(100% - 90px)' }
           }}
         >
-          <FormItem label="类型" field="type" rules={[{ required: false }]}>
-            <Select
-              onChange={(value) => types(value)}
-            >
-              {propertyType.map((option) => (
-                <Option key={option.key} value={option.key}>
-                  {option.name}
-                </Option>
-              ))}
-            </Select>
-          </FormItem>
+
+          <SelectPropertyType />
 
           <FormItem label="名称" field="name" rules={[{ required: true }]}>
             <Input placeholder="" />
           </FormItem>
           <FormItem label="总时长" field="duration" rules={[{ required: false }]}>
-            <InputNumber disabled={!typeDisabled}  placeholder="" />
+            <InputNumber disabled placeholder="" />
           </FormItem>
           <FormItem label="单次时长"  field="length" rules={[{ required: false }]}>
-            <InputNumber disabled={typeDisabled}  placeholder="" />
+            <InputNumber disabled  placeholder="" />
           </FormItem>
           <FormItem label="次数" field="count" rules={[{ required: false }]}>
             <InputNumber placeholder="" />
