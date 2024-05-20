@@ -11,11 +11,11 @@ import PermissionWrapper from '@/components/PermissionWrapper';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import { getColumns } from './constants';
-import memberService from '@/api/member';
+import memberService from '@/api/user';
 import SearchForm from './form';
 import { IconDownload, IconPlus } from '@arco-design/web-react/icon';
 import styles from './style/index.module.less';
-import CreateMember from './create';
+import Creates from './create';
 
 // ======================================
 
@@ -84,7 +84,7 @@ function User() {
       <PermissionWrapper>
         <div className={styles['button-group']}>
           <Space>
-            <CreateMember />
+            <Creates />
             <Button>{t['searchTable.operations.upload']}</Button>
           </Space>
           <Space>

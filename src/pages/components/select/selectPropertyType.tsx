@@ -11,7 +11,9 @@ function SelectPropertyType() {
   function listData() {
     sysService.propertyType()
       .then((res) => {
-        if (res.data.length>0){
+        if (res.total===0){
+          setList([]);
+        }else {
           setList(res.data);
         }
       });

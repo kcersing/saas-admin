@@ -23,6 +23,7 @@ import SelectProductList from '@/pages/components/select/selectProductList';
 import SelectContractList from '@/pages/components/select/selectContractList';
 import SignPage from '@/pages/components/signature';
 import Staffs from '@/pages/components/staffls';
+import SelectNatureType from '@/pages/components/select/selectNatureType';
 
 const { Title } = Typography;
 function Add() {
@@ -49,10 +50,7 @@ function Add() {
   const toNext = async () => {
     try {
       await form.validate();
-
-
       const values = form.getFields();
-
       console.log(values);
       console.log(signImg)
       setCurrent(current + 1);
@@ -96,32 +94,11 @@ function Add() {
               <Form.Item noStyle>
                 <SelectVenueList mode="" />
 
-                <Form.Item
-                  label={t['stepForm.basicInfo.channelType']}
-                  required
-                  initialValue="app"
-                  field="basic.nature"
-                  rules={[
-                    {
-                      required: true,
-                      message: t['stepForm.basicInfo.channelType.required']
-                    }
-                  ]}
-                >
-                  <Select>
-                    <Select.Option value="1">新单</Select.Option>
-                    <Select.Option value="2">新单2</Select.Option>
-                    <Select.Option value="3">新单3</Select.Option>
-                  </Select>
-                </Form.Item>
-
+                <SelectNatureType mode="" />
 
                 <SelectMemberList mode="" />
 
-                <SelectStaffList mode="multiple" />
-
                 <SelectProductList mode="" />
-
 
                 <Form.Item label="数量" field="quantity" rules={[{ required: true }]}>
                   <InputNumber placeholder="" />

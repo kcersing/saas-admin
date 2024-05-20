@@ -16,7 +16,7 @@ import memberService  from '@/api/member';
 import SearchForm from './form';
 import { IconDownload, IconPlus } from '@arco-design/web-react/icon';
 import styles from './style/index.module.less';
-
+import Creates from './create';
 // ======================================
 
 const { Title } = Typography;
@@ -95,6 +95,7 @@ function Product() {
         <div className={styles['button-group']}>
 
           <Space>
+            <Creates />
             <Button icon={<IconDownload />}>
               {t['searchTable.operation.download']}
             </Button>

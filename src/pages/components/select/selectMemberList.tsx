@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Form, Select, Space } from '@arco-design/web-react';
 import sysService from '@/api/sys';
-import { IconStar, IconDelete } from '@arco-design/web-react/icon';
+import { IconUser, IconDelete } from '@arco-design/web-react/icon';
 const FormItem = Form.Item;
 function SelectMemberList( props: { mode?: 'multiple' | 'tags'|'' }) {
   const [list, setList] = useState([])
@@ -11,7 +11,9 @@ function SelectMemberList( props: { mode?: 'multiple' | 'tags'|'' }) {
   function listData() {
     sysService.memberList()
       .then((res) => {
-        if (res.data.length>0){
+        if (res.total===0){
+          setList([]);
+        }else {
           setList(res.data);
         }
       });
@@ -31,7 +33,7 @@ function SelectMemberList( props: { mode?: 'multiple' | 'tags'|'' }) {
         renderFormat={(option, value) => {
           return option ? (
             <span>
-              <IconStar
+              <IconUser
                 style={{
                   color: '#f7ba1e',
                 }}

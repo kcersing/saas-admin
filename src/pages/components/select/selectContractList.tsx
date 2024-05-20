@@ -1,17 +1,19 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Form, Select, Space } from '@arco-design/web-react';
 import sysService, { contractList } from '@/api/sys';
-import { IconStar, IconDelete } from '@arco-design/web-react/icon';
+import { IconStamp, IconDelete } from '@arco-design/web-react/icon';
 const FormItem = Form.Item;
 function SelectContractList( props: { mode?: 'multiple' | 'tags'|'' }) {
   const [list, setList] = useState([])
   useEffect(() => {
     listData();
   }, []);
-  function listData() {
+  function listData() {+
     sysService.contractList()
       .then((res) => {
-        if (res.data.length>0){
+        if (res.total===0){
+          setList([]);
+        }else {
           setList(res.data);
         }
       });
@@ -32,7 +34,7 @@ function SelectContractList( props: { mode?: 'multiple' | 'tags'|'' }) {
         renderFormat={(option, value) => {
           return option ? (
             <span>
-              <IconStar
+              <IconStamp
                 style={{
                   color: '#f7ba1e',
                 }}

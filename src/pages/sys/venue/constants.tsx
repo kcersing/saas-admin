@@ -31,7 +31,7 @@ export function getColumns(
       dataIndex: 'name',
     },
     {
-      title: '手机号',
+      title: '联系人手机号',
       dataIndex: 'mobile',
       render: (value) => <Text copyable>{value}</Text>,
     },
@@ -47,7 +47,7 @@ export function getColumns(
     },
     {
       title: '创建时间',
-      dataIndex: 'createdAt',
+      dataIndex: 'created_at',
        render: (x) => dayjs(x).format('YYYY-MM-DD HH:mm:ss'),
        sorter: (a, b) => b.createdTime - a.createdTime,
     },

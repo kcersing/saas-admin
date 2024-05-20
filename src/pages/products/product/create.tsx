@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useMemo,useContext } from 'react';
-import { Button, Form, Input, Message, Modal, Select ,InputNumber} from '@arco-design/web-react';
+import { Button, Form, Input, Message, Modal ,InputNumber} from '@arco-design/web-react';
 import sysService from '@/api/sys';
 import productService, { productCreate } from '@/api/product';
-
+import SelectPropertyList from '@/pages/components/select/selectPropertyList';
+const TextArea = Input.TextArea;
 const FormItem = Form.Item;
 
 function Create() {
@@ -17,8 +18,11 @@ function Create() {
         price:res.price,
         name:res.name,
         stock:res.stock,
+        cardProperty:res.cardProperty,
+        classProperty:res.classProperty,
+        courseProperty:res.courseProperty,
+        createId:0,
       }
-      console.log(params);
       setConfirmLoading(true);
       productService.productCreate(params)
         .then((res) => {
@@ -66,6 +70,11 @@ function Create() {
           <FormItem label="名称" field="name" rules={[{ required: true }]}>
             <Input placeholder="" />
           </FormItem>
+
+          <SelectPropertyList mode='' label="卡属性" field='cardProperty' type='card'/>
+          <SelectPropertyList mode='multiple' label="课属性" field='courseProperty' type='course'/>
+          <SelectPropertyList mode='multiple' label="团课属性" field='classProperty' type='class'/>
+
           <FormItem label="定价" field="price" rules={[{ required: false }]}>
             <InputNumber
               placeholder=""
@@ -78,7 +87,9 @@ function Create() {
               placeholder=""
               precision={1} />
           </FormItem>
-
+          <FormItem label="说明" field="description" rules={[{ required: false }]}>
+          <TextArea placeholder='说明...' style={{ minHeight: 64, width: 350 }} />
+          </FormItem>
         </Form>
       </Modal>
     </>

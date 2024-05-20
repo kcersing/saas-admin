@@ -43,16 +43,13 @@ export const contractList = () => request.post(Api.ContractList);
 export const memberList = () => request.post(Api.MemberList);
 
 // 属性列表
-export const propertyList = () => request.post(Api.PropertyList);
+export const propertyList = (type: string) => request.post(Api.PropertyList, { 'type': type });
 
 // 商品列表
 export const productList = () => request.post(Api.ProductList);
 // 场馆列表
 export const venueList = () => request.post(Api.VenueList);
-
-
-
-
+export const natureType = () => request.post(Api.PropertyType, { 'dictionaryId': 4 });
 
 export default {
   propertyType,
@@ -62,4 +59,5 @@ export default {
   productList,
   memberList,
   contractList,
+  natureType,
 };

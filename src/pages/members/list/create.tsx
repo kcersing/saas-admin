@@ -12,13 +12,27 @@ function CreateMember() {
 
   function onOk() {
     form.validate().then((res) => {
-      console.log(res)
+      const params = {
+        avatar:res.files,
+        mobile:res.mobile,
+        email:res.email,
+        nickname:res.name,
+        name:res.name,
+        wecom:res.wecom,
+        gender:res.gender,
+        birthday:res.birthday,
+        createId:0,
+      }
       setConfirmLoading(true);
-      setTimeout(() => {
-        Message.success('Success !');
-        setVisible(false);
-        setConfirmLoading(false);
-      }, 1500);
+      memberService.memberCreate(params)
+        .then((res) => {
+          console.log(res);
+          setVisible(false);
+          setConfirmLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     });
   }
 
@@ -52,9 +66,6 @@ function CreateMember() {
             style: { flexBasis: 'calc(100% - 90px)' },
           }}
         >
-
-
-
           <Form.Item
             label='头像'
             field='files'
@@ -88,15 +99,10 @@ function CreateMember() {
             <Input placeholder=""  />
           </FormItem>
           <FormItem label="性别" field="gender" rules={[{ required: false }]}>
-            <Select options={['男', '女', '保密']} />
+            <Select options={['女性', '男性', '保密']} />
           </FormItem>
-
           <FormItem label="生日" field="birthday" rules={[{ required: false }]}>
             <DatePicker  placeholder=""  />
-          </FormItem>
-
-          <FormItem label='年龄' field='age' rules={[{ type: 'number',required: false}]}>
-            <InputNumber placeholder='' />
           </FormItem>
           <FormItem label="邮箱" field="email" rules={[{ required: false }]}>
             <Input placeholder=""  />
@@ -104,8 +110,6 @@ function CreateMember() {
           <FormItem label="微信" field="wecom" rules={[{ required: false }]}>
             <Input placeholder=""  />
           </FormItem>
-
-
 
 
         </Form>

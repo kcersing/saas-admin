@@ -25,6 +25,10 @@ enum Api {
   SetUserStatus = '/api/admin/user/status',
   GetProfile = '/api/admin/user/profile',
   ChangePassword = '/api/admin/user/change-password',
+
+
+
+  UserCreate = '/api/admin/user/create',
 }
 
 export const login = (params: LoginData) => request.post(Api.Login, params);
@@ -34,9 +38,14 @@ export const userInfo = () => request.get(Api.UserInfo);
 export const userList = (params: object) => request.post(Api.UserList,params);
 
 export const userUpdate = (params: object) => request.post(Api.UserUpdate,params);
+
+
+export const userCreate = (params: object) => request.post(Api.UserCreate, params);
+
 export default {
   login,
   userInfo,
   userList,
   userUpdate,
+  userCreate
 };

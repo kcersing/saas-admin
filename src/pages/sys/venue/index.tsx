@@ -11,7 +11,7 @@ import PermissionWrapper from '@/components/PermissionWrapper';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import { getColumns } from './constants';
-import memberService from '@/api/member';
+import venueService from '@/api/venue';
 import SearchForm from './form';
 import { IconDownload, IconPlus } from '@arco-design/web-react/icon';
 import styles from './style/index.module.less';
@@ -54,9 +54,13 @@ function Venue() {
       pageSize,
       ...formParams
     };
-    memberService.memberList(params)
+    venueService.venueList(params)
       .then((res) => {
-        setData(res.data);
+        if (res.total===0){
+          setData([]);
+        }else {
+          setData(res.data);
+        }
         setPatination({
           ...pagination,
           current,
@@ -79,7 +83,7 @@ function Venue() {
   }
   return (
     <Card>
-      <Title heading={6}>会员列表</Title>
+      <Title heading={6}>场馆列表</Title>
       <SearchForm onSearch={handleSearch} />
       <PermissionWrapper>
         <div className={styles['button-group']}>

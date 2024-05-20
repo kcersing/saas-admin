@@ -96,7 +96,7 @@ function CreateProperty() {
             >
               {propertyType.map((option) => (
                 <Option key={option.key} value={option.key}>
-                  {option.title}
+                  {option.name}
                 </Option>
               ))}
             </Select>
