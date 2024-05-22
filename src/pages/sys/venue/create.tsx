@@ -23,8 +23,6 @@ function CreateMember() {
         longitude:res.longitude,
         mobile:res.mobile,
         information:res.information,
-        status:1,
-        createId:0,
       }
       setConfirmLoading(true);
       venueService.venueCreate(params)

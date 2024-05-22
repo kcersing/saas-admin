@@ -5,29 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="febb57be-281a-4d53-b36f-ad64d8b5c0e2" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/api/venue.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/components/select/selectNatureType.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/components/propertys/index.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/components/propertys/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/components/propertys/select.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/sys.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/sys.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/user.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/select/selectContractList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectContractList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/select/selectMemberList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectMemberList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/select/selectProductList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectProductList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/select/selectPropertyList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectPropertyList.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/components/select/selectPropertyType.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectPropertyType.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/select/selectStaffList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectStaffList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/select/selectVenueList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectVenueList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/components/staffls/index.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/staffls/index.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/components/staffls/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/staffls/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/members/list/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/members/list/create.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/members/list/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/members/list/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/orders/add/create.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/orders/add/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/orders/add/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/products/product/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/product/create.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/products/product/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/product/edit.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/products/property/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/constants.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/products/property/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/create.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/user/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/user/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/venue/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/venue/constants.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/products/property/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/edit.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/sys/venue/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/venue/create.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/venue/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/venue/edit.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/venue/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/venue/form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/venue/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/venue/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +29,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/pages/components/propertys/index.tsx" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -59,7 +55,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "arco",
-    "last_opened_file_path": "D:/www/saas/saas-admin/src/pages/components/select",
+    "last_opened_file_path": "D:/www/saas/saas-admin",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.stylelint": "true",
     "node.js.detected.package.tslint": "true",
@@ -74,11 +70,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\www\saas\saas-admin\src\pages\components\propertys" />
       <recent name="D:\www\saas\saas-admin\src\pages\components\select" />
       <recent name="D:\www\saas\saas-admin\src\pages\components" />
       <recent name="D:\www\saas\saas-admin\src\pages\orders\add" />
       <recent name="D:\www\saas\saas-admin\src\pages" />
-      <recent name="D:\www\saas\saas-admin\src\pages\schedules" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\www\saas\saas-admin\src\pages\components\select" />
@@ -122,6 +118,8 @@
       <workItem from="1715825388534" duration="8057000" />
       <workItem from="1715915979255" duration="10880000" />
       <workItem from="1716173493386" duration="16850000" />
+      <workItem from="1716343912691" duration="2000000" />
+      <workItem from="1716363318560" duration="13320000" />
     </task>
     <servers />
   </component>

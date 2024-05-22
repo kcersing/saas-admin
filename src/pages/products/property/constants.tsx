@@ -7,6 +7,7 @@ import dayjs from 'dayjs';
 
 import Edit from './edit';
 import { Status } from './index';
+import { IconIdcard,IconTags,IconTag } from '@arco-design/web-react/icon';
 
 const { Text } = Typography;
 
@@ -24,7 +25,20 @@ export function getColumns(
       title: '类型',
       dataIndex: 'type',
       placeholder: <>暂无</> ,
-      render: (value) => <Text copyable>{value}</Text>,
+      render: (x: string) => {
+        if (x === 'card') {
+          return <span><IconIdcard style={{ color: '#f7ba1e', }} />卡</span>;
+            }else if (x === 'course'){
+          return <span><IconTag />私教课</span>;
+        }else if (x === 'class'){
+              return <span><IconTags />团教课</span>;
+            }else {
+          return ;
+        }
+      },
+
+
+
     },
     {
       title: '名称',
@@ -60,9 +74,10 @@ export function getColumns(
       title: '场馆',
       dataIndex: 'venue',
       render: (value) => {
-   return (<>
+   return (
+     <>
        {value.map((v) => (
-      <span>{ v.name};</span>
+        <span>{ v.name};</span>
        ))}
      </>)
       },

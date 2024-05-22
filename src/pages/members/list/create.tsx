@@ -21,7 +21,6 @@ function CreateMember() {
         wecom:res.wecom,
         gender:res.gender,
         birthday:res.birthday,
-        createId:0,
       }
       setConfirmLoading(true);
       memberService.memberCreate(params)

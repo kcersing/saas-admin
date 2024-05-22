@@ -21,8 +21,9 @@ function Staffs() {
   const options = [10,20,30,40,50,60,70,80,90,100];
   return (
     <div  className={styles.div1}>
+      <Form.Item label='销售人员'>
 
-      <Form.List field="staffs" 
+      <Form.List field="staffs"
       
       rules={[
         {
@@ -50,7 +51,7 @@ function Staffs() {
                 return (
 
                   <div key={item.key}>
-                    <Form.Item label='销售'>
+                    <Form.Item label='员工'>
                       <Space  style={{ width: 120 }}>
                         <Form.Item
                           field={item.field + '.id'}
@@ -109,7 +110,7 @@ function Staffs() {
           );
         }}
       </Form.List>
-
+      </Form.Item>
     </div>
   );
 }

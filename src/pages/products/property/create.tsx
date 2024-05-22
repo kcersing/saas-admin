@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useMemo,useContext } from 'react';
-import { Button, Form, Input, Message, Modal, Select ,InputNumber} from '@arco-design/web-react';
+import React, { useState, useEffect, useMemo, useContext } from 'react';
+import { Button, Form, Input, Message, Modal, Select, InputNumber } from '@arco-design/web-react';
 import sysService from '@/api/sys';
 import SelectVenueList from '@/pages/components/select/selectVenueList';
 import productService from '@/api/product';
@@ -19,19 +19,18 @@ function CreateProperty() {
   // useEffect(() => {}, []);
 
 
-
   function onOk() {
     form.validate().then((res) => {
 
       const params = {
-        type:res.type,
-        price:res.price,
-        duration:res.duration,
-        length:res.length,
-        count:res.count,
-        name:res.name,
-        venueId:res.venue
-      }
+        type: res.type,
+        price: res.price,
+        duration: res.duration,
+        length: res.length,
+        count: res.count,
+        name: res.name,
+        venueId: res.venue
+      };
       console.log(params);
       setConfirmLoading(true);
       productService.propertyCreate(params)
@@ -55,7 +54,6 @@ function CreateProperty() {
     }
   };
 
- 
 
   return (
     <>
@@ -83,22 +81,35 @@ function CreateProperty() {
           <FormItem label="名称" field="name" rules={[{ required: true }]}>
             <Input placeholder="" />
           </FormItem>
-          <FormItem label="总时长" field="duration" rules={[{ required: false }]}>
-            <InputNumber disabled placeholder="" />
-          </FormItem>
-          <FormItem label="单次时长"  field="length" rules={[{ required: false }]}>
-            <InputNumber disabled  placeholder="" />
-          </FormItem>
-          <FormItem label="次数" field="count" rules={[{ required: false }]}>
-            <InputNumber placeholder="" />
-          </FormItem>
+
+          <Form.Item shouldUpdate noStyle>
+            {(values) => {
+              return values.type === 'card' ? (
+                <>
+                  <FormItem label="总时长" field="duration" rules={[{ required: false }]}>
+                    <InputNumber  placeholder="" />
+                  </FormItem>
+                  <FormItem label="次数" field="count" rules={[{ required: false }]}>
+                    <InputNumber placeholder="" />
+                  </FormItem>
+                </>
+              ) : (
+                (values.type === 'course' || values.type === 'class') && (
+                  <FormItem label="单次时长" field="length" rules={[{ required: false }]}>
+                    <InputNumber  placeholder="" />
+                  </FormItem>
+                )
+              );
+            }}
+          </Form.Item>
           <FormItem label="定价" field="price" rules={[{ required: false }]}>
             <InputNumber
               placeholder=""
               step={0.01}
               precision={1} />
           </FormItem>
-          <SelectVenueList mode='multiple'/>
+          <SelectVenueList mode="multiple" />
+
         </Form>
       </Modal>
     </>
