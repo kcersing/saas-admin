@@ -5,22 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="febb57be-281a-4d53-b36f-ad64d8b5c0e2" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/components/propertys/index.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/components/propertys/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/components/propertys/select.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/components/propertys/itemMoney.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/components/propertys2/index.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/components/propertys2/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/components/propertys2/select.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/select/selectPropertyType.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectPropertyType.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/staffls/index.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/staffls/index.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/staffls/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/staffls/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/members/list/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/members/list/create.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/orders/add/create.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/components/propertys/index.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/propertys/index.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/components/propertys/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/propertys/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/components/propertys/select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/propertys/select.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/orders/add/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/orders/add/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/products/product/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/product/create.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/product/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/product/edit.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/property/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/constants.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/property/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/create.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/property/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/edit.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/venue/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/venue/create.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +49,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "arco",
-    "last_opened_file_path": "D:/www/saas/saas-admin",
+    "last_opened_file_path": "D:/www/saas/saas-admin/src/pages/components",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.stylelint": "true",
     "node.js.detected.package.tslint": "true",
@@ -70,9 +64,9 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\www\saas\saas-admin\src\pages\components" />
       <recent name="D:\www\saas\saas-admin\src\pages\components\propertys" />
       <recent name="D:\www\saas\saas-admin\src\pages\components\select" />
-      <recent name="D:\www\saas\saas-admin\src\pages\components" />
       <recent name="D:\www\saas\saas-admin\src\pages\orders\add" />
       <recent name="D:\www\saas\saas-admin\src\pages" />
     </key>
@@ -120,6 +114,8 @@
       <workItem from="1716173493386" duration="16850000" />
       <workItem from="1716343912691" duration="2000000" />
       <workItem from="1716363318560" duration="13320000" />
+      <workItem from="1716427817406" duration="2162000" />
+      <workItem from="1716513322561" duration="14550000" />
     </task>
     <servers />
   </component>

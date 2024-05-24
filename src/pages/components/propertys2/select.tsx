@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Form, Select, Space, Alert, InputNumber,Input ,Statistic} from '@arco-design/web-react';
+import { Button, Form, Select, Space, Alert, InputNumber,Input } from '@arco-design/web-react';
 import { IconDelete, IconStar } from '@arco-design/web-react/icon';
 import sysService from '@/api/sys';
 import styles from './index.module.css';
@@ -49,10 +49,6 @@ function Selects(props: {
                                  </span>
                 ) : (value);
               }}
-              onChange={(value,option)=>{
-                // setValue1(option.extra)
-                setItem(option.extra);
-              }}
             >
               {list.map((option) => (
                 <Option extra={option.key} key={option.name} value={option.id}>
@@ -61,27 +57,7 @@ function Selects(props: {
               ))}
             </Select>
           </Form.Item>
-
-      {
-        props.type!=='card'?(
-        <Form.Item
-          field={props.item.field + '.quantity'}
-          rules={[{ required: true }]}
-          noStyle>
-          <InputNumber style={{ width: 60 }} placeholder="" />
-        </Form.Item>
-      ):(<></>)
-      }
-
-        <Statistic
-          precision={2}
-          suffix='¥'
-          prefix='单价'
-          value={item}
-          styleValue={{ fontSize:14, color: '#f7ba1e'}}
-          styleDecimal={{ fontSize:12, color: '#f7ba1e'}}
-        />
-
+      {item}
       </Space>
 
   );

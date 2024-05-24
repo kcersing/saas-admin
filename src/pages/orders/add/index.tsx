@@ -24,6 +24,8 @@ import SelectContractList from '@/pages/components/select/selectContractList';
 import SignPage from '@/pages/components/signature';
 import Staffs from '@/pages/components/staffls';
 import SelectNatureType from '@/pages/components/select/selectNatureType';
+import SelectPropertyList from '@/pages/components/select/selectPropertyList';
+import Propertys from '@/pages/components/propertys';
 
 const { Title } = Typography;
 function Add() {
@@ -90,16 +92,14 @@ function Add() {
             {current === 1 && (
               <Form.Item noStyle>
                 <SelectVenueList mode="" />
-
                 <SelectNatureType mode="" />
-
                 <SelectMemberList mode="" />
+                <Card>
+                  <Propertys label="卡属性" field="cardProperty" type="card" />
+                  <Propertys label="私教课" field="courseProperty" type="course" />
+                  <Propertys label="团课" field="classProperty" type="class" />
+                </Card>
 
-                <SelectProductList mode="" />
-
-                <Form.Item label="数量" field="quantity" rules={[{ required: true }]}>
-                  <InputNumber placeholder="" />
-                </Form.Item>
                 <Form.Item label="定价" field="total" rules={[{ required: true }]}>
                   <InputNumber
                     placeholder=""

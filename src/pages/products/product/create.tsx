@@ -46,6 +46,7 @@ function Create() {
         classProperty:res.classProperty,
         courseProperty:res.courseProperty,
       }
+      console.log(params)
       // setConfirmLoading(true);
       //
       // productService.productCreate(params)
