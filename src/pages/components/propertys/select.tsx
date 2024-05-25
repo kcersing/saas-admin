@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Form, Select, Space, Alert, InputNumber,Input ,Statistic} from '@arco-design/web-react';
+import { Form, Select, Space, Alert, InputNumber,Input ,Statistic} from '@arco-design/web-react';
 import { IconDelete, IconStar } from '@arco-design/web-react/icon';
 import sysService from '@/api/sys';
-import styles from './index.module.css';
 
 function Selects(props: {
   type?: string,
@@ -50,13 +49,10 @@ function Selects(props: {
                 setItem(option.extra);
 
                 props.form.setFieldsValue({
-                  ...option,
+                  // ...option,
                [ props.item.field+ '.money'] : option.extra
                 })
               }}
-              // onClick={(e )=> {
-              //   setItem(0);
-              // }}
             >
               {list.map((option) => (
                 <Option extra={option.key} key={option.name} value={option.id}>
@@ -92,8 +88,6 @@ function Selects(props: {
           styleValue={{ fontSize:14, color: '#f7ba1e'}}
           styleDecimal={{ fontSize:12, color: '#f7ba1e'}}
         />
-
-
       </Space>
 
   );

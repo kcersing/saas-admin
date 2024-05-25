@@ -10,12 +10,14 @@ function PropertysRadio(props: {
   field?: string,
   type?: string,
   form: any,
+  product?:number,
 }) {
   const [list, setList] = useState([]);
   useEffect(() => {
     listData();
   }, []);
 
+  console.log( props.product )
   function listData() {
     sysService.propertyList(props.type)
       .then((res) => {
@@ -29,11 +31,9 @@ function PropertysRadio(props: {
 
   return (
     <Form.Item label={props.label} field={props.field}>
-
         <Space style={{ width: 300 }}>
           <Form.Item
-            field={props.field + 'property'}
-            rules={[{ required: true }]}
+            field={props.field + '.property'}
             noStyle >
             <Select
               style={{ width: 160 }}
@@ -45,13 +45,23 @@ function PropertysRadio(props: {
               }
               removeIcon={<IconDelete />}
               renderFormat={(option, value) => {
-                return option ? (   <span> <IconStar style={{ color: '#f7ba1e' }} /> {` ${option._key}  `}   </span>   ) : (value);
+                return option ? (<span> <IconStar style={{ color: '#f7ba1e' }} /> {` ${option._key} `}</span>) : (value);
               }}
               onChange={(value,option)=>{
-                setItem(option.extra);
+                if(option && option.extra ){
+                  setItem(option.extra);
+                  props.form.setFieldsValue({
+                    // ...option,
+                    [props.field+'.money'] : option.extra
+                  })
+                }
+              }}
+              onClear={visible => {
+                setItem("0");
                 props.form.setFieldsValue({
-                  ...option,
-                  [props.field+ '.money'] : option.extra
+                  // ...option,
+                  [props.field+'.money'] : 0,
+                  [props.field+'.quantity'] : 0
                 })
               }}
             >
@@ -68,16 +78,17 @@ function PropertysRadio(props: {
               <Form.Item
                 field={props.field + '.quantity'}
                 rules={[{ required: true }]}
-                noStyle>
+                noStyle
+              initialValue={0}
+              >
                 <InputNumber style={{ width: 60 }} placeholder="" />
               </Form.Item>
             ):(<Form.Item
               field={props.field + '.quantity'}
-              rules={[{ required: true }]}
               initialValue={1}
               hidden
               noStyle>
-              <InputNumber style={{ width: 60 }} hidden placeholder="" />
+              <InputNumber hidden placeholder="" />
             </Form.Item>)
           }
 
@@ -85,17 +96,24 @@ function PropertysRadio(props: {
             field={props.field + '.money'}
             hidden
             noStyle>
-            <Input hidden  />
+            <Input hidden />
           </Form.Item>
-
-          <Statistic
+          {item===0?(    <Statistic
+            precision={2}
+            suffix='¥'
+            prefix='单价'
+            value={0}
+            styleValue={{ fontSize:14, color: '#f7ba1e'}}
+            styleDecimal={{ fontSize:12, color: '#f7ba1e'}}
+          />):(    <Statistic
             precision={2}
             suffix='¥'
             prefix='单价'
             value={item}
             styleValue={{ fontSize:14, color: '#f7ba1e'}}
             styleDecimal={{ fontSize:12, color: '#f7ba1e'}}
-          />
+          />)}
+
 
         </Space>
 

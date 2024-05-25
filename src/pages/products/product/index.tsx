@@ -87,17 +87,18 @@ function Product() {
 
   return (
     <Card>
-      <Title heading={6}>属性列表</Title>
+      <Title heading={6}>产品列表</Title>
       <SearchForm onSearch={handleSearch} />
       <PermissionWrapper>
         <div className={styles['button-group']}>
           <Space>
-          <Create   />
-            <Button>{t['searchTable.operations.upload']}</Button>
+          <Create />
+            <Button onClick={(e)=>{fetchData();}}>刷新列表</Button>
+            <Button>导入</Button>
           </Space>
           <Space>
             <Button icon={<IconDownload />}>
-              {t['searchTable.operation.download']}
+             下载
             </Button>
           </Space>
         </div>

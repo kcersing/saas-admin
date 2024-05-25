@@ -20,7 +20,7 @@ function SelectProductList( props: { mode?: 'multiple' | 'tags'|'' }) {
   }
   const Option = Select.Option;
   return (
-    <FormItem label="产品" field="product" rules={[{ required: false }]}>
+    <FormItem label="产品" field="product" rules={[{ required: true }]}>
       <Select
         mode={props.mode}
         placeholder='选择产品'

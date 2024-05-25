@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Form, Input, InputNumber, Modal, Select } from '@arco-design/web-react';
+import { Button, Card, Form, Input, InputNumber, Modal, Select } from '@arco-design/web-react';
 import productService, { productEdit } from '@/api/product';
 import SelectVenueList from '@/pages/components/select/selectVenueList';
 import sysService from '@/api/sys';
@@ -84,6 +84,7 @@ function Edit({ props }) {
             cardProperty:props.cardProperty,
             classProperty:props.classProperty,
             courseProperty:props.courseProperty,
+            description:props.description,
           }}
         >
 
@@ -91,9 +92,11 @@ function Edit({ props }) {
             <Input placeholder="" />
           </FormItem>
 
-          <SelectPropertyList mode='' label="卡属性" field='cardProperty' type='card'/>
-          <SelectPropertyList mode='multiple' label="课属性" field='courseProperty' type='course'/>
-          <SelectPropertyList mode='multiple' label="团课属性" field='classProperty' type='class'/>
+          <Card title='选择产品属性'>
+            <SelectPropertyList mode="" label="卡属性" field="cardProperty" type="card" />
+            <SelectPropertyList mode="multiple" label="私教课" field="courseProperty" type="course"/>
+            <SelectPropertyList mode="multiple" label="团课" field="classProperty" type="class" />
+          </Card>
 
           <FormItem label="定价" field="price" rules={[{ required: false }]}>
             <InputNumber

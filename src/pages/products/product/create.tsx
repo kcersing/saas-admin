@@ -1,9 +1,8 @@
-import React, {useRef, useState, useEffect, useMemo,useContext } from 'react';
+import React, {useRef, useState } from 'react';
 
-import { Button, Form, Input, Message, Modal, InputNumber, Card } from '@arco-design/web-react';
-import PropertysRadio from '@/pages/components/propertys/radio';
-import PropertysMultiple from '@/pages/components/propertys/multiple';
-
+import { Button, Form, Input, Modal, InputNumber, Card } from '@arco-design/web-react';
+import SelectPropertyList from '@/pages/components/select/selectPropertyList';
+import productService from '@/api/product';
 
 const TextArea = Input.TextArea;
 
@@ -23,19 +22,24 @@ function Create() {
         cardProperty:res.cardProperty,
         classProperty:res.classProperty,
         courseProperty:res.courseProperty,
+        description:res.description,
       }
       console.log(params)
-      // setConfirmLoading(true);
-      //
-      // productService.productCreate(params)
-      //   .then((res) => {
-      //     console.log(res);
-      //     setVisible(false);
-      //     setConfirmLoading(false);
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
+      setConfirmLoading(true);
+
+
+      productService.productCreate(params)
+        .then((res) => {
+          console.log(res);
+          setVisible(false);
+          setConfirmLoading(false);
+
+
+
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     });
   }
 
@@ -59,7 +63,6 @@ function Create() {
         confirmLoading={confirmLoading}
         onCancel={() => setVisible(false)}
       >
-
         <Form
           {...formItemLayout}
           form={form}
@@ -79,58 +82,13 @@ function Create() {
             <Input placeholder="" />
           </FormItem>
 
-          <Card>
-            <PropertysRadio label="卡属性" field="cardProperty" type="card"  form={form} />
-            <PropertysMultiple  label="私教课" field="courseProperty" type="course" form={form}/>
-            <PropertysMultiple label="团课" field="classProperty" type="class" form={form}/>
+          <Card title='选择产品属性'>
+            <SelectPropertyList mode="" label="卡属性" field="cardProperty" type="card" />
+            <SelectPropertyList mode="multiple" label="私教课" field="courseProperty" type="course"/>
+            <SelectPropertyList mode="multiple" label="团课" field="classProperty" type="class" />
           </Card>
 
-          <FormItem shouldUpdate noStyle>
-
-            {(values) => {
-              let moneys=0
-              if( values.courseProperty!== undefined ){
-                if( values.courseProperty.length > 0 ){
-                  if( values.courseProperty[0]!==undefined ){
-                    values.courseProperty.map((item,index)=>{
-                      if(item!==undefined){
-                        if(item.hasOwnProperty("money") && item.hasOwnProperty("property")&& item.hasOwnProperty("quantity")){
-                          moneys +=item.money * item.quantity;
-                        }
-                      }
-                    })
-                  }
-                }
-              }
-              if( values.classProperty!== undefined ){
-                if( values.classProperty.length > 0 ){
-                  if( values.classProperty[0]!==undefined ){
-                    values.classProperty.map((item,index)=>{
-                      if(item!==undefined){
-                        if(item.hasOwnProperty("money") && item.hasOwnProperty("property")&& item.hasOwnProperty("quantity")){
-                          moneys +=item.money * item.quantity;
-                        }
-                      }
-                    })
-                  }
-                }
-              }
-              // if( values.classProperty!="undefined" && values.classProperty.length>0 && values.courseProperty[0]!="undefined" ){
-              //
-              //   console.log(values.classProperty[0].hasOwnProperty("money"))
-              // }
-
-
-
-              console.log(moneys)
-              return <></>;
-            }}
-          </FormItem>
-
-
-
-
-          <FormItem label="定价" field="price" rules={[{ required: false }]}>
+          <FormItem label="购买价格不低于" field="price" rules={[{ required: false }]}>
             <InputNumber
               placeholder=""
               step={0.01}
@@ -143,8 +101,6 @@ function Create() {
           <FormItem label="说明" field="description" rules={[{ required: false }]}>
             <TextArea placeholder="说明..." style={{ minHeight: 64, width: 350 }} />
           </FormItem>
-
-
         </Form>
       </Modal>
     </>

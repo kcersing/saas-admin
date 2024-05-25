@@ -10,12 +10,12 @@ function PropertysMultiple(props: {
   field?: string,
   type?: string,
   form: any,
+  product?:number,
 }) {
 
   return (
       <Form.Item label={props.label}>
         <Form.List field={props.field}>
-
           {(fields, { add, remove, move }) => {
             return (
               <div>
@@ -45,5 +45,4 @@ function PropertysMultiple(props: {
       </Form.Item>
   );
 }
-
 export default PropertysMultiple;
