@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import {
   Steps,
   Form,
@@ -25,19 +25,25 @@ import SignPage from '@/pages/components/signature';
 import Staffs from '@/pages/components/staffls';
 import SelectNatureType from '@/pages/components/select/selectNatureType';
 import SelectPropertyList from '@/pages/components/select/selectPropertyList';
-import Propertys from '@/pages/components/propertys';
+import Propertys from '@/pages/components/propertys/multiple';
 
 const { Title } = Typography;
 function Add() {
   const t = useLocale(locale);
+
   const [current, setCurrent] = useState(1);
 
   const [form] = Form.useForm();
+  const formRef = useRef();
+
+
 
   const viewForm = () => {
     const values = form.getFields();
     form.setFields(values);
     console.log(values);
+
+
     setCurrent(1);
   };
 
@@ -53,8 +59,10 @@ function Add() {
     try {
       await form.validate();
       const values = form.getFields();
-      console.log(values);
-      console.log(signImg)
+      // console.log(values);
+      // console.log(signImg)
+
+      console.log(formRef.current.getTouchedFields())
       setCurrent(current + 1);
     } catch (_) {}
   };
@@ -88,16 +96,20 @@ function Add() {
               description='完成订单'
             />
           </Steps>
-          <Form form={form} className={styles.form}>
+          <Form
+            ref={formRef}
+            form={form}
+            className={styles.form}
+          >
             {current === 1 && (
               <Form.Item noStyle>
                 <SelectVenueList mode="" />
                 <SelectNatureType mode="" />
                 <SelectMemberList mode="" />
                 <Card>
-                  <Propertys label="卡属性" field="cardProperty" type="card" />
-                  <Propertys label="私教课" field="courseProperty" type="course" />
-                  <Propertys label="团课" field="classProperty" type="class" />
+                  <Propertys label="卡属性" field="cardProperty" type="card"  form={form} />
+                  <Propertys label="私教课" field="courseProperty" type="course" form={form}/>
+                  <Propertys label="团课" field="classProperty" type="class" form={form}/>
                 </Card>
 
                 <Form.Item label="定价" field="total" rules={[{ required: true }]}>

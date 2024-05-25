@@ -1,15 +1,11 @@
 import React, {useRef, useState, useEffect, useMemo,useContext } from 'react';
 
-import { Button, Form, Input, Message, Modal ,InputNumber} from '@arco-design/web-react';
-import sysService from '@/api/sys';
-import productService, { productCreate } from '@/api/product';
-import SelectPropertyList from '@/pages/components/select/selectPropertyList';
-import Propertys from '@/pages/components/propertys';
+import { Button, Form, Input, Message, Modal, InputNumber, Card } from '@arco-design/web-react';
+import PropertysRadio from '@/pages/components/propertys/radio';
+import PropertysMultiple from '@/pages/components/propertys/multiple';
 
 
 const TextArea = Input.TextArea;
-
-
 
 const FormItem = Form.Item;
 function Create() {
@@ -17,24 +13,6 @@ function Create() {
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
   const formRef = useRef();
-  const [values, setValues] = useState({});
-
-  const courseProperty = Form.useWatch('courseProperty', form);
-  const classProperty = Form.useWatch('classProperty', form);
-
-  // if(courseProperty.length>0){
-  //   courseProperty.map((item,index)=>{
-  //     console.log(item)
-  //     console.log(index)
-  //   })
-  // }
-  // Object index = JSON.stringify(values, null, 2)
-  // console.log(index)
-  //
-  // index.map((item,i)=>{
-  //     console.log(item)
-  //     console.log(i)
-  //   })
 
   function onOk() {
     form.validate().then((res) => {
@@ -70,7 +48,7 @@ function Create() {
     }
   };
 
-
+  const [values, setValues] = useState({});
   return (
     <>
       <Button onClick={() => setVisible(true)} type="primary">新建</Button>
@@ -91,16 +69,21 @@ function Create() {
           wrapperCol={{
             style: { flexBasis: 'calc(100% - 90px)' }
           }}
-          ref={formRef}  autoComplete='off' onValuesChange={(_, v) => setValues(v)}
+          ref={formRef}
+          autoComplete='off'
+          onValuesChange={(_, v) => setValues(v)
+        }
         >
 
           <FormItem label="名称" field="name" rules={[{ required: true }]}>
             <Input placeholder="" />
           </FormItem>
 
-          <SelectPropertyList mode="" label="卡属性" field="cardProperty" type="card" />
-          <Propertys label="私教课" field="courseProperty" type="course" />
-          <Propertys label="团课" field="classProperty" type="class" />
+          <Card>
+            <PropertysRadio label="卡属性" field="cardProperty" type="card"  form={form} />
+            <PropertysMultiple  label="私教课" field="courseProperty" type="course" form={form}/>
+            <PropertysMultiple label="团课" field="classProperty" type="class" form={form}/>
+          </Card>
 
           <FormItem shouldUpdate noStyle>
 

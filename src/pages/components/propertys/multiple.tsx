@@ -5,27 +5,13 @@ import sysService from '@/api/sys';
 import styles from './index.module.css';
 import Selects from '@/pages/components/propertys/select';
 
-function Index(props: {
+function PropertysMultiple(props: {
   label?: string,
   field?: string,
   type?: string,
+  form: any,
 }) {
-  const [list, setList] = useState([]);
-  useEffect(() => {
-    listData();
-  }, []);
 
-  function listData() {
-    sysService.propertyList(props.type)
-      .then((res) => {
-        setList(res.data);
-      });
-  }
-
-  const Option = Select.Option;
-
-
-  const [value1, setValue1] = useState<string | number>('');
   return (
       <Form.Item label={props.label}>
         <Form.List field={props.field}>
@@ -37,7 +23,7 @@ function Index(props: {
                   return (
                     <div key={item.key}>
                       <Form.Item>
-                          <Selects item={item} type={props.type} />
+                          <Selects item={item} type={props.type}  form={props.form}/>
                           <Button icon={<IconDelete />} shape="circle" status="danger" onClick={() => remove(index)} />
                       </Form.Item>
                     </div>
@@ -60,4 +46,4 @@ function Index(props: {
   );
 }
 
-export default Index;
+export default PropertysMultiple;

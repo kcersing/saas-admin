@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="febb57be-281a-4d53-b36f-ad64d8b5c0e2" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/components/propertys/itemMoney.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/components/propertys2/index.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/components/propertys2/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/components/propertys2/select.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/components/propertys/radio.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/propertys/index.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/propertys/index.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/propertys/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/propertys/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/components/propertys/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/propertys/multiple.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/components/propertys/select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/propertys/select.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/components/propertys2/index.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/components/propertys2/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/components/propertys2/select.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/orders/add/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/orders/add/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/products/product/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/product/create.tsx" afterDir="false" />
     </list>
@@ -44,24 +43,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "arco",
-    "last_opened_file_path": "D:/www/saas/saas-admin/src/pages/components",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.stylelint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.stylelint": "D:\\www\\saas\\saas-admin\\node_modules\\stylelint",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "D:\\www\\saas\\saas-admin\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;arco&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/www/saas/saas-admin/src/pages/components&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.stylelint&quot;: &quot;D:\\www\\saas\\saas-admin\\node_modules\\stylelint&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\www\\saas\\saas-admin\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\www\saas\saas-admin\src\pages\components" />
@@ -116,10 +115,25 @@
       <workItem from="1716363318560" duration="13320000" />
       <workItem from="1716427817406" duration="2162000" />
       <workItem from="1716513322561" duration="14550000" />
+      <workItem from="1716602703519" duration="117000" />
+      <workItem from="1716602960445" duration="5369000" />
+      <workItem from="1716620898510" duration="3163000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/pages/components/propertys/select.tsx</url>
+          <line>13</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
