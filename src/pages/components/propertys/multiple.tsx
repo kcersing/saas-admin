@@ -23,7 +23,7 @@ function PropertysMultiple(props: {
                   return (
                     <div key={item.key}>
                       <Form.Item>
-                          <Selects item={item} type={props.type}  form={props.form}/>
+                          <Selects item={item} type={props.type}  form={props.form} product={props.product}/>
                           <Button icon={<IconDelete />} shape="circle" status="danger" onClick={() => remove(index)} />
                       </Form.Item>
                     </div>

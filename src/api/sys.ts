@@ -34,21 +34,21 @@ enum Api {
 export const propertyType = () => request.post(Api.PropertyType, { 'dictionaryId': 1 });
 
 // 员工列表
-export const staffList = () => request.post(Api.StaffList);
+export const staffList = (params: object) => request.post(Api.StaffList,params);
 
 // 合同列表
-export const contractList = () => request.post(Api.ContractList);
+export const contractList = (params: object) => request.post(Api.ContractList,params);
 
 // 场馆列表
-export const memberList = () => request.post(Api.MemberList);
+export const memberList = (params: object) => request.post(Api.MemberList,params);
 
 // 属性列表
-export const propertyList = (type: string) => request.post(Api.PropertyList, { 'type': type });
+export const propertyList = (params: object) => request.post(Api.PropertyList, params);
 
 // 商品列表
-export const productList = () => request.post(Api.ProductList);
+export const productList = (params: object) => request.post(Api.ProductList,params);
 // 场馆列表
-export const venueList = () => request.post(Api.VenueList);
+export const venueList = (params: object) => request.post(Api.VenueList,params);
 export const natureType = () => request.post(Api.PropertyType, { 'dictionaryId': 4 });
 
 export default {

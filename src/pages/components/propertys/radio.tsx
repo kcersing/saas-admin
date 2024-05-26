@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form, Select, Space, Alert, InputNumber, Input, Statistic } from '@arco-design/web-react';
 import { IconDelete, IconStar } from '@arco-design/web-react/icon';
 import sysService from '@/api/sys';
-import styles from './index.module.css';
-import Selects from '@/pages/components/propertys/select';
 
 function PropertysRadio(props: {
   label?: string,
@@ -19,7 +17,7 @@ function PropertysRadio(props: {
 
   console.log( props.product )
   function listData() {
-    sysService.propertyList(props.type)
+    sysService.propertyList({ 'type': props.type,'product_id':props.product })
       .then((res) => {
         setList(res.data);
       });

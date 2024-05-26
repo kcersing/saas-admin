@@ -9,13 +9,14 @@ function Selects(props: {
   remove?:  (index: number) => void,
   index?: number,
   form: any,
+  product?:number,
 }) {
   const [list, setList] = useState([]);
   useEffect(() => {
     listData();
   }, []);
   function listData() {
-    sysService.propertyList(props.type)
+    sysService.propertyList({ 'type': props.type,'product_id':props.product })
       .then((res) => {
         setList(res.data);
       });

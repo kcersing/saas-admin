@@ -79,7 +79,6 @@ function Add() {
   const Option = Select.Option;
   const payType = ['微信', '支付宝', '银联', '线下收款'];
 
-  let a;
   return (
     <div className={styles.container}>
       <Card>
