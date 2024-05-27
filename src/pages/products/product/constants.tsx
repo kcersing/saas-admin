@@ -6,6 +6,8 @@ import IconVerticalVideo from './icons/vertical.svg';
 import dayjs from 'dayjs';
 
 import Edit from './edit';
+import Details from './details';
+
 import { Status } from './index';
 
 const { Text } = Typography;
@@ -105,13 +107,14 @@ export function getColumns(
       render: (_, record) => (
         <>
           <Edit props={record}/>
-          <Button
-            type="text"
-            size="small"
-            onClick={() => callback(record, 'view')}
-          >
-            {t['searchTable.columns.operations.view']}
-          </Button>
+          <Details props={record} />
+          {/*<Button*/}
+          {/*  type="text"*/}
+          {/*  size="small"*/}
+          {/*  onClick={() => callback(record, 'view')}*/}
+          {/*>*/}
+          {/*  {t['searchTable.columns.operations.view']}*/}
+          {/*</Button>*/}
         </>
       ),
     },

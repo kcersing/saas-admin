@@ -109,8 +109,6 @@ function Add() {
                 <SelectNatureType mode="" />
                 <SelectProductList mode="" />
 
-
-
                 <Form.Item
                   shouldUpdate={(prev, next) =>{
                     if (prev.product !== next.product){
@@ -127,8 +125,9 @@ function Add() {
                       [ 'courseProperty'] : undefined,
                       ['classProperty'] : undefined,
                     })
+
                       return (
-                        <Card title="选择属性">
+                        <Card title="选择属性" >
                           <PropertysRadio label="卡属性" field="cardProperty" type="card" product={values.product} form={form} />
                           <PropertysMultiple label="私教课" field="courseProperty" type="course" product={values.product} form={form} />
                           <PropertysMultiple label="团课" field="classProperty" type="class" product={values.product} form={form} />

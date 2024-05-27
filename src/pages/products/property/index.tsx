@@ -17,6 +17,7 @@ import SearchForm from './form';
 import { IconDownload, IconPlus } from '@arco-design/web-react/icon';
 import styles from './style/index.module.less';
 import CreateProperty from './create';
+import Create from '@/pages/products/product/create';
 // ======================================
 
 const { Title } = Typography;
@@ -92,12 +93,13 @@ function Property() {
       <PermissionWrapper>
         <div className={styles['button-group']}>
           <Space>
-          <CreateProperty />
-            <Button>{t['searchTable.operations.upload']}</Button>
+            <Create />
+            <Button onClick={(e)=>{fetchData();}}>刷新列表</Button>
+            <Button>导入</Button>
           </Space>
           <Space>
             <Button icon={<IconDownload />}>
-              {t['searchTable.operation.download']}
+              下载
             </Button>
           </Space>
         </div>

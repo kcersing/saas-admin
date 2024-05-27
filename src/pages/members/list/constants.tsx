@@ -5,12 +5,11 @@ import IconHorizontalVideo from './icons/horizontal.svg';
 import IconVerticalVideo from './icons/vertical.svg';
 import dayjs from 'dayjs';
 
-import EditMember from './edit';
 import { ContentType, FilterType, Status } from './index';
+import Edit from './edit';
+import Details from './details';
 
 const { Text } = Typography;
-
-
 
 const ContentIcon = [
   <IconText key={0} />,
@@ -57,15 +56,16 @@ export function getColumns(
       headerCellStyle: { paddingLeft: '15px' },
       render: (_, record) => (
         <>
+          <Edit props={record}/>
+          <Details props={record} />
 
-          <EditMember props={record}/>
-          <Button
-            type="text"
-            size="small"
-            onClick={() => callback(record, 'view')}
-          >
-            {t['searchTable.columns.operations.view']}
-          </Button>
+          {/*<Button*/}
+          {/*  type="text"*/}
+          {/*  size="small"*/}
+          {/*  onClick={() => callback(record, 'view')}*/}
+          {/*>*/}
+          {/*  {t['searchTable.columns.operations.view']}*/}
+          {/*</Button>*/}
         </>
       ),
     },

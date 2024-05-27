@@ -1,4 +1,6 @@
 import { AuthParams } from './auth';
+import userMuen from '@/api/menu';
+import { useState } from 'react';
 
 export type IRoute = AuthParams & {
   name: string;
@@ -10,19 +12,8 @@ export type IRoute = AuthParams & {
   ignore?: boolean;
 };
 
-export const routes: IRoute[] = [
-  {
-    name: 'menu.dashboard',
-    key: 'dashboard',
-    children: [
-      {
-        name: 'menu.dashboard.workplace',
-        key: 'dashboard/workplace',
-      },
-    ],
-  },
-  {
-    name: 'Example',
-    key: 'example',
-  },
-];
+let menu = await userMuen.getUserMenu().then((res) => {
+  return res.data;
+});
+
+export const routes: IRoute[] = menu

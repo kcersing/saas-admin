@@ -16,7 +16,7 @@ import memberService from '@/api/member';
 
 const FormItem = Form.Item;
 
-function EditMember({ props }) {
+function Edit({ props }) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
@@ -73,8 +73,8 @@ function EditMember({ props }) {
   };
 
   return (
-    <div>
-      <Button onClick={() => setVisible(true)} type="primary">编辑</Button>
+    <>
+      <Button style={{marginRight: 10}} onClick={() => setVisible(true)} >编辑</Button>
       <Modal
         title="编辑会员"
         visible={visible}
@@ -145,8 +145,8 @@ function EditMember({ props }) {
           </FormItem>
         </Form>
       </Modal>
-    </div>
+    </>
   );
 }
 
-export default EditMember;
+export default Edit;

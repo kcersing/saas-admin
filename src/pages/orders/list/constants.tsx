@@ -7,6 +7,7 @@ import dayjs from 'dayjs';
 
 import Edit from './edit';
 import { Status } from './index';
+import Details from './details';
 
 const { Text } = Typography;
 
@@ -93,13 +94,14 @@ export function getColumns(
       render: (_, record) => (
         <>
           <Edit props={record}/>
-          <Button
-            type="text"
-            size="small"
-            onClick={() => callback(record, 'view')}
-          >
-            {t['searchTable.columns.operations.view']}
-          </Button>
+          <Details props={record} />
+          {/*<Button*/}
+          {/*  type="text"*/}
+          {/*  size="small"*/}
+          {/*  onClick={() => callback(record, 'view')}*/}
+          {/*>*/}
+          {/*  {t['searchTable.columns.operations.view']}*/}
+          {/*</Button>*/}
         </>
       ),
     },

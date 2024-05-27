@@ -22,6 +22,7 @@ function PropertysRadio(props: {
         setList(res.data);
       });
   }
+  console.log(list)
 
   const Option = Select.Option;
 

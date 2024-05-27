@@ -69,8 +69,8 @@ function Edit({ props }) {
 
 
   return (
-    <div>
-      <Button onClick={() => setVisible(true)} type="primary">编辑</Button>
+    <>
+      <Button style={{marginRight: 10}} onClick={() => setVisible(true)} >编辑</Button>
       <Modal
         title="编辑会员"
         visible={visible}
@@ -137,7 +137,7 @@ function Edit({ props }) {
 
         </Form>
       </Modal>
-    </div>
+    </>
   );
 }
 
