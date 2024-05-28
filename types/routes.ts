@@ -12,8 +12,8 @@ export type IRoute = AuthParams & {
   ignore?: boolean;
 };
 
-let menu = await userMuen.getUserMenu().then((res) => {
-  return res.data;
-});
+// let menu = await userMuen.getUserMenu().then((res) => {
+//   return res.data;
+// });
 
-export const routes: IRoute[] = menu
+export const routes: IRoute[] = []

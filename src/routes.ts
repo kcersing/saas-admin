@@ -58,17 +58,17 @@ const useRoute = (userPermission): [IRoute[], string] => {
 
   const [permissionRoute, setPermissionRoute] = useState(routes);
 
-
+  const [menuData, setMenuData] = useState([]);
   function fetchData() {
 
-    // setMenuData(routes);
-    // userMuen.getUserMenu().then((res) => {
-    //   setMenuData(res.data);
-    // });
-    //
-    // const newRoutes = filterRoute(menuData);
+    setMenuData(routes);
+    userMuen.getUserMenu().then((res) => {
+      setMenuData(res.data);
+    });
+    
+    const newRoutes = filterRoute(menuData);
 
-   const newRoutes = filterRoute(routes);
+  //  const newRoutes = filterRoute(routes);
     setPermissionRoute(newRoutes);
   }
 
