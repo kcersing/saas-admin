@@ -9,7 +9,7 @@ function SelectContractList( props: { mode?: 'multiple' | 'tags'|'' }) {
     listData();
   }, []);
   function listData() {+
-    sysService.contractList()
+    sysService.contractList({})
       .then((res) => {
         if (res.total===0){
           setList([]);

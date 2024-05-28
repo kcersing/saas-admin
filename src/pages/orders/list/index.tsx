@@ -60,7 +60,6 @@ function Product() {
         }else {
           setData(res.data);
         }
-
         setPatination({
           ...pagination,
           current,

@@ -7,13 +7,16 @@ function Staffs() {
   const [list, setList] = useState([]);
   useEffect(() => {
     listData();
-
   }, []);
 
   function listData() {
-    sysService.staffList()
+    sysService.staffList({})
       .then((res) => {
-        setList(res.data);
+        if (res.total===0){
+          setList([]);
+        }else {
+          setList(res.data);
+        }
       });
   }
 
@@ -25,23 +28,19 @@ function Staffs() {
 
       <Form.List field="staffs"
       
-      rules={[
-        {
+      rules={[{
           validator(v, cb) {
-            if (v?.length < 2) {
-              return cb(      <Alert
-                closable
-                style={{ marginBottom: 20 }}
-                type='error'
-                title='Error'
-                content='Here is an error text'
-              />);
-            }
+            if (v.length > 0) {
+              let tol = 0;
+              v.map((value, index) => {
+                  tol += value.ratio
+              });
+            if (tol!=100){
+              return cb( '员工分销之和需等于100');
+            }}
             return cb();
           },
-        },
-      ]}
-
+        }]}
       >
 
         {(fields, { add, remove, move }) => {

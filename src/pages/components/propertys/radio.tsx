@@ -13,20 +13,18 @@ function PropertysRadio(props: {
   const [list, setList] = useState([]);
   useEffect(() => {
     listData();
-  }, []);
+  }, [props.product]);
 
-  console.log( props.product )
   function listData() {
     sysService.propertyList({ 'type': props.type,'product_id':props.product })
       .then((res) => {
         setList(res.data);
       });
   }
-  console.log(list)
 
   const Option = Select.Option;
 
-  const [item, setItem] = useState();
+  const [itemMoney, setItemMoney] = useState();
 
   return (
     <Form.Item label={props.label} field={props.field}>
@@ -48,7 +46,7 @@ function PropertysRadio(props: {
               }}
               onChange={(value,option)=>{
                 if(option && option.extra ){
-                  setItem(option.extra);
+                  setItemMoney(option.extra);
                   props.form.setFieldsValue({
                     // ...option,
                     [props.field+'.money'] : option.extra
@@ -56,12 +54,12 @@ function PropertysRadio(props: {
                 }
               }}
               onClear={visible => {
-                setItem("0");
                 props.form.setFieldsValue({
                   // ...option,
                   [props.field+'.money'] : 0,
                   [props.field+'.quantity'] : 0
                 })
+                setItemMoney("0");
               }}
             >
               {list.map((option) => (
@@ -72,47 +70,32 @@ function PropertysRadio(props: {
             </Select>
           </Form.Item>
 
-          {
-            props.type!=='card'?(
+          {props.type !== 'card'?(
               <Form.Item
                 field={props.field + '.quantity'}
                 rules={[{ required: true }]}
                 noStyle
-              initialValue={0}
               >
                 <InputNumber style={{ width: 60 }} placeholder="" />
               </Form.Item>
-            ):(<Form.Item
-              field={props.field + '.quantity'}
-              initialValue={1}
-              hidden
-              noStyle>
-              <InputNumber hidden placeholder="" />
-            </Form.Item>)
+            ):("")
           }
+
 
           <Form.Item
             field={props.field + '.money'}
-            hidden
             noStyle>
             <Input hidden />
-          </Form.Item>
-          {item===0?(    <Statistic
+            <Statistic
             precision={2}
             suffix='¥'
             prefix='单价'
-            value={0}
+            value={itemMoney}
             styleValue={{ fontSize:14, color: '#f7ba1e'}}
             styleDecimal={{ fontSize:12, color: '#f7ba1e'}}
-          />):(    <Statistic
-            precision={2}
-            suffix='¥'
-            prefix='单价'
-            value={item}
-            styleValue={{ fontSize:14, color: '#f7ba1e'}}
-            styleDecimal={{ fontSize:12, color: '#f7ba1e'}}
-          />)}
+          />
 
+          </Form.Item>
 
         </Space>
 

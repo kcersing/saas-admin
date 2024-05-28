@@ -24,7 +24,7 @@ import PropertysRadio from '@/pages/components/propertys/radio';
 import PropertysMultiple from '@/pages/components/propertys/multiple';
 import { IconAlipayCircle } from '@arco-design/web-react/icon';
 import SelectProductList from '@/pages/components/select/selectProductList';
-
+import orderService, { orderCreate } from '@/api/order';
 const { Title } = Typography;
 function Add() {
   const t = useLocale(locale);
@@ -35,18 +35,18 @@ function Add() {
   const formRef = useRef();
 
 
-
   const viewForm = () => {
     const values = form.getFields();
     form.setFields(values);
+    console.log("viewForm");
     console.log(values);
-
     setCurrent(1);
   };
 
   const reCreateForm = () => {
     form.resetFields();
     const values = form.getFields();
+    console.log("reCreateForm");
     console.log(values);
 
     setCurrent(1);
@@ -62,10 +62,21 @@ function Add() {
     try {
       await form.validate();
       const values = form.getFields();
-      // console.log(values);
-      // console.log(signImg)
+      values['signImg'] = signImg
 
-      setCurrent(current + 1);
+      values['cardProperty'] = [values.cardProperty]
+
+      values['total'] = parseFloat(values.total+.00)
+      console.log(current);
+      if (current === 2){
+        console.log(values);
+        orderService.orderCreate(values)
+          .then((res) => {
+            setCurrent(current + 1);
+          });
+      }else {
+        setCurrent(current + 1);
+      }
     } catch (_) {}
   };
 
@@ -74,7 +85,10 @@ function Add() {
   const SignData = (sign) => {
     setSignImg(sign)
   }
-
+  let moneys = 0;
+  // useEffect(() => {
+  //   console.log("moneys:",moneys)
+  // }, [moneys]);
 
   const Option = Select.Option;
   const payType = ['微信', '支付宝', '银联', '线下收款'];
@@ -124,6 +138,7 @@ function Add() {
                       ['cardProperty'] : undefined,
                       [ 'courseProperty'] : undefined,
                       ['classProperty'] : undefined,
+
                     })
 
                       return (
@@ -131,6 +146,7 @@ function Add() {
                           <PropertysRadio label="卡属性" field="cardProperty" type="card" product={values.product} form={form} />
                           <PropertysMultiple label="私教课" field="courseProperty" type="course" product={values.product} form={form} />
                           <PropertysMultiple label="团课" field="classProperty" type="class" product={values.product} form={form} />
+
                         </Card>
                       );
                   }}
@@ -140,22 +156,11 @@ function Add() {
                 <Form.Item shouldUpdate noStyle>
 
                   {(values) => {
-
-
-                    console.log(values);
-                    let moneys = 0;
+                    moneys = 0;
                     if (values.cardProperty !== undefined) {
-                      if (values.cardProperty.property !== undefined) {
-
-                      }
-                      if (values.cardProperty.quantity !== undefined) {
-
-                      }
                       if (values.cardProperty.money !== undefined) {
-
+                        moneys += values.cardProperty.money * 1;
                       }
-
-
                     }
 
                     if (values.courseProperty !== undefined) {
@@ -184,25 +189,15 @@ function Add() {
                         }
                       }
                     }
-                    // if( values.classProperty!="undefined" && values.classProperty.length>0 && values.courseProperty[0]!="undefined" ){
-                    //
-                    //   console.log(values.classProperty[0].hasOwnProperty("money"))
-                    // }
-
-
-                    return (<Statistic
-                      precision={2}
-                      suffix="¥"
-                      prefix="单价"
-                      value={moneys}
-                      styleValue={{ fontSize: 14, color: '#f7ba1e' }}
-                      styleDecimal={{ fontSize: 12, color: '#f7ba1e' }}
-                    />);
+                    form.setFieldsValue({
+                      ['total'] : moneys,
+                    })
+                    return ""
                   }}
                 </Form.Item>
 
 
-                <Form.Item label="金额" field="total">
+                <Form.Item initialValue={0} label="金额" field="total">
                   <InputNumber
                     placeholder=""
                     disabled
@@ -217,15 +212,6 @@ function Add() {
                 >
                   <DatePicker style={{ width: '100%' }} />
                 </Form.Item>
-
-
-                {/*选择销售 sales*/}
-                {/*选择会员 member_id*/}
-                {/*选择产品 product_id*/}
-                {/*数量 quantity*/}
-                {/*合同 contract_id*/}
-                {/*价格 total*/}
-
 
               </Form.Item>
             )}
@@ -296,7 +282,7 @@ function Add() {
                     <Button key="again" type="primary" onClick={reCreateForm}>
                       {t['stepForm.created.success.again']}
                     </Button>,
-                    <Button key="again" onClick={payForm} icon={<IconAlipayCircle />}
+                    <Button key="pay" onClick={payForm} icon={<IconAlipayCircle />}
                             style={{ marginRight: 16, marginLeft: 16 }}>
                       在线支付
                     </Button>
