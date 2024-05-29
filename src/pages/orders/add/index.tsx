@@ -22,9 +22,9 @@ import Staffs from '@/pages/components/staffls';
 import SelectNatureType from '@/pages/components/select/selectNatureType';
 import PropertysRadio from '@/pages/components/propertys/radio';
 import PropertysMultiple from '@/pages/components/propertys/multiple';
-import { IconAlipayCircle } from '@arco-design/web-react/icon';
 import SelectProductList from '@/pages/components/select/selectProductList';
 import orderService, { orderCreate } from '@/api/order';
+import Pay from '@/pages/orders/pay';
 const { Title } = Typography;
 function Add() {
   const t = useLocale(locale);
@@ -63,16 +63,13 @@ function Add() {
       await form.validate();
       const values = form.getFields();
       values['signImg'] = signImg
-
       values['cardProperty'] = [values.cardProperty]
-
       values['total'] = parseFloat(values.total+.00)
       console.log(current);
       if (current === 2){
         console.log(values);
-        orderService.orderCreate(values)
-          .then((res) => {
-            // setCurrent(current + 1);
+        orderService.orderCreate(values).then((res) => {
+             setCurrent(current + 1);
 
             console.log(res);
           });
@@ -88,12 +85,7 @@ function Add() {
     setSignImg(sign)
   }
   let moneys = 0;
-  // useEffect(() => {
-  //   console.log("moneys:",moneys)
-  // }, [moneys]);
 
-  const Option = Select.Option;
-  const payType = ['微信', '支付宝', '银联', '线下收款'];
 
   return (
     <div className={styles.container}>
@@ -284,10 +276,8 @@ function Add() {
                     <Button key="again" type="primary" onClick={reCreateForm}>
                       {t['stepForm.created.success.again']}
                     </Button>,
-                    <Button key="pay" onClick={payForm} icon={<IconAlipayCircle />}
-                            style={{ marginRight: 16, marginLeft: 16 }}>
-                      在线支付
-                    </Button>
+                    <Pay />,
+              
                   ]}
                 />
               </Form.Item>
