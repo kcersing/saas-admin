@@ -5,27 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="febb57be-281a-4d53-b36f-ad64d8b5c0e2" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/components/details/cardProperty.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/components/details/classProperty.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/components/details/courseProperty.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/propertys/radio.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/propertys/radio.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/members/list/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/members/list/constants.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/members/list/details.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/members/list/details.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/members/list/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/members/list/edit.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/orders/add/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/orders/add/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/orders/list/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/orders/list/constants.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/orders/list/details.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/orders/list/details.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/orders/list/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/orders/list/edit.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/product/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/product/constants.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/product/details.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/product/details.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/product/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/product/edit.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/property/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/constants.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/property/details.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/details.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/property/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/edit.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/property/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/routes.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,24 +36,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "arco",
-    "last_opened_file_path": "D:/www/saas/saas-admin/src/pages/components/details",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.stylelint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.stylelint": "D:\\www\\saas\\saas-admin\\node_modules\\stylelint",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "D:\\www\\saas\\saas-admin\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;arco&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/www/saas/saas-admin/src/pages/components/details&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.stylelint&quot;: &quot;D:\\www\\saas\\saas-admin\\node_modules\\stylelint&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\www\\saas\\saas-admin\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\www\saas\saas-admin\src\pages\components\details" />
@@ -131,6 +112,8 @@
       <workItem from="1716602960445" duration="5369000" />
       <workItem from="1716620898510" duration="11247000" />
       <workItem from="1716777926219" duration="27388000" />
+      <workItem from="1716944254808" duration="2673000" />
+      <workItem from="1716962557596" duration="3927000" />
     </task>
     <servers />
   </component>

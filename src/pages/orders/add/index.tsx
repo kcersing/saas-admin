@@ -72,7 +72,9 @@ function Add() {
         console.log(values);
         orderService.orderCreate(values)
           .then((res) => {
-            setCurrent(current + 1);
+            // setCurrent(current + 1);
+
+            console.log(res);
           });
       }else {
         setCurrent(current + 1);
