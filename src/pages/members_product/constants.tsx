@@ -1,14 +1,14 @@
 import React from 'react';
-import { Space, Typography, Badge } from '@arco-design/web-react';
+import { Button, Typography, Badge,Image } from '@arco-design/web-react';
 import IconText from './icons/text.svg';
 import IconHorizontalVideo from './icons/horizontal.svg';
 import IconVerticalVideo from './icons/vertical.svg';
 import dayjs from 'dayjs';
 
 import Edit from './edit';
-import { Status } from './index';
 import Details from './details';
-import OrderPay from '@/pages/orders/pay';
+
+import { Status } from './index';
 
 const { Text } = Typography;
 
@@ -23,41 +23,67 @@ export function getColumns(
 ) {
   return [
     {
-      title: '单号',
-      dataIndex: 'order_sn',
+      title: 'ID',
+      dataIndex: 'id',
       render: (value) => <Text copyable>{value}</Text>,
-      width:240,
-
     },
     {
-      title: '会员',
-      dataIndex: 'member_name',
+      title: '图片',
+      dataIndex: 'pic',
+      placeholder: <>暂无</> ,
+      render: (value) => {
+        if (value!==""){
+          return (
+            <Image
+              width={50}
+              src={value}
+              alt='lamp'
+            />
+          );
+        }else{
+          return (
+            <Image
+              width={50}
+              src='//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp'
+              alt='lamp'
+            />
+          );
+        }
+
+      },
+    },
+    {
+      title: '名称',
+      dataIndex: 'name',
       placeholder: <>暂无</> ,
       render: (value) => <Text copyable>{value}</Text>,
     },
     {
-      title: '场馆',
-      dataIndex: 'venue_name',
+      title: '定价',
+      dataIndex: 'price',
+      placeholder: <>暂无</> ,
+      render: (value) => <Text copyable>{value}</Text>,
+    },
+    {
+      title: '库存',
+      dataIndex: 'stock',
       placeholder: <>暂无</> ,
       render: (value) => <Text copyable>{value}</Text>,
     },
     {
       title: '状态',
       dataIndex: 'status',
-      width:240,
       render: (x: number) => {
         if (x === 0) {
-          return <Space> <Badge status="warning" text={Status[x]}></Badge></Space>;
+          return <Badge status="default" text={Status[x]}></Badge>;
         }else if (x === 1){
-          return <Space> <Badge status="warning" text={Status[x]}></Badge></Space>;
+          return <Badge status="processing" text={Status[x]}></Badge>;
         }else if (x === 2){
           return <Badge status="success" text={Status[x]}></Badge>;
-        }else if (x === 4){
-          return <Badge status="processing" text={Status[x]}></Badge>;
-        }else if (x === 5){
-          return <Badge status="default" text={Status[x]}></Badge>;
-        } else {
-          return <Badge status="error" text={"未知状态"}></Badge>;
+        }else if (x === 3){
+          return <Badge status="warning" text={Status[x]}></Badge>;
+        }else {
+          return <Badge status="error" text={Status[x]}></Badge>;
         }
       },
       placeholder: <>暂无</> ,
@@ -75,33 +101,11 @@ export function getColumns(
        sorter: (a, b) => b.createdTime - a.createdTime,
     },
     {
-      title: '完成时间',
-      placeholder: <>暂无</> ,
-      dataIndex: 'completion_at',
-      render: (x) => dayjs(x).format('YYYY-MM-DD HH:mm:ss'),
-      sorter: (a, b) => b.createdTime - a.createdTime,
-    },
-    // {
-    //   title: '来源',
-    //   dataIndex: 'source',
-    //   placeholder: <>暂无</> ,
-    //   render: (value) => <Text copyable>{value}</Text>,
-    // },
-    // {
-    //   title: '设备来源',
-    //   dataIndex: 'device',
-    //   placeholder: <>暂无</> ,
-    //   render: (value) => <Text copyable>{value}</Text>,
-    // },
-    {
       title: '操作',
       dataIndex: 'operations',
-      width:240,
-
+      headerCellStyle: { paddingLeft: '15px' },
       render: (_, record) => (
         <>
-          {record.status===0 ?null:<OrderPay orderSn={""} total={"100"}/> }
-          {record.status===1 ?null:<OrderPay orderSn={""} total={"100"}/> }
           <Edit props={record}/>
           <Details props={record} />
           {/*<Button*/}

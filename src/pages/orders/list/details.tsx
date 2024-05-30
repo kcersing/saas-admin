@@ -24,7 +24,7 @@ function Details({ props }) {
 
   return (
     <>
-      <Button onClick={() => setVisible(true)} >详情</Button>
+      <Button size='mini' onClick={() => setVisible(true)} >详情</Button>
       <Modal
         title={title}
         mountOnEnter={false}

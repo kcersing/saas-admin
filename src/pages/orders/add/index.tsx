@@ -23,8 +23,8 @@ import SelectNatureType from '@/pages/components/select/selectNatureType';
 import PropertysRadio from '@/pages/components/propertys/radio';
 import PropertysMultiple from '@/pages/components/propertys/multiple';
 import SelectProductList from '@/pages/components/select/selectProductList';
-import orderService, { orderCreate } from '@/api/order';
-import Pay from '@/pages/orders/pay';
+import orderService from '@/api/order';
+import OrderPay from '@/pages/orders/pay';
 const { Title } = Typography;
 function Add() {
   const t = useLocale(locale);
@@ -33,8 +33,7 @@ function Add() {
 
   const [form] = Form.useForm();
   const formRef = useRef();
-
-
+  const [orderSn, setOrderSn] = useState({});
   const viewForm = () => {
     const values = form.getFields();
     form.setFields(values);
@@ -69,9 +68,10 @@ function Add() {
       if (current === 2){
         console.log(values);
         orderService.orderCreate(values).then((res) => {
-             setCurrent(current + 1);
-
-            console.log(res);
+          if(res.code===0){
+            setOrderSn({ "sn": res.data  ,"total":values['total'] })
+            setCurrent(current + 1);
+          }
           });
       }else {
         setCurrent(current + 1);
@@ -276,8 +276,7 @@ function Add() {
                     <Button key="again" type="primary" onClick={reCreateForm}>
                       {t['stepForm.created.success.again']}
                     </Button>,
-                    <Pay />,
-              
+                    <OrderPay orderSn={orderSn["sn"]} total={orderSn["total"]}/>,
                   ]}
                 />
               </Form.Item>

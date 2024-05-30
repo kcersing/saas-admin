@@ -12,20 +12,20 @@ import PermissionWrapper from '@/components/PermissionWrapper';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import { getColumns } from './constants';
-import orderService  from '@/api/order';
+import productService from '@/api/product';
 import SearchForm from './form';
 import { IconDownload, IconPlus } from '@arco-design/web-react/icon';
 import styles from './style/index.module.less';
-
+import Create from './create';
 // ======================================
 
 const { Title } = Typography;
-
-export const Status = ['待付款','部分付款','已完成','退款中','已退款','已取消'];
+export const Status = ['可用','禁用'];
 
 function Product() {
   const t = useLocale(locale);
   const tableCallback = async (record, type) => {
+
     console.log(record, type);
   };
   const columns = useMemo(() => getColumns(t, tableCallback), [t]);
@@ -53,13 +53,14 @@ function Product() {
       pageSize,
       ...formParams
     };
-    orderService.orderList(params)
+    productService.productList(params)
       .then((res) => {
         if (res.total===0){
           setData([]);
         }else {
           setData(res.data);
         }
+
         setPatination({
           ...pagination,
           current,
@@ -86,17 +87,18 @@ function Product() {
 
   return (
     <Card>
-      <Title heading={4}>列表</Title>
+      <Title heading={6}>产品列表</Title>
       <SearchForm onSearch={handleSearch} />
       <PermissionWrapper>
         <div className={styles['button-group']}>
           <Space>
+          <Create />
             <Button onClick={(e)=>{fetchData();}}>刷新列表</Button>
             <Button>导入</Button>
           </Space>
           <Space>
             <Button icon={<IconDownload />}>
-              下载
+             下载
             </Button>
           </Space>
         </div>
@@ -109,7 +111,8 @@ function Product() {
         columns={columns}
         data={data}
         virtualized
-        stripe
+        noDataElement={(<Empty />)}
+        placeholder={(<Empty />)}
         rowSelection={{
           selectedRowKeys,
           onChange: (selectedRowKeys, selectedRows) => {
