@@ -23,6 +23,7 @@ function SelectStaffList( props: { mode?: 'multiple' | 'tags'|'' }) {
   return (
     <FormItem label="员工" field="staff" rules={[{ required: false }]}>
       <Select
+        style={{ width: 200, }}
         mode={props.mode}
         placeholder='选择员工'
         allowClear

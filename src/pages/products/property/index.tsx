@@ -14,10 +14,9 @@ import locale from './locale';
 import { getColumns } from './constants';
 import productService from '@/api/product';
 import SearchForm from './form';
-import { IconDownload, IconPlus } from '@arco-design/web-react/icon';
+import { IconDownload } from '@arco-design/web-react/icon';
 import styles from './style/index.module.less';
-import CreateProperty from './create';
-import Create from '@/pages/products/product/create';
+import Create from './create';
 // ======================================
 
 const { Title } = Typography;

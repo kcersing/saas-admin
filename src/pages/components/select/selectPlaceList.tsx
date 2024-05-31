@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Form, Select, Space } from '@arco-design/web-react';
 import sysService from '@/api/sys';
-import { IconLocation, IconDelete } from '@arco-design/web-react/icon';
+import { IconFire, IconDelete } from '@arco-design/web-react/icon';
 const FormItem = Form.Item;
-function SelectVenueList( props: { mode?: 'multiple' | 'tags'|'' }) {
+function SelectPlaceList( props: { mode?: 'multiple' | 'tags'|'',venue?:number }) {
   const [list, setList] = useState([])
   useEffect(() => {
     listData();
-  }, []);
+  }, [props.venue]);
   function listData() {
-    sysService.venueList()
+    sysService.placeList({"venue":props.venue})
       .then((res) => {
         if (res.total===0){
           setList([]);
@@ -20,11 +20,11 @@ function SelectVenueList( props: { mode?: 'multiple' | 'tags'|'' }) {
   }
   const Option = Select.Option;
   return (
-    <FormItem label="场馆" field="venue" rules={[{ required: false }]} >
+    <FormItem label="场地" field="place" >
       <Select
-        mode={props.mode}
         style={{ width: 200, }}
-        placeholder='选择场馆'
+        mode={props.mode}
+        placeholder='选择场地'
         allowClear
         showSearch
         filterOption={(inputValue, option) =>
@@ -34,7 +34,7 @@ function SelectVenueList( props: { mode?: 'multiple' | 'tags'|'' }) {
         renderFormat={(option, value) => {
           return option ? (
             <span>
-              <IconLocation
+              <IconFire
                 style={{
                   color: '#f7ba1e',
                 }}
@@ -56,4 +56,4 @@ function SelectVenueList( props: { mode?: 'multiple' | 'tags'|'' }) {
   )
 }
 
-export default SelectVenueList;
+export default SelectPlaceList;

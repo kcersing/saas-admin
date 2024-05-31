@@ -51,12 +51,6 @@ function Add() {
     setCurrent(1);
   };
 
-  const payForm=()=>{
-    form.resetFields();
-    const values = form.getFields();
-    console.log(values);
-  }
-
   const toNext = async () => {
     try {
       await form.validate();

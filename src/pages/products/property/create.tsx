@@ -87,7 +87,7 @@ function CreateProperty() {
               return values.type === 'card' ? (
                 <>
                   <FormItem label="总时长" field="duration" rules={[{ required: false }]}>
-                    <InputNumber  placeholder="" />
+                    <InputNumber placeholder="" />
                   </FormItem>
                   <FormItem label="次数" field="count" rules={[{ required: false }]}>
                     <InputNumber placeholder="" />
@@ -96,7 +96,7 @@ function CreateProperty() {
               ) : (
                 (values.type === 'course' || values.type === 'class') && (
                   <FormItem label="单次时长" field="length" rules={[{ required: false }]}>
-                    <InputNumber  placeholder="" />
+                    <InputNumber placeholder="" />
                   </FormItem>
                 )
               );

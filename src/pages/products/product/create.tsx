@@ -33,9 +33,6 @@ function Create() {
           console.log(res);
           setVisible(false);
           setConfirmLoading(false);
-
-
-
         })
         .catch((err) => {
           console.log(err);

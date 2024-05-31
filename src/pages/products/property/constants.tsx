@@ -37,9 +37,6 @@ export function getColumns(
           return ;
         }
       },
-
-
-
     },
     {
       title: '名称',
@@ -102,16 +99,16 @@ export function getColumns(
       },
       placeholder: <>暂无</> ,
     },
-    {
-      title: '创建人',
-      dataIndex: 'create_id',
-      placeholder: <>暂无</> ,
-    },
+    // {
+    //   title: '创建人',
+    //   dataIndex: 'create_id',
+    //   placeholder: <>暂无</> ,
+    // },
     {
       title: '创建时间',
       placeholder: <>暂无</> ,
       dataIndex: 'createdAt',
-       render: (x) => dayjs(x).format('YYYY-MM-DD HH:mm:ss'),
+       render: (x) => dayjs(x).format('YYYY-MM-DD'),
        sorter: (a, b) => b.createdTime - a.createdTime,
     },
     {
