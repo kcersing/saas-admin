@@ -1,6 +1,6 @@
 import {Button, Grid, Typography, Card, Divider, DatePicker } from '@arco-design/web-react';
 import dayjs from 'dayjs';
-import scheduleService from '@/api/schedule';
+import scheduleService, { scheduleDateList } from '@/api/schedule';
 import weekday from 'dayjs/plugin/weekday';
 
 import 'dayjs/locale/zh-cn';
@@ -27,7 +27,7 @@ export default function Schedule() {
     'endTime': dayjs().endOf('week').format('YYYY-MM-DD')
   };
   useEffect(() => {
-    scheduleList(thisWeek);
+    scheduleDateList(thisWeek);
   }, []);
 
   function w() {
@@ -44,8 +44,8 @@ export default function Schedule() {
   const [weeks, setWeeks] = useState(ws);
   const [data, setData] = useState([]);
 
-  function scheduleList(params) {
-    scheduleService.scheduleList(params)
+  function scheduleDateList(params) {
+    scheduleService.scheduleDateList(params)
       .then((res) => {
         if (res.total === 0) {
           setData([]);
@@ -73,7 +73,7 @@ export default function Schedule() {
       'startTime': date.startOf('week').format('YYYY-MM-DD'),
       'endTime': date.endOf('week').format('YYYY-MM-DD')
     };
-    scheduleList(dates);
+    scheduleDateList(dates);
   }
 
   return (
@@ -82,7 +82,7 @@ export default function Schedule() {
         <Divider orientation="left">
           <WeekPicker
             defaultValue={day.format('YYYY-MM-DD')}
-            dayStartOfWeek={'1'}
+            dayStartOfWeek={1}
             onSelect={onSelect}
             onChange={onChange}
             style={{ width: 200 }}
@@ -91,7 +91,7 @@ export default function Schedule() {
 
           发布
           <Divider type="vertical" />
-          <Button onClick={(e)=>{scheduleList(thisWeek)}}>刷新列表</Button>
+          <Button onClick={(e)=>{scheduleDateList(thisWeek)}}>刷新列表</Button>
         </Divider>
         <Row className="grid-gutter-demo"
              style={{ marginBottom: 16, backgroundColor: 'var(--color-fill-2)' }}
