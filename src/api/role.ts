@@ -9,7 +9,7 @@ enum Api {
   SetRoleStatus = '/api/admin/role/status',
 }
 
-export const roleList = (params: object) => request.post(Api.RoleList, params);
+export const roleList = () => request.get(Api.RoleList);
 
 export default {
   roleList,

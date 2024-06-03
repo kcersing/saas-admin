@@ -88,12 +88,12 @@ function Venue() {
       <PermissionWrapper>
         <div className={styles['button-group']}>
           <Space>
-            <CreateMember />
-            <Button>{t['searchTable.operations.upload']}</Button>
+            <Button onClick={(e)=>{fetchData();}}>刷新列表</Button>
+            <Button>导入</Button>
           </Space>
           <Space>
             <Button icon={<IconDownload />}>
-              {t['searchTable.operation.download']}
+              下载
             </Button>
           </Space>
         </div>

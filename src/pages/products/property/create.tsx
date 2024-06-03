@@ -21,7 +21,6 @@ function CreateProperty() {
 
   function onOk() {
     form.validate().then((res) => {
-
       const params = {
         type: res.type,
         price: res.price,

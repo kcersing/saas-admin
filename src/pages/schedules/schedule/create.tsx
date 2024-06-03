@@ -12,6 +12,7 @@ import scheduleService from '@/api/schedule';
 import SelectPropertyList from '@/pages/components/select/selectPropertyList';
 import SelectStaffList from '@/pages/components/select/selectStaffList';
 import SelectPlaceList from '@/pages/components/select/selectPlaceList';
+import { IconPlus } from '@arco-design/web-react/icon';
 
 const TextArea = Input.TextArea;
 
@@ -66,7 +67,7 @@ function Create( props: { date?: string}) {
 
   return (
     <>
-      <Button onClick={() => setVisible(true)} type="primary">新建</Button>
+      <Button style={{backgroundColor: '#E8FFFB' }} onClick={() => setVisible(true)} icon={<IconPlus />}  type="dashed">新建</Button>
       <Modal
         title="新建课程"
         visible={visible}

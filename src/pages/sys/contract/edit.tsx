@@ -25,12 +25,11 @@ function EditMember({ props }) {
     form.validate().then((res) => {
 
      const params = {
-        "id":props.id,
+
        "name":res.name,
 
       }
       console.log(params);
-
 
 
     });
@@ -49,7 +48,7 @@ function EditMember({ props }) {
     <div>
       <Button onClick={() => setVisible(true)} type="primary">编辑</Button>
       <Modal
-        title="编辑会员"
+        title="编辑合同"
         visible={visible}
         onOk={onOk}
         confirmLoading={confirmLoading}
@@ -64,17 +63,13 @@ function EditMember({ props }) {
           wrapperCol={{
             style: { flexBasis: 'calc(100% - 90px)' }
           }}
-          initialValues={{ name: props.name}}
+          initialValues={{ name: props.name }}
         >
-          <FormItem label="角色名" field="name" rules={[{ required: true }]}>
-            <Input placeholder=""  />
+
+          <FormItem label="合同名称" field="name" rules={[{ required: true }]}>
+            <Input placeholder="" style={{ width: 200, }} />
           </FormItem>
-          <FormItem label="角色值" field="value" rules={[{ required: false }]}>
-            <Input placeholder=""  />
-          </FormItem>
-          <FormItem label="备注" field="remark" rules={[{ required: false }]}>
-            <Input placeholder=""  />
-          </FormItem>
+
         </Form>
       </Modal>
     </div>

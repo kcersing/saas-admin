@@ -28,7 +28,7 @@ export function getColumns(
     },
     {
       title: '名称',
-      dataIndex: 'name',
+      dataIndex: 'nickname',
     },
     {
       title: '手机号',

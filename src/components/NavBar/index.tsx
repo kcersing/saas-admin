@@ -90,24 +90,24 @@ function Navbar({ show }: { show: boolean }) {
 
   const droplist = (
     <Menu onClickMenuItem={onMenuItemClick}>
-      <Menu.SubMenu
-        key="role"
-        title={
-          <>
-            <IconUser className={styles['dropdown-icon']} />
-            <span className={styles['user-role']}>
-              {role === 'admin'
-                ? t['menu.user.role.admin']
-                : t['menu.user.role.user']}
-            </span>
-          </>
-        }
-      >
-        <Menu.Item onClick={handleChangeRole} key="switch role">
-          <IconTag className={styles['dropdown-icon']} />
-          {t['menu.user.switchRoles']}
-        </Menu.Item>
-      </Menu.SubMenu>
+      {/*<Menu.SubMenu*/}
+      {/*  key="role"*/}
+      {/*  title={*/}
+      {/*    <>*/}
+      {/*      <IconUser className={styles['dropdown-icon']} />*/}
+      {/*      <span className={styles['user-role']}>*/}
+      {/*        {role === 'admin'*/}
+      {/*          ? t['menu.user.role.admin']*/}
+      {/*          : t['menu.user.role.user']}*/}
+      {/*      </span>*/}
+      {/*    </>*/}
+      {/*  }*/}
+      {/*>*/}
+      {/*  <Menu.Item onClick={handleChangeRole} key="switch role">*/}
+      {/*    <IconTag className={styles['dropdown-icon']} />*/}
+      {/*    {t['menu.user.switchRoles']}*/}
+      {/*  </Menu.Item>*/}
+      {/*</Menu.SubMenu>*/}
       <Menu.Item key="setting">
         <IconSettings className={styles['dropdown-icon']} />
         {t['menu.user.setting']}

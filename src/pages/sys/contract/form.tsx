@@ -14,7 +14,6 @@ import useLocale from '@/utils/useLocale';
 import { IconRefresh, IconSearch } from '@arco-design/web-react/icon';
 import { ContentType, FilterType, Status } from './index';
 import styles from './style/index.module.less';
-import SelectVenueList from '@/pages/components/select/selectVenueList';
 
 const { Row, Col } = Grid;
 const { useForm } = Form;
@@ -70,10 +69,6 @@ function SearchForm(props: {
               />
             </Form.Item>
           </Col>
-          <Col span={colSpan}>
-          <SelectVenueList mode={""} />
-          </Col>
-
         </Row>
       </Form>
 

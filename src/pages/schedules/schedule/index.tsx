@@ -1,22 +1,20 @@
-import {Button, Grid, Typography, Card, Divider, DatePicker } from '@arco-design/web-react';
+import { Button, Grid, Typography, Card, Divider, DatePicker,Descriptions } from '@arco-design/web-react';
 import dayjs from 'dayjs';
-import scheduleService, { scheduleDateList } from '@/api/schedule';
+import scheduleService from '@/api/schedule';
 import weekday from 'dayjs/plugin/weekday';
-
 import 'dayjs/locale/zh-cn';
 import { useEffect, useState } from 'react';
-import { IconPlus } from '@arco-design/web-react/icon';
+import { IconHistory,IconUserGroup,IconAttachment,IconLocation,IconUser} from '@arco-design/web-react/icon';
 import Create from './create';
-import productService from '@/api/product';
+import Details from './details';
+
 
 const Row = Grid.Row;
 const Col = Grid.Col;
 export default function Schedule() {
   dayjs.extend(weekday);
   dayjs.locale('zh-cn');
-  const events = [
-    // 你的事件数据
-  ];
+
   const { WeekPicker } = DatePicker;
   const day = dayjs();
   const week = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'];
@@ -42,22 +40,26 @@ export default function Schedule() {
   }
 
   const [weeks, setWeeks] = useState(ws);
-  const [data, setData] = useState([]);
+  const [lists, setLists] = useState([]);
 
   function scheduleDateList(params) {
     scheduleService.scheduleDateList(params)
       .then((res) => {
         if (res.total === 0) {
-          setData([]);
+          setLists([]);
         } else {
-          setData(res.data);
+          setLists(res.data);
         }
       });
   }
 
   function onSelect(dateString, date) {
-    console.log(data);
+    console.log(lists);
   }
+
+  const events = [
+    // 你的事件数据
+  ];
 
   function onChange(dateString, date) {
     let w = [];
@@ -91,31 +93,33 @@ export default function Schedule() {
 
           发布
           <Divider type="vertical" />
-          <Button onClick={(e)=>{scheduleDateList(thisWeek)}}>刷新列表</Button>
+          <Button onClick={(e) => {
+            scheduleDateList(thisWeek);
+          }}>刷新列表</Button>
         </Divider>
-        <Row className="grid-gutter-demo"
-             style={{ marginBottom: 16, backgroundColor: 'var(--color-fill-2)' }}
-        >
+        <Row style={{ marginBottom: 16, backgroundColor: 'var(--color-fill-2)' }}>
 
           {weeks.map((day, index) => (
-            <Col flex="13.5%" key={index} style={{ marginLeft: 10 }}>
-              <Card style={{ marginBottom: 10, marginTop: 10 }}>
+            <Col flex="13.5%" key={index} style={{ marginLeft: 10,backgroundColor: 'var(--color-fill-2)' }}>
+              <Card
+                style={{ marginBottom: 10, marginTop: 10 ,textAlign:'center'}}
+                bodyStyle={{paddingBottom: 0 ,paddingTop: 15}}
+              >
                 <Typography.Text>{day.day}{day.week}</Typography.Text>
                 <Card>
-                  <IconPlus />
-                  <Create date={day.day}/>
+                  <Create date={day.day} />
                 </Card>
               </Card>
 
-              <Card style={{ marginBottom: 16 }}>
-                <Card>    {day.day} </Card>
-                <Card>   {day.day}  </Card>
-              </Card>
 
-              {/*{ events.map((event, eventIndex) => {*/}
-              {/*  return (<>1111111111111111</>);*/}
-              {/*}) }*/}
-              {/*/!* ... *!/*/}
+              {lists[day.day] && lists[day.day].map((value, index) => {
+
+                return (
+                  <Details props = {value}/>
+
+                );
+              })}
+
             </Col>
           ))}
 
@@ -126,3 +130,7 @@ export default function Schedule() {
   )
     ;
 }
+<style>
+
+
+</style>;

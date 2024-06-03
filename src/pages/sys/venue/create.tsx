@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Modal, Button, Form, Input, Select, Message, Upload, DatePicker, InputNumber } from '@arco-design/web-react';
+import { Modal, Button, Form, Input } from '@arco-design/web-react';
 import venueService from '@/api/venue';
-import productService from '@/api/product';
+
 
 const TextArea = Input.TextArea;
 const FormItem = Form.Item;

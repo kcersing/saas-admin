@@ -47,11 +47,7 @@ function SearchForm(props: {
         wrapperCol={{ span: 19 }}
       >
         <Row gutter={24}>
-          <Col span={colSpan}>
-            <Form.Item label='ID' field="id">
-              <Input placeholder='会员ID' allowClear />
-            </Form.Item>
-          </Col>
+
           <Col span={colSpan}>
             <Form.Item label='姓名' field="name">
               <Input
@@ -73,52 +69,6 @@ function SearchForm(props: {
               />
             </Form.Item>
           </Col>
-          <Col span={colSpan}>
-            <Form.Item
-              label='拥有产品'
-              field="filterType"
-            >
-              <Select
-                placeholder={t['searchForm.all.placeholder']}
-                options={FilterType.map((item, index) => ({
-                  label: item,
-                  value: index,
-                }))}
-                mode="multiple"
-                allowClear
-              />
-            </Form.Item>
-          </Col>
-          <Col span={colSpan}>
-            <Form.Item
-              label='有效属性'
-              field="contentType"
-            >
-              <Select
-                placeholder={t['searchForm.all.placeholder']}
-                options={ContentType.map((item, index) => ({
-                  label: item,
-                  value: index,
-                }))}
-                mode="multiple"
-                allowClear
-              />
-            </Form.Item>
-          </Col>
-
-          <Col span={colSpan}>
-            <Form.Item
-              label={t['searchTable.columns.createdTime']}
-              field="createdTime"
-            >
-              <DatePicker.RangePicker
-                allowClear
-                style={{ width: '100%' }}
-                disabledDate={(date) => dayjs(date).isAfter(dayjs())}
-              />
-            </Form.Item>
-          </Col>
-
         </Row>
       </Form>
 

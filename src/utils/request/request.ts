@@ -29,7 +29,6 @@ service.interceptors.response.use(
     } else {
       if (response.data && response.data.token) {
         setToken( response.data.token);
-
       }
     }
 
@@ -45,6 +44,11 @@ service.interceptors.response.use(
   error => {
     const {response} = error;
     if (response) {
+
+     if(response.status === 403 && window.location.pathname !== "/login"){
+        window.location.href="/login"
+      }
+
       // 请求已发出，但是不在2xx的范围
       console.log(response.status);
       showMessage(response.status);
@@ -119,19 +123,17 @@ const requestHandler = <T>(method: 'get' | 'post' | 'put' | 'delete', url: strin
 
         const e = JSON.stringify(data);
         Message.info(`请求错误：${e}`);
-        console.log(`请求错误：${e}`)
         //数据请求错误 使用reject将错误返回
         reject(data);
-      }else{
+      } else{
         //数据请求正确 使用resolve将结果返回
         resolve(data);
       }
 
     }).catch(error => {
-      console.log(error)
       const e = JSON.stringify(error);
-      Message.info(`网络错误：${e}`);
-      console.log(`网络错误：${e}`)
+      Message.info(`错误：${e}`);
+      console.log(`错误：${e}`)
       reject(error);
     })
   })

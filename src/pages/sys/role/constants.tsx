@@ -31,8 +31,13 @@ export function getColumns(
       dataIndex: 'name',
     },
     {
-      title: '手机号',
-      dataIndex: 'mobile',
+      title: '角色值',
+      dataIndex: 'value',
+      render: (value) => <Text copyable>{value}</Text>,
+    },
+    {
+      title: '备注',
+      dataIndex: 'remark',
       render: (value) => <Text copyable>{value}</Text>,
     },
     {
@@ -47,9 +52,9 @@ export function getColumns(
     },
     {
       title: '创建时间',
-      dataIndex: 'createdAt',
-       render: (x) => dayjs(x).format('YYYY-MM-DD HH:mm:ss'),
-       sorter: (a, b) => b.createdTime - a.createdTime,
+      dataIndex: 'created_at',
+      render: (x) => dayjs(x).format('YYYY-MM-DD HH:mm:ss'),
+      sorter: (a, b) => b.createdTime - a.createdTime,
     },
     {
       title: '操作',

@@ -11,7 +11,7 @@ import PermissionWrapper from '@/components/PermissionWrapper';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
 import { getColumns } from './constants';
-import memberService from '@/api/member';
+import roleService from '@/api/role';
 import SearchForm from './form';
 import { IconDownload, IconPlus } from '@arco-design/web-react/icon';
 import styles from './style/index.module.less';
@@ -54,7 +54,7 @@ function Role() {
       pageSize,
       ...formParams
     };
-    memberService.memberList(params)
+    roleService.roleList(params)
       .then((res) => {
         setData(res.data);
         setPatination({
@@ -84,12 +84,12 @@ function Role() {
       <PermissionWrapper>
         <div className={styles['button-group']}>
           <Space>
-            <CreateMember />
-            <Button>{t['searchTable.operations.upload']}</Button>
+            <Button onClick={(e)=>{fetchData();}}>刷新列表</Button>
+            <Button>导入</Button>
           </Space>
           <Space>
             <Button icon={<IconDownload />}>
-              {t['searchTable.operation.download']}
+              下载
             </Button>
           </Space>
         </div>

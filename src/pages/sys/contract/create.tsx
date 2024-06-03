@@ -43,7 +43,7 @@ function CreateMember() {
         新建
       </Button>
       <Modal
-        title='新建场地'
+        title='新建合同'
         visible={visible}
         onOk={onOk}
         confirmLoading={confirmLoading}
@@ -60,9 +60,7 @@ function CreateMember() {
           }}
         >
 
-          <SelectVenueList mode={""} />
-
-          <FormItem label="场地名" field="name" rules={[{ required: true }]}>
+          <FormItem label="合同名称" field="name" rules={[{ required: true }]}>
             <Input placeholder="" style={{ width: 200, }} />
           </FormItem>
 
