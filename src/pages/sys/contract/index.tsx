@@ -15,6 +15,7 @@ import SearchForm from './form';
 import { IconDownload } from '@arco-design/web-react/icon';
 import styles from './style/index.module.less';
 import contractService from '@/api/contract';
+import Create from './create';
 
 // ======================================
 
@@ -83,7 +84,8 @@ function Contract() {
       <PermissionWrapper>
         <div className={styles['button-group']}>
           <Space>
-            <Button onClick={(e)=>{fetchData();}}>刷新列表</Button>
+            <Create />
+            <Button onClick={(e) => { fetchData();}}>刷新列表</Button>
             <Button>导入</Button>
           </Space>
           <Space>

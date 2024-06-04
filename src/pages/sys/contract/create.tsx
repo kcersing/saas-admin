@@ -1,19 +1,24 @@
-import { useState } from 'react';
-import { Modal, Button, Form, Input } from '@arco-design/web-react';
-import SelectVenueList from '@/pages/components/select/selectVenueList';
-import venueService from '@/api/venue';
-const FormItem = Form.Item;
 
-function CreateMember() {
+import { Modal, Button, Form, Input } from '@arco-design/web-react';
+import venueService from '@/api/venue';
+import EditorNode from '@/pages/components/bytemd';
+const FormItem = Form.Item;
+import React, { useMemo, useState } from 'react'
+function Create() {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
+  const [contentData, setContentData] = useState(false);
+  const ContentData = (content) => {
+    setContentData(content)
+  }
+
 
   function onOk() {
     form.validate().then((res) => {
       const params = {
         name: res.name,
-        venueId: res.venue
+        content: contentData
       };
       console.log(params);
       setConfirmLoading(true);
@@ -44,6 +49,7 @@ function CreateMember() {
       </Button>
       <Modal
         title='新建合同'
+        style={{width: 1000}}
         visible={visible}
         onOk={onOk}
         confirmLoading={confirmLoading}
@@ -60,12 +66,13 @@ function CreateMember() {
           }}
         >
 
+
           <FormItem label="合同名称" field="name" rules={[{ required: true }]}>
             <Input placeholder="" style={{ width: 200, }} />
           </FormItem>
 
 
-
+          <EditorNode ContentData={ContentData} />
 
 
         </Form>
@@ -74,4 +81,4 @@ function CreateMember() {
   );
 }
 
-export default  CreateMember;
+export default  Create;
