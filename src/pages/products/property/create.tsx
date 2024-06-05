@@ -58,7 +58,8 @@ function CreateProperty() {
     <>
       <Button onClick={() => setVisible(true)} type="primary">新建</Button>
       <Modal
-        title="新建属性"
+        focusLock={true}
+        title="新建"
         visible={visible}
         onOk={onOk}
         confirmLoading={confirmLoading}

@@ -61,7 +61,10 @@ function OrderPay(props: { orderSn?: string, total?: string }) {
     <>
       <Button key="pay" size='mini' onClick={() => setVisible(true)} icon={<IconAlipayCircle />} style={{ marginRight: 5 }}>支付</Button>
 
-      <Modal title={
+      <Modal
+        focusLock={true}
+        unmountOnExit
+        title={
         <Statistic
           precision={2}
           suffix="¥"

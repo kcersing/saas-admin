@@ -62,7 +62,7 @@ function PropertysRadio(props: {
                 setItemMoney("0");
               }}
             >
-              {list.map((option) => (
+              {list && list.map((option) => (
                 <Option extra={option.key} key={option.name} value={option.id}>
                   {option.name}
                 </Option>

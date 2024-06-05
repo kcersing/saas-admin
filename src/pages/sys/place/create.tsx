@@ -43,7 +43,8 @@ function CreateMember() {
         新建
       </Button>
       <Modal
-        title='新建场地'
+        focusLock={true}
+        title='新建'
         visible={visible}
         onOk={onOk}
         confirmLoading={confirmLoading}

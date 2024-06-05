@@ -26,6 +26,7 @@ function Details({ props }) {
     <>
       <Button size='mini' onClick={() => setVisible(true)} >详情</Button>
       <Modal
+        focusLock={true}
         title={title}
         mountOnEnter={false}
         unmountOnExit={true}

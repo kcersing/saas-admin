@@ -54,6 +54,7 @@ function Create() {
     <>
       <Button onClick={() => setVisible(true)} type="primary">新建</Button>
       <Modal
+        focusLock={true}
         title="新建"
         visible={visible}
         onOk={onOk}

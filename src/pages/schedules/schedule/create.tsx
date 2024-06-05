@@ -69,7 +69,8 @@ function Create( props: { date?: string}) {
     <>
       <Button style={{backgroundColor: '#E8FFFB' }} onClick={() => setVisible(true)} icon={<IconPlus />}  type="dashed">新建</Button>
       <Modal
-        title="新建课程"
+        focusLock={true}
+        title="新建"
         visible={visible}
         onOk={onOk}
         confirmLoading={confirmLoading}

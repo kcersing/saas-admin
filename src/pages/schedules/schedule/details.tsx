@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Button, Table, Alert, Card, Descriptions } from '@arco-design/web-react';
+import { Modal, Button, Table, Alert, Card, Descriptions, Space,Tooltip } from '@arco-design/web-react';
 import {
   IconAttachment,
   IconHistory,
@@ -13,24 +13,24 @@ function Details({props}) {
 
   const scheduleData = [
     {
-      label:  <IconUserGroup />,
-      value: props.num+"-"+props.num_surplus,
+      label: <Tooltip content='预约人数'> <IconUserGroup /></Tooltip>,
+      value: props.num_surplus+"-"+props.num+"已预约人数",
     },
     {
-      label: <IconHistory />,
+      label:<Tooltip content='课程时间'>  <IconHistory /></Tooltip>,
       value: props.start_time +"-"+ props.end_time,
     },
     {
-      label: <IconLocation />,
+      label:<Tooltip content='场地名称'>  <IconLocation /></Tooltip>,
       value: props.place_name,
     },
     {
-      label: <IconAttachment />,
-      value: props.remark,
+      label: <Tooltip content='教练名称'> <IconUser /></Tooltip>,
+      value: props.coach_name,
     },
     {
-      label: <IconUser />,
-      value: props.coach_name,
+      label: <Tooltip content='备注'> <IconAttachment /></Tooltip>,
+      value: props.remark,
     },
   ];
 
@@ -39,12 +39,12 @@ function Details({props}) {
 
   const columns = [
     {
-      title: 'Name',
+      title: '姓名',
       dataIndex: 'name',
       sorter: (a, b) => a.name.length - b.name.length,
     },
     {
-      title: 'Version',
+      title: '性别',
       dataIndex: 'version',
       sorter: (a, b) => {
         const aVersion = a.version.split('.');
@@ -59,10 +59,33 @@ function Details({props}) {
       },
     },
     {
-      title: 'Author',
+      title: '年龄',
       dataIndex: 'author',
       sorter: (a, b) => a.author.length - b.author.length,
     },
+
+    {
+      title: '手机号',
+      dataIndex: 'author',
+      sorter: (a, b) => a.author.length - b.author.length,
+    },
+
+    {
+      title: '上课情况',
+      dataIndex: 'author',
+      sorter: (a, b) => a.author.length - b.author.length,
+    },
+    {
+      title: '预约时间',
+      dataIndex: 'author',
+      sorter: (a, b) => a.author.length - b.author.length,
+    },
+    {
+      title: '操作',
+      dataIndex: 'author',
+
+    },
+
   ];
   const data = [
     {
@@ -75,10 +98,6 @@ function Details({props}) {
   return (
     <>
       <Card style={{backgroundColor: '#E8FFFB', marginBottom: 10 }} onClick={() => setVisible(true)}  >
-
-
-
-
           <Descriptions
             title={props.name}
             column={1}
@@ -87,30 +106,24 @@ function Details({props}) {
             colon
             labelStyle={{ textAlign: 'right', paddingRight: 20}}
           />
-
-
-
-
-
-
-
-
       </Card>
+
       <Modal
+        focusLock={true}
         unmountOnExit
-        title='Manage Plugins'
+        title={"详情"}
         visible={visible}
-        className='modal-demo-without-content-spacing'
+        style={{width:1000}}
         onOk={() => setVisible(false)}
         onCancel={() => setVisible(false)}
       >
-        <Alert closable type='info' content='This message displays only once.' />
-        <div style={{ padding: 20 }}>
-          <p>
-            You can select multiple plugins for the current project so that our app will verify that
-            the plugins are installed and enabled.
-          </p>
-          <p style={{ marginTop: 20, marginBottom: 8, fontWeight: 600 }}>List of plugins</p>
+        <Descriptions
+          style={{width:900, padding: 20}}
+          border
+          data={scheduleData.slice(0, 5)}
+          column={5}
+        />
+        <div style={{width:900, padding: 20}}>
           <Table
             columns={columns}
             data={data}
@@ -121,6 +134,7 @@ function Details({props}) {
           ></Table>
         </div>
       </Modal>
+
     </>
   );
 }

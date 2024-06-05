@@ -76,7 +76,8 @@ function EditMember({ props }) {
     <div>
       <Button onClick={() => setVisible(true)} type="primary">编辑</Button>
       <Modal
-        title="编辑会员"
+        focusLock={true}
+        title="编辑"
         visible={visible}
         onOk={onOk}
         confirmLoading={confirmLoading}

@@ -62,6 +62,7 @@ function Edit({ props }) {
     <>
       <Button style={{marginRight: 10}} onClick={() => setVisible(true)} >编辑</Button>
       <Modal
+        focusLock={true}
         title="编辑"
         visible={visible}
         onOk={onOk}

@@ -1,6 +1,6 @@
 
 import { Modal, Button, Form, Input } from '@arco-design/web-react';
-import venueService from '@/api/venue';
+import contractService from '@/api/contract';
 import EditorNode from '@/pages/components/bytemd';
 const FormItem = Form.Item;
 import React, { useMemo, useState } from 'react'
@@ -20,9 +20,8 @@ function Create() {
         name: res.name,
         content: contentData
       };
-      console.log(params);
       setConfirmLoading(true);
-      venueService.placeCreate(params)
+      contractService.contractCreate(params)
         .then((res) => {
           console.log(res);
           setVisible(false);
@@ -33,7 +32,7 @@ function Create() {
         });
     });
   }
-
+console.log(1)
   const formItemLayout = {
     labelCol: {
       span: 4,
@@ -48,7 +47,8 @@ function Create() {
         新建
       </Button>
       <Modal
-        title='新建合同'
+        focusLock={true}
+        title='新建'
         style={{width: 1000}}
         visible={visible}
         onOk={onOk}

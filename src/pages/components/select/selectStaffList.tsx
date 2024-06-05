@@ -47,7 +47,7 @@ function SelectStaffList( props: { mode?: 'multiple' | 'tags'|'' }) {
           );
         }}
       >
-        {list.map((option) => (
+        {list && list.map((option) => (
           <Option key={option.name} value={option.id}>
             {option.name}
           </Option>
