@@ -13,7 +13,6 @@ function Create() {
     setContentData(content)
   }
 
-
   function onOk() {
     form.validate().then((res) => {
       const params = {
@@ -32,7 +31,7 @@ function Create() {
         });
     });
   }
-console.log(1)
+
   const formItemLayout = {
     labelCol: {
       span: 4,
@@ -41,8 +40,9 @@ console.log(1)
       span: 20,
     },
   };
+
   return (
-    <div>
+    <>
       <Button onClick={() => setVisible(true)} type='primary'>
         新建
       </Button>
@@ -77,7 +77,7 @@ console.log(1)
 
         </Form>
       </Modal>
-    </div>
+    </>
   );
 }
 

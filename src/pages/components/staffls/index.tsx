@@ -33,7 +33,9 @@ function Staffs() {
             if (v.length > 0) {
               let tol = 0;
               v.map((value, index) => {
+                if (value){
                   tol += value.ratio
+                }
               });
             if (tol!=100){
               return cb( '员工分销之和需等于100');

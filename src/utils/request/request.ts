@@ -35,7 +35,6 @@ service.interceptors.response.use(
     if (response.status === 200) {
       return response;
     } else {
-      console.log(response.status);
       showMessage(response.status);
       return response;
     }
@@ -45,8 +44,9 @@ service.interceptors.response.use(
     const {response} = error;
     if (response) {
 
-     if(response.status === 403 && window.location.pathname !== "/login"){
+     if(window.location.pathname !== "/login"){
         window.location.href="/login"
+       return
       }
 
       // 请求已发出，但是不在2xx的范围
@@ -132,7 +132,7 @@ const requestHandler = <T>(method: 'get' | 'post' | 'put' | 'delete', url: strin
 
     }).catch(error => {
       const e = JSON.stringify(error);
-      Message.info(`错误：${e}`);
+      // Message.info(`错误：${e}`);
       console.log(`错误：${e}`)
       reject(error);
     })
