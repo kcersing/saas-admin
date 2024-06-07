@@ -18,6 +18,7 @@ import IconCalendar from './assets/calendar.svg';
 import IconComments from './assets/comments.svg';
 import IconContent from './assets/content.svg';
 import IconIncrease from './assets/increase.svg';
+import Searchs from '@/pages/components/workplace/searchs';
 
 const { Row, Col } = Grid;
 
@@ -90,7 +91,7 @@ function Overview() {
         <Col flex={1}>
           <StatisticItem
             icon={<IconCalendar />}
-            title={t['workplace.totalOnlyData']}
+            title={'进馆人数'}
             count={data.allContents}
             loading={loading}
             unit={t['workplace.pecs']}
@@ -100,7 +101,7 @@ function Overview() {
         <Col flex={1}>
           <StatisticItem
             icon={<IconContent />}
-            title={t['workplace.contentInMarket']}
+            title={'会员量'}
             count={data.liveContents}
             loading={loading}
             unit={t['workplace.pecs']}
@@ -110,7 +111,7 @@ function Overview() {
         <Col flex={1}>
           <StatisticItem
             icon={<IconComments />}
-            title={t['workplace.comments']}
+            title={'新增订单'}
             count={data.increaseComments}
             loading={loading}
             unit={t['workplace.pecs']}
@@ -120,7 +121,7 @@ function Overview() {
         <Col flex={1}>
           <StatisticItem
             icon={<IconIncrease />}
-            title={t['workplace.growth']}
+            title={'上课量'}
             count={
               <span>
                 {data.growthRate}{' '}
@@ -134,23 +135,27 @@ function Overview() {
         </Col>
       </Row>
       <Divider />
-      <div>
-        <div className={styles.ctw}>
-          <Typography.Paragraph
-            className={styles['chart-title']}
-            style={{ marginBottom: 0 }}
-          >
-            {t['workplace.contentData']}
-            <span className={styles['chart-sub-title']}>
+      <div style={{width:'100%',content:'center'}}>
+            <Searchs />
+      </div>
+      <Divider />
+        <div>
+          <div className={styles.ctw}>
+            <Typography.Paragraph
+              className={styles['chart-title']}
+              style={{ marginBottom: 0 }}
+            >
+              {t['workplace.contentData']}
+              <span className={styles['chart-sub-title']}>
               ({t['workplace.1year']})
             </span>
-          </Typography.Paragraph>
-          <Link>{t['workplace.seeMore']}</Link>
+            </Typography.Paragraph>
+            <Link>{t['workplace.seeMore']}</Link>
+          </div>
+          <OverviewAreaLine data={data.chartData} loading={loading} />
         </div>
-        <OverviewAreaLine data={data.chartData} loading={loading} />
-      </div>
     </Card>
-  );
+);
 }
 
 export default Overview;

@@ -4,12 +4,18 @@ import { IRoute, routes } from './routes';
 export interface GlobalState {
   settings?: typeof defaultSettings;
   userInfo?: {
+    id?: number;
     name?: string;
     avatar?: string;
-    job?: string;
-    organization?: string;
+    job?: number;
+    jobName?: string;
+    organization?: number;
+    organizationName?: string;
     location?: string;
     email?: string;
+    roleID?: number;
+    roleName?: string;
+    roleValue?: string;
     permissions: Record<string, string[]>;
   };
   userLoading?: boolean;

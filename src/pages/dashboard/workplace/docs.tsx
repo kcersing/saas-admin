@@ -5,10 +5,10 @@ import locale from './locale';
 import styles from './style/docs.module.less';
 
 const links = {
-  react: 'https://arco.design/react/docs/start',
-  vue: 'https://arco.design/vue/docs/start',
-  designLab: 'https://arco.design/themes',
-  materialMarket: 'https://arco.design/material/',
+  // react: 'https://arco.design/react/docs/start',
+  // vue: 'https://arco.design/vue/docs/start',
+  // designLab: 'https://arco.design/themes',
+  // materialMarket: 'https://arco.design/material/',
 };
 function QuickOperation() {
   const t = useLocale(locale);

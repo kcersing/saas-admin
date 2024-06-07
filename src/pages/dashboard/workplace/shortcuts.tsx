@@ -12,6 +12,9 @@ import {
   IconSettings,
   IconMobile,
   IconFire,
+  IconUserAdd,
+  IconSubscribeAdd,
+  IconRobotAdd,
 } from '@arco-design/web-react/icon';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
@@ -22,29 +25,19 @@ function Shortcuts() {
 
   const shortcuts = [
     {
-      title: t['workplace.contentMgmt'],
-      key: 'Content Management',
-      icon: <IconFile />,
+      title: "添加会员",
+      key: 'add-member',
+      icon: <IconUserAdd />,
     },
     {
-      title: t['workplace.contentStatistic'],
-      key: 'Content Statistic',
-      icon: <IconStorage />,
+      title: '约团课',
+      key: 'add-course',
+      icon: <IconSubscribeAdd />,
     },
     {
-      title: t['workplace.advancedMgmt'],
-      key: 'Advanced Management',
-      icon: <IconSettings />,
-    },
-    {
-      title: t['workplace.onlinePromotion'],
-      key: 'Online Promotion',
-      icon: <IconMobile />,
-    },
-    {
-      title: t['workplace.marketing'],
-      key: 'Marketing',
-      icon: <IconFire />,
+      title: '新增订单',
+      key: 'add-order',
+      icon: <IconRobotAdd /> ,
     },
   ];
 
@@ -67,6 +60,7 @@ function Shortcuts() {
   ];
 
   function onClickShortcut(key) {
+    console.log(key);
     Message.info({
       content: (
         <span>
@@ -82,7 +76,7 @@ function Shortcuts() {
         <Typography.Title heading={6}>
           {t['workplace.shortcuts']}
         </Typography.Title>
-        <Link>{t['workplace.seeMore']}</Link>
+        {/*<Link>{t['workplace.seeMore']}</Link>*/}
       </div>
       <div className={styles.shortcuts}>
         {shortcuts.map((shortcut) => (
@@ -97,19 +91,19 @@ function Shortcuts() {
         ))}
       </div>
       <Divider />
-      <div className={styles.recent}>{t['workplace.recent']}</div>
-      <div className={styles.shortcuts}>
-        {recentShortcuts.map((shortcut) => (
-          <div
-            className={styles.item}
-            key={shortcut.key}
-            onClick={() => onClickShortcut(shortcut.key)}
-          >
-            <div className={styles.icon}>{shortcut.icon}</div>
-            <div className={styles.title}>{shortcut.title}</div>
-          </div>
-        ))}
-      </div>
+      {/*<div className={styles.recent}>{t['workplace.recent']}</div>*/}
+      {/*<div className={styles.shortcuts}>*/}
+      {/*  {recentShortcuts.map((shortcut) => (*/}
+      {/*    <div*/}
+      {/*      className={styles.item}*/}
+      {/*      key={shortcut.key}*/}
+      {/*      onClick={() => onClickShortcut(shortcut.key)}*/}
+      {/*    >*/}
+      {/*      <div className={styles.icon}>{shortcut.icon}</div>*/}
+      {/*      <div className={styles.title}>{shortcut.title}</div>*/}
+      {/*    </div>*/}
+      {/*  ))}*/}
+      {/*</div>*/}
     </Card>
   );
 }

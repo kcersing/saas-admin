@@ -82,7 +82,6 @@ export default function LoginForm() {
       formRef.current.setFieldsValue(parseParams);
     }
     captchaService.getImgCaptcha().then((res) => {
-      console.log(res)
       setImgPath(res.data.imgPath)
       setCaptchaId(res.data.captchaId)
     }).catch(err => {

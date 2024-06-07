@@ -27,8 +27,8 @@ function Index() {
     switch (lang) {
       case 'zh-CN':
         return zhCN;
-      case 'en-US':
-        return enUS;
+      // case 'en-US':
+      //   return enUS;
       default:
         return zhCN;
     }
@@ -42,7 +42,22 @@ function Index() {
     userService.userInfo().then((res) => {
       store.dispatch({
         type: 'update-userInfo',
-        payload: { userInfo: res, userLoading: false },
+        payload: { userInfo: {
+            id: res.data.id,
+            name: res.data.nickname,
+            avatar:res.data.nickname,
+            job: res.data.job,
+            jobName: res.data.jobName,
+            organization: res.data.organization,
+            organizationName: res.data.organizationName,
+            roleID: res.data.roleID,
+            roleName: res.data.roleName,
+            roleValue: res.data.roleValue,
+            location: 'zh-CN',
+            email: res.data.email,
+            // permissions: Record<string, string[]>;
+
+          }, userLoading: false },
       });
     });
     userMenu.getUserMenu().then((res) => {

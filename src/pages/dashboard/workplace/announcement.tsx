@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Link, Card, Skeleton, Tag, Typography } from '@arco-design/web-react';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
@@ -13,14 +12,8 @@ function Announcement() {
 
   const fetchData = () => {
     setLoading(true);
-    axios
-      .get('/api/workplace/announcement')
-      .then((res) => {
-        setData(res.data);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    // setData(res.data);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -50,7 +43,7 @@ function Announcement() {
       </div>
       <Skeleton loading={loading} text={{ rows: 5, width: '100%' }} animation>
         <div>
-          {data.map((d) => (
+          {data && data.map((d) => (
             <div key={d.key} className={styles.item}>
               <Tag color={getTagColor(d.type)} size="small">
                 {t[`workplace.${d.type}`]}
