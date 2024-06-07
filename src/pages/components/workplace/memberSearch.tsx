@@ -31,7 +31,7 @@ function CustomInput(props) {
   );
 }
 
-function Searchs() {
+function MemberSearch() {
   const [values, setValues] = useState({});
   useEffect(() => {
     console.log("1")
@@ -60,7 +60,6 @@ function Searchs() {
     onValuesChange={(_, v) => setValues(v)}
     initialValues={{ members: { select: "手机号" }}}
   >
-
     <Space>
         <Form.Item field='members' style={{marginBottom:0}}>
           <CustomInput />
@@ -73,8 +72,7 @@ function Searchs() {
 
   </Form>
 </>
-
   );
 }
 
-export default Searchs;
+export default MemberSearch;

@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="febb57be-281a-4d53-b36f-ad64d8b5c0e2" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/components/workplace/searchs.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/dashboard/workplace/announcement.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard/workplace/announcement.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/dashboard/workplace/docs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard/workplace/docs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/components/workplace/searchs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/workplace/memberSearch.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/dashboard/workplace/overview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard/workplace/overview.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/dashboard/workplace/shortcuts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/dashboard/workplace/shortcuts.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/login/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login/form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/global.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +125,7 @@
       <workItem from="1717488889796" duration="1055000" />
       <workItem from="1717552558132" duration="17066000" />
       <workItem from="1717638473537" duration="3857000" />
-      <workItem from="1717724855401" duration="9108000" />
+      <workItem from="1717724855401" duration="9655000" />
     </task>
     <servers />
   </component>

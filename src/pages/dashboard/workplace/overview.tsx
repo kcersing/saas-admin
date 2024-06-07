@@ -18,7 +18,7 @@ import IconCalendar from './assets/calendar.svg';
 import IconComments from './assets/comments.svg';
 import IconContent from './assets/content.svg';
 import IconIncrease from './assets/increase.svg';
-import Searchs from '@/pages/components/workplace/searchs';
+import MemberSearch from '@/pages/components/workplace/memberSearch';
 
 const { Row, Col } = Grid;
 
@@ -136,7 +136,7 @@ function Overview() {
       </Row>
       <Divider />
       <div style={{width:'100%',content:'center'}}>
-            <Searchs />
+            <MemberSearch />
       </div>
       <Divider />
         <div>
