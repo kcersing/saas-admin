@@ -44,10 +44,10 @@ service.interceptors.response.use(
     const {response} = error;
     if (response) {
 
-     if(window.location.pathname !== "/login"){
-        window.location.href="/login"
-       return
-      }
+     // if(window.location.pathname !== "/login"){
+     //    window.location.href="/login"
+     //   return
+     //  }
 
       // 请求已发出，但是不在2xx的范围
       console.log(response.status);

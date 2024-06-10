@@ -63,13 +63,18 @@ const useRoute = (userPermission): [IRoute[], string] => {
 
     setMenuData(routes);
     userMuen.getUserMenu().then((res) => {
+      console.log(res.data)
       setMenuData(res.data);
     });
-    
-    const newRoutes = filterRoute(menuData);
+    console.log(menuData)
+    let newRoutes:IRoute[] =[]
+    if ( menuData.length>0) {
+       newRoutes = filterRoute(menuData);
+      setPermissionRoute(newRoutes);
+    }
 
   //  const newRoutes = filterRoute(routes);
-    setPermissionRoute(newRoutes);
+
   }
 
   useEffect(() => {
