@@ -136,13 +136,7 @@ const MemberDetails= ({Visible, visibles,memberValue,memberOption}) => {
     >
 
 
-
-
-
-
-
-
-        <Spin tip='loading Data...' loading={loading}>
+        <Spin tip='载入数据中...' loading={loading}>
           <div style={{ height: 266, visibility: !loading ? 'visible' : 'hidden' }}>
             <p>
               You can select multiple plugins for the current project so that our app will verify
