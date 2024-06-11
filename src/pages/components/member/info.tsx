@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useMemo, useContext } from 'react';
-import { Button, Form, Input, Message, Modal, Table, Spin ,Select,Tabs,Divider,  Typography, InputNumber, Statistic } from '@arco-design/web-react';
+import { Button, Form, Input, Message, Modal, Table, Spin,Card ,Select,Tabs,Divider,  Typography,Alert, InputNumber,Empty, Statistic } from '@arco-design/web-react';
 import productService from '@/api/product';
 import { IconAlipayCircle } from '@arco-design/web-react/icon';
 import QRCode from 'qrcode.react';
 const Option = Select.Option;
 import memberService, { memberInfo } from '@/api/member';
-
+import { useSelector } from 'react-redux';
+import InfoHeader from './header';
 const TabPane = Tabs.TabPane;
 const style = {
   textAlign: 'center',
@@ -38,18 +39,23 @@ function getDataFromServer() {
     }, 1500);
   });
 }
-// export const MemberDetailsShow=(params: object)=> {
-// console.log(params)
-//
-//   // MemberDetails({title:'会员详情', membersInput:'a',memberSelect:""})
-// };
 
-
-const MemberDetails= ({Visible, visibles,memberValue,memberOption}) => {
-
+const Info= ({Visible, visibles,memberValue,memberOption}) => {
 
   const [loading, setLoading] = React.useState(false); // table
   const [data, setData] = React.useState([]);
+
+  const [memberInfo, setMemberInfo] = React.useState([]);
+
+  const [memberInfoErr, setMemberInfoErr] = React.useState("");
+
+
+  useEffect(() => {
+    loadData();
+  }, []);
+  console.log(visibles,memberValue,memberOption)
+
+
   const columns = [
     {
       title: 'Name',
@@ -80,12 +86,26 @@ const MemberDetails= ({Visible, visibles,memberValue,memberOption}) => {
 
   function loadData() {
     setLoading(true);
+
+    const params={
+      option :memberOption,
+      value :memberValue
+    }
+    memberService.memberSearch(params)
+      .then((res) => {
+        setMemberInfo(res.data)
+      })
+      .catch((err) => {
+        console.log(err);
+        setMemberInfoErr(err.message)
+      });
+
     getDataFromServer().then((res) => {
-      setData(res);
+      // setData(res);
+
       setLoading(false);
     });
   }
-
 
   //=======================================================
 
@@ -93,26 +113,7 @@ const MemberDetails= ({Visible, visibles,memberValue,memberOption}) => {
 
 
 
-  console.log(memberValue,memberOption)
 
-  useEffect(() => {
-    memberData()
-    loadData();
-  }, []);
-
-  function memberData(){
-   const params={
-     option :memberOption,
-     value :memberValue
-    }
-      // memberService.memberInfo(params)
-      // .then((res) => {
-      //   console.log(res);
-      // })
-      // .catch((err) => {
-      //   console.log(err);
-      // });
-  }
 
 
   return (
@@ -135,22 +136,16 @@ const MemberDetails= ({Visible, visibles,memberValue,memberOption}) => {
         afterClose={() => setData([])}
     >
 
+        {memberInfo.length>0?
 
+          (<>
+
+
+        <Card style={{ padding: '14px 20px' }}>
+          <InfoHeader memberInfo={memberInfo} loading={loading} />
+        </Card>
         <Spin tip='载入数据中...' loading={loading}>
-          <div style={{ height: 266, visibility: !loading ? 'visible' : 'hidden' }}>
-            <p>
-              You can select multiple plugins for the current project so that our app will verify
-              that the plugins are installed and enabled.
-            </p>
-            <p
-              style={{
-                marginTop: 20,
-                marginBottom: 8,
-                fontWeight: 600,
-              }}
-            >
-              List of plugins
-            </p>
+          <div style={{ height: '100%', visibility: !loading ? 'visible' : 'hidden' }}>
 
             <Divider
               style={{
@@ -159,15 +154,16 @@ const MemberDetails= ({Visible, visibles,memberValue,memberOption}) => {
             />
 
             <Tabs
+              style={{ height: '100%'}}
               defaultActiveTab='1'
               extra={
                 <Button size='small' type='secondary'>
-                  行为啊啊啊
+                  Active
                 </Button>
               }
             >
-              <TabPane key='1' title='已购产品'>
-                <Typography.Paragraph style={style}>Content of Tab Panel 1
+              <TabPane key='1' title='基本信息'>
+                <Typography.Paragraph style={style}>
                   <Table
                     columns={columns}
                     data={data}
@@ -185,10 +181,8 @@ const MemberDetails= ({Visible, visibles,memberValue,memberOption}) => {
 
                 </Typography.Paragraph>
               </TabPane>
-              <TabPane key='2' title='生效中的属性' >
-                <Typography.Paragraph style={style}>Content of Tab Panel 2
-
-
+              <TabPane key='2' title='我的产品' >
+                <Typography.Paragraph style={style}>
                   <Table
                     columns={columns}
                     data={data}
@@ -206,10 +200,8 @@ const MemberDetails= ({Visible, visibles,memberValue,memberOption}) => {
 
                 </Typography.Paragraph>
               </TabPane>
-              <TabPane key='3' title='记录'>
-                <Typography.Paragraph style={style}>Content of Tab Panel 3
-
-
+              <TabPane key='3' title='最新动态'>
+                <Typography.Paragraph style={style}>
                   <Table
                     columns={columns}
                     data={data}
@@ -235,8 +227,7 @@ const MemberDetails= ({Visible, visibles,memberValue,memberOption}) => {
 
 
 
-
-
+    </>): <> <Alert style={{ marginTop: 20,marginBottom:30}} type='error' content={memberInfoErr} /><Empty /></>}
 
 
 
@@ -245,4 +236,4 @@ const MemberDetails= ({Visible, visibles,memberValue,memberOption}) => {
   );
 }
 
-export default MemberDetails;
+export default Info;

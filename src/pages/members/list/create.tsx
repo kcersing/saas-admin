@@ -12,8 +12,16 @@ function CreateMember() {
 
   function onOk() {
     form.validate().then((res) => {
+     let files="";
+      if(res.files[0].response.code===0){
+        if(res.files[0].response.data.path==="imagebucket/"){
+          files = ""
+        }else {
+          files = res.files[0].response.data.path
+        }
+      }
       const params = {
-        avatar:res.files,
+        avatar:files,
         mobile:res.mobile,
         email:res.email,
         nickname:res.name,
@@ -30,6 +38,8 @@ function CreateMember() {
           setConfirmLoading(false);
         })
         .catch((err) => {
+          setVisible(false);
+          setConfirmLoading(false);
           console.log(err);
         });
     });

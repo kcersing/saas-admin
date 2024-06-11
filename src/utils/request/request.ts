@@ -44,10 +44,20 @@ service.interceptors.response.use(
     const {response} = error;
     if (response) {
 
-     // if(window.location.pathname !== "/login"){
-     //    window.location.href="/login"
-     //   return
-     //  }
+     if(window.location.pathname !== "/login"){
+        window.location.href="/login"
+       return
+      }
+
+      //特定状态码 处理特定的需求
+      if(response.status == 401){
+          Message.info('您的账号已登出或超时，即将登出...');
+          console.log('登录异常，执行登出...');
+        if(window.location.pathname !== "/login"){
+          window.location.href="/login"
+          return
+        }
+      }
 
       // 请求已发出，但是不在2xx的范围
       console.log(response.status);
@@ -112,17 +122,19 @@ const requestHandler = <T>(method: 'get' | 'post' | 'put' | 'delete', url: strin
         resolve(data);
         return
       }
-
+      //特定状态码 处理特定的需求
+      if(data.code == 401){
+        Message.info('您的账号已登出或超时，即将登出...');
+        console.log('登录异常，执行登出...');
+        if(window.location.pathname !== "/login"){
+          window.location.href="/login"
+          return
+        }
+      }
       if(data.code !== 0){
-
-        // //特定状态码 处理特定的需求
-        // if(data.code == 401){
-        //     Message.info('您的账号已登出或超时，即将登出...');
-        //     console.log('登录异常，执行登出...');
-        // }
-
         const e = JSON.stringify(data);
-        Message.info(`请求错误：${e}`);
+        // Message.info(`请求错误：${e}`);
+        console.log(`请求错误：${e}`);
         //数据请求错误 使用reject将错误返回
         reject(data);
       } else{

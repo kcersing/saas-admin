@@ -6,7 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="febb57be-281a-4d53-b36f-ad64d8b5c0e2" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/member/memberDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/member/memberDetails.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/member.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/member.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NavBar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NavBar/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/locale/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/locale/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/components/member/memberDetails.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/components/workplace/memberSearch.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/workplace/memberSearch.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/members/list/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/members/list/create.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/members/list/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/members/list/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/request/request.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/request/request.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +49,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;arco&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/www/vben-admin&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/www/saas/saas-admin/src/pages/components/member&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -49,18 +57,18 @@
     &quot;node.js.selected.package.stylelint&quot;: &quot;D:\\www\\saas\\saas-admin\\node_modules\\stylelint&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\www\\vben-admin\\node_modules\\typescript\\lib&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;watcher.settings&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\www\\saas\\saas-admin\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\www\saas\saas-admin\src\pages\components\member" />
       <recent name="D:\www\saas\saas-admin\src\pages\schedules\schedule" />
       <recent name="D:\www\saas\saas-admin\src\pages\sys\contract" />
       <recent name="D:\www\saas\saas-admin\src\pages\components\select" />
       <recent name="D:\www\saas\saas-admin\src\pages\members_product" />
-      <recent name="D:\www\saas\saas-admin\src\pages\components\details" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\www\saas\saas-admin\src\pages\components" />
@@ -73,7 +81,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.17011.90" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.17890.13" />
       </set>
     </attachedChunks>
   </component>
@@ -132,11 +140,10 @@
       <workItem from="1717552558132" duration="17066000" />
       <workItem from="1717638473537" duration="3857000" />
       <workItem from="1717724855401" duration="9655000" />
-      <workItem from="1717890708342" duration="136000" />
-      <workItem from="1717890884749" duration="726000" />
-      <workItem from="1717948407645" duration="938000" />
-      <workItem from="1717949383007" duration="10890000" />
-      <workItem from="1717990499114" duration="4147000" />
+      <workItem from="1718077057011" duration="3656000" />
+      <workItem from="1718089178051" duration="8684000" />
+      <workItem from="1718099620692" duration="48000" />
+      <workItem from="1718099811002" duration="921000" />
     </task>
     <servers />
   </component>

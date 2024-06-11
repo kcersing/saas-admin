@@ -73,7 +73,7 @@ const i18n = {
     'message.empty': '清空',
     'message.empty.tips': '暂无内容',
     'message.lang.tips': '语言切换至 ',
-    'navbar.search.placeholder': '输入内容查询',
+    'navbar.search.placeholder': '输入会员手机号',
   },
 };
 

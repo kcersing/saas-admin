@@ -59,27 +59,29 @@ const useRoute = (userPermission): [IRoute[], string] => {
   const [permissionRoute, setPermissionRoute] = useState(routes);
 
   const [menuData, setMenuData] = useState([]);
-  function fetchData() {
 
-    setMenuData(routes);
-    userMuen.getUserMenu().then((res) => {
-      console.log(res.data)
-      setMenuData(res.data);
-    });
-    console.log(menuData)
-    let newRoutes:IRoute[] =[]
-    if ( menuData.length>0) {
-       newRoutes = filterRoute(menuData);
-      setPermissionRoute(newRoutes);
-    }
 
-  //  const newRoutes = filterRoute(routes);
-
-  }
 
   useEffect(() => {
     fetchData();
   }, [JSON.stringify(userPermission)]);
+
+
+  function fetchData() {
+    setMenuData(routes);
+    userMuen.getUserMenu().then((res) => {
+      console.log(res.data);
+      setMenuData(res.data);
+    });
+    console.log(menuData);
+    let newRoutes: IRoute[] = [];
+
+    newRoutes = filterRoute(menuData);
+    setPermissionRoute(newRoutes);
+    //  const newRoutes = filterRoute(routes);
+
+  }
+
 
 
   const defaultRoute = useMemo(() => {

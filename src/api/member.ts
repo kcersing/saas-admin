@@ -9,11 +9,15 @@ enum Api {
   MemberUpdate = ' /api/admin/member/update',
   MemberCreate = '/api/admin/member/create',
 
+  Logout = '/api/member/token',
 
   MemberStatus = '/api/admin/member/status',
+
   ChangePassword = '/api/admin/member/change-password',
-  Logout = '/api/member/token',
   GetPermCode = '/api/admin/member/perm',
+
+  MemberSearch = '/api/admin/member/search'
+
 
 }
 
@@ -27,10 +31,16 @@ export const memberUpdate = (params: object) => request.post(Api.MemberUpdate, p
 
 export const memberCreate = (params: object) => request.post(Api.MemberCreate, params);
 
+export const memberStatus = (params: object) => request.post(Api.MemberStatus, params);
+
+export const memberSearch = (params: object) => request.post(Api.MemberSearch, params);
+
 export default {
   memberLogin,
   memberInfo,
   memberList,
   memberUpdate,
-  memberCreate
+  memberCreate,
+  memberStatus,
+  memberSearch
 };
