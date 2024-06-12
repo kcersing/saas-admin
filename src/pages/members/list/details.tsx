@@ -1,17 +1,10 @@
-
 import React, {useRef, useState } from 'react';
 
 import { Button, Modal,Space,Typography, Descriptions, Statistic,Card } from '@arco-design/web-react';
-import CardPropertyDetails  from '@/pages/components/details/cardProperty';
-import CourseProperty from '@/pages/components/details/courseProperty';
-import ClassProperty from '@/pages/components/details/classProperty';
-
-
 
 function Details({ props }) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
-  console.log(props)
 
   const title= props.name+"(ID:"+props.id+")"
   const data = [

@@ -4,7 +4,7 @@ import contractService from '@/api/contract';
 import EditorNode from '@/pages/components/bytemd';
 const FormItem = Form.Item;
 import React, { useMemo, useState } from 'react'
-function Create() {
+function Create({Reload}) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
@@ -28,8 +28,11 @@ function Create() {
         })
         .catch((err) => {
           console.log(err);
+          setVisible(false);
+          setConfirmLoading(false);
         });
     });
+    Reload(true)
   }
 
   const formItemLayout = {

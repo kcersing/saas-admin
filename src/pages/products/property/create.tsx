@@ -10,14 +10,12 @@ import SelectPropertyType from '@/pages/components/select/selectPropertyType';
 
 const FormItem = Form.Item;
 
-function CreateProperty() {
+function Create({Reload}) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
 
-
   // useEffect(() => {}, []);
-
 
   function onOk() {
     form.validate().then((res) => {
@@ -37,11 +35,15 @@ function CreateProperty() {
           console.log(res);
           setVisible(false);
           setConfirmLoading(false);
+          Reload(true)
         })
         .catch((err) => {
           console.log(err);
+          setVisible(false);
+          setConfirmLoading(false);
         });
     });
+
   }
 
   const formItemLayout = {
@@ -116,4 +118,4 @@ function CreateProperty() {
   );
 }
 
-export default CreateProperty;
+export default Create;

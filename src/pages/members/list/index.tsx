@@ -16,7 +16,7 @@ import memberService  from '@/api/member';
 import SearchForm from './form';
 import { IconDownload, IconPlus } from '@arco-design/web-react/icon';
 import styles from './style/index.module.less';
-import Creates from './create';
+import Create from './create';
 // ======================================
 
 const { Title } = Typography;
@@ -86,7 +86,11 @@ function Product() {
     setFormParams(params);
   }
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-
+  const Reload = (r) => {
+    if(r){
+      fetchData();
+    }
+  }
   return (
     <Card>
       <Title heading={6}>列表</Title>
@@ -94,9 +98,8 @@ function Product() {
       <PermissionWrapper>
         <div className={styles['button-group']}>
           <Space>
-            <Button onClick={(e) => {
-              fetchData();
-            }}>刷新列表</Button>
+            <Create Reload={Reload}/>
+            <Button onClick={(e) => {fetchData();}}>刷新列表</Button>
             <Button>导入</Button>
           </Space>
           <Space>

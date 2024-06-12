@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Typography, Badge } from '@arco-design/web-react';
+import { Button,Space, Typography, Badge,Avatar } from '@arco-design/web-react';
 import IconText from './icons/text.svg';
 import IconHorizontalVideo from './icons/horizontal.svg';
 import IconVerticalVideo from './icons/vertical.svg';
@@ -25,6 +25,20 @@ export function getColumns(
       title: 'ID',
       dataIndex: 'id',
     },
+
+    {
+      title: '头像',
+      dataIndex: 'avatar',
+      render: (value) =>
+         <Avatar>
+              <img
+                alt='avatar'
+                src={value}
+              />
+            </Avatar>
+      ,
+    },
+
     {
       title: '名称',
       dataIndex: 'name',
@@ -55,7 +69,7 @@ export function getColumns(
       dataIndex: 'operations',
       headerCellStyle: { paddingLeft: '15px' },
       render: (_, record) => (
-        <>
+        <Space>
           <Edit props={record}/>
           <Details props={record} />
 
@@ -66,7 +80,7 @@ export function getColumns(
           {/*>*/}
           {/*  {t['searchTable.columns.operations.view']}*/}
           {/*</Button>*/}
-        </>
+        </Space>
       ),
     },
   ];

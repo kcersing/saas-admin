@@ -5,7 +5,7 @@ import memberService from '@/api/member';
 
 const FormItem = Form.Item;
 
-function CreateMember() {
+function Create({Reload}) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
@@ -19,7 +19,13 @@ function CreateMember() {
         setVisible(false);
         setConfirmLoading(false);
       }, 1500);
+    })
+      .catch((err) => {
+      console.log(err);
+      setVisible(false);
+      setConfirmLoading(false);
     });
+    Reload(true)
   }
 
   const formItemLayout = {
@@ -106,13 +112,10 @@ function CreateMember() {
             <Input placeholder=""  />
           </FormItem>
 
-
-
-
         </Form>
       </Modal>
     </div>
   );
 }
 
-export default  CreateMember;
+export default  Create;

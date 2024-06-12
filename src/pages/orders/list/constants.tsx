@@ -1,5 +1,5 @@
 import React from 'react';
-import { Space, Typography, Badge } from '@arco-design/web-react';
+import { Space,Space, Typography, Badge } from '@arco-design/web-react';
 import IconText from './icons/text.svg';
 import IconHorizontalVideo from './icons/horizontal.svg';
 import IconVerticalVideo from './icons/vertical.svg';
@@ -99,7 +99,7 @@ export function getColumns(
       width:240,
 
       render: (_, record) => (
-        <>
+        <Space>
           {record.status===0 ?null:<OrderPay orderSn={""} total={"100"}/> }
           {record.status===1 ?null:<OrderPay orderSn={""} total={"100"}/> }
           <Edit props={record}/>
@@ -111,7 +111,7 @@ export function getColumns(
           {/*>*/}
           {/*  {t['searchTable.columns.operations.view']}*/}
           {/*</Button>*/}
-        </>
+        </Space>
       ),
     },
   ];

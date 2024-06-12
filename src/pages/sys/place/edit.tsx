@@ -16,7 +16,7 @@ import memberService from '@/api/member';
 
 const FormItem = Form.Item;
 
-function EditMember({ props }) {
+function Edit({ props }) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
@@ -94,4 +94,4 @@ function EditMember({ props }) {
   );
 }
 
-export default EditMember;
+export default Edit;

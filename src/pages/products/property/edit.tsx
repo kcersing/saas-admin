@@ -11,7 +11,6 @@ function Edit({ props }) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
-  const [propertyType, setPropertyType] = useState([]);
 
   useEffect(() => {
 
@@ -43,9 +42,12 @@ function Edit({ props }) {
           console.log(res);
           setVisible(false);
           setConfirmLoading(false);
+          Reload(true)
         })
         .catch((err) => {
           console.log(err);
+          setVisible(false);
+          setConfirmLoading(false);
         });
 
 

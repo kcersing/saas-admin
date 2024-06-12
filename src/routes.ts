@@ -2,6 +2,8 @@ import auth from '@/utils/authentication';
 import { useEffect, useMemo, useState } from 'react';
 import { IRoute, routes } from '../types/routes';
 import userMuen from '@/api/menu';
+import { useSelector } from 'react-redux';
+import { GlobalState } from '../types/global';
 
 export const getName = (path: string, routes) => {
   return routes.find((item) => {
@@ -58,30 +60,14 @@ const useRoute = (userPermission): [IRoute[], string] => {
 
   const [permissionRoute, setPermissionRoute] = useState(routes);
 
-  const [menuData, setMenuData] = useState([]);
 
-
-
+  const userMenu = useSelector((state: GlobalState) => state.userMenu);
   useEffect(() => {
-    fetchData();
-  }, [JSON.stringify(userPermission)]);
-
-
-  function fetchData() {
-    setMenuData(routes);
-    userMuen.getUserMenu().then((res) => {
-      console.log(res.data);
-      setMenuData(res.data);
-    });
-    console.log(menuData);
     let newRoutes: IRoute[] = [];
-
-    newRoutes = filterRoute(menuData);
+    newRoutes = filterRoute(userMenu);
     setPermissionRoute(newRoutes);
-    //  const newRoutes = filterRoute(routes);
 
-  }
-
+  }, [userMenu,JSON.stringify(userPermission)]);
 
 
   const defaultRoute = useMemo(() => {

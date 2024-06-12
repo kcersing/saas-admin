@@ -77,6 +77,11 @@ function Contract() {
     setPatination({ ...pagination, current: 1 });
     setFormParams(params);
   }
+  const Reload = (r) => {
+    if(r){
+      fetchData();
+    }
+  }
   return (
     <Card>
       <Title heading={6}>合同列表</Title>
@@ -84,7 +89,7 @@ function Contract() {
       <PermissionWrapper>
         <div className={styles['button-group']}>
           <Space>
-            <Create />
+            <Create Reload={Reload}/>
             <Button onClick={(e) => { fetchData();}}>刷新列表</Button>
             <Button>导入</Button>
           </Space>

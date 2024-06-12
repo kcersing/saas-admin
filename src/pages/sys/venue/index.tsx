@@ -15,7 +15,7 @@ import venueService from '@/api/venue';
 import SearchForm from './form';
 import { IconDownload, IconPlus } from '@arco-design/web-react/icon';
 import styles from './style/index.module.less';
-import CreateMember from './create';
+import Create from './create';
 
 // ======================================
 
@@ -81,6 +81,11 @@ function Venue() {
     setPatination({ ...pagination, current: 1 });
     setFormParams(params);
   }
+  const Reload = (r) => {
+    if(r){
+      fetchData();
+    }
+  }
   return (
     <Card>
       <Title heading={6}>场馆列表</Title>
@@ -88,6 +93,7 @@ function Venue() {
       <PermissionWrapper>
         <div className={styles['button-group']}>
           <Space>
+            <Create Reload={Reload} />
             <Button onClick={(e)=>{fetchData();}}>刷新列表</Button>
             <Button>导入</Button>
           </Space>

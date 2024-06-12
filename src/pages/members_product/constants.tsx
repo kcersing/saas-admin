@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Typography, Badge,Image } from '@arco-design/web-react';
+import { Button, Space,Typography, Badge,Image } from '@arco-design/web-react';
 import IconText from './icons/text.svg';
 import IconHorizontalVideo from './icons/horizontal.svg';
 import IconVerticalVideo from './icons/vertical.svg';
@@ -105,7 +105,7 @@ export function getColumns(
       dataIndex: 'operations',
       headerCellStyle: { paddingLeft: '15px' },
       render: (_, record) => (
-        <>
+        <Space>
           <Edit props={record}/>
           <Details props={record} />
           {/*<Button*/}
@@ -115,7 +115,7 @@ export function getColumns(
           {/*>*/}
           {/*  {t['searchTable.columns.operations.view']}*/}
           {/*</Button>*/}
-        </>
+        </Space>
       ),
     },
   ];

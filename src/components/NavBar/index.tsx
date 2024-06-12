@@ -24,7 +24,7 @@ import {
   IconTag,
 } from '@arco-design/web-react/icon';
 import { useSelector, useDispatch } from 'react-redux';
-import { GlobalState } from '@/store';
+
 import { GlobalContext } from '@/context';
 import useLocale from '@/utils/useLocale';
 import Logo from '@/assets/logo.svg';
@@ -35,10 +35,13 @@ import styles from './style/index.module.less';
 import defaultLocale from '@/locale';
 import useStorage from '@/utils/useStorage';
 import { generatePermission } from '@/routes';
+import { GlobalState } from '../../../types/global';
 
 function Navbar({ show }: { show: boolean }) {
   const t = useLocale();
+
   const userInfo = useSelector((state: GlobalState) => state.userInfo);
+
   const dispatch = useDispatch();
 
   const [_, setUserStatus] = useStorage('userStatus');

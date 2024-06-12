@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Typography, Badge,Image } from '@arco-design/web-react';
+import { Button,Space, Typography, Badge,Image } from '@arco-design/web-react';
 import IconText from './icons/text.svg';
 import IconHorizontalVideo from './icons/horizontal.svg';
 import IconVerticalVideo from './icons/vertical.svg';
@@ -75,14 +75,10 @@ export function getColumns(
       dataIndex: 'status',
       render: (x: number) => {
         if (x === 0) {
-          return <Badge status="default" text={Status[x]}></Badge>;
+          return <Badge status="error" text={Status[x]}></Badge>;
         }else if (x === 1){
-          return <Badge status="processing" text={Status[x]}></Badge>;
-        }else if (x === 2){
           return <Badge status="success" text={Status[x]}></Badge>;
-        }else if (x === 3){
-          return <Badge status="warning" text={Status[x]}></Badge>;
-        }else {
+        } else {
           return <Badge status="error" text={Status[x]}></Badge>;
         }
       },
@@ -105,7 +101,7 @@ export function getColumns(
       dataIndex: 'operations',
       headerCellStyle: { paddingLeft: '15px' },
       render: (_, record) => (
-        <>
+        <Space>
           <Edit props={record}/>
           <Details props={record} />
           {/*<Button*/}
@@ -115,7 +111,7 @@ export function getColumns(
           {/*>*/}
           {/*  {t['searchTable.columns.operations.view']}*/}
           {/*</Button>*/}
-        </>
+        </Space>
       ),
     },
   ];

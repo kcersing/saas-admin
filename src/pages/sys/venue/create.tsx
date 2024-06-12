@@ -6,13 +6,12 @@ import venueService from '@/api/venue';
 const TextArea = Input.TextArea;
 const FormItem = Form.Item;
 
-function CreateMember() {
+function Create({Reload}) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
 
-
-
+  
   function onOk() {
     form.validate().then((res) => {
       const params = {
@@ -33,8 +32,11 @@ function CreateMember() {
         })
         .catch((err) => {
           console.log(err);
+          setVisible(false);
+          setConfirmLoading(false);
         });
     });
+    Reload(true)
   }
 
   const formItemLayout = {
@@ -108,4 +110,4 @@ function CreateMember() {
   );
 }
 
-export default  CreateMember;
+export default  Create;

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Button, Typography, Badge } from '@arco-design/web-react';
+import { Button, Space,Typography, Badge } from '@arco-design/web-react';
 import IconText from './icons/text.svg';
 import IconHorizontalVideo from './icons/horizontal.svg';
 import IconVerticalVideo from './icons/vertical.svg';
 import dayjs from 'dayjs';
 
-import EditMember from './edit';
+import Edit from './edit';
 import { ContentType, FilterType, Status } from './index';
 
 const { Text } = Typography;
@@ -56,9 +56,8 @@ export function getColumns(
       dataIndex: 'operations',
       headerCellStyle: { paddingLeft: '15px' },
       render: (_, record) => (
-        <>
-
-          <EditMember props={record}/>
+        <Space>
+          <Edit props={record}/>
           <Button
             type="text"
             size="small"
@@ -66,7 +65,7 @@ export function getColumns(
           >
             {t['searchTable.columns.operations.view']}
           </Button>
-        </>
+        </Space>
       ),
     },
   ];

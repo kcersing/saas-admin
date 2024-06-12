@@ -11,7 +11,6 @@ import ClassProperty from '@/pages/components/details/classProperty';
 function Details({ props }) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
-  console.log(props)
 
   const title= props.name+"(ID:"+props.id+")"
   const data = [

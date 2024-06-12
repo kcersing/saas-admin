@@ -15,7 +15,7 @@ import userService from '@/api/user';
 import SearchForm from './form';
 import { IconDownload, IconPlus } from '@arco-design/web-react/icon';
 import styles from './style/index.module.less';
-import Creates from './create';
+import Create from './create';
 
 // ======================================
 
@@ -77,6 +77,11 @@ function User() {
     setPatination({ ...pagination, current: 1 });
     setFormParams(params);
   }
+  const Reload = (r) => {
+    if(r){
+      fetchData();
+    }
+  }
   return (
     <Card>
       <Title heading={6}>会员列表</Title>
@@ -84,6 +89,7 @@ function User() {
       <PermissionWrapper>
         <div className={styles['button-group']}>
           <Space>
+            <Create Reload={Reload}/>
             <Button onClick={(e)=>{fetchData();}}>刷新列表</Button>
             <Button>导入</Button>
           </Space>

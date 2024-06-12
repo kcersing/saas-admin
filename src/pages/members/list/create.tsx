@@ -5,21 +5,26 @@ import memberService from '@/api/member';
 
 const FormItem = Form.Item;
 
-function CreateMember() {
+function Create({Reload}) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
 
   function onOk() {
     form.validate().then((res) => {
-     let files="";
-      if(res.files[0].response.code===0){
-        if(res.files[0].response.data.path==="imagebucket/"){
-          files = ""
-        }else {
-          files = res.files[0].response.data.path
+     let files="imagebucket/c.jpg";
+      console.log(res.files)
+
+      if(res.files !== undefined && res.files.length> 0 && res.files[0].response.code===0){
+        if(res.files[0].response.code===0){
+          if(res.files[0].response.data.path==="imagebucket/"){
+            files = "imagebucket/c.jpg";
+          }else {
+            files = res.files[0].response.data.name
+          }
         }
       }
+
       const params = {
         avatar:files,
         mobile:res.mobile,
@@ -43,6 +48,7 @@ function CreateMember() {
           console.log(err);
         });
     });
+    Reload(true)
   }
 
   const formItemLayout = {
@@ -128,4 +134,4 @@ function CreateMember() {
   );
 }
 
-export default CreateMember;
+export default Create;

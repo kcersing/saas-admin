@@ -4,7 +4,7 @@ import React from 'react';
 function ClassProperty(props: {
   card: any,
 }){
-  console.log(props)
+
   return <Card bordered title='团课属性' style={{ marginBottom: 20 , width: 960}}>
 
     {Array.isArray(props.card)?  props.card.map((item, index) => {

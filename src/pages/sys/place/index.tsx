@@ -15,7 +15,7 @@ import SearchForm from './form';
 import { IconDownload } from '@arco-design/web-react/icon';
 import styles from './style/index.module.less';
 import venueService from '@/api/venue';
-
+import Create from './create';
 // ======================================
 
 const { Title } = Typography;
@@ -76,6 +76,13 @@ function Place() {
     setPatination({ ...pagination, current: 1 });
     setFormParams(params);
   }
+
+  const Reload = (r) => {
+    if(r){
+      fetchData();
+    }
+  }
+
   return (
     <Card>
       <Title heading={6}>会员列表</Title>
@@ -83,6 +90,7 @@ function Place() {
       <PermissionWrapper>
         <div className={styles['button-group']}>
           <Space>
+            <Create Reload={Reload} />
             <Button onClick={(e)=>{fetchData();}}>刷新列表</Button>
             <Button>导入</Button>
           </Space>

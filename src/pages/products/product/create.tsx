@@ -7,7 +7,7 @@ import productService from '@/api/product';
 const TextArea = Input.TextArea;
 
 const FormItem = Form.Item;
-function Create() {
+function Create({Reload}) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
@@ -27,7 +27,6 @@ function Create() {
       console.log(params)
       setConfirmLoading(true);
 
-
       productService.productCreate(params)
         .then((res) => {
           console.log(res);
@@ -36,8 +35,12 @@ function Create() {
         })
         .catch((err) => {
           console.log(err);
+          setVisible(false);
+          setConfirmLoading(false);
         });
+
     });
+    Reload(true)
   }
 
   const formItemLayout = {

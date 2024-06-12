@@ -102,7 +102,11 @@ console.log(venueList)
 
   const Option = Select.Option;
 
-
+  const Reload = (r) => {
+    if(r){
+      fetchData();
+    }
+  }
   return (
     <div style={{ width: '100%' }}>
       <Card>
@@ -171,7 +175,7 @@ console.log(venueList)
               >
                 <Typography.Text>{day.day}{day.week}</Typography.Text>
                 <Card>
-                  <Create date={day.day} />
+                  <Create Reload={Reload} date={day.day} />
                 </Card>
               </Card>
 

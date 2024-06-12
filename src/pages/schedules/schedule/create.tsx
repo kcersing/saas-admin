@@ -18,7 +18,7 @@ const TextArea = Input.TextArea;
 
 const FormItem = Form.Item;
 
-function Create( props: { date?: string}) {
+function Create({Reload}, props: { date?: string}) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
@@ -52,8 +52,11 @@ function Create( props: { date?: string}) {
         })
         .catch((err) => {
           console.log(err);
+          setVisible(false);
+          setConfirmLoading(false);
         });
     });
+    Reload(true)
   }
 
   const formItemLayout = {
@@ -113,10 +116,7 @@ function Create( props: { date?: string}) {
           <SelectStaffList mode="" />
           <FormItem label="开始时间" field="startTime" rules={[{ required: true }]}>
           <TimePicker
-            step={{
-              minute: 5,
-              second: 10,
-            }}
+            step={{ minute: 5, second: 10}}
             style={{ width: 200, }}
           />
           </FormItem>

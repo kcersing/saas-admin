@@ -45,7 +45,7 @@ function Index() {
         payload: { userInfo: {
             id: res.data.id,
             name: res.data.nickname,
-            avatar:res.data.nickname,
+            avatar:res.data.avatar,
             job: res.data.job,
             jobName: res.data.jobName,
             organization: res.data.organization,
@@ -63,7 +63,7 @@ function Index() {
     userMenu.getUserMenu().then((res) => {
       store.dispatch({
         type: 'update-UserMenuRole',
-        payload: { userMenu: res},
+        payload: { userMenu: res.data},
       });
     });
   }
