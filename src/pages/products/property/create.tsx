@@ -10,7 +10,7 @@ import SelectPropertyType from '@/pages/components/select/selectPropertyType';
 
 const FormItem = Form.Item;
 
-function Create({Reload}) {
+function Create(props: { Reload: (arg0: boolean) => void; }) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
@@ -35,7 +35,7 @@ function Create({Reload}) {
           console.log(res);
           setVisible(false);
           setConfirmLoading(false);
-          Reload(true)
+          props.Reload(true)
         })
         .catch((err) => {
           console.log(err);

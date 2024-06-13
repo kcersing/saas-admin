@@ -5,7 +5,7 @@ import orderService from '@/api/order';
 
 const FormItem = Form.Item;
 
-function Edit({ props }) {
+function Edit({props}) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
@@ -31,6 +31,7 @@ function Edit({ props }) {
           console.log(res);
           setVisible(false);
           setConfirmLoading(false);
+          props.Reload(true)
         })
         .catch((err) => {
           console.log(err);

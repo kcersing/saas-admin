@@ -149,6 +149,10 @@ function Navbar({ show }: { show: boolean }) {
       <ul className={styles.right}>
         <li>
           <Input.Search
+            searchButton
+            onSearch={(v)=>{
+              console.log(v)
+            }}
             className={styles.round}
             placeholder={t['navbar.search.placeholder']}
           />

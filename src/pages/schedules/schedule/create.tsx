@@ -18,13 +18,10 @@ const TextArea = Input.TextArea;
 
 const FormItem = Form.Item;
 
-function Create({Reload}, props: { date?: string}) {
+function Create(props: { date: string; Reload: (arg0: boolean) => void; }) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
-
-
-  // useEffect(() => {}, []);
 
 
   function onOk() {
@@ -49,6 +46,7 @@ function Create({Reload}, props: { date?: string}) {
           console.log(res);
           setVisible(false);
           setConfirmLoading(false);
+          props.Reload(true)
         })
         .catch((err) => {
           console.log(err);
@@ -56,7 +54,6 @@ function Create({Reload}, props: { date?: string}) {
           setConfirmLoading(false);
         });
     });
-    Reload(true)
   }
 
   const formItemLayout = {
@@ -115,18 +112,18 @@ function Create({Reload}, props: { date?: string}) {
 
           <SelectStaffList mode="" />
           <FormItem label="开始时间" field="startTime" rules={[{ required: true }]}>
-          <TimePicker
-            step={{ minute: 5, second: 10}}
-            style={{ width: 200, }}
-          />
+            <TimePicker
+              step={{ minute: 5, second: 10}}
+              style={{ width: 200, }}
+            />
           </FormItem>
 
           <FormItem initialValue={1} label="人数" field="num" rules={[{ required: true }]}>
-          <InputNumber
-            min={0}
-            max={15}
-            style={{ width: 200, }}
-          />
+            <InputNumber
+              min={0}
+              max={15}
+              style={{ width: 200, }}
+            />
           </FormItem>
 
 

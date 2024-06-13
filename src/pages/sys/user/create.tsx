@@ -5,7 +5,7 @@ import memberService from '@/api/member';
 
 const FormItem = Form.Item;
 
-function Create({Reload}) {
+function Create(props: { Reload: (arg0: boolean) => void; }) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
@@ -19,13 +19,14 @@ function Create({Reload}) {
         setVisible(false);
         setConfirmLoading(false);
       }, 1500);
+      props.Reload(true);
     })
       .catch((err) => {
         console.log(err);
         setVisible(false);
         setConfirmLoading(false);
       });
-    Reload(true)
+
   }
 
   const formItemLayout = {

@@ -104,7 +104,7 @@ console.log(venueList)
 
   const Reload = (r) => {
     if(r){
-      fetchData();
+      scheduleDateList(thisWeek);
     }
   }
   return (
@@ -175,16 +175,12 @@ console.log(venueList)
               >
                 <Typography.Text>{day.day}{day.week}</Typography.Text>
                 <Card>
-                  <Create Reload={Reload} date={day.day} />
+                  <Create date={day.day} Reload={Reload}/>
                 </Card>
               </Card>
-
-
               {lists[day.day] && lists[day.day].map((value, index) => {
-
                 return (
                   <Details props={value} />
-
                 );
               })}
 

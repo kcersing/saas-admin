@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button,Space, Typography, Badge } from '@arco-design/web-react';
+import { Button, Space, Typography, Badge, Tooltip } from '@arco-design/web-react';
 import IconText from './icons/text.svg';
 import IconHorizontalVideo from './icons/horizontal.svg';
 import IconVerticalVideo from './icons/vertical.svg';
@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 
 import Edit from './edit';
 import { Status } from './index';
-import { IconIdcard,IconTags,IconTag } from '@arco-design/web-react/icon';
+import { IconIdcard, IconTags, IconTag, IconUserGroup } from '@arco-design/web-react/icon';
 import Details from './details';
 
 const { Text } = Typography;
@@ -50,18 +50,22 @@ export function getColumns(
       placeholder: <>暂无</> ,
       render: (value) => <Text copyable>{value}</Text>,
     },
+
     {
-      title: '总时长',
-      dataIndex: 'duration',
+      title: '属性',
+      // dataIndex: 'length',
       placeholder: <>暂无</> ,
-      render: (value) => <Text copyable>{value}</Text>,
+      render: (_, record) =>  (
+        <>
+        <Space>
+          {record.length>0 && <Tooltip content='单次时长'> 单次时长:{record.length}</Tooltip> }
+          {record.count>0 &&  <Tooltip content='次数'> 次数:{record.count}</Tooltip> }
+          {record.duration>0 &&  <Tooltip content='总时长'>总时长:{record.duration}</Tooltip> }
+        </Space>
+      </>),
     },
-    {
-      title: '单次时长',
-      dataIndex: 'length',
-      placeholder: <>暂无</> ,
-      render: (value) => <Text copyable>{value}</Text>,
-    },
+
+
     {
       title: '场馆',
       dataIndex: 'venue',
