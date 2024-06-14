@@ -19,6 +19,7 @@ function Edit({props}) {
       ve.push(v.id)
     ));
     setVenues(ve);
+
   }, []);
 
 

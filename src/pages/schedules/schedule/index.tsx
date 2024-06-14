@@ -1,4 +1,14 @@
-import { Button, Grid, Typography, Card, Divider, DatePicker, Descriptions, Select } from '@arco-design/web-react';
+import {
+  Button,
+  Grid,
+  Typography,
+  Card,
+  Divider,
+  DatePicker,
+  Descriptions,
+  Select,
+  Tooltip
+} from '@arco-design/web-react';
 import dayjs from 'dayjs';
 import scheduleService from '@/api/schedule';
 import weekday from 'dayjs/plugin/weekday';
@@ -6,11 +16,12 @@ import 'dayjs/locale/zh-cn';
 import React, { useEffect, useState } from 'react';
 import {
   IconLocation,
-  IconDelete
+  IconDelete, IconUserGroup, IconHistory, IconUser, IconAttachment
 } from '@arco-design/web-react/icon';
 import Create from './create';
 import Details from './details';
 import sysService from '@/api/sys';
+import Info from '@/pages/components/member/info';
 
 
 const Row = Grid.Row;
@@ -23,6 +34,7 @@ export default function Schedule() {
   const week = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'];
   let ws = w();
   const [weeks, setWeeks] = useState(ws);
+
 
   const [lists, setLists] = useState([]);
   function scheduleDateList(params) {
@@ -37,7 +49,7 @@ export default function Schedule() {
       });
   }
   const [venueList, setVenueList] = useState([]);
-  const [dvenueId, setDVenueId] = useState(1);
+  const [dvenueId, setDVenueId] = useState(100000);
 
 
 
@@ -52,14 +64,21 @@ export default function Schedule() {
         }
       });
   }
-console.log(venueList)
-
   const [venueId, setVenueId] = useState(dvenueId)
   const thisWeek = {
     'startTime': dayjs().startOf('week').format('YYYY-MM-DD'),
     'endTime': dayjs().endOf('week').format('YYYY-MM-DD'),
     'venueId':venueId,
   };
+
+  const [detailsVisible, setDetailsVisible] = useState(false);
+  const [detailsProps, setDetailsProps] = useState([]);
+
+
+  const DetailsVisible = (v) => {
+    setDetailsVisible(v);
+  };
+
   useEffect(() => {
     venueListData();
     scheduleDateList(thisWeek);
@@ -107,11 +126,14 @@ console.log(venueList)
       scheduleDateList(thisWeek);
     }
   }
+
+
+
+
   return (
     <div style={{ width: '100%' }}>
       <Card>
         <Divider orientation="left">
-
           <Select
             defaultValue={dvenueId}
             style={{ width: 200 }}
@@ -179,8 +201,41 @@ console.log(venueList)
                 </Card>
               </Card>
               {lists[day.day] && lists[day.day].map((value, index) => {
+
+                const scheduleData = [
+                  {
+                    label: <Tooltip content="预约人数"> <IconUserGroup /></Tooltip>,
+                    value: value.num_surplus + '-' + value.num + '已预约人数'
+                  },
+                  {
+                    label: <Tooltip content="课程时间"> <IconHistory /></Tooltip>,
+                    value: value.start_time + '-' + value.end_time
+                  },
+                  {
+                    label: <Tooltip content="场地名称"> <IconLocation /></Tooltip>,
+                    value: value.place_name
+                  },
+                  {
+                    label: <Tooltip content="教练名称"> <IconUser /></Tooltip>,
+                    value: value.coach_name
+                  },
+                  {
+                    label: <Tooltip content="备注"> <IconAttachment /></Tooltip>,
+                    value: value.remark
+                  }
+                ];
                 return (
-                  <Details props={value} />
+
+                  <Card onClick={() => {setDetailsProps(value);setDetailsVisible(true);  }} style={{ backgroundColor: '#E8FFFB', marginBottom: 10 }} >
+                    <Descriptions
+                      title={value.name}
+                      column={1}
+                      data={scheduleData}
+                      size={'mini'}
+                      colon
+                      labelStyle={{ textAlign: 'right', paddingRight: 20 }}
+                    />
+                  </Card>
                 );
               })}
 
@@ -188,6 +243,7 @@ console.log(venueList)
           ))}
         </Row>
       </Card>
+      {detailsVisible?<Details detailsProps={detailsProps} Visible={DetailsVisible} visibles={detailsVisible} />:null}
     </div>
   )
     ;

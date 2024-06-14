@@ -64,8 +64,6 @@ export function getColumns(
         </Space>
       </>),
     },
-
-
     {
       title: '场馆',
       dataIndex: 'venue',

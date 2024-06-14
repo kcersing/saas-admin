@@ -1,5 +1,5 @@
-import React from 'react';
-import { Modal, Button, Table, Alert, Card, Descriptions, Space,Tooltip } from '@arco-design/web-react';
+import React, { useEffect } from 'react';
+import { Modal, Button, Table, Alert, Popover, Card, Link, Descriptions, Space, Tooltip } from '@arco-design/web-react';
 import {
   IconAttachment,
   IconHistory,
@@ -8,133 +8,223 @@ import {
   IconUser,
   IconUserGroup
 } from '@arco-design/web-react/icon';
+import Edit from './edit';
+import scheduleService from '@/api/schedule';
+import Subscribe from './subscribe';
 
-function Details({props}) {
+function Details(props) {
 
   const scheduleData = [
     {
-      label: <Tooltip content='预约人数'> <IconUserGroup /></Tooltip>,
-      value: props.num_surplus+"-"+props.num+"已预约人数",
+      label: <Tooltip content="预约人数"> <IconUserGroup /></Tooltip>,
+      value: props.detailsProps.num_surplus + '-' + props.detailsProps.num + '已预约人数'
     },
     {
-      label:<Tooltip content='课程时间'>  <IconHistory /></Tooltip>,
-      value: props.start_time +"-"+ props.end_time,
+      label: <Tooltip content="课程时间"> <IconHistory /></Tooltip>,
+      value: props.detailsProps.start_time + '-' + props.detailsProps.end_time
     },
     {
-      label:<Tooltip content='场地名称'>  <IconLocation /></Tooltip>,
-      value: props.place_name,
+      label: <Tooltip content="场地名称"> <IconLocation /></Tooltip>,
+      value: props.detailsProps.place_name
     },
     {
-      label: <Tooltip content='教练名称'> <IconUser /></Tooltip>,
-      value: props.coach_name,
+      label: <Tooltip content="教练名称"> <IconUser /></Tooltip>,
+      value: props.detailsProps.coach_name
     },
     {
-      label: <Tooltip content='备注'> <IconAttachment /></Tooltip>,
-      value: props.remark,
-    },
+      label: <Tooltip content="备注"> <IconAttachment /></Tooltip>,
+      value: props.detailsProps.remark
+    }
   ];
 
-
-  const [visible, setVisible] = React.useState(false); // table
-
+  const [visible2, setVisible2] = React.useState(false); // Popover
+  const [visible3, setVisible3] = React.useState(false); // Popover
   const columns = [
     {
       title: '姓名',
-      dataIndex: 'name',
-      sorter: (a, b) => a.name.length - b.name.length,
+      dataIndex: 'name'
     },
     {
       title: '性别',
-      dataIndex: 'version',
-      sorter: (a, b) => {
-        const aVersion = a.version.split('.');
-        const bVersion = b.version.split('.');
-
-        for (let i = 0; i < aVersion.length; i++) {
-          if (aVersion[i] === bVersion[i]) continue;
-          return aVersion[i] - bVersion[i];
-        }
-
-        return 1;
-      },
+      dataIndex: 'gender'
     },
     {
       title: '年龄',
-      dataIndex: 'author',
-      sorter: (a, b) => a.author.length - b.author.length,
-    },
+      dataIndex: 'birthday'
 
+    },
     {
       title: '手机号',
-      dataIndex: 'author',
-      sorter: (a, b) => a.author.length - b.author.length,
-    },
+      dataIndex: 'mobile'
 
+    },
     {
       title: '上课情况',
-      dataIndex: 'author',
-      sorter: (a, b) => a.author.length - b.author.length,
+      dataIndex: 'status'
+
     },
     {
       title: '预约时间',
-      dataIndex: 'author',
-      sorter: (a, b) => a.author.length - b.author.length,
+      dataIndex: 'created_at'
+
     },
     {
       title: '操作',
-      dataIndex: 'author',
-
-    },
+      dataIndex: 'operations',
+      headerCellStyle: { paddingLeft: '15px' },
+      render: (_, record) => (
+        <Space>
+          <Button
+            type="outline" status="warning"
+            onClick={() => console.log(record)}
+          >
+            签到
+          </Button>
+          <Button
+            status="danger"
+            onClick={() => console.log(record)}
+          >
+            取消
+          </Button>
+        </Space>
+      )
+    }
 
   ];
-  const data = [
-    {
-      id: '1',
-      name: 'EduTools',
-      version: '12.18.1',
-      author: 'Dickens',
-    },
-  ];
+
+  const [subscribeVisible, setSubscribeVisible] = React.useState(false); // subscribe
+
+  const SubscribeVisible = (v) => {
+    setSubscribeVisible(v);
+  };
+
+  const [listData, setListData] = React.useState([]); // table
+  function getListData() {
+    scheduleService.getScheduleMemberList({schedule: props.detailsProps.id,page:1,pageSize:999})
+      .then((res) => {
+        setListData(res.data);
+      })
+      .catch((err) => {
+        console.log(err)
+      });
+  }
+
+  useEffect(() => {
+    getListData();
+  }, []);
+
+
   return (
     <>
-      <Card style={{backgroundColor: '#E8FFFB', marginBottom: 10 }} onClick={() => setVisible(true)}  >
-          <Descriptions
-            title={props.name}
-            column={1}
-            data={scheduleData}
-            size={"mini"}
-            colon
-            labelStyle={{ textAlign: 'right', paddingRight: 20}}
-          />
-      </Card>
-
       <Modal
         focusLock={true}
         unmountOnExit
-        title={"详情"}
-        visible={visible}
-        style={{width:1000}}
-        onOk={() => setVisible(false)}
-        onCancel={() => setVisible(false)}
+        title={'详情'}
+        visible={props.visibles}
+        onCancel={() => {props.Visible(false)}  }
+        style={{ width: 1000 }}
+        onOk={() => {props.Visible(false)}  }
       >
+
         <Descriptions
-          style={{width:900, padding: 20}}
+          style={{ width: 900, padding: 20 }}
           border
           data={scheduleData.slice(0, 5)}
           column={5}
         />
-        <div style={{width:900, padding: 20}}>
+        <Card>
+          <Space style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            marginRight: 20
+          }}>
+            <Edit props={props} />
+
+            <Popover
+              trigger="click"
+              popupVisible={visible2}
+              onVisibleChange={setVisible2}
+              content={
+                <span>
+                 <p>确定要上课签到吗？</p>
+                  <Space>
+                  <Button
+                    status="warning"
+                    type="text"
+                    onClick={(v) => console.log(v)}
+                  >
+                   签到
+                  </Button>
+                  <Button
+                    status="danger"
+                    type="text"
+                    onClick={() => setVisible2(false)}
+                  >
+                    取消
+                  </Button>
+                </Space>
+              </span>
+
+              }
+            >
+              <Button type="primary" status="success">
+                上课
+              </Button>
+            </Popover>
+
+
+            <Popover
+              trigger="click"
+              popupVisible={visible3}
+              onVisibleChange={setVisible3}
+              content={
+                <span>
+                 <p>确定要取消课程吗？</p>
+                  <Space>
+                  <Button
+                    status='danger'
+                    type="text"
+                    onClick={(v) => console.log(v)}
+                  >
+                   确定
+                  </Button>
+                  <Button
+                    status="danger"
+                    type="text"
+                    onClick={() => setVisible2(false)}
+                  >
+                    取消
+                  </Button>
+                </Space>
+              </span>
+
+              }
+            >
+              <Button type="dashed">
+                取消
+              </Button>
+            </Popover>
+
+            <Button type="primary" onClick={() => setSubscribeVisible(true)}>
+              预约
+            </Button>
+
+          </Space>
+        </Card>
+        <div style={{ width: 900, padding: 20 }}>
           <Table
             columns={columns}
-            data={data}
+            data={listData}
             pagination={false}
             border={{ headerCell: true, wrapper: true }}
-            rowKey='id'
+            rowKey="id"
             rowSelection={{ type: 'checkbox', checkAll: true }}
           ></Table>
         </div>
       </Modal>
 
+
+      {subscribeVisible? <Subscribe SubscribeVisible={SubscribeVisible} subscribeVisible={subscribeVisible} schedule={props.detailsProps} />:null}
     </>
   );
 }

@@ -9,7 +9,7 @@ function SelectMemberList( props: { mode?: 'multiple' | 'tags'|'' }) {
     listData();
   }, []);
   function listData() {
-    sysService.memberList()
+    sysService.memberList({})
       .then((res) => {
         if (res.total===0){
           setList([]);
@@ -26,9 +26,9 @@ function SelectMemberList( props: { mode?: 'multiple' | 'tags'|'' }) {
         placeholder='选择会员'
         allowClear
         showSearch
-        filterOption={(inputValue, option) =>
-           option.props.children.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0
-        }
+        filterOption={(inputValue, option) => {
+          return  option.props.children.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0 || option.props.extra.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0
+        }}
         removeIcon={<IconDelete />}
         renderFormat={(option, value) => {
           return option ? (
@@ -46,7 +46,7 @@ function SelectMemberList( props: { mode?: 'multiple' | 'tags'|'' }) {
         }}
       >
         {list && list.map((option) => (
-          <Option key={option.name} value={option.id}>
+          <Option key={option.name} extra={option.key} value={option.id}>
             {option.name}
           </Option>
         ))}
