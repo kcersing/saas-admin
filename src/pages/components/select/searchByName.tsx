@@ -9,6 +9,10 @@ function SearchByName(props) {
   const refFetchId = useRef(null);
   const debouncedFetchUser = useCallback(
     debounce((inputValue) => {
+        setOptions([])
+      if(inputValue.length === 11 ){
+
+
       refFetchId.current = Date.now();
       const fetchId = refFetchId.current;
       setFetching(true);
@@ -19,6 +23,7 @@ function SearchByName(props) {
       })
         // .then((response) => response.json())
         .then((res) => {
+          if (res.data !== null){
           if (refFetchId.current === fetchId) {
             const options = res.data.map((user) => ({
               label: (
@@ -35,13 +40,19 @@ function SearchByName(props) {
             setFetching(false);
             setOptions(options);
           }
-
-
-        })
+        } else {
+            const options = [{ label: '该会员不符合约课条件', value: 0, key: 0, disabled:true}];
+            setFetching(false);
+            setOptions(options);
+          }}
+        )
         .catch((err) => {
           console.log(err);
         });
-    }, 500),
+    }
+}
+
+    , 500),
     []
   );
   return (
