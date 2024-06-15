@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="febb57be-281a-4d53-b36f-ad64d8b5c0e2" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/components/details/scheduleInfo.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/schedules/schedule/edit.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/schedules/schedule/subscribe.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/components/select/searchByName.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/schedule.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/schedule.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/select/selectMemberList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectMemberList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/property/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/constants.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/products/property/edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/products/property/edit.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/schedules/schedule/details.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/schedules/schedule/details.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/schedules/schedule/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/schedules/schedule/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/sys.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/sys.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/schedules/schedule/subscribe.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/schedules/schedule/subscribe.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,24 +38,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "arco",
-    "last_opened_file_path": "D:/www/saas/saas-admin/src/pages/schedules/schedule",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.stylelint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.stylelint": "D:\\www\\saas\\saas-admin\\node_modules\\stylelint",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "settings.editor.selected.configurable": "watcher.settings",
-    "ts.external.directory.path": "D:\\www\\saas\\saas-admin\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;arco&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/www/saas/saas-admin/src/pages/schedules/schedule&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.stylelint&quot;: &quot;D:\\www\\saas\\saas-admin\\node_modules\\stylelint&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;watcher.settings&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\www\\saas\\saas-admin\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\www\saas\saas-admin\src\pages\schedules\schedule" />
@@ -150,6 +144,7 @@
       <workItem from="1718263615354" duration="4552000" />
       <workItem from="1718268370800" duration="1582000" />
       <workItem from="1718327929003" duration="19568000" />
+      <workItem from="1718441156385" duration="3507000" />
     </task>
     <servers />
   </component>

@@ -3,11 +3,13 @@ import {
   Form,
   Input,
   Modal,
+  Select,
 } from '@arco-design/web-react';
 
 import scheduleService from '@/api/schedule';
 
 import SelectMemberList from '@/pages/components/select/selectMemberList';
+import SearchByName from '@/pages/components/select/searchByName';
 
 const TextArea = Input.TextArea;
 
@@ -24,22 +26,22 @@ function Subscribe(props) {
     form.validate().then((res) => {
       const params = {
         subscribe: props.schedule.id,
-        member: res.member,
+        member: res.memberS,
         remark:res.remark,
       };
-
-      scheduleService.scheduleMemberSubscribe(params)
-        .then((res) => {
-          console.log(res);
-          props.SubscribeVisible(false)
-          setConfirmLoading(false);
-          props.Reload(true)
-        })
-        .catch((err) => {
-          console.log(err);
-          props.SubscribeVisible(false)
-          setConfirmLoading(false);
-        });
+      console.log(params);
+      // scheduleService.scheduleMemberSubscribe(params)
+      //   .then((res) => {
+      //     console.log(res);
+      //     props.SubscribeVisible(false)
+      //     setConfirmLoading(false);
+      //     props.Reload(true)
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //     props.SubscribeVisible(false)
+      //     setConfirmLoading(false);
+      //   });
     });
   }
 
@@ -73,6 +75,9 @@ function Subscribe(props) {
           }}
         >
           <SelectMemberList mode="multiple" />
+
+          <SearchByName subscribe={props.schedule.id} />
+
           <FormItem label="备注" field="remark" rules={[{ required: false }]}>
             <TextArea  style={{ minHeight: 64, width: 350 }} />
           </FormItem>
