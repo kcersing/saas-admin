@@ -37,7 +37,7 @@ export const venueList = (params: object) => request.post(Api.VenueList,params);
 export const natureType = () => request.post(Api.PropertyType, { 'dictionaryId': 4 });
 export const placeList = (params: object) => request.post(Api.PlaceList,params);
 
-export const searchSubscribeByName = (params: object) => request.post(Api.MemberList,params);
+
 export default {
   propertyType,
   venueList,
@@ -48,5 +48,4 @@ export default {
   contractList,
   natureType,
   placeList,
-  searchSubscribeByName,
 };

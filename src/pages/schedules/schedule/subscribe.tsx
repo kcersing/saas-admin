@@ -6,7 +6,7 @@ import {
   Select,
 } from '@arco-design/web-react';
 
-import scheduleService from '@/api/schedule';
+import scheduleService, { scheduleMemberSubscribe } from '@/api/schedule';
 
 import SelectMemberList from '@/pages/components/select/selectMemberList';
 import SearchByName from '@/pages/components/select/searchByName';
@@ -25,23 +25,23 @@ function Subscribe(props) {
   function onOk() {
     form.validate().then((res) => {
       const params = {
-        subscribe: props.schedule.id,
-        member: res.memberS,
+        schedule: props.schedule.id,
+        memberProductPropertyId: res.memberS,
         remark:res.remark,
       };
       console.log(params);
-      // scheduleService.scheduleMemberSubscribe(params)
-      //   .then((res) => {
-      //     console.log(res);
-      //     props.SubscribeVisible(false)
-      //     setConfirmLoading(false);
-      //     props.Reload(true)
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //     props.SubscribeVisible(false)
-      //     setConfirmLoading(false);
-      //   });
+      scheduleService.scheduleMemberSubscribe(params)
+        .then((res) => {
+          console.log(res);
+          props.SubscribeVisible(false)
+          setConfirmLoading(false);
+          props.Reload(true)
+        })
+        .catch((err) => {
+          console.log(err);
+          props.SubscribeVisible(false)
+          setConfirmLoading(false);
+        });
     });
   }
 
@@ -74,9 +74,8 @@ function Subscribe(props) {
             style: { flexBasis: 'calc(100% - 90px)' }
           }}
         >
-          <SelectMemberList mode="multiple" />
 
-          <SearchByName subscribe={props.schedule.id} />
+          <SearchByName schedule={props.schedule} />
 
           <FormItem label="备注" field="remark" rules={[{ required: false }]}>
             <TextArea  style={{ minHeight: 64, width: 350 }} />

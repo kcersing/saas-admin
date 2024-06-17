@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback } from 'react';
 import { Select, Spin, Avatar, Form } from '@arco-design/web-react';
 import debounce from 'lodash/debounce';
-import sysService from '@/api/sys';
+import  ScheduleService from '@/api/schedule';
 
 function SearchByName(props) {
   const [options, setOptions] = useState([]);
@@ -11,16 +11,17 @@ function SearchByName(props) {
     debounce((inputValue) => {
         setOptions([])
       if(inputValue.length === 11 ){
-
-
       refFetchId.current = Date.now();
       const fetchId = refFetchId.current;
       setFetching(true);
       setOptions([]);
-      sysService.memberList({
-        mobile:inputValue,
-        product:props.subscribe,
-      })
+        const params = {
+          mobile:inputValue,
+          propertyId:props.schedule.property_id,
+          venue:props.schedule.venue_id,
+        };
+        console.log(params)
+        ScheduleService.searchSubscribeByName(params)
         // .then((response) => response.json())
         .then((res) => {
           if (res.data !== null){
@@ -31,11 +32,34 @@ function SearchByName(props) {
                   <Avatar size={24} style={{ marginLeft: 6, marginRight: 12 }}>
                     <img alt='avatar' src={user.avatar} />
                   </Avatar>
-                  {`${user.name}`}
+                  {`${user.member_name}-${user.member_product_name}-${user.member_product_property_name}`}
                 </div>
               ),
-              value: user.id,
-              key: user.id,
+
+              // member_id
+              // :
+              // 100000
+              // member_name
+              // :
+              // "kcersing"
+              // member_product_id
+              // :
+              // 1
+              // member_product_name
+              // :
+              // "普卡"
+              // member_product_property_id
+              // :
+              // 100002
+              // member_product_property_name
+              // :
+              // "瑜伽"
+              // mobile
+              // :
+              // "13937173036"
+
+              value: user.member_product_property_id,
+              key: user.member_product_property_id,
             }));
             setFetching(false);
             setOptions(options);
@@ -48,6 +72,12 @@ function SearchByName(props) {
         )
         .catch((err) => {
           console.log(err);
+         if( err.code === 501){
+           const options = [{ label: '未找到符合约课条件的会员', value: 0, key: 0, disabled:true}];
+           setFetching(false);
+           setOptions(options);
+         }
+
         });
     }
 }

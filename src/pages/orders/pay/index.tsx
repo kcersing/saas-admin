@@ -37,7 +37,9 @@ function OrderPay(props: { orderSn?: string, total?: string }) {
             setConfirmLoading(false);
           })
           .catch((err) => {
+            Message.error(err.message)
             console.log(err);
+            setConfirmLoading(false);
           });
       } else {
         setConfirmLoading(true);

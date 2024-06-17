@@ -1,5 +1,5 @@
 import React from 'react';
-import { Space,Space, Typography, Badge } from '@arco-design/web-react';
+import { Space, Typography, Badge } from '@arco-design/web-react';
 import IconText from './icons/text.svg';
 import IconHorizontalVideo from './icons/horizontal.svg';
 import IconVerticalVideo from './icons/vertical.svg';
@@ -100,8 +100,8 @@ export function getColumns(
 
       render: (_, record) => (
         <Space>
-          {record.status===0 ?null:<OrderPay orderSn={""} total={"100"}/> }
-          {record.status===1 ?null:<OrderPay orderSn={""} total={"100"}/> }
+          {record.status===0 ?<OrderPay orderSn={record.order_sn} total={record.order_amount.residue}/>:null }
+          {record.status===1 ?<OrderPay orderSn={record.order_sn} total={record.order_amount.residue}/> :null}
           <Edit props={record}/>
           <Details props={record} />
           {/*<Button*/}

@@ -42,7 +42,7 @@ function Details(props) {
   const columns = [
     {
       title: '姓名',
-      dataIndex: 'name'
+      dataIndex: 'member_name'
     },
     {
       title: '性别',
@@ -65,7 +65,7 @@ function Details(props) {
     },
     {
       title: '预约时间',
-      dataIndex: 'created_at'
+      dataIndex: 'createdAt'
 
     },
     {
@@ -113,7 +113,12 @@ function Details(props) {
     getListData();
   }, []);
 
-
+  const Reload = (r) => {
+    console.log(r)
+    if(r){
+      getListData();
+    }
+  }
   return (
     <>
       <Modal
@@ -224,7 +229,7 @@ function Details(props) {
       </Modal>
 
 
-      {subscribeVisible? <Subscribe SubscribeVisible={SubscribeVisible} subscribeVisible={subscribeVisible} schedule={props.detailsProps} />:null}
+      {subscribeVisible? <Subscribe Reload={Reload} SubscribeVisible={SubscribeVisible} subscribeVisible={subscribeVisible} schedule={props.detailsProps} />:null}
     </>
   );
 }
