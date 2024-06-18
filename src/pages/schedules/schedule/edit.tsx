@@ -7,9 +7,7 @@ import {
   TimePicker,
   InputNumber,
 } from '@arco-design/web-react';
-import SelectVenueList from '@/pages/components/select/selectVenueList';
 import scheduleService from '@/api/schedule';
-import SelectPropertyList from '@/pages/components/select/selectPropertyList';
 import SelectStaffList from '@/pages/components/select/selectStaffList';
 import SelectPlaceList from '@/pages/components/select/selectPlaceList';
 import dayjs from 'dayjs';
@@ -23,9 +21,10 @@ function Edit({props}) {
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
 
-  useEffect(() => {
 
-console.log(1)
+  console.log(props)
+  useEffect(() => {
+    console.log(1)
   }, []);
 
   function onOk() {
@@ -38,7 +37,7 @@ console.log(1)
         venueId: res.venue,
         placeId: res.place,
         num: res.num,
-        startTime: props.date+" "+res.startTime,
+        startTime: props.detailsProps.date+" "+res.startTime,
         price: res.price,
         remark: res.remark,
         coachId: res.staff,
@@ -90,12 +89,12 @@ console.log(1)
             style: { flexBasis: 'calc(100% - 90px)' }
           }}
           initialValues={{
-            num: props.num,
-            startTime:dayjs(props.start_time, 'HH:mm'),
-            price: props.price,
-            remark: props.remark,
-            place:props.place_id,
-            staff:props.coach_id,
+            num: props.detailsProps.num,
+            startTime:dayjs(props.detailsProps.start_time, 'HH:mm'),
+            price: props.detailsProps.price,
+            remark: props.detailsProps.remark,
+            place:props.detailsProps.place_id,
+            staff:props.detailsProps.coach_id,
           }}
         >
 

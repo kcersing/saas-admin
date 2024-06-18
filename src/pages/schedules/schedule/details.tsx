@@ -9,7 +9,7 @@ import {
   IconUserGroup
 } from '@arco-design/web-react/icon';
 import Edit from './edit';
-import scheduleService from '@/api/schedule';
+import scheduleService, { scheduleMemberStatus } from '@/api/schedule';
 import Subscribe from './subscribe';
 
 function Details(props) {
@@ -39,6 +39,7 @@ function Details(props) {
 
   const [visible2, setVisible2] = React.useState(false); // Popover
   const [visible3, setVisible3] = React.useState(false); // Popover
+
   const columns = [
     {
       title: '姓名',
@@ -72,22 +73,42 @@ function Details(props) {
       title: '操作',
       dataIndex: 'operations',
       headerCellStyle: { paddingLeft: '15px' },
-      render: (_, record) => (
-        <Space>
-          <Button
-            type="outline" status="warning"
-            onClick={() => console.log(record)}
-          >
-            签到
-          </Button>
-          <Button
-            status="danger"
-            onClick={() => console.log(record)}
-          >
-            取消
-          </Button>
-        </Space>
-      )
+      render: (_, record) => {
+
+        switch (record.status) {
+          case 0  :
+            return (<Space><Button type='secondary'>已取消</Button></Space>)
+            break;
+          case 1 :
+            return (
+              <Space>
+                <Button
+                  disabled={record.status === 1 ? false : true}
+                  type="outline"
+                  status="warning"
+                  onClick={() => SetScheduleMemberState(record, 2)}
+                >
+                  上课
+                </Button>
+                <Button
+                  disabled={record.status === 1 ? false : true}
+                  status="danger"
+                  onClick={() => SetScheduleMemberState(record, 0)}>
+                  取消
+                </Button>
+              </Space>
+            )
+
+            break;
+          case 2 :
+            return (<Space><Button type="primary" status="success">已签到</Button></Space>)
+            break;
+          default :
+            return <Space></Space>;
+        }
+
+
+      }
     }
 
   ];
@@ -100,25 +121,59 @@ function Details(props) {
 
   const [listData, setListData] = React.useState([]); // table
   function getListData() {
-    scheduleService.getScheduleMemberList({schedule: props.detailsProps.id,page:1,pageSize:999})
+    scheduleService.getScheduleMemberList({ schedule: props.detailsProps.id, page: 1, pageSize: 999 })
       .then((res) => {
         setListData(res.data);
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
       });
   }
+
+  function SetScheduleState(v) {
+    console.log(v);
+    scheduleService.scheduleStatus(
+      {
+        id: props.detailsProps.id,
+        status: v
+      }
+    )
+      .then((res) => {
+        console.log(res);
+        props.Visible(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function SetScheduleMemberState(v, s) {
+
+    scheduleService.scheduleMemberStatus(
+      {
+        id: v.id,
+        status: s
+      }
+    )
+      .then((res) => {
+        console.log(res);
+        props.Visible(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
 
   useEffect(() => {
     getListData();
   }, []);
 
   const Reload = (r) => {
-    console.log(r)
-    if(r){
+    if (r) {
       getListData();
     }
-  }
+  };
   return (
     <>
       <Modal
@@ -126,11 +181,14 @@ function Details(props) {
         unmountOnExit
         title={'详情'}
         visible={props.visibles}
-        onCancel={() => {props.Visible(false)}  }
+        onCancel={() => {
+          props.Visible(false);
+        }}
         style={{ width: 1000 }}
-        onOk={() => {props.Visible(false)}  }
+        onOk={() => {
+          props.Visible(false);
+        }}
       >
-
         <Descriptions
           style={{ width: 900, padding: 20 }}
           border
@@ -156,7 +214,7 @@ function Details(props) {
                   <Button
                     status="warning"
                     type="text"
-                    onClick={(v) => console.log(v)}
+                    onClick={() => SetScheduleState(1)}
                   >
                    签到
                   </Button>
@@ -176,8 +234,6 @@ function Details(props) {
                 上课
               </Button>
             </Popover>
-
-
             <Popover
               trigger="click"
               popupVisible={visible3}
@@ -187,22 +243,21 @@ function Details(props) {
                  <p>确定要取消课程吗？</p>
                   <Space>
                   <Button
-                    status='danger'
+                    status="danger"
                     type="text"
-                    onClick={(v) => console.log(v)}
+                    onClick={(v) => SetScheduleState(0)}
                   >
                    确定
                   </Button>
                   <Button
                     status="danger"
                     type="text"
-                    onClick={() => setVisible2(false)}
+                    onClick={() => setVisible3(false)}
                   >
                     取消
                   </Button>
                 </Space>
               </span>
-
               }
             >
               <Button type="dashed">
@@ -229,7 +284,9 @@ function Details(props) {
       </Modal>
 
 
-      {subscribeVisible? <Subscribe Reload={Reload} SubscribeVisible={SubscribeVisible} subscribeVisible={subscribeVisible} schedule={props.detailsProps} />:null}
+      {subscribeVisible ?
+        <Subscribe Reload={Reload} SubscribeVisible={SubscribeVisible} subscribeVisible={subscribeVisible}
+                   schedule={props.detailsProps} /> : null}
     </>
   );
 }

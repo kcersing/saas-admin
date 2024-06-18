@@ -11,6 +11,9 @@ enum Api {
   ScheduleMemberList = '/api/admin/schedule/schedule-member-list',
   SearchSubscribeByName = '/api/admin/schedule/search-subscribe-by-member',
   ScheduleMemberSubscribe = '/api/admin/schedule/member-subscribe',
+
+  ScheduleMemberStatus = '/api/admin/schedule/schedule-member-status',
+
 }
 
 export const scheduleCreate = (params: object) => request.post(Api.ScheduleCreate, params);
@@ -22,7 +25,7 @@ export const scheduleUpdate = (params: object) => request.post(Api.ScheduleUpdat
 export const getScheduleMemberList = (params: object) => request.post(Api.ScheduleMemberList, params);
 export const searchSubscribeByName = (params: object) => request.post(Api.SearchSubscribeByName,params);
 export const scheduleMemberSubscribe = (params: object) => request.post(Api.ScheduleMemberSubscribe,params);
-
+export const scheduleMemberStatus = (params: object) => request.post(Api.ScheduleMemberStatus, params);
 export default {
   scheduleCreate,
   scheduleList,
@@ -33,4 +36,5 @@ export default {
   getScheduleMemberList,
   searchSubscribeByName,
   scheduleMemberSubscribe,
+  scheduleMemberStatus,
 };
