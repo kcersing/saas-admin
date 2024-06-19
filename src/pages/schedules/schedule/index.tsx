@@ -6,8 +6,8 @@ import {
   Divider,
   DatePicker,
   Descriptions,
-  Select,
-  Tooltip
+  Select, Badge,
+  Tooltip, Space
 } from '@arco-design/web-react';
 import dayjs from 'dayjs';
 import scheduleService from '@/api/schedule';
@@ -225,10 +225,18 @@ export default function Schedule() {
                   }
                 ];
                 return (
-
-                  <Card onClick={() => {setDetailsProps(value);setDetailsVisible(true);  }} style={{ backgroundColor: '#E8FFFB', marginBottom: 10 }} >
+                  <Card onClick={() => {setDetailsProps(value);setDetailsVisible(true);  }} style={{ backgroundColor: '#E8FFFB', marginBottom: 10 }}>
                     <Descriptions
-                      title={value.name}
+                      title={( ()=> {
+                        switch(value.status){
+                          case 0:return <Space><Badge color={'#86909C'} />{value.name}</Space>;
+                          case 1:return <Space><Badge color={'#00B42A'} />{value.name}</Space>;
+                          case 2:return <Space><Badge color={'#FF7D00'} />{value.name}</Space>;
+                          case 3:return <Space><Badge color={'#7816FF'} />{value.name}</Space>;
+                          default:return <Space><Badge color={'#7816FF'} />{value.name}</Space>;
+                        }
+                      })()
+                      }
                       column={1}
                       data={scheduleData}
                       size={'mini'}
@@ -243,12 +251,8 @@ export default function Schedule() {
           ))}
         </Row>
       </Card>
-      {detailsVisible?<Details detailsProps={detailsProps} Visible={DetailsVisible} visibles={detailsVisible} />:null}
+      {detailsVisible?<Details Reload={Reload} detailsProps={detailsProps} Visible={DetailsVisible} visibles={detailsVisible} />:null}
     </div>
   )
     ;
 }
-<style>
-
-
-</style>;

@@ -141,6 +141,7 @@ function Details(props) {
       .then((res) => {
         console.log(res);
         props.Visible(false);
+        props.Reload(true)
       })
       .catch((err) => {
         console.log(err);
@@ -201,20 +202,23 @@ function Details(props) {
             justifyContent: 'flex-end',
             marginRight: 20
           }}>
-            <Edit props={props} />
 
-            <Popover
-              trigger="click"
-              popupVisible={visible2}
-              onVisibleChange={setVisible2}
-              content={
-                <span>
+
+            {props.detailsProps.status===0 && (<><Button type="dashed">已取消</Button></>) }
+            {props.detailsProps.status===1 && (<>
+              <Edit props={props} />
+              <Popover
+                trigger="click"
+                popupVisible={visible2}
+                onVisibleChange={setVisible2}
+                content={
+                  <span>
                  <p>确定要上课签到吗？</p>
                   <Space>
                   <Button
                     status="warning"
                     type="text"
-                    onClick={() => SetScheduleState(1)}
+                    onClick={() => SetScheduleState(2)}
                   >
                    签到
                   </Button>
@@ -228,18 +232,18 @@ function Details(props) {
                 </Space>
               </span>
 
-              }
-            >
-              <Button type="primary" status="success">
-                上课
-              </Button>
-            </Popover>
-            <Popover
-              trigger="click"
-              popupVisible={visible3}
-              onVisibleChange={setVisible3}
-              content={
-                <span>
+                }
+              >
+                <Button type="primary" status="success">
+                  上课
+                </Button>
+              </Popover>
+              <Popover
+                trigger="click"
+                popupVisible={visible3}
+                onVisibleChange={setVisible3}
+                content={
+                  <span>
                  <p>确定要取消课程吗？</p>
                   <Space>
                   <Button
@@ -258,16 +262,23 @@ function Details(props) {
                   </Button>
                 </Space>
               </span>
-              }
-            >
-              <Button type="dashed">
-                取消
-              </Button>
-            </Popover>
+                }
+              >
+                <Button type="dashed">
+                  取消
+                </Button>
+              </Popover>
 
-            <Button type="primary" onClick={() => setSubscribeVisible(true)}>
-              预约
-            </Button>
+              <Button type="primary" onClick={() => setSubscribeVisible(true)}>
+                预约
+              </Button>
+            </>) }
+            {props.detailsProps.status===2 && (<>
+              <Button type="primary" onClick={() => setSubscribeVisible(true)}>上课中</Button>
+            </>) }
+            {props.detailsProps.status===3 && (<>
+              <Button type="primary" onClick={() => setSubscribeVisible(true)}>已经下课</Button>
+            </>) }
 
           </Space>
         </Card>
