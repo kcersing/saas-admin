@@ -17,13 +17,9 @@ import {
   Empty,
   Statistic
 } from '@arco-design/web-react';
-import productService from '@/api/product';
-import { IconAlipayCircle } from '@arco-design/web-react/icon';
-import QRCode from 'qrcode.react';
 
-const Option = Select.Option;
-import memberService, { memberInfo } from '@/api/member';
-import { useSelector } from 'react-redux';
+import memberService from '@/api/member';
+
 import InfoHeader from './header';
 
 const TabPane = Tabs.TabPane;
@@ -31,33 +27,6 @@ const style = {
   textAlign: 'center',
   marginTop: 20
 };
-
-function getDataFromServer() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve([
-        {
-          id: '1',
-          name: 'EduTools',
-          version: '12.18.1',
-          author: 'Dickens'
-        },
-        {
-          id: '2',
-          name: 'BashSupport',
-          version: '12.19.2',
-          author: 'Aristotle'
-        },
-        {
-          id: '3',
-          name: 'GitToolBox',
-          version: '12.20.3',
-          author: 'Hemingway'
-        }
-      ]);
-    }, 1500);
-  });
-}
 
 const Info = ({ Visible, visibles, memberValue, memberOption }) => {
 
@@ -110,23 +79,18 @@ const Info = ({ Visible, visibles, memberValue, memberOption }) => {
       option: memberOption,
       value: memberValue
     };
+
     memberService.memberSearch(params)
       .then((res) => {
         setMemberInfo(res.data);
+        setData(res);
+
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
         setMemberInfoErr(err.message);
       });
-
-    getDataFromServer().then((res) => {
-      // setData(res);
-
-      setLoading(false);
-    });
-  }
-
-  //=======================================================
 
 
   return (
