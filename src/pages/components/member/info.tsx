@@ -18,7 +18,7 @@ import {
   Statistic
 } from '@arco-design/web-react';
 
-import memberService from '@/api/member';
+import memberService, { memberProductList } from '@/api/member';
 
 import InfoHeader from './header';
 
@@ -50,26 +50,8 @@ const Info = ({ Visible, visibles, memberValue, memberOption }) => {
       dataIndex: 'name',
       sorter: (a, b) => a.name.length - b.name.length
     },
-    {
-      title: 'Version',
-      dataIndex: 'version',
-      sorter: (a, b) => {
-        const aVersion = a.version.split('.');
-        const bVersion = b.version.split('.');
 
-        for (let i = 0; i < aVersion.length; i++) {
-          if (aVersion[i] === bVersion[i]) continue;
-          return aVersion[i] - bVersion[i];
-        }
 
-        return 1;
-      }
-    },
-    {
-      title: 'Author',
-      dataIndex: 'author',
-      sorter: (a, b) => a.author.length - b.author.length
-    }
   ];
 
   function loadData() {
@@ -83,8 +65,6 @@ const Info = ({ Visible, visibles, memberValue, memberOption }) => {
     memberService.memberSearch(params)
       .then((res) => {
         setMemberInfo(res.data);
-        setData(res);
-
         setLoading(false);
       })
       .catch((err) => {
@@ -92,7 +72,16 @@ const Info = ({ Visible, visibles, memberValue, memberOption }) => {
         setMemberInfoErr(err.message);
       });
 
+    memberService.memberProductList({ member_id: memberInfo.id} )
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        setMemberInfoErr(err.message);
+      });
 
+  }
   return (
     <>
       {/*<Button type='primary' htmlType='submit' style={{height:36,marginRight: 5 }} onClick={() => setVisible(true)} icon={<IconAlipayCircle />}>{props.title}</Button>*/}
@@ -201,6 +190,6 @@ const Info = ({ Visible, visibles, memberValue, memberOption }) => {
       </Modal>
     </>
   );
-};
+}
 
 export default Info;
