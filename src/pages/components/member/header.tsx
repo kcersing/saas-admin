@@ -65,7 +65,7 @@ export default function Info({
             value: loading ? loadingNode : memberInfo.name,
           },
           {
-            label: '实名认证verified',
+            label: '实名认证',
             value: loading ? (
               loadingNode
             ) : (
@@ -87,7 +87,7 @@ export default function Info({
           },
           {
             label: '账号ID',
-            value: loading ? loadingNode : memberInfo.accountId,
+            value: loading ? loadingNode : memberInfo.id,
           },
           {
             label: '手机号码',
@@ -95,7 +95,7 @@ export default function Info({
               loadingNode
             ) : (
               <span>
-                {memberInfo.phoneNumber}
+                {memberInfo.mobile}
                 <Link role="button" className={styles['edit-btn']}>
                   修改
                 </Link>
@@ -104,7 +104,7 @@ export default function Info({
           },
           {
             label: '注册时间',
-            value: loading ? loadingNode : memberInfo.registrationTime,
+            value: loading ? loadingNode : memberInfo.createdAt,
           },
         ]}
       ></Descriptions>

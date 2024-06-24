@@ -18,20 +18,14 @@ import {
   Statistic
 } from '@arco-design/web-react';
 
-import memberService, { memberProductList } from '@/api/member';
+import memberService from '@/api/member';
 
 import InfoHeader from './header';
-
-const TabPane = Tabs.TabPane;
-const style = {
-  textAlign: 'center',
-  marginTop: 20
-};
+import Main from './main';
 
 const Info = ({ Visible, visibles, memberValue, memberOption }) => {
 
   const [loading, setLoading] = React.useState(false); // table
-  const [data, setData] = React.useState([]);
 
   const [memberInfo, setMemberInfo] = React.useState(null);
 
@@ -44,15 +38,7 @@ const Info = ({ Visible, visibles, memberValue, memberOption }) => {
   console.log(visibles, memberValue, memberOption);
 
 
-  const columns = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      sorter: (a, b) => a.name.length - b.name.length
-    },
 
-
-  ];
 
   function loadData() {
     setLoading(true);
@@ -72,14 +58,7 @@ const Info = ({ Visible, visibles, memberValue, memberOption }) => {
         setMemberInfoErr(err.message);
       });
 
-    memberService.memberProductList({ member_id: memberInfo.id} )
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-        setMemberInfoErr(err.message);
-      });
+
 
   }
   return (
@@ -94,7 +73,7 @@ const Info = ({ Visible, visibles, memberValue, memberOption }) => {
         }}
         closable
         maskClosable={false}
-        style={{ width: 1000, height: 800, top: 20 }}
+        style={{ width: 1000,  top: 20 }}
         footer={null}
         getPopupContainer={() => document.body}
 
@@ -103,90 +82,19 @@ const Info = ({ Visible, visibles, memberValue, memberOption }) => {
 
         afterClose={() => setData([])}
       >
-        {console.log(memberInfo)}
+
         {memberInfo && (<>
-            <Card style={{ padding: '14px 20px' }}>
-              <InfoHeader memberInfo={memberInfo} loading={loading} />
-            </Card>
-            <Spin tip="载入数据中..." loading={loading}>
-              <div style={{ height: '100%', visibility: !loading ? 'visible' : 'hidden' }}>
-                <Divider
-                  style={{
-                    borderBottomStyle: 'dashed'
-                  }}
-                />
-                <Tabs
-                  style={{ height: '100%' }}
-                  defaultActiveTab="1"
-                  extra={
-                    <Button size="small" type="secondary">
-                      Active
-                    </Button>
-                  }
-                >
-                  <TabPane key="1" title="基本信息">
-                    <Typography.Paragraph style={style}>
-                      <Table
-                        columns={columns}
-                        data={data}
-                        pagination={false}
-                        border={{
-                          headerCell: true,
-                          wrapper: true
-                        }}
-                        rowKey="id"
-                        rowSelection={{
-                          type: 'checkbox',
-                          checkAll: true
-                        }}
-                      ></Table>
+          <Card style={{ padding: '14px 20px' }}>
+            <InfoHeader memberInfo={memberInfo} loading={loading} />
+          </Card>
+          <Main memberInfo={memberInfo} loading={loading} />
 
-                    </Typography.Paragraph>
-                  </TabPane>
-                  <TabPane key="2" title="我的产品">
-                    <Typography.Paragraph style={style}>
-                      <Table
-                        columns={columns}
-                        data={data}
-                        pagination={false}
-                        border={{
-                          headerCell: true,
-                          wrapper: true
-                        }}
-                        rowKey="id"
-                        rowSelection={{
-                          type: 'checkbox',
-                          checkAll: true
-                        }}
-                      ></Table>
-                    </Typography.Paragraph>
-                  </TabPane>
-                  <TabPane key="3" title="最新动态">
-                    <Typography.Paragraph style={style}>
-                      <Table
-                        columns={columns}
-                        data={data}
-                        pagination={false}
-                        border={{
-                          headerCell: true,
-                          wrapper: true
-                        }}
-                        rowKey="id"
-                        rowSelection={{
-                          type: 'checkbox',
-                          checkAll: true
-                        }}
-                      ></Table>
-
-                    </Typography.Paragraph>
-                  </TabPane>
-                </Tabs>
-              </div>
-            </Spin>
-          </>)
+        </>)
         }
 
         {!memberInfo && <> <Alert style={{ marginTop: 20,marginBottom:30}} type='error' content={memberInfoErr} /><Empty /></>}
+
+
       </Modal>
     </>
   );

@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="febb57be-281a-4d53-b36f-ad64d8b5c0e2" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/src/api/entry.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/components/member/main.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/member.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/member.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/components/member/header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/member/header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/components/member/info.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/member/info.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,11 +67,11 @@
       <recent name="D:\www\saas\saas-admin\src\pages\members_product" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\www\saas\saas-admin\src\pages\components\member\table" />
       <recent name="D:\www\saas\saas-admin\src\pages\components" />
       <recent name="D:\www\saas\saas-admin\src\pages" />
       <recent name="D:\www\saas\saas-admin\src\pages\components\select" />
       <recent name="D:\www\saas\saas-admin\src\pages\sys\a" />
-      <recent name="D:\www\saas\saas-admin\src\pages\products" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -153,6 +156,7 @@
       <workItem from="1718875113330" duration="1030000" />
       <workItem from="1718940128180" duration="8091000" />
       <workItem from="1719042327564" duration="5370000" />
+      <workItem from="1719191516132" duration="15896000" />
     </task>
     <servers />
   </component>

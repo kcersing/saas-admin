@@ -18,15 +18,17 @@ enum Api {
 
   MemberSearch = '/api/admin/member/search',
 
-  MemberProductList= '/api/admin/member/product-list',
+  MemberProductList = '/api/admin/member/product-list',
 
- MemberPropertyList =' /api/admin/member/property-list',
+  MemberPropertyList = ' /api/admin/member/property-list',
 
- MemberProductDetail='/api/admin/member/product-detail',
+  MemberProductDetail = '/api/admin/member/product-detail',
 
- MemberPropertyDetail='/api/admin/member/property-detail',
+  MemberPropertyDetail = '/api/admin/member/property-detail',
 
- MemberEntryList='/api/admin/member/entry-list',
+  MemberEntryList = '/api/admin/member/entry-list',
+
+  MemberPropertyUpdate = '/api/admin/member/property-update',
 
 
 }
@@ -45,8 +47,6 @@ export const memberStatus = (params: object) => request.post(Api.MemberStatus, p
 
 export const memberSearch = (params: object) => request.post(Api.MemberSearch, params);
 
-
-
 export const memberProductList = (params: object) => request.post(Api.MemberProductList, params);
 
 export const memberPropertyList = (params: object) => request.post(Api.MemberPropertyList, params);
@@ -57,6 +57,8 @@ export const memberPropertyDetail = (params: object) => request.post(Api.MemberP
 
 export const memberEntryList = (params: object) => request.post(Api.MemberEntryList, params);
 
+
+export const memberPropertyUpdate = (params: object) => request.post(Api.MemberPropertyUpdate, params);
 
 export default {
   memberLogin,
@@ -70,5 +72,6 @@ export default {
   memberPropertyList,
   memberProductDetail,
   memberPropertyDetail,
-  memberEntryList
+  memberEntryList,
+  memberPropertyUpdate
 };
