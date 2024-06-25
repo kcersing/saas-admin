@@ -1,30 +1,26 @@
 import { Button, PaginationProps, Space, Table, Tabs } from '@arco-design/web-react';
 import React, { useEffect, useState } from 'react';
-import memberService from '@/api/member';
+import entryService from '@/api/entry';
 
 
-export default function MemberProductList({ memberInfo = {}, loading}: { memberInfo: any; loading: boolean; }) {
+export default function ScheduleList({ memberInfo = {}, loading}: { memberInfo: any; loading: boolean; }) {
   const columns = [
     {
-      title: '产品名称',
-      dataIndex: 'name',
-      sorter: (a, b) => a.name.length - b.name.length
+      title: '进馆时间',
+      dataIndex: 'entry_time',
+      // sorter: (a, b) => a.entry_time.length - b.entry_time.length
     },
     {
-      title: '编号',
-      dataIndex: 'sn',
+      title: '产品名称',
+      dataIndex: 'member_product_name',
+    },
+    {
+      title: '属性名称',
+      dataIndex: 'member_property_name',
     },
     {
       title: '归属场馆',
       dataIndex: 'venue_name',
-    },
-    {
-      title: '价格',
-      dataIndex: 'price',
-    },
-    {
-      title: '状态',
-      dataIndex: 'status_name',
     },
     {
       title: '操作',
@@ -53,10 +49,10 @@ export default function MemberProductList({ memberInfo = {}, loading}: { memberI
   });
 
   useEffect(() => {
-    memberProductData();
+    entryListData();
   }, [pagination.current, pagination.pageSize,memberInfo]);
 
-  function memberProductData() {
+  function entryListData() {
     const { current, pageSize } = pagination;
     const params = {
       member_id: memberInfo.id,
@@ -64,7 +60,7 @@ export default function MemberProductList({ memberInfo = {}, loading}: { memberI
       pageSize,
 
     };
-    memberService.memberProductList(params )
+    entryService.entryList(params)
       .then((res) => {
         if (res.total===0){
           setData([]);

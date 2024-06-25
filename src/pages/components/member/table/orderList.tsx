@@ -1,30 +1,35 @@
 import { Button, PaginationProps, Space, Table, Tabs } from '@arco-design/web-react';
 import React, { useEffect, useState } from 'react';
-import memberService from '@/api/member';
+import orderService from '@/api/order';
 
 
-export default function MemberProductList({ memberInfo = {}, loading}: { memberInfo: any; loading: boolean; }) {
+export default function OrderList({ memberInfo = {}, loading}: { memberInfo: any; loading: boolean; }) {
   const columns = [
     {
-      title: '产品名称',
-      dataIndex: 'name',
-      sorter: (a, b) => a.name.length - b.name.length
+      title: '订单编号',
+      dataIndex: 'order_sn',
+      // sorter: (a, b) => a.entry_time.length - b.entry_time.length
     },
     {
-      title: '编号',
-      dataIndex: 'sn',
+      title: '产品',
+      dataIndex: 'order_item.product_name',
+      // sorter: (a, b) => a.entry_time.length - b.entry_time.length
+    },
+    {
+      title: '订单金额',
+      dataIndex: 'order_amount.total',
+    },
+    {
+      title: '实付金额',
+      dataIndex: 'order_amount.actual',
+    },
+    {
+      title: '完成时间',
+      dataIndex: 'completionAt',
     },
     {
       title: '归属场馆',
       dataIndex: 'venue_name',
-    },
-    {
-      title: '价格',
-      dataIndex: 'price',
-    },
-    {
-      title: '状态',
-      dataIndex: 'status_name',
     },
     {
       title: '操作',
@@ -53,18 +58,18 @@ export default function MemberProductList({ memberInfo = {}, loading}: { memberI
   });
 
   useEffect(() => {
-    memberProductData();
+    entryListData();
   }, [pagination.current, pagination.pageSize,memberInfo]);
 
-  function memberProductData() {
+  function entryListData() {
     const { current, pageSize } = pagination;
     const params = {
-      member_id: memberInfo.id,
+      member: memberInfo.id,
       page: current,
       pageSize,
 
     };
-    memberService.memberProductList(params )
+    orderService.orderList(params)
       .then((res) => {
         if (res.total===0){
           setData([]);

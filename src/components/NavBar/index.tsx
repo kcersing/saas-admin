@@ -147,16 +147,16 @@ function Navbar({ show }: { show: boolean }) {
         </div>
       </div>
       <ul className={styles.right}>
-        <li>
-          <Input.Search
-            searchButton
-            onSearch={(v)=>{
-              console.log(v)
-            }}
-            className={styles.round}
-            placeholder={t['navbar.search.placeholder']}
-          />
-        </li>
+        {/*<li>*/}
+        {/*  <Input.Search*/}
+        {/*    searchButton*/}
+        {/*    onSearch={(v)=>{*/}
+        {/*      console.log(v)*/}
+        {/*    }}*/}
+        {/*    className={styles.round}*/}
+        {/*    placeholder={t['navbar.search.placeholder']}*/}
+        {/*  />*/}
+        {/*</li>*/}
         {/*<li>*/}
         {/*  <Select*/}
         {/*    triggerElement={<IconButton icon={<IconLanguage />} />}*/}
@@ -178,11 +178,11 @@ function Navbar({ show }: { show: boolean }) {
         {/*    }}*/}
         {/*  />*/}
         {/*</li>*/}
-        <li>
-          <MessageBox>
-            <IconButton icon={<IconNotification />} />
-          </MessageBox>
-        </li>
+        {/*<li>*/}
+        {/*  <MessageBox>*/}
+        {/*    <IconButton icon={<IconNotification />} />*/}
+        {/*  </MessageBox>*/}
+        {/*</li>*/}
         <li>
           <Tooltip
             content={
@@ -197,7 +197,7 @@ function Navbar({ show }: { show: boolean }) {
             />
           </Tooltip>
         </li>
-        <Settings />
+        {/*<Settings />*/}
         {userInfo && (
           <li>
             <Dropdown droplist={droplist} position="br">

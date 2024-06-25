@@ -73,7 +73,7 @@ const Info = ({ Visible, visibles, memberValue, memberOption }) => {
         }}
         closable
         maskClosable={false}
-        style={{ width: 1000,  top: 20 }}
+        style={{  top: 20,maxWidth: 1200, minWidth:1000 }}
         footer={null}
         getPopupContainer={() => document.body}
 
