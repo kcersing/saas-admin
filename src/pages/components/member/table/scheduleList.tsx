@@ -1,14 +1,17 @@
 import { Button, PaginationProps, Space, Table, Tabs } from '@arco-design/web-react';
 import React, { useEffect, useState } from 'react';
-import entryService from '@/api/entry';
-
+import scheduleService from '@/api/schedule';
 
 export default function ScheduleList({ memberInfo = {}, loading}: { memberInfo: any; loading: boolean; }) {
   const columns = [
     {
-      title: '进馆时间',
-      dataIndex: 'entry_time',
+      title: '场馆',
+      dataIndex: 'venue_name',
       // sorter: (a, b) => a.entry_time.length - b.entry_time.length
+    },
+    {
+      title: '课程名称',
+      dataIndex: 'schedule_name',
     },
     {
       title: '产品名称',
@@ -16,11 +19,31 @@ export default function ScheduleList({ memberInfo = {}, loading}: { memberInfo: 
     },
     {
       title: '属性名称',
-      dataIndex: 'member_property_name',
+      dataIndex: 'member_product_property_name',
     },
     {
-      title: '归属场馆',
-      dataIndex: 'venue_name',
+      title: '课程时间',
+      dataIndex: '-',
+      render: (_, record) => (
+        <Space>
+          {record.start_time} - {record.end_time}
+        </Space>
+      ),
+    },
+
+    {
+      title: '签到时间',
+      dataIndex: '-',
+      render: (_, record) => (
+        <Space>
+          {record.sign_start_time} - {record.sign_end_time}
+        </Space>
+      ),
+    },
+
+    {
+      title: '状态',
+      dataIndex: 'status',
     },
     {
       title: '操作',
@@ -55,12 +78,12 @@ export default function ScheduleList({ memberInfo = {}, loading}: { memberInfo: 
   function entryListData() {
     const { current, pageSize } = pagination;
     const params = {
-      member_id: memberInfo.id,
+      member: memberInfo.id,
       page: current,
       pageSize,
 
     };
-    entryService.entryList(params)
+    scheduleService.getScheduleMemberList(params)
       .then((res) => {
         if (res.total===0){
           setData([]);

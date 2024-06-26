@@ -30,6 +30,7 @@ enum Api {
 
   MemberPropertyUpdate = '/api/admin/member/property-update',
 
+  MemberContractList='/api/admin/member/contract-list',
 
 }
 
@@ -57,8 +58,12 @@ export const memberPropertyDetail = (params: object) => request.post(Api.MemberP
 
 export const memberEntryList = (params: object) => request.post(Api.MemberEntryList, params);
 
-
 export const memberPropertyUpdate = (params: object) => request.post(Api.MemberPropertyUpdate, params);
+
+export const memberContractList = (params: object) => request.post(Api.MemberContractList, params);
+
+
+
 
 export default {
   memberLogin,
@@ -73,5 +78,6 @@ export default {
   memberProductDetail,
   memberPropertyDetail,
   memberEntryList,
-  memberPropertyUpdate
+  memberPropertyUpdate,
+  memberContractList
 };

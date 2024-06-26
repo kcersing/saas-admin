@@ -1,37 +1,37 @@
 import { Button, PaginationProps, Space, Table, Tabs } from '@arco-design/web-react';
 import React, { useEffect, useState } from 'react';
-import entryService from '@/api/entry';
+import memberService, { memberContractList } from '@/api/member';
 
 
 export default function ContractsList({ memberInfo = {}, loading}: { memberInfo: any; loading: boolean; }) {
   const columns = [
     {
-      title: '进馆时间',
-      dataIndex: 'entry_time',
+      title: '合同',
+      dataIndex: 'name',
       // sorter: (a, b) => a.entry_time.length - b.entry_time.length
     },
     {
-      title: '产品名称',
-      dataIndex: 'member_product_name',
-    },
-    {
-      title: '属性名称',
-      dataIndex: 'member_property_name',
-    },
-    {
-      title: '归属场馆',
+      title: '签约场馆',
       dataIndex: 'venue_name',
     },
     {
-      title: '操作',
-      dataIndex: 'operations',
-      headerCellStyle: { paddingLeft: '15px' },
+      title: '签约产品',
+      dataIndex: 'member_product_name',
+    },
+    {
+      title: '签名',
+      dataIndex: 'sign_img',
+    },
+    {
+      title: '查看内容',
+      dataIndex: '-',
       render: (_, record) => (
         <Space>
           <Button
             onClick={() => {console.log(record)}
             }
           >
+            查看
           </Button>
         </Space>
       ),
@@ -60,7 +60,7 @@ export default function ContractsList({ memberInfo = {}, loading}: { memberInfo:
       pageSize,
 
     };
-    entryService.entryList(params)
+    memberService.memberContractList(params)
       .then((res) => {
         if (res.total===0){
           setData([]);
