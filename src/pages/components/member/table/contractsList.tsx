@@ -1,6 +1,6 @@
 import { Button, PaginationProps, Space, Table, Tabs } from '@arco-design/web-react';
 import React, { useEffect, useState } from 'react';
-import memberService, { memberContractList } from '@/api/member';
+import memberService from '@/api/member';
 
 
 export default function ContractsList({ memberInfo = {}, loading}: { memberInfo: any; loading: boolean; }) {
