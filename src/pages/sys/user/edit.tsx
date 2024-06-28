@@ -13,6 +13,7 @@ import {
   DatePicker
 } from '@arco-design/web-react';
 import memberService from '@/api/member';
+import dayjs from 'dayjs';
 
 const FormItem = Form.Item;
 
@@ -25,17 +26,18 @@ function Edit({props}) {
     form.validate().then((res) => {
 
      const params = {
-        "id":props.id,
+       "id":props.id,
        "avatar":"",
        "mobile":res.mobile,
        "email":res.email,
        "status":res.status,
-       "name":res.name,
+       "nickname":res.nickname,
        "age":res.age,
        "gender":res.gender,
        "wecom":res.wecom,
        "birthday":res.birthday,
       }
+
       console.log(params);
       if (res.files !== undefined){
         params.avatar = res.files[0].response.data.path
@@ -47,8 +49,6 @@ function Edit({props}) {
       // ).catch(
       //
       // )
-
- 
 
       // setConfirmLoading(true);
       // setTimeout(() => {
@@ -68,6 +68,7 @@ function Edit({props}) {
     }
   };
 
+  console.log(props)
   return (
     <div>
       <Button onClick={() => setVisible(true)} type="primary">编辑</Button>
@@ -88,7 +89,14 @@ function Edit({props}) {
           wrapperCol={{
             style: { flexBasis: 'calc(100% - 90px)' }
           }}
-          initialValues={{ name: props.name,mobile: props.mobile,email: props.email,gender: props.gender ,avatar:{ "name": props.avatar.gender, "path": props.avatar.path, "url": props.avatar.url} }}
+          initialValues={ {
+            nickname: props.nickname,
+            mobile: props.mobile,
+            email: props.email,
+            gender: props.gender ,
+            avatar:{ "name": props.avatar.nickname, "path": props.avatar.path, "url": props.avatar.url},
+            birthday:dayjs(props.birthday, 'HH:mm'),
+        }}
         >
 
           <Form.Item
@@ -116,30 +124,35 @@ function Edit({props}) {
                 });
               }}
             />
-        </Form.Item>
+          </Form.Item>
+
           <FormItem label="手机号" field="mobile" rules={[{ required: true }]}>
-            <Input placeholder=""  />
+            <Input/>
           </FormItem>
-          <FormItem label="姓名" field="name" rules={[{ required: true }]}>
-            <Input placeholder=""  />
+          <FormItem label="姓名" field="nickname" rules={[{ required: true }]}>
+            <Input />
           </FormItem>
           <FormItem label="性别" field="gender" rules={[{ required: false }]}>
             <Select options={['男', '女', '保密']} />
           </FormItem>
 
           <FormItem label="生日" field="birthday" rules={[{ required: false }]}>
-            <DatePicker  placeholder=""  />
+            <DatePicker />
           </FormItem>
 
-          <FormItem label='年龄' field='age' rules={[{ type: 'number',required: false}]}>
-            <InputNumber placeholder='' />
-          </FormItem>
           <FormItem label="邮箱" field="email" rules={[{ required: false }]}>
-            <Input placeholder=""  />
+            <Input/>
           </FormItem>
           <FormItem label="微信" field="wecom" rules={[{ required: false }]}>
-            <Input placeholder=""  />
+            <Input/>
           </FormItem>
+
+
+
+
+
+
+
         </Form>
       </Modal>
     </div>

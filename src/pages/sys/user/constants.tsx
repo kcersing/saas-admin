@@ -7,6 +7,9 @@ import dayjs from 'dayjs';
 
 import Edit from './edit';
 import { ContentType, FilterType, Status } from './index';
+import FaceCreate from '@/pages/components/faces/create';
+import Account from '@/pages/sys/user/account';
+import Role from '@/pages/sys/user/role';
 
 const { Text } = Typography;
 
@@ -58,6 +61,9 @@ export function getColumns(
       render: (_, record) => (
         <Space>
           <Edit props={record}/>
+          <FaceCreate props={record}/>
+          <Account props={record}/>
+          <Role props={record}/>
           <Button
             type="text"
             size="small"

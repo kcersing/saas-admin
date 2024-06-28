@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Space,Typography, Badge } from '@arco-design/web-react';
+import { Button, Space,Typography, Badge ,TreeSelect, Radio } from '@arco-design/web-react';
+import { useState } from 'react';
 import IconText from './icons/text.svg';
 import IconHorizontalVideo from './icons/horizontal.svg';
 import IconVerticalVideo from './icons/vertical.svg';
@@ -7,6 +8,8 @@ import dayjs from 'dayjs';
 
 import Edit from './edit';
 import { ContentType, FilterType, Status } from './index';
+import Menus from './menus';
+import Apis from './apis';
 
 const { Text } = Typography;
 
@@ -61,6 +64,8 @@ export function getColumns(
       render: (_, record) => (
         <Space>
           <Edit props={record}/>
+          <Apis props={record}/>
+          <Menus props={record}/>
           <Button
             type="text"
             size="small"

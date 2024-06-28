@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Modal, Button, Form, Input, Select, Message, Upload, DatePicker, InputNumber } from '@arco-design/web-react';
 import memberService from '@/api/member';
 
 
 const FormItem = Form.Item;
 
-function Create(props: { Reload: (arg0: boolean) => void; }) {
+function FaceCreate(props) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
@@ -39,12 +39,13 @@ function Create(props: { Reload: (arg0: boolean) => void; }) {
   };
   return (
     <div>
-      <Button onClick={() => setVisible(true)} type='primary'>
-        新建
+      <Button onClick={() => setVisible(true)}  size='mini'>
+        设置人脸
       </Button>
+
       <Modal
         focusLock={true}
-        title='新建'
+        title='设置'
         visible={visible}
         onOk={onOk}
         confirmLoading={confirmLoading}
@@ -54,18 +55,20 @@ function Create(props: { Reload: (arg0: boolean) => void; }) {
           {...formItemLayout}
           form={form}
           labelCol={{
-            style: { flexBasis: 90 },
+            style: { flexBasis: 120 },
           }}
           wrapperCol={{
-            style: { flexBasis: 'calc(100% - 90px)' },
+            style: { flexBasis: 'calc(90% - 120px)' },
           }}
         >
 
 
-
+          <FormItem label="身份证证件号" field="identity_card" rules={[{ required: true }]}>
+            <Input placeholder=""  />
+          </FormItem>
           <Form.Item
-            label='头像'
-            field='files'
+            label='身份证正面'
+            field='face_identity_card'
             triggerPropName='fileList'
           >
             <Upload
@@ -89,27 +92,37 @@ function Create(props: { Reload: (arg0: boolean) => void; }) {
               }}
             />
           </Form.Item>
+          <Form.Item
+            label='身份证反面'
+            field='files'
+            triggerPropName='fileList'
+          >
+            <Upload
+              listType='picture-card'
+              multiple
+              name='back_identity_card'
+              action='/api/pub/upload'
+              limit={1}
+              onPreview={(file) => {
+                Modal.info({
+                  title: 'Preview',
+                  content: (
+                    <img
+                      src={file.url || URL.createObjectURL(file.originFile)}
+                      style={{
+                        maxWidth: '100%',
+                      }}
+                    ></img>
+                  ),
+                });
+              }}
+            />
+          </Form.Item>
 
-          <FormItem label="手机号" field="mobile" rules={[{ required: true }]}>
-            <Input placeholder=""  />
-          </FormItem>
-          <FormItem label="姓名" field="nickname" rules={[{ required: true }]}>
-            <Input placeholder=""  />
-          </FormItem>
-          <FormItem label="性别" field="gender" rules={[{ required: false }]}>
-            <Select options={['男', '女', '保密']} />
-          </FormItem>
 
-          <FormItem label="生日" field="birthday" rules={[{ required: false }]}>
-            <DatePicker  placeholder=""  />
-          </FormItem>
 
-          <FormItem label="邮箱" field="email" rules={[{ required: false }]}>
-            <Input placeholder=""  />
-          </FormItem>
-          <FormItem label="微信" field="wecom" rules={[{ required: false }]}>
-            <Input placeholder=""  />
-          </FormItem>
+
+
 
         </Form>
       </Modal>
@@ -117,4 +130,4 @@ function Create(props: { Reload: (arg0: boolean) => void; }) {
   );
 }
 
-export default Create;
+export default FaceCreate;
