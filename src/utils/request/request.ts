@@ -44,10 +44,10 @@ service.interceptors.response.use(
     const {response} = error;
     if (response) {
 
-     if(window.location.pathname !== "/login"){
-        window.location.href="/login"
-       return
-      }
+     // if(window.location.pathname !== "/login"){
+     //    window.location.href="/login"
+     //   return
+     //  }
 
       //特定状态码 处理特定的需求
       if(response.status == 401){

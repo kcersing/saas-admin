@@ -3,65 +3,6 @@ import { Modal, Button, Space,Typography, Badge ,TreeSelect, Radio, Form, Input,
 import roleService from '@/api/role';
 
 
-const tata = [
-  {
-    title: 'Trunk 0-0',
-    value: 'Trunk 0-0',
-    key: '0-0',
-    children: [
-      {
-        title: 'Leaf 0-0-1',
-        value: 'Leaf 0-0-1',
-        key: '0-0-1',
-      },
-      {
-        title: 'Branch 0-0-2',
-        value: 'Branch 0-0-2',
-        key: '0-0-2',
-        children: [
-          {
-            title: 'Leaf 0-0-2-1',
-            value: 'Leaf 0-0-2-1',
-            key: '0-0-2-1',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'Trunk 0-1',
-    value: 'Trunk 0-1',
-    key: '0-1',
-    children: [
-      {
-        title: 'Branch 0-1-1',
-        value: 'Branch 0-1-1',
-        key: '0-1-1',
-        checkable: false,
-        children: [
-          {
-            title: 'Leaf 0-1-1-1',
-            value: 'Leaf 0-1-1-1',
-            key: '0-1-1-1',
-          },
-          {
-            title: 'Leaf 0-1-1-2',
-            value: 'Leaf 0-1-1-2',
-            key: '0-1-1-2',
-            disabled: true,
-          },
-        ],
-      },
-      {
-        title: 'Leaf 0-1-2',
-        value: 'Leaf 0-1-2',
-        key: '0-1-2',
-      },
-    ],
-  },
-];
-
-
 const FormItem = Form.Item;
 
 function Apis(props) {
@@ -69,26 +10,19 @@ function Apis(props) {
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
 
-
   const [treeData, setTreeData] = useState([]);
   function getTreeData() {
 
-    roleService.apiList({})
+    roleService.apiTree({})
       .then((res) => {
-
-        setTreeData(tata)
-
+        console.log(res)
+        setTreeData(res.data)
       });
   }
-
 
   useEffect(() => {
     getTreeData();
   }, []);
-
-
-
-
 
   function onOk() {
     form.validate().then((res) => {
@@ -109,7 +43,7 @@ function Apis(props) {
 
   }
 
-  const [value, setValue] = useState(['0-0']);
+  const [value, setValue] = useState([]);
 
   const formItemLayout = {
     labelCol: {
@@ -138,26 +72,40 @@ function Apis(props) {
           {...formItemLayout}
           form={form}
           labelCol={{
-            style: { flexBasis: 120 },
+            style: { flexBasis: 60 },
           }}
           wrapperCol={{
-            style: { flexBasis: 'calc(90% - 120px)' },
+            style: { flexBasis: 'calc(90% - 60px)' },
           }}
         >
-
-          <FormItem initialValue={value} label="API" title="role" field='role' rules={[{ required: true, message: '请选择API' }]}>
+          <FormItem label="API" title="role" field='role' rules={[{ required: true, message: '请选择API' }]}>
 
               <TreeSelect
-                showSearch
                 allowClear
                 treeCheckable
                 treeData={treeData}
-                treeCheckedStrategy={TreeSelect.SHOW_ALL}
+                maxTagCount={10}
+                treeCheckedStrategy={TreeSelect.SHOW_CHILD}
                 onChange={(value) => {
                   console.log(value);
                   setValue(value);
                 }}
-                style={{ width: 300, }}
+
+                style={{ width: 380}}
+                treeProps={{
+                  height: 380,
+                  renderTitle: (props) => {
+                    return (
+                      <span style={{ whiteSpace: 'nowrap', }} >
+                        {props.title}
+                      </span>
+                    );
+                  },
+                  renderExtra: (props) => {
+                    return props.key;
+                }
+                }}
+
               />
 
           </FormItem>

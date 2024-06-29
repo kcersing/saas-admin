@@ -32,7 +32,6 @@ export default {
   productCreate,
   productEdit,
   productSetStatus,
-
   propertyList,
   propertyEdit,
   propertyCreate,

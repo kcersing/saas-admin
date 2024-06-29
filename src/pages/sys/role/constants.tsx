@@ -66,13 +66,6 @@ export function getColumns(
           <Edit props={record}/>
           <Apis props={record}/>
           <Menus props={record}/>
-          <Button
-            type="text"
-            size="small"
-            onClick={() => callback(record, 'view')}
-          >
-            {t['searchTable.columns.operations.view']}
-          </Button>
         </Space>
       ),
     },

@@ -1,92 +1,61 @@
-import React, { useState } from 'react';
-import {
-  Modal,
-  Button,
-  Form,
-  Input,
-  Select,
-  Message,
-  Upload,
-  DatePicker,
-  InputNumber,
-  TreeSelect
-} from '@arco-design/web-react';
-import memberService from '@/api/member';
+import React, { useEffect, useState } from 'react';
+import { Modal, Button, Space,Typography, Badge ,TreeSelect, Radio, Form, Input, Select, Message, Upload, DatePicker, InputNumber } from '@arco-design/web-react';
+import memuService from '@/api/menu';
+import venueService from '@/api/venue';
 
-const treeData = [
-  {
-    title: 'Trunk 0-0',
-    value: 'Trunk 0-0',
-    key: '0-0',
-    children: [
-      {
-        title: 'Leaf 0-0-1',
-        value: 'Leaf 0-0-1',
-        key: '0-0-1',
-      },
-      {
-        title: 'Branch 0-0-2',
-        value: 'Branch 0-0-2',
-        key: '0-0-2',
-        children: [
-          {
-            title: 'Leaf 0-0-2-1',
-            value: 'Leaf 0-0-2-1',
-            key: '0-0-2-1',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'Trunk 0-1',
-    value: 'Trunk 0-1',
-    key: '0-1',
-    children: [
-      {
-        title: 'Branch 0-1-1',
-        value: 'Branch 0-1-1',
-        key: '0-1-1',
-        checkable: false,
-        children: [
-          {
-            title: 'Leaf 0-1-1-1',
-            value: 'Leaf 0-1-1-1',
-            key: '0-1-1-1',
-          },
-          {
-            title: 'Leaf 0-1-1-2',
-            value: 'Leaf 0-1-1-2',
-            key: '0-1-1-2',
-            disabled: true,
-          },
-        ],
-      },
-      {
-        title: 'Leaf 0-1-2',
-        value: 'Leaf 0-1-2',
-        key: '0-1-2',
-      },
-    ],
-  },
-];
+
 const FormItem = Form.Item;
 
-function Menus(props) {
+function Memus(props) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
 
+  const [treeData, setTreeData] = useState([]);
+
+  function getTreeData() {
+    memuService.getMenuTree()
+      .then((res) => {
+        console.log(res)
+        setTreeData(res.data)
+      });
+  }
+
+  useEffect(() => {
+    getTreeData();
+  }, []);
+
   function onOk() {
+
     form.validate().then((res) => {
       console.log(res)
       setConfirmLoading(true);
-      setTimeout(() => {
-        Message.success('Success !');
-        setVisible(false);
-        setConfirmLoading(false);
-      }, 1500);
+    var params = {
+      menu_ids: res.menus,
+      role_id: props.roleId,
+      }
+      memuService.setAuthMenu(params)
+        .then((res) => {
+          Message.success('Success !');
+          setVisible(false);
+          setConfirmLoading(false);
+        })
+        .catch((err) => {
+          Message.error(err);
+          setVisible(false);
+          setConfirmLoading(false);
+        });
+
+
+
+
+
       props.Reload(true);
+
+
+
+
+
     })
       .catch((err) => {
         console.log(err);
@@ -94,7 +63,10 @@ function Menus(props) {
         setConfirmLoading(false);
       });
 
+
   }
+
+  const [value, setValue] = useState([]);
 
   const formItemLayout = {
     labelCol: {
@@ -104,14 +76,10 @@ function Menus(props) {
       span: 20,
     },
   };
-  const [value, setValue] = useState(['0-0']);
-
 
   return (
     <div>
-      <Button onClick={() => setVisible(true)}  size='mini'>
-        设置菜单
-      </Button>
+      <Button onClick={() => setVisible(true)}  size='mini'>设置菜单</Button>
 
       <Modal
         focusLock={true}
@@ -121,40 +89,43 @@ function Menus(props) {
         confirmLoading={confirmLoading}
         onCancel={() => setVisible(false)}
       >
-
         <Form
           {...formItemLayout}
           form={form}
           labelCol={{
-            style: { flexBasis: 120 },
+            style: { flexBasis: 60 },
           }}
           wrapperCol={{
-            style: { flexBasis: 'calc(90% - 120px)' },
+            style: { flexBasis: 'calc(90% - 60px)' },
           }}
         >
+          <FormItem label="菜单" title="menus" field='menus' rules={[{ required: true, message: '请选择菜单' }]}>
 
-          <FormItem  label="菜单" title="role" field='menus' rules={[{ required: true, message: '请选择菜单' }]}>
             <TreeSelect
               showSearch
               allowClear
               treeCheckable
               treeData={treeData}
+              maxTagCount={10}
               treeCheckedStrategy={TreeSelect.SHOW_ALL}
               onChange={(value) => {
                 console.log(value);
                 setValue(value);
               }}
-              style={{ width: 300, }}
+              style={{ width: 380}}
+              treeProps={{
+                height: 380,
+                renderTitle: (props) => {
+                  return (
+                    <span style={{ whiteSpace: 'nowrap', }} >
+                        {props.title}
+                      </span>
+                  );
+                },
+              }}
             />
 
-
-
-
           </FormItem>
-
-
-
-
 
         </Form>
       </Modal>
@@ -162,4 +133,4 @@ function Menus(props) {
   );
 }
 
-export default Menus;
+export default Memus;
