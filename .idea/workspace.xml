@@ -6,13 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="febb57be-281a-4d53-b36f-ad64d8b5c0e2" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/menu.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/menu.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/product.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/product.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/role.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/role.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/sys/role/apis.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/role/apis.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sys/role/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/role/constants.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/sys/role/menus.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sys/role/menus.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/request/request.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/request/request.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,6 +160,7 @@
       <workItem from="1719452186337" duration="4877000" />
       <workItem from="1719536802924" duration="15384000" />
       <workItem from="1719623173647" duration="14050000" />
+      <workItem from="1719797652664" duration="6771000" />
     </task>
     <servers />
   </component>

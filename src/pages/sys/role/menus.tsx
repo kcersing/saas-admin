@@ -6,7 +6,7 @@ import venueService from '@/api/venue';
 
 const FormItem = Form.Item;
 
-function Memus(props) {
+function Memus({props}) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
@@ -28,15 +28,17 @@ function Memus(props) {
   function onOk() {
 
     form.validate().then((res) => {
-      console.log(res)
+
       setConfirmLoading(true);
-    var params = {
-      menu_ids: res.menus,
-      role_id: props.roleId,
+      const params = {
+        menu_ids: res.menus,
+        role_id: props.id,
       }
+
       memuService.setAuthMenu(params)
         .then((res) => {
-          Message.success('Success !');
+          console.log(res)
+          Message.success(res.message);
           setVisible(false);
           setConfirmLoading(false);
         })
@@ -46,15 +48,7 @@ function Memus(props) {
           setConfirmLoading(false);
         });
 
-
-
-
-
       props.Reload(true);
-
-
-
-
 
     })
       .catch((err) => {
@@ -98,9 +92,9 @@ function Memus(props) {
           wrapperCol={{
             style: { flexBasis: 'calc(90% - 60px)' },
           }}
+          initialValues={{menus:props.menus}}
         >
           <FormItem label="菜单" title="menus" field='menus' rules={[{ required: true, message: '请选择菜单' }]}>
-
             <TreeSelect
               showSearch
               allowClear

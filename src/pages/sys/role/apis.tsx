@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, Button, Space,Typography, Badge ,TreeSelect, Radio, Form, Input, Select, Message, Upload, DatePicker, InputNumber } from '@arco-design/web-react';
-import roleService from '@/api/role';
+import roleService, { setRoleApi } from '@/api/role';
 
 
 const FormItem = Form.Item;
 
-function Apis(props) {
+function Apis({props}) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
@@ -25,21 +25,41 @@ function Apis(props) {
   }, []);
 
   function onOk() {
+
     form.validate().then((res) => {
-      console.log(res)
+
       setConfirmLoading(true);
-      setTimeout(() => {
-        Message.success('Success !');
-        setVisible(false);
-        setConfirmLoading(false);
-      }, 1500);
+      const params = {
+        api_authority_info: res.apis,
+        role_id: props.id,
+      }
+
+      console.log(params)
+      setVisible(false);
+      setConfirmLoading(false);
+      return
+      roleService.setRoleApi(params)
+        .then((res) => {
+          console.log(res)
+          Message.success(res.message);
+          setVisible(false);
+          setConfirmLoading(false);
+        })
+        .catch((err) => {
+          Message.error(err);
+          setVisible(false);
+          setConfirmLoading(false);
+        });
+
       props.Reload(true);
+
     })
       .catch((err) => {
         console.log(err);
         setVisible(false);
         setConfirmLoading(false);
       });
+
 
   }
 
@@ -78,8 +98,7 @@ function Apis(props) {
             style: { flexBasis: 'calc(90% - 60px)' },
           }}
         >
-          <FormItem label="API" title="role" field='role' rules={[{ required: true, message: '请选择API' }]}>
-
+          <FormItem label="API" title="apis" field='apis' rules={[{ required: true, message: '请选择API' }]}>
               <TreeSelect
                 allowClear
                 treeCheckable
@@ -101,9 +120,6 @@ function Apis(props) {
                       </span>
                     );
                   },
-                  renderExtra: (props) => {
-                    return props.key;
-                }
                 }}
 
               />
