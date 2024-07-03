@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form, Input, Select, Message, Upload, DatePicker, InputNumber } from '@arco-design/web-react';
-import memberService from '@/api/member';
+
+import SelectRoleList from '@/pages/components/select/selectRoleList';
 
 
-const FormItem = Form.Item;
-
-function Role(props) {
+function Role({ props }) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
@@ -38,9 +37,8 @@ function Role(props) {
     },
   };
 
+  console.log(props)
 
-  const Option = Select.Option;
-  const options = ['Beijing', 'Shanghai', 'Guangzhou', 'Disabled'];
   return (
     <div>
       <Button onClick={() => setVisible(true)}  size='mini'>
@@ -64,22 +62,9 @@ function Role(props) {
           wrapperCol={{
             style: { flexBasis: 'calc(90% - 120px)' },
           }}
+          initialValues={{role:props.roleID}}
         >
-
-          <FormItem  label="角色" title="role" field='role' rules={[{ required: true, message: '请选择角色' }]}>
-            <Select placeholder='请选择角色' style={{ width: 154 }} allowClear>
-              {options.map((option, index) => (
-                <Option key={option} value={option}>
-                  {option}
-                </Option>
-              ))}
-            </Select>
-          </FormItem>
-
-
-
-
-
+          <SelectRoleList />
         </Form>
       </Modal>
     </div>

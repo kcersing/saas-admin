@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Form, Select, Space } from '@arco-design/web-react';
 import sysService from '@/api/sys';
-import { IconUserAdd, IconDelete } from '@arco-design/web-react/icon';
+import { IconLocation, IconDelete } from '@arco-design/web-react/icon';
 const FormItem = Form.Item;
-function SelectStaffList( props: { mode?: 'multiple' | 'tags'|'' }) {
-
+function SelectRoleList( props: { mode?: 'multiple' | 'tags'|'' }) {
   const [list, setList] = useState([])
   useEffect(() => {
     listData();
   }, []);
   function listData() {
-    sysService.staffList({})
+    sysService.roleList({})
       .then((res) => {
         if (res.total===0){
           setList([]);
@@ -21,11 +20,11 @@ function SelectStaffList( props: { mode?: 'multiple' | 'tags'|'' }) {
   }
   const Option = Select.Option;
   return (
-    <FormItem label="员工" field="staff" rules={[{ required: false }]}>
+    <FormItem label="角色" field="role" rules={[{ required: false }]} >
       <Select
-        style={{ width: 200, }}
         mode={props.mode}
-        placeholder='选择员工'
+        style={{ width: 200, }}
+        placeholder='选择角色'
         allowClear
         showSearch
         filterOption={(inputValue, option) =>
@@ -35,7 +34,7 @@ function SelectStaffList( props: { mode?: 'multiple' | 'tags'|'' }) {
         renderFormat={(option, value) => {
           return option ? (
             <span>
-              <IconUserAdd
+              <IconLocation
                 style={{
                   color: '#f7ba1e',
                 }}
@@ -57,4 +56,4 @@ function SelectStaffList( props: { mode?: 'multiple' | 'tags'|'' }) {
   )
 }
 
-export default SelectStaffList;
+export default SelectRoleList;

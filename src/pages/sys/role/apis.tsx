@@ -30,14 +30,11 @@ function Apis({props}) {
 
       setConfirmLoading(true);
       const params = {
-        api_authority_info: res.apis,
+        apis: res.apis,
         role_id: props.id,
       }
 
       console.log(params)
-      setVisible(false);
-      setConfirmLoading(false);
-      return
       roleService.setRoleApi(params)
         .then((res) => {
           console.log(res)
@@ -51,7 +48,7 @@ function Apis({props}) {
           setConfirmLoading(false);
         });
 
-      props.Reload(true);
+        props.Reload(true);
 
     })
       .catch((err) => {
@@ -97,6 +94,7 @@ function Apis({props}) {
           wrapperCol={{
             style: { flexBasis: 'calc(90% - 60px)' },
           }}
+          initialValues={{apis:props.apis}}
         >
           <FormItem label="API" title="apis" field='apis' rules={[{ required: true, message: '请选择API' }]}>
               <TreeSelect
@@ -105,10 +103,21 @@ function Apis({props}) {
                 treeData={treeData}
                 maxTagCount={10}
                 treeCheckedStrategy={TreeSelect.SHOW_CHILD}
-                onChange={(value) => {
-                  console.log(value);
-                  setValue(value);
+                // onChange={(value,extra) => {
+                //   console.log(value);
+                //   console.log(extra)
+                //   setValue(value);
+                // }}
+                value={value}
+                onChange={(v) => {
+                  console.log(v)
+                  // setValue(v ? {
+                  //   value: v.value,
+                  //   label: v.label,
+                  //   extra:v.label,
+                  // } : v)
                 }}
+
 
                 style={{ width: 380}}
                 treeProps={{

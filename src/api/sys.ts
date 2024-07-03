@@ -18,6 +18,8 @@ enum Api {
   StaffList = '/api/sys/staff/list',
   // 场地列表
   PlaceList= '/api/sys/place/list',
+
+  RoleList ='/api/sys/role/list',
 }
 
 // 属性类型
@@ -37,7 +39,7 @@ export const venueList = (params: object) => request.post(Api.VenueList,params);
 export const natureType = () => request.post(Api.PropertyType, { 'dictionaryId': 4 });
 export const placeList = (params: object) => request.post(Api.PlaceList,params);
 
-
+export const roleList = (params: object) => request.post(Api.RoleList,params);
 export default {
   propertyType,
   venueList,
@@ -48,4 +50,5 @@ export default {
   contractList,
   natureType,
   placeList,
+  roleList,
 };

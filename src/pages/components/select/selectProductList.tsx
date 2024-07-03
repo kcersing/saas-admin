@@ -9,7 +9,7 @@ function SelectProductList( props: { mode?: 'multiple' | 'tags'|'' }) {
     listData();
   }, []);
   function listData() {
-    sysService.productList()
+    sysService.productList({})
       .then((res) => {
         if (res.total===0){
           setList([]);

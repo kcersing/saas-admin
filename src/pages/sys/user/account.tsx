@@ -5,7 +5,7 @@ import memberService from '@/api/member';
 
 const FormItem = Form.Item;
 
-function Account(props) {
+function Account({ props }) {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
@@ -60,6 +60,7 @@ function Account(props) {
           wrapperCol={{
             style: { flexBasis: 'calc(90% - 120px)' },
           }}
+          initialValues={{username:props.username,password:props.password,confirm_password:props.password}}
         >
 
           <FormItem  label="账号" title="username" field='name' rules={[{ required: true, message: '请输入账号' }]}>

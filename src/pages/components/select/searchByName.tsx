@@ -35,29 +35,6 @@ function SearchByName(props) {
                   {`${user.member_name}-${user.member_product_name}-${user.member_product_property_name}`}
                 </div>
               ),
-
-              // member_id
-              // :
-              // 100000
-              // member_name
-              // :
-              // "kcersing"
-              // member_product_id
-              // :
-              // 1
-              // member_product_name
-              // :
-              // "普卡"
-              // member_product_property_id
-              // :
-              // 100002
-              // member_product_property_name
-              // :
-              // "瑜伽"
-              // mobile
-              // :
-              // "13937173036"
-
               value: user.member_product_property_id,
               key: user.member_product_property_id,
             }));

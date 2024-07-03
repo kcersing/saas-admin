@@ -9,7 +9,7 @@ function SelectVenueList( props: { mode?: 'multiple' | 'tags'|'' }) {
     listData();
   }, []);
   function listData() {
-    sysService.venueList()
+    sysService.venueList({})
       .then((res) => {
         if (res.total===0){
           setList([]);
