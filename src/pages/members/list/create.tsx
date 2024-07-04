@@ -14,7 +14,6 @@ function Create(props: { Reload: (arg0: boolean) => void; }) {
     form.validate().then((res) => {
      let files="imagebucket/c.jpg";
       console.log(res.files)
-
       if(res.files !== undefined && res.files.length> 0 && res.files[0].response.code===0){
         if(res.files[0].response.code===0){
           if(res.files[0].response.data.path==="imagebucket/"){

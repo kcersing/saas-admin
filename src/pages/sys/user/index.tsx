@@ -84,7 +84,7 @@ function User() {
   }
   return (
     <Card>
-      <Title heading={6}>会员列表</Title>
+      <Title heading={6}>用户列表</Title>
       <SearchForm onSearch={handleSearch} />
       <PermissionWrapper>
         <div className={styles['button-group']}>

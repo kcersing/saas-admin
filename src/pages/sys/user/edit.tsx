@@ -14,6 +14,7 @@ import {
 } from '@arco-design/web-react';
 import memberService from '@/api/member';
 import dayjs from 'dayjs';
+import userService from '@/api/user';
 
 const FormItem = Form.Item;
 
@@ -22,43 +23,49 @@ function Edit({props}) {
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
 
+
   function onOk() {
     form.validate().then((res) => {
+      console.log(res)
 
-     const params = {
-       "id":props.id,
-       "avatar":"",
-       "mobile":res.mobile,
-       "email":res.email,
-       "status":res.status,
-       "nickname":res.nickname,
-       "age":res.age,
-       "gender":res.gender,
-       "wecom":res.wecom,
-       "birthday":res.birthday,
+      const params = {
+        "id":props.id,
+        "avatar":"",
+        "mobile":res.mobile,
+        "email":res.email,
+        "status":res.status,
+        "name":res.nickname,
+        "age":res.age,
+        "gender":res.gender,
+        "wecom":res.wecom,
+        "birthday":res.birthday,
       }
 
       console.log(params);
       if (res.files !== undefined){
         params.avatar = res.files[0].response.data.path
       }
-
-      // memberService.memberUpdate(params).then(
-      //
-      //
-      // ).catch(
-      //
-      // )
-
-      // setConfirmLoading(true);
-      // setTimeout(() => {
-      //   Message.success('Success !');
-      //   setVisible(false);
-      //   setConfirmLoading(false);
-      // }, 1500);
-    });
+      setConfirmLoading(true);
+      userService.userUpdate(params)
+        .then((res) => {
+          console.log(res)
+          Message.success(res.message);
+          setVisible(false);
+          setConfirmLoading(false);
+        })
+        .catch((err) => {
+          Message.error(err);
+          setVisible(false);
+          setConfirmLoading(false);
+        });
+      props.Reload(true);
+    })
+      .catch((err) => {
+        console.log(err);
+        setVisible(false);
+        setConfirmLoading(false);
+      })
   }
-
   const formItemLayout = {
     labelCol: {
       span: 4
@@ -90,7 +97,7 @@ function Edit({props}) {
             style: { flexBasis: 'calc(100% - 90px)' }
           }}
           initialValues={ {
-            nickname: props.nickname,
+            name: props.nickname,
             mobile: props.mobile,
             email: props.email,
             gender: props.gender ,
@@ -146,12 +153,6 @@ function Edit({props}) {
           <FormItem label="微信" field="wecom" rules={[{ required: false }]}>
             <Input/>
           </FormItem>
-
-
-
-
-
-
 
         </Form>
       </Modal>

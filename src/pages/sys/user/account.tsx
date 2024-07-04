@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form, Input, Select, Message, Upload, DatePicker, InputNumber } from '@arco-design/web-react';
-import memberService from '@/api/member';
+import userService from '@/api/user';
 
 
 const FormItem = Form.Item;
@@ -14,18 +14,29 @@ function Account({ props }) {
     form.validate().then((res) => {
       console.log(res)
       setConfirmLoading(true);
-      setTimeout(() => {
-        Message.success('Success !');
-        setVisible(false);
-        setConfirmLoading(false);
-      }, 1500);
-      props.Reload(true);
+      const params={
+        user_id:props.id,
+        new_password:res.password,
+      }
+        userService.changePassword(params)
+          .then((res) => {
+            console.log(res)
+            Message.success(res.message);
+            setVisible(false);
+            setConfirmLoading(false);
+          })
+          .catch((err) => {
+            Message.error(err);
+            setVisible(false);
+            setConfirmLoading(false);
+          });
+         props.Reload(true);
     })
       .catch((err) => {
         console.log(err);
         setVisible(false);
         setConfirmLoading(false);
-      });
+      })
 
   }
 
@@ -40,7 +51,7 @@ function Account({ props }) {
   return (
     <div>
       <Button onClick={() => setVisible(true)}  size='mini'>
-        设置账号
+        修改密码
       </Button>
 
       <Modal
@@ -60,14 +71,14 @@ function Account({ props }) {
           wrapperCol={{
             style: { flexBasis: 'calc(90% - 120px)' },
           }}
-          initialValues={{username:props.username,password:props.password,confirm_password:props.password}}
+          initialValues={{username:props.username}}
         >
 
-          <FormItem  label="账号" title="username" field='name' rules={[{ required: true, message: '请输入账号' }]}>
-            <Input placeholder='请输入账号' />
+          <FormItem  label="账号" title="username" field='username' rules={[{ required: true, message: '请输入账号' }]}>
+            <Input disabled={true} placeholder='请输入账号' />
           </FormItem>
           <FormItem label="密码" field='password' rules={[{ required: true, message: '请输入密码' }]}>
-            <Input placeholder='请输入密码' />
+            <Input.Password  placeholder='请输入密码' />
           </FormItem>
           <FormItem
             label="确认密码"
@@ -84,7 +95,7 @@ function Account({ props }) {
               }
             }]}
           >
-            <Input placeholder='请再次输入密码' />
+            <Input.Password  placeholder='请再次输入密码' />
           </FormItem>
 
 

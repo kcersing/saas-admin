@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Modal, Button, Form, Input, Select, Message, Upload, DatePicker, InputNumber } from '@arco-design/web-react';
 import memberService from '@/api/member';
+import userService, { userCreate } from '@/api/user';
 
 
 const FormItem = Form.Item;
@@ -12,20 +13,50 @@ function Create(props: { Reload: (arg0: boolean) => void; }) {
 
   function onOk() {
     form.validate().then((res) => {
-      console.log(res)
+
+      let files="imagebucket/c.jpg";
+      console.log(res.files)
+
+      if(res.files !== undefined && res.files.length> 0 && res.files[0].response.code===0){
+        if(res.files[0].response.code===0){
+          if(res.files[0].response.data.path==="imagebucket/"){
+            files = "imagebucket/c.jpg";
+          }else {
+            files = res.files[0].response.data.name
+          }
+        }
+      }
+
+      const params = {
+        avatar:files,
+        mobile:res.mobile,
+        email:res.email,
+        name:res.nickname,
+        wecom:res.wecom,
+        gender:res.gender,
+        birthday:res.birthday,
+      }
+
       setConfirmLoading(true);
-      setTimeout(() => {
-        Message.success('Success !');
-        setVisible(false);
-        setConfirmLoading(false);
-      }, 1500);
+      userService.userCreate(params)
+        .then((res) => {
+          console.log(res)
+          Message.success(res.message);
+          setVisible(false);
+          setConfirmLoading(false);
+        })
+        .catch((err) => {
+          Message.error(err);
+          setVisible(false);
+          setConfirmLoading(false);
+        });
       props.Reload(true);
     })
       .catch((err) => {
         console.log(err);
         setVisible(false);
         setConfirmLoading(false);
-      });
+      })
 
   }
 
@@ -60,9 +91,6 @@ function Create(props: { Reload: (arg0: boolean) => void; }) {
             style: { flexBasis: 'calc(100% - 90px)' },
           }}
         >
-
-
-
           <Form.Item
             label='头像'
             field='files'
@@ -89,7 +117,6 @@ function Create(props: { Reload: (arg0: boolean) => void; }) {
               }}
             />
           </Form.Item>
-
           <FormItem label="手机号" field="mobile" rules={[{ required: true }]}>
             <Input placeholder=""  />
           </FormItem>
@@ -97,13 +124,11 @@ function Create(props: { Reload: (arg0: boolean) => void; }) {
             <Input placeholder=""  />
           </FormItem>
           <FormItem label="性别" field="gender" rules={[{ required: false }]}>
-            <Select options={['男', '女', '保密']} />
+            <Select options={['女性', '男性', '保密']} />
           </FormItem>
-
           <FormItem label="生日" field="birthday" rules={[{ required: false }]}>
             <DatePicker  placeholder=""  />
           </FormItem>
-
           <FormItem label="邮箱" field="email" rules={[{ required: false }]}>
             <Input placeholder=""  />
           </FormItem>

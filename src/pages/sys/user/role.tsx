@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form, Input, Select, Message, Upload, DatePicker, InputNumber } from '@arco-design/web-react';
-
 import SelectRoleList from '@/pages/components/select/selectRoleList';
-
+import userService from '@/api/user';
 
 function Role({ props }) {
   const [visible, setVisible] = useState(false);
@@ -13,18 +12,29 @@ function Role({ props }) {
     form.validate().then((res) => {
       console.log(res)
       setConfirmLoading(true);
-      setTimeout(() => {
-        Message.success('Success !');
-        setVisible(false);
-        setConfirmLoading(false);
-      }, 1500);
+      const params={
+        id:props.id,
+        role_id:res.role,
+      }
+      userService.setRole(params)
+        .then((res) => {
+          console.log(res)
+          Message.success(res.message);
+          setVisible(false);
+          setConfirmLoading(false);
+        })
+        .catch((err) => {
+          Message.error(err);
+          setVisible(false);
+          setConfirmLoading(false);
+        });
       props.Reload(true);
     })
       .catch((err) => {
         console.log(err);
         setVisible(false);
         setConfirmLoading(false);
-      });
+      })
 
   }
 
