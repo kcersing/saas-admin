@@ -1,5 +1,17 @@
 import React, { useEffect } from 'react';
-import { Modal, Button, Table, Alert, Popover, Card, Link, Descriptions, Space, Tooltip } from '@arco-design/web-react';
+import {
+  Modal,
+  Button,
+  Table,
+  Alert,
+  Popover,
+  Card,
+  Link,
+  Descriptions,
+  Space,
+  Tooltip,
+  Badge
+} from '@arco-design/web-react';
 import {
   IconAttachment,
   IconHistory,
@@ -9,7 +21,7 @@ import {
   IconUserGroup
 } from '@arco-design/web-react/icon';
 import Edit from './edit';
-import scheduleService, { scheduleMemberStatus } from '@/api/schedule';
+import scheduleService from '@/api/schedule';
 import Subscribe from './subscribe';
 
 function Details(props) {
@@ -61,13 +73,22 @@ function Details(props) {
     },
     {
       title: '上课情况',
-      dataIndex: 'status'
-
+      dataIndex: 'status',
+      render: (x) => {
+        if (x === 0) {
+          return <Badge status="error" text={'已取消'}></Badge>;
+        }else if (x === 1){
+         return <Badge status="success" text={'待上课'}></Badge>;
+        }else if (x === 2){
+          return <Badge status="success" text={'已上课'}></Badge>;
+        }else if (x === 3){
+          return <Badge status="error" text={'旷课'}></Badge>;
+        }
+      },
     },
     {
       title: '预约时间',
       dataIndex: 'createdAt'
-
     },
     {
       title: '操作',

@@ -14,6 +14,9 @@ enum Api {
 
   ScheduleMemberStatus = '/api/admin/schedule/schedule-member-status',
 
+  ScheduleCoachList = '/api/admin/schedule/schedule-coach-list',
+
+  SetScheduleCoachState ='/api/admin/schedule/schedule-coach-status',
 }
 
 export const scheduleCreate = (params: object) => request.post(Api.ScheduleCreate, params);
@@ -26,6 +29,8 @@ export const getScheduleMemberList = (params: object) => request.post(Api.Schedu
 export const searchSubscribeByName = (params: object) => request.post(Api.SearchSubscribeByName,params);
 export const scheduleMemberSubscribe = (params: object) => request.post(Api.ScheduleMemberSubscribe,params);
 export const scheduleMemberStatus = (params: object) => request.post(Api.ScheduleMemberStatus, params);
+export const scheduleCoachList = (params: object) => request.post(Api.ScheduleCoachList, params);
+export const setScheduleCoachState = (params: object) => request.post(Api.SetScheduleCoachState, params);
 export default {
   scheduleCreate,
   scheduleList,
@@ -37,4 +42,6 @@ export default {
   searchSubscribeByName,
   scheduleMemberSubscribe,
   scheduleMemberStatus,
+  scheduleCoachList,
+  setScheduleCoachState
 };

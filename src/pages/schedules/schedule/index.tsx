@@ -10,7 +10,7 @@ import {
   Tooltip, Space
 } from '@arco-design/web-react';
 import dayjs from 'dayjs';
-import scheduleService from '@/api/schedule';
+
 import weekday from 'dayjs/plugin/weekday';
 import 'dayjs/locale/zh-cn';
 import React, { useEffect, useState } from 'react';
@@ -20,9 +20,9 @@ import {
 } from '@arco-design/web-react/icon';
 import Create from './create';
 import Details from './details';
-import sysService from '@/api/sys';
-import Info from '@/pages/components/member/info';
 
+import scheduleService from '@/api/schedule';
+import sysService from '@/api/sys';
 
 const Row = Grid.Row;
 const Col = Grid.Col;
