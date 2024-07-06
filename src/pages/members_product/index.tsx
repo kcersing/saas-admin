@@ -16,7 +16,7 @@ import productService from '@/api/product';
 import SearchForm from './form';
 import { IconDownload, IconPlus } from '@arco-design/web-react/icon';
 import styles from './style/index.module.less';
-import Create from './create';
+
 // ======================================
 
 const { Title } = Typography;
@@ -96,7 +96,7 @@ function Product() {
       <PermissionWrapper>
         <div className={styles['button-group']}>
           <Space>
-          <Create Reload={Reload}/>
+
             <Button onClick={(e)=>{fetchData();}}>刷新列表</Button>
             <Button>导入</Button>
           </Space>

@@ -24,8 +24,8 @@ export function getColumns(
     {
       title: 'ID',
       dataIndex: 'id',
+      render: (value) => <Text copyable>{value}</Text>,
     },
-
     {
       title: '头像',
       dataIndex: 'avatar',
@@ -38,15 +38,24 @@ export function getColumns(
             </Avatar>
       ,
     },
-
     {
       title: '名称',
       dataIndex: 'name',
+      render: (value) => <Text copyable>{value}</Text>,
     },
     {
       title: '手机号',
       dataIndex: 'mobile',
       render: (value) => <Text copyable>{value}</Text>,
+    },
+
+    {
+      title: '性别',
+      dataIndex: 'gender',
+    },
+    {
+      title: '年龄',
+      dataIndex: 'age',
     },
     {
       title: '状态',

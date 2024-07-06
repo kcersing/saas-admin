@@ -64,27 +64,27 @@ export default function Info({
             label: '用户名',
             value: loading ? loadingNode : memberInfo.name,
           },
-          {
-            label: '实名认证',
-            value: loading ? (
-              loadingNode
-            ) : (
-              <span>
-                {memberInfo.verified ? (
-                  <Tag color="green" className={styles['verified-tag']}>
-                    已认证
-                  </Tag>
-                ) : (
-                  <Tag color="red" className={styles['verified-tag']}>
-                    未认证
-                  </Tag>
-                )}
-                <Link role="button" className={styles['edit-btn']}>
-                 修改
-                </Link>
-              </span>
-            ),
-          },
+          // {
+          //   label: '实名认证',
+          //   value: loading ? (
+          //     loadingNode
+          //   ) : (
+          //     <span>
+          //       {memberInfo.verified ? (
+          //         <Tag color="green" className={styles['verified-tag']}>
+          //           已认证
+          //         </Tag>
+          //       ) : (
+          //         <Tag color="red" className={styles['verified-tag']}>
+          //           未认证
+          //         </Tag>
+          //       )}
+          //       <Link role="button" className={styles['edit-btn']}>
+          //        修改
+          //       </Link>
+          //     </span>
+          //   ),
+          // },
           {
             label: '账号ID',
             value: loading ? loadingNode : memberInfo.id,
@@ -96,9 +96,9 @@ export default function Info({
             ) : (
               <span>
                 {memberInfo.mobile}
-                <Link role="button" className={styles['edit-btn']}>
-                  修改
-                </Link>
+                {/*<Link role="button" className={styles['edit-btn']}>*/}
+                {/*  修改*/}
+                {/*</Link>*/}
               </span>
             ),
           },

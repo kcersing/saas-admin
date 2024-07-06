@@ -15,6 +15,7 @@ import MemberInfo from './table/memberInfo';
 import ScheduleList from './table/scheduleList';
 import ContractsList from './table/contractsList';
 import OrderList from './table/orderList';
+import MemberPropertyList from '@/pages/components/member/table/memberPropertyList';
 
 
 export default function Main({ memberInfo = {}, loading}: { memberInfo: any; loading: boolean; }) {
@@ -42,24 +43,53 @@ export default function Main({ memberInfo = {}, loading}: { memberInfo: any; loa
                 <MemberProductList memberInfo={memberInfo} loading={loading} />
             </Typography.Paragraph>
           </TabPane>
-          <TabPane key="3" title="订单">
-            <Typography.Paragraph >
-              <OrderList memberInfo={memberInfo} loading={loading} />
+
+          <TabPane key="3" title="可用属性">
+            <Typography.Paragraph>
+
+
+              <div>
+                <Tabs>
+                  <TabPane key="event1" title="可用卡属性">
+                    <Typography.Paragraph>
+                      <MemberPropertyList memberInfo={memberInfo} loading={loading} type={"card"} />
+                    </Typography.Paragraph>
+                  </TabPane>
+                  <TabPane key="event2" title="可用私教课属性">
+                    <Typography.Paragraph>
+                      <MemberPropertyList memberInfo={memberInfo} loading={loading} type={"course"}/>
+                    </Typography.Paragraph>
+                  </TabPane>
+                  <TabPane key="event3" title="可用团课属性">
+                    <Typography.Paragraph>
+                      <MemberPropertyList memberInfo={memberInfo} loading={loading} type={"class"} />
+                    </Typography.Paragraph>
+                  </TabPane>
+                </Tabs>
+              </div>
+
+
             </Typography.Paragraph>
           </TabPane>
 
+
+          <TabPane key="4" title="订单">
+            <Typography.Paragraph>
+              <OrderList memberInfo={memberInfo} loading={loading} />
+            </Typography.Paragraph>
+          </TabPane>
 
           <TabPane key="6" title="事件">
             <Typography.Paragraph>
               <div>
                 <Tabs>
-                  <TabPane key='event1' title='进馆记录'>
-                    <Typography.Paragraph >
+                  <TabPane key="event1" title="进馆记录">
+                    <Typography.Paragraph>
                       <EntryList memberInfo={memberInfo} loading={loading} />
                     </Typography.Paragraph>
                   </TabPane>
-                  <TabPane key='event2' title='上课记录'>
-                    <Typography.Paragraph >
+                  <TabPane key="event2" title="上课记录">
+                    <Typography.Paragraph>
                       <ScheduleList memberInfo={memberInfo} loading={loading} />
                     </Typography.Paragraph>
                   </TabPane>

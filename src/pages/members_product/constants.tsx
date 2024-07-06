@@ -5,8 +5,8 @@ import IconHorizontalVideo from './icons/horizontal.svg';
 import IconVerticalVideo from './icons/vertical.svg';
 import dayjs from 'dayjs';
 
-import Edit from './edit';
-import Details from './details';
+// import Edit from './edit';
+// import Details from './details';
 
 import { Status } from './index';
 
@@ -106,8 +106,8 @@ export function getColumns(
       headerCellStyle: { paddingLeft: '15px' },
       render: (_, record) => (
         <Space>
-          <Edit props={record}/>
-          <Details props={record} />
+          {/*<Edit props={record}/>*/}
+          {/*<Details props={record} />*/}
           {/*<Button*/}
           {/*  type="text"*/}
           {/*  size="small"*/}
