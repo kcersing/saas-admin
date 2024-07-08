@@ -147,13 +147,13 @@ export default function LoginForm() {
           <Button type="primary" long onClick={onSubmitClick} loading={loading}>
             {t['login.form.login']}
           </Button>
-          <Button
-            type="text"
-            long
-            className={styles['login-form-register-btn']}
-          >
-            {t['login.form.register']}
-          </Button>
+          {/*<Button*/}
+          {/*  type="text"*/}
+          {/*  long*/}
+          {/*  className={styles['login-form-register-btn']}*/}
+          {/*>*/}
+          {/*  {t['login.form.register']}*/}
+          {/*</Button>*/}
         </Space>
       </Form>
     </div>

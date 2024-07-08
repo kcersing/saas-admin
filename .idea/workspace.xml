@@ -5,22 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="febb57be-281a-4d53-b36f-ad64d8b5c0e2" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/components/member/table/memberPropertyList.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/devops/logs/constants.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/devops/logs/form.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/devops/logs/icons/horizontal.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/devops/logs/icons/text.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/devops/logs/icons/vertical.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/devops/logs/locale/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/devops/logs/style/index.module.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/member/header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/member/header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/member/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/member/main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/devops/logs/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/devops/logs/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/members/list/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/members/list/constants.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/members_product/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/members_product/constants.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/members_product/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/members_product/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/login/form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/login/form.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +166,9 @@
       <workItem from="1720059608537" duration="10102000" />
       <workItem from="1720143808299" duration="10822000" />
       <workItem from="1720249974025" duration="8977000" />
-      <workItem from="1720260562855" duration="30000" />
+      <workItem from="1720260562855" duration="1138000" />
+      <workItem from="1720424929708" duration="2000000" />
+      <workItem from="1720429401162" duration="2921000" />
     </task>
     <servers />
   </component>

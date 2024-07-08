@@ -14,7 +14,7 @@ enum Api {
 
   UserInfo ='/api/admin/user/info',
   UserList = '/api/admin/user/list',
-  UserUpdate = ' /api/admin/user/update',
+  UserUpdate = '/api/admin/user/update',
 
 
   Logout = '/api/admin/token',
