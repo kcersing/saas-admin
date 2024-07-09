@@ -91,12 +91,10 @@ function Contract() {
           <Space>
             <Create Reload={Reload}/>
             <Button onClick={(e) => { fetchData();}}>刷新列表</Button>
-            <Button>导入</Button>
+            {/*<Button>导入</Button>*/}
           </Space>
           <Space>
-            <Button icon={<IconDownload />}>
-              下载
-            </Button>
+            {/*<Button icon={<IconDownload />}>下载</Button>*/}
           </Space>
         </div>
       </PermissionWrapper>

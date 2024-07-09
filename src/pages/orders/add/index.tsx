@@ -215,19 +215,19 @@ function Add() {
                   <SignPage SignData={SignData} />
                 </Form.Item>
 
-                <Form.Item
-                  required
-                  field="notice"
-                  rules={[
-                    {
-                      required: true,
-                      message: '请阅读购买须知'
-                    }
-                  ]}
-                >
-                  <Checkbox> <a href="http://baidu.com" target="_blank">购买须知</a></ Checkbox>
+                {/*<Form.Item*/}
+                {/*  required*/}
+                {/*  field="notice"*/}
+                {/*  rules={[*/}
+                {/*    {*/}
+                {/*      required: true,*/}
+                {/*      message: '请阅读购买须知'*/}
+                {/*    }*/}
+                {/*  ]}*/}
+                {/*>*/}
+                {/*  <Checkbox> <a href="http://baidu.com" target="_blank">购买须知</a></ Checkbox>*/}
 
-                </Form.Item>
+                {/*</Form.Item>*/}
 
               </Form.Item>
             )}

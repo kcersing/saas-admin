@@ -6,7 +6,7 @@ enum Api {
   MemberLogin = '/api/member/login',
   MemberInfo = '/api/admin/member/info',
   MemberList = '/api/admin/member/list',
-  MemberUpdate = ' /api/admin/member/update',
+  MemberUpdate = '/api/admin/member/update',
   MemberCreate = '/api/admin/member/create',
 
   Logout = '/api/member/token',
@@ -20,7 +20,7 @@ enum Api {
 
   MemberProductList = '/api/admin/member/product-list',
 
-  MemberPropertyList = ' /api/admin/member/property-list',
+  MemberPropertyList = '/api/admin/member/property-list',
 
   MemberProductDetail = '/api/admin/member/product-detail',
 

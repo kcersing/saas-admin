@@ -31,11 +31,6 @@ export function getColumns(
       dataIndex: 'name',
     },
     {
-      title: '归属场馆',
-      dataIndex: 'mobile',
-      render: (value) => <Text copyable>{value}</Text>,
-    },
-    {
       title: '状态',
       dataIndex: 'status',
       render: (x) => {

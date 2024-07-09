@@ -15,8 +15,8 @@ import { Form } from '@arco-design/web-react';
 // import mediumZoom from '@bytemd/plugin-medium-zoom'
 // import 'highlight.js/styles/vs.css'
 
- const EditorNode = ({ContentData}) => {
-  const [value, setValue] = useState('')
+ const EditorNode = ({ContentData,Content}) => {
+  const [value, setValue] = useState(Content)
 
 
    const plugins = [

@@ -53,11 +53,12 @@ function Create(props: { Reload: (arg0: boolean) => void; }) {
       <Modal
         focusLock={true}
         title='新建'
-        style={{width: 1000}}
+
         visible={visible}
         onOk={onOk}
         confirmLoading={confirmLoading}
         onCancel={() => setVisible(false)}
+        style={{width: 1000}}
       >
         <Form
           {...formItemLayout}
