@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Modal, Button, Form, Input } from '@arco-design/web-react';
 import venueService from '@/api/venue';
+import SearchByMember from '@/pages/components/select/searchByMember';
 
 
 const TextArea = Input.TextArea;
@@ -15,31 +16,37 @@ function Create(props: { Reload: (arg0: boolean) => void; }) {
   function onOk() {
     form.validate().then((res) => {
       const params = {
-        name:res.name,
-        address:res.address,
-        address_detail:res.address_detail,
-        latitude:res.latitude,
-        longitude:res.longitude,
-        mobile:res.mobile,
-        information:res.information,
+
       }
+      console.log(res);
       setConfirmLoading(true);
-      venueService.venueCreate(params)
-        .then((res) => {
-          console.log(res);
+
+
           setVisible(false);
           setConfirmLoading(false);
           props.Reload(true);
-        })
-        .catch((err) => {
-          console.log(err);
-          setVisible(false);
-          setConfirmLoading(false);
-        });
+      // venueService.venueCreate(params)
+      //   .then((res) => {
+      //     console.log(res);
+      //     setVisible(false);
+      //     setConfirmLoading(false);
+      //     props.Reload(true);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //     setVisible(false);
+      //     setConfirmLoading(false);
+      //   });
     });
 
   }
-
+  const [members, setMembers] = useState([]);
+  const Members = (r) => {
+    if(r){
+      setMembers(r);
+    }
+    console.log(members)
+  }
   const formItemLayout = {
     labelCol: {
       span: 4,
@@ -71,38 +78,18 @@ function Create(props: { Reload: (arg0: boolean) => void; }) {
           }}
         >
 
-          <FormItem label="名称" field="name" rules={[{ required: true }]}>
+          <SearchByMember Members={Members} />
+
+
+          <FormItem label="产品" field="address" rules={[{ required: false }]}>
             <Input placeholder=""  />
           </FormItem>
-
-          <FormItem label="地址" field="address" rules={[{ required: false }]}>
+          <FormItem label="课程" field="address_detail" rules={[{ required: false }]}>
             <Input placeholder=""  />
           </FormItem>
-          <FormItem label="详细地址" field="address_detail" rules={[{ required: false }]}>
+          <FormItem label="时间" field="latitude" rules={[{ required: false }]}>
             <Input placeholder=""  />
           </FormItem>
-          <FormItem label="纬度" field="latitude" rules={[{ required: false }]}>
-            <Input placeholder=""  />
-          </FormItem>
-          <FormItem label="经度" field="longitude" rules={[{ required: false }]}>
-            <Input placeholder=""  />
-          </FormItem>
-          <FormItem label="手机号" field="mobile" rules={[{ required: true }]}>
-            <Input placeholder=""  />
-          </FormItem>
-
-          <FormItem label="介绍" field="information" rules={[{ required: false }]}>
-          <TextArea placeholder='介绍...' style={{ minHeight: 64, width: 350 }} />
-        </FormItem>
-
-
-
-
-
-
-
-
-
 
 
         </Form>

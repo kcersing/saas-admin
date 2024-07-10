@@ -80,7 +80,7 @@ const Info = ({ Visible, visibles, memberValue, memberOption }) => {
 
         alignCenter={false}
 
-        afterClose={() => setData([])}
+        // afterClose={() => setData([])}
       >
 
         {memberInfo && (<>

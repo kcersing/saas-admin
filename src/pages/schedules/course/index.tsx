@@ -94,7 +94,7 @@ export default function Course() {
       <PermissionWrapper>
         <div className={styles['button-group']}>
           <Space>
-            <Create Reload={Reload} />
+            <Create Reload={Reload}  />
             <Button onClick={(e)=>{fetchData();}}>刷新列表</Button>
             {/*<Button>导入</Button>*/}
           </Space>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button,Space, Typography, Badge,Avatar } from '@arco-design/web-react';
 import IconText from './icons/text.svg';
 import IconHorizontalVideo from './icons/horizontal.svg';
@@ -8,6 +8,7 @@ import dayjs from 'dayjs';
 import { ContentType, FilterType, Status } from './index';
 import Edit from './edit';
 import Details from './details';
+import Info2 from '@/pages/components/member/info2';
 
 const { Text } = Typography;
 
@@ -20,6 +21,9 @@ export function getColumns(
   t: any,
   callback: (record: Record<string, any>, type: string) => Promise<void>
 ) {
+
+
+
   return [
     {
       title: 'ID',
@@ -80,8 +84,8 @@ export function getColumns(
       render: (_, record) => (
         <Space>
           <Edit props={record}/>
-          <Details props={record} />
-
+          {/*<Details props={record} />*/}
+          <Info2 member={record} />
           {/*<Button*/}
           {/*  type="text"*/}
           {/*  size="small"*/}
