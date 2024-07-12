@@ -16,7 +16,6 @@ const ContentIcon = [
 
 
 export function getColumns(
-  t: any,
   callback: (record: Record<string, any>, type: string) => Promise<void>
 ) {
 
@@ -68,7 +67,7 @@ export function getColumns(
     },
     {
       title: '课程日期',
-      dataIndex: '-',
+      dataIndex: 'date',
       render: (_, record) => (
         <Space>
           {record.date}
@@ -77,7 +76,7 @@ export function getColumns(
     },
     {
       title: '课程时间',
-      dataIndex: '-',
+      dataIndex: 'start_time',
       render: (_, record) => (
         <Space>
           {record.start_time} - {record.end_time}
@@ -86,7 +85,7 @@ export function getColumns(
     },
     {
       title: '签到时间',
-      dataIndex: '-',
+      dataIndex: 'sign_start_time',
       render: (_, record) => (
         <Space>
           {record.sign_start_time} - {record.sign_end_time}
@@ -113,15 +112,12 @@ export function getColumns(
       title: '创建时间',
       dataIndex: 'created_at',
       render: (x) => dayjs(x).format('YYYY-MM-DD HH:mm:ss'),
-      sorter: (a, b) => b.createdTime - a.createdTime
     },
     {
       title: '操作',
       dataIndex: 'operations',
       headerCellStyle: { paddingLeft: '15px' },
       render: (_, record) => {
-
-
         switch (record.status) {
           case 0  :
             return (<Space><Button type="secondary">已取消</Button></Space>);
@@ -157,6 +153,8 @@ export function getColumns(
 
       }
     }
+
+
   ];
 }
 

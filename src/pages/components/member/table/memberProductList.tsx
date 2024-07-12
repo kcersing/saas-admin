@@ -64,7 +64,7 @@ export default function MemberProductList({ memberInfo = {}, loading}: { memberI
       pageSize,
 
     };
-    memberService.memberProductList(params )
+    memberService.memberProductList(params)
       .then((res) => {
         if (res.total===0){
           setData([]);

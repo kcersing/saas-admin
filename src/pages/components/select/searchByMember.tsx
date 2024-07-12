@@ -64,9 +64,9 @@ function SearchByMember({Members}) {
     <Select
       style={{ width: 345 }}
       showSearch
-      mode='multiple'
+
       options={options}
-      placeholder='输入手机号搜索会员,可以单个或多个会员'
+      placeholder='输入手机号搜索会员'
       filterOption={false}
       renderFormat={(option) => {
         return option.children.props.children[1];
@@ -85,9 +85,11 @@ function SearchByMember({Members}) {
         ) : null
       }
       onSearch={debouncedFetchUser}
+      allowClear
       onChange={(value) => {
         Members(value)
       }}
+
 
     />
     </Form.Item>

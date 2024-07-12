@@ -3,15 +3,17 @@ import { Form, Select, Space } from '@arco-design/web-react';
 import memberService  from '@/api/member';
 import { IconFire, IconDelete } from '@arco-design/web-react/icon';
 const FormItem = Form.Item;
-function SelectMemberProductList( props: { mode?: 'multiple' | 'tags'|'',members?:any,type?:string,venue?:number ,MemberProduct: any}) {
+function SelectMemberProperyList( props: { mode?: 'multiple' | 'tags'|'',members?:any,type?:string,venue?:number,memberProduct?:number,MemberProperty: any }) {
   const [list, setList] = useState([])
   useEffect(() => {
     listData();
-  }, []);
+  }, [props.memberProduct]);
   function listData() {
-    memberService.memberProductList({
-      members:props.members,
+    memberService.memberPropertyList({
+      member_product_id:props.memberProduct,
+      type:props.type,
       venue_id:props.venue,
+      members:props.members,
       page: 1,
       pageSize:999,
     })
@@ -25,10 +27,10 @@ function SelectMemberProductList( props: { mode?: 'multiple' | 'tags'|'',members
   }
   const Option = Select.Option;
   return (
-    <FormItem label="产品" field="member_product" rules={[{ required: true }]}>
+    <FormItem label="属性" field="member_propery" rules={[{ required: true }]}>
       <Select
         mode={props.mode}
-        placeholder='选择产品'
+        placeholder='选择属性'
         allowClear
         showSearch
         filterOption={(inputValue, option) =>
@@ -36,7 +38,7 @@ function SelectMemberProductList( props: { mode?: 'multiple' | 'tags'|'',members
         }
         removeIcon={<IconDelete />}
         onChange={(value) => {
-          props.MemberProduct(value)
+          props.MemberProperty(value)
         }}
       >
         {list && list.map((option) => (
@@ -49,4 +51,4 @@ function SelectMemberProductList( props: { mode?: 'multiple' | 'tags'|'',members
   )
 }
 
-export default SelectMemberProductList;
+export default SelectMemberProperyList;

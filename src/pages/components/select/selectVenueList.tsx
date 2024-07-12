@@ -3,7 +3,7 @@ import { Form, Select, Space } from '@arco-design/web-react';
 import sysService from '@/api/sys';
 import { IconLocation, IconDelete } from '@arco-design/web-react/icon';
 const FormItem = Form.Item;
-function SelectVenueList( props: { mode?: 'multiple' | 'tags'|'' }) {
+function SelectVenueList( props: { mode?: 'multiple' | 'tags'|'',Venue }) {
   const [list, setList] = useState([])
   useEffect(() => {
     listData();
@@ -31,6 +31,9 @@ function SelectVenueList( props: { mode?: 'multiple' | 'tags'|'' }) {
            option.props.children.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0
         }
         removeIcon={<IconDelete />}
+        onChange={(value) => {
+          props.Venue(value)
+        }}
         renderFormat={(option, value) => {
           return option ? (
             <span>
