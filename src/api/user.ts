@@ -27,6 +27,9 @@ enum Api {
   ChangePassword = '/api/admin/user/change-password',
   SetRole = '/api/admin/user/set-role',
   UserCreate = '/api/admin/user/create',
+
+
+  SetDefaultVenue = '/api/admin/user/set-default-venue',
 }
 
 export const login = (params: LoginData) => request.post(Api.Login, params);
@@ -42,6 +45,8 @@ export const changePassword = (params: object) => request.post(Api.ChangePasswor
 export const userCreate = (params: object) => request.post(Api.UserCreate, params);
 
 export const setRole = (params: object) => request.post(Api.SetRole, params);
+export const setDefaultVenue = (params: object) => request.post(Api.SetDefaultVenue, params);
+
 
 export default {
   login,
@@ -50,5 +55,6 @@ export default {
   userUpdate,
   userCreate,
   changePassword,
-  setRole
+  setRole,
+  setDefaultVenue
 };

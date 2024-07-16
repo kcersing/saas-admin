@@ -13,7 +13,8 @@ import SelectPropertyList from '@/pages/components/select/selectPropertyList';
 import SelectStaffList from '@/pages/components/select/selectStaffList';
 import SelectPlaceList from '@/pages/components/select/selectPlaceList';
 import { IconPlus } from '@arco-design/web-react/icon';
-
+import { useSelector } from 'react-redux';
+import { GlobalState } from '../../../../types/global';
 const TextArea = Input.TextArea;
 
 const FormItem = Form.Item;
@@ -23,7 +24,7 @@ function Create(props: { date: string; Reload: (arg0: boolean) => void; }) {
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [form] = Form.useForm();
 
-
+  const userInfo = useSelector((state: GlobalState) => state.userInfo);
   function onOk() {
     form.validate().then((res) => {
       console.log(res)
@@ -31,7 +32,7 @@ function Create(props: { date: string; Reload: (arg0: boolean) => void; }) {
       const params = {
         type: "class",
         propertyId: res.classProperty,
-        venueId: res.venue,
+        venueId:userInfo.defaultVenueId,
         placeId: res.place,
         num: res.num,
         startTime: props.date+" "+res.startTime,
@@ -64,7 +65,9 @@ function Create(props: { date: string; Reload: (arg0: boolean) => void; }) {
       span: 20
     }
   };
-
+  useEffect(() => {
+  console.log(1)
+  }, [userInfo.defaultVenueId]);
   return (
     <>
       <Button style={{backgroundColor: '#E8FFFB' }} onClick={() => setVisible(true)} icon={<IconPlus />}  type="dashed">新建</Button>
@@ -86,29 +89,33 @@ function Create(props: { date: string; Reload: (arg0: boolean) => void; }) {
             style: { flexBasis: 'calc(100% - 90px)' }
           }}
         >
-          <SelectVenueList mode="" />
-          <Form.Item
-            shouldUpdate={(prev, next) =>{
-              if (prev.venue !== next.venue){
-                return true
-              }
-            }
-            }
-            noStyle
-          >
-            {(values) => {
-              form.setFieldsValue({
-                ['place'] : undefined,
-                ['classProperty'] : undefined,
-              })
-              return (
-               <>
-                 <SelectPlaceList mode="" venue={values.venue} />
-                 <SelectPropertyList  mode="" label="团课" field="classProperty" venue={values.venue} type="class" />
-               </>
-              );
-            }}
-          </Form.Item>
+          {/*<SelectVenueList mode="" />*/}
+          {/*<Form.Item*/}
+          {/*  shouldUpdate={(prev, next) =>{*/}
+          {/*    if (prev.venue !== next.venue){*/}
+          {/*      return true*/}
+          {/*    }*/}
+          {/*  }*/}
+          {/*  }*/}
+          {/*  noStyle*/}
+          {/*>*/}
+          {/*  {(values) => {*/}
+          {/*    form.setFieldsValue({*/}
+          {/*      ['place'] : undefined,*/}
+          {/*      ['classProperty'] : undefined,*/}
+          {/*    })*/}
+          {/*    return (*/}
+          {/*     <>*/}
+          {/*       <SelectPlaceList mode="" venue={values.venue} />*/}
+          {/*       <SelectPropertyList  mode="" label="团课" field="classProperty" venue={values.venue} type="class" />*/}
+          {/*     </>*/}
+          {/*    );*/}
+          {/*  }}*/}
+          {/*</Form.Item>*/}
+
+
+          <SelectPlaceList mode="" venue={userInfo.defaultVenueId} />
+          <SelectPropertyList  mode="" label="团课" field="classProperty" venue={userInfo.defaultVenueId} type="class" />
 
           <SelectStaffList mode="" />
           <FormItem label="开始时间" field="startTime" rules={[{ required: true }]}>
@@ -139,16 +146,6 @@ function Create(props: { date: string; Reload: (arg0: boolean) => void; }) {
             <TextArea  style={{ minHeight: 64, width: 350 }} />
           </FormItem>
 
-
-        {/*
-
-
-        placeId: res.placeId,
-        num: res.,
-
-
-        coachId: res.coachId,
-        */}
         </Form>
       </Modal>
     </>

@@ -23,10 +23,13 @@ import Details from './details';
 
 import scheduleService from '@/api/schedule';
 import sysService from '@/api/sys';
+import { useSelector } from 'react-redux';
+import { GlobalState } from '../../../../types/global';
 
 const Row = Grid.Row;
 const Col = Grid.Col;
 export default function Schedule() {
+  const userInfo = useSelector((state: GlobalState) => state.userInfo);
   dayjs.extend(weekday);
   dayjs.locale('zh-cn');
   const day = dayjs();
@@ -39,6 +42,10 @@ export default function Schedule() {
   const [lists, setLists] = useState([]);
   function scheduleDateList(params) {
     console.log(params)
+    params={
+      ...params,
+      type:"class",
+    }
     scheduleService.scheduleDateList(params)
       .then((res) => {
         if (res.total === 0) {
@@ -49,10 +56,7 @@ export default function Schedule() {
       });
   }
   const [venueList, setVenueList] = useState([]);
-  const [dvenueId, setDVenueId] = useState(100000);
-
-
-
+  const [dvenueId, setDVenueId] = useState(userInfo.defaultVenueId);
   function venueListData() {
     sysService.venueList({})
       .then((res) => {

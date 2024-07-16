@@ -3,11 +3,13 @@ import { Form, Select, Space } from '@arco-design/web-react';
 import memberService  from '@/api/member';
 import { IconFire, IconDelete } from '@arco-design/web-react/icon';
 const FormItem = Form.Item;
-function SelectMemberProperyList( props: { mode?: 'multiple' | 'tags'|'',members?:any,type?:string,venue?:number,memberProduct?:number,MemberProperty: any }) {
+function SelectMemberProperyList( props: { mode?: 'multiple' | 'tags'|'',members?:any,type?:string,venue?:number,memberProduct?:number,MemberProperty: any,Property: any, }) {
   const [list, setList] = useState([])
   useEffect(() => {
-    listData();
-  }, [props.memberProduct]);
+    if (props.members>0 && props.memberProduct>0){
+      listData();
+    }
+  }, [props.members,props.memberProduct,props.venue]);
   function listData() {
     memberService.memberPropertyList({
       member_product_id:props.memberProduct,
@@ -37,12 +39,14 @@ function SelectMemberProperyList( props: { mode?: 'multiple' | 'tags'|'',members
            option.props.children.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0
         }
         removeIcon={<IconDelete />}
-        onChange={(value) => {
+        onChange={(value, option) => {
           props.MemberProperty(value)
+          props.Property(option.extra)
         }}
+
       >
         {list && list.map((option) => (
-          <Option key={option.id} value={option.id}>
+          <Option key={option.id} value={option.id} extra={option.property_id}>
             {option.name}
           </Option>
         ))}

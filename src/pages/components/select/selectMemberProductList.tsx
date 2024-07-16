@@ -6,8 +6,10 @@ const FormItem = Form.Item;
 function SelectMemberProductList( props: { mode?: 'multiple' | 'tags'|'',members?:any,type?:string,venue?:number ,MemberProduct: any}) {
   const [list, setList] = useState([])
   useEffect(() => {
-    listData();
-  }, []);
+    if (props.members>0){
+      listData();
+    }
+  }, [props.members,props.venue]);
   function listData() {
     memberService.memberProductList({
       members:props.members,

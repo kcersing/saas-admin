@@ -51,6 +51,7 @@ export default function Course() {
     const { current, pageSize } = pagination;
     setLoading(true);
     const params = {
+      type:"course",
       page: current,
       pageSize,
       ...formParams

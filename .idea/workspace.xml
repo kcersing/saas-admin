@@ -5,15 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="febb57be-281a-4d53-b36f-ad64d8b5c0e2" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/components/select/selectMemberPropertyList.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/member/table/memberProductList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/member/table/memberProductList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/components/select/searchByMember.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/searchByMember.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NavBar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NavBar/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/components/select/selectMemberProductList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectMemberProductList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/components/select/selectMemberPropertyList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectMemberPropertyList.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/components/select/selectVenueList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/components/select/selectVenueList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/schedules/course/constants.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/schedules/course/constants.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/schedules/course/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/schedules/course/create.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/schedules/course/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/schedules/course/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/schedules/schedule/create.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/schedules/schedule/create.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/schedules/schedule/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/schedules/schedule/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/types/global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/global.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,6 +181,9 @@
       <workItem from="1720578233066" duration="16278000" />
       <workItem from="1720751742000" duration="596000" />
       <workItem from="1720774629466" duration="4317000" />
+      <workItem from="1721011516247" duration="592000" />
+      <workItem from="1721012281604" duration="1492000" />
+      <workItem from="1721098816838" duration="15525000" />
     </task>
     <servers />
   </component>

@@ -3,7 +3,7 @@ import { Form, Select, Space } from '@arco-design/web-react';
 import sysService from '@/api/sys';
 import { IconLocation, IconDelete } from '@arco-design/web-react/icon';
 const FormItem = Form.Item;
-function SelectVenueList( props: { mode?: 'multiple' | 'tags'|'',Venue }) {
+function SelectVenueList( props: { mode?: 'multiple' | 'tags'|'',Venue?: any}) {
   const [list, setList] = useState([])
   useEffect(() => {
     listData();

@@ -16,6 +16,7 @@ export interface GlobalState {
     roleID?: number;
     roleName?: string;
     roleValue?: string;
+    defaultVenueId?: number;
     permissions: Record<string, string[]>;
   };
   userLoading?: boolean;

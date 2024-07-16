@@ -55,6 +55,7 @@ function Index() {
             roleValue: res.data.roleValue,
             location: 'zh-CN',
             email: res.data.email,
+            defaultVenueId: res.data.defaultVenueId,
             // permissions: Record<string, string[]>;
 
           }, userLoading: false },

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   Tooltip,
   Input,
@@ -36,6 +36,8 @@ import defaultLocale from '@/locale';
 import useStorage from '@/utils/useStorage';
 import { generatePermission } from '@/routes';
 import { GlobalState } from '../../../types/global';
+import sysService from '@/api/sys';
+import userService from '@/api/user';
 
 function Navbar({ show }: { show: boolean }) {
   const t = useLocale();
@@ -61,7 +63,17 @@ function Navbar({ show }: { show: boolean }) {
       Message.info(`You clicked ${key}`);
     }
   }
-
+  const [venueList, setVenueList] = useState([])
+  function venueListData() {
+    sysService.venueList({})
+      .then((res) => {
+        if (res.total===0){
+          setVenueList([]);
+        }else {
+          setVenueList(res.data);
+        }
+      });
+  }
   useEffect(() => {
     dispatch({
       type: 'update-userInfo',
@@ -72,6 +84,7 @@ function Navbar({ show }: { show: boolean }) {
         },
       },
     });
+    venueListData()
   }, [role]);
 
   if (!show) {
@@ -90,6 +103,7 @@ function Navbar({ show }: { show: boolean }) {
     const newRole = role === 'admin' ? 'user' : 'admin';
     setRole(newRole);
   };
+
 
   const droplist = (
     <Menu onClickMenuItem={onMenuItemClick}>
@@ -137,7 +151,7 @@ function Navbar({ show }: { show: boolean }) {
       </Menu.Item>
     </Menu>
   );
-
+  const Option = Select.Option;
   return (
     <div className={styles.navbar}>
       <div className={styles.left}>
@@ -183,6 +197,39 @@ function Navbar({ show }: { show: boolean }) {
         {/*    <IconButton icon={<IconNotification />} />*/}
         {/*  </MessageBox>*/}
         {/*</li>*/}
+        {userInfo.defaultVenueId &&
+          <li>
+            <Select
+              style={{width:200}}
+              placeholder="选择场馆"
+              defaultValue={userInfo.defaultVenueId}
+              onChange={(value) => {
+                userService.setDefaultVenue({ venue_id: value })
+                  .then((res) => {
+                    console.log(res);
+                  });
+
+                dispatch({
+                  type: 'update-userInfo',
+                  payload: {
+                    userInfo: {
+                      ...userInfo,
+                      defaultVenueId: value,
+                    },
+                  },
+                });
+              }}
+            >
+              {venueList && venueList.map((option) => (
+                <Option key={option.id} value={option.id}>
+                  {option.name}
+                </Option>
+              ))}
+            </Select>
+          </li>
+        }
+
+
         <li>
           <Tooltip
             content={
