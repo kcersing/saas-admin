@@ -47,22 +47,22 @@ if (type=="card"){
         {record.count>0? record.count +"-" +record.count_surplus : <>-</> }
       </>)
     },
-    {
-      title: '操作',
-      dataIndex: 'operations',
-      headerCellStyle: { paddingLeft: '15px' },
-      render: (_, record) => (
-        <Space>
-          {(record.count>0 && record.count_surplus>0) || record.count==0 ?
-            <Button
-              onClick={() => {console.log(record)}
-              }
-            >
-              进馆签到
-            </Button>:<></>}
-        </Space>
-      ),
-    },
+    // {
+    //   title: '操作',
+    //   dataIndex: 'operations',
+    //   headerCellStyle: { paddingLeft: '15px' },
+    //   render: (_, record) => (
+    //     <Space>
+    //       {(record.count>0 && record.count_surplus>0) || record.count==0 ?
+    //         <Button
+    //           onClick={() => {console.log(record)}
+    //           }
+    //         >
+    //           进馆签到
+    //         </Button>:<></>}
+    //     </Space>
+    //   ),
+    // },
   ];
 
 }else {
@@ -104,22 +104,22 @@ if (type=="card"){
        title: '截至时间',
        dataIndex: 'cancel_at',
      },
-    {
-      title: '操作',
-      dataIndex: 'operations',
-      headerCellStyle: { paddingLeft: '15px' },
-      render: (_, record) => (
-        <Space>
-          {record.count_surplus>0?
-            <Button
-            onClick={() => {console.log(record)}
-            }
-            >
-            约课
-          </Button>:<></>}
-        </Space>
-      ),
-    },
+    // {
+    //   title: '操作',
+    //   dataIndex: 'operations',
+    //   headerCellStyle: { paddingLeft: '15px' },
+    //   render: (_, record) => (
+    //     <Space>
+    //       {record.count_surplus>0?
+    //         <Button
+    //         onClick={() => {console.log(record)}
+    //         }
+    //         >
+    //         约课
+    //       </Button>:<></>}
+    //     </Space>
+    //   ),
+    // },
   ];
 }
 

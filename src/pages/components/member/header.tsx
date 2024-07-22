@@ -22,9 +22,9 @@ export default function Info({
 
   const [avatar, setAvatar] = useState('');
 
-  function onAvatarChange(_, file) {
-    setAvatar(file.originFile ? URL.createObjectURL(file.originFile) : '');
-  }
+  // function onAvatarChange(_, file) {
+  //   setAvatar(file.originFile ? URL.createObjectURL(file.originFile) : '');
+  // }
 
   useEffect(() => {
     setAvatar(memberInfo.avatar);
@@ -41,19 +41,26 @@ export default function Info({
   const loadingNode = <Skeleton text={{ rows: 1 }} animation />;
   return (
     <div className={styles['info-wrapper']}>
-      <Upload showUploadList={false} onChange={onAvatarChange}>
-        {loading ? (
-          loadingImg
-        ) : (
-          <Avatar
-            size={100}
-            triggerIcon={<IconCamera />}
-            className={styles['info-avatar']}
-          >
-            {avatar ? <img src={avatar} /> : <IconPlus />}
-          </Avatar>
-        )}
-      </Upload>
+      {/*<Upload showUploadList={false} onChange={onAvatarChange}>*/}
+      {/*  {loading ? (*/}
+      {/*    loadingImg*/}
+      {/*  ) : (*/}
+      {/*    <Avatar*/}
+      {/*      size={100}*/}
+      {/*      triggerIcon={<IconCamera />}*/}
+      {/*      className={styles['info-avatar']}*/}
+      {/*    >*/}
+      {/*      {avatar ? <img src={avatar} /> : <IconPlus />}*/}
+      {/*    </Avatar>*/}
+      {/*  )}*/}
+      {/*</Upload>*/}
+      <Avatar
+        size={100}
+        // triggerIcon={<IconCamera />}
+        // className={styles['info-avatar']}
+      >
+        {avatar ? <img src={avatar} /> : <IconPlus />}
+      </Avatar>
       <Descriptions
         className={styles['info-content']}
         column={2}

@@ -26,20 +26,20 @@ export default function MemberProductList({ memberInfo = {}, loading}: { memberI
       title: '状态',
       dataIndex: 'status_name',
     },
-    {
-      title: '操作',
-      dataIndex: 'operations',
-      headerCellStyle: { paddingLeft: '15px' },
-      render: (_, record) => (
-        <Space>
-          <Button
-            onClick={() => {console.log(record)}
-            }
-          >
-          </Button>
-        </Space>
-      ),
-    },
+    // {
+    //   title: '操作',
+    //   dataIndex: 'operations',
+    //   headerCellStyle: { paddingLeft: '15px' },
+    //   render: (_, record) => (
+    //     <Space>
+    //       <Button
+    //         onClick={() => {console.log(record)}
+    //         }
+    //       >
+    //       </Button>
+    //     </Space>
+    //   ),
+    // },
   ];
 
   const [data, setData] = React.useState([]);

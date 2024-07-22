@@ -48,13 +48,13 @@ function MemberSearch() {
 
           <Form.Item initialValue={'1'} field="memberOption" style={{ marginBottom: 0 }} rules={[{ required: true }]}>
             <Select
-              style={{ width: 100, marginRight: 0 }}
+              style={{ width: 120, marginRight: 0 }}
               options=
              {[
                  {value: '1',label: '会员账号ID'},
                  {value: '2',label: '手机号'},
-                 {value: '3',label: '商品编号'},
-                 {value: '4',label: '属性编号'},
+                 // {value: '3',label: '商品编号'},
+                 // {value: '4',label: '属性编号'},
             ]}
             />
           </Form.Item>

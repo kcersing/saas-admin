@@ -1,29 +1,19 @@
-import React, { useState, useEffect, useMemo, useContext } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
-  Button,
-  Form,
-  Input,
-  Message,
-  Modal,
   Table,
-  Spin,
   Card,
-  Select,
-  Tabs,
-  Divider,
+  PaginationProps,
+  Button,
+  Space,
   Typography,
-  Alert,
-  InputNumber,
-  Empty,
-  Statistic
+  Empty, Alert, Modal
 } from '@arco-design/web-react';
-
+import InfoHeader from '@/pages/components/member/header';
+import Main from '@/pages/components/member/main';
 import memberService from '@/api/member';
 
-import InfoHeader from './header';
-import Main from './main';
 
-const Info = ({ Visible, visibles, memberValue, memberOption }) => {
+function MemberDetails({ Visible, visibles, memberValue, memberOption }) {
 
   const [loading, setLoading] = React.useState(false); // table
 
@@ -55,9 +45,8 @@ const Info = ({ Visible, visibles, memberValue, memberOption }) => {
         setMemberInfoErr(err.message);
       });
 
-
-
   }
+
   return (
     <>
       {/*<Button type='primary' htmlType='submit' style={{height:36,marginRight: 5 }} onClick={() => setVisible(true)} icon={<IconAlipayCircle />}>{props.title}</Button>*/}
@@ -70,7 +59,7 @@ const Info = ({ Visible, visibles, memberValue, memberOption }) => {
         }}
         closable
         maskClosable={false}
-        style={{  top: 20,maxWidth: 1200, minWidth:1000 }}
+        style={{ top: 20, maxWidth: 1200, minWidth: 1000 }}
         footer={null}
         getPopupContainer={() => document.body}
 
@@ -89,12 +78,11 @@ const Info = ({ Visible, visibles, memberValue, memberOption }) => {
         </>)
         }
 
-        {!memberInfo && <> <Alert style={{ marginTop: 20,marginBottom:30}} type='error' content={memberInfoErr} /><Empty /></>}
-
+        {!memberInfo && <> <Alert style={{ marginTop: 20, marginBottom: 30 }} type="error" content={memberInfoErr} /><Empty /></>}
 
       </Modal>
     </>
   );
 }
 
-export default Info;
+export default MemberDetails;
