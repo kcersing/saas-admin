@@ -62,11 +62,7 @@ function MemberDetails({ Visible, visibles, memberValue, memberOption }) {
         style={{ top: 20, maxWidth: 1200, minWidth: 1000 }}
         footer={null}
         getPopupContainer={() => document.body}
-
-
         alignCenter={false}
-
-        // afterClose={() => setData([])}
       >
 
         {memberInfo && (<>
