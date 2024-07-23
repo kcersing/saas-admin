@@ -12,8 +12,11 @@ import InfoHeader from '@/pages/components/member/header';
 import Main from '@/pages/components/member/main';
 import memberService from '@/api/member';
 
+import { useLocation } from 'react-router-dom';
+function MemberDetails() {
 
-function MemberDetails({ Visible, visibles, memberValue, memberOption }) {
+  const location = useLocation();
+  const { id } = location.state;
 
   const [loading, setLoading] = React.useState(false); // table
 
@@ -23,16 +26,16 @@ function MemberDetails({ Visible, visibles, memberValue, memberOption }) {
 
   useEffect(() => {
     loadData();
-  }, [visibles, memberValue, memberOption]);
+  }, []);
 
-  console.log(visibles, memberValue, memberOption);
+
 
   function loadData() {
     setLoading(true);
 
     const params = {
-      option: memberOption,
-      value: memberValue
+      option: "1",
+      value: id.toString()
     };
 
     memberService.memberSearch(params)
@@ -50,21 +53,8 @@ function MemberDetails({ Visible, visibles, memberValue, memberOption }) {
   return (
     <>
       {/*<Button type='primary' htmlType='submit' style={{height:36,marginRight: 5 }} onClick={() => setVisible(true)} icon={<IconAlipayCircle />}>{props.title}</Button>*/}
-      <Modal
-        focusLock={true}
-        unmountOnExit={true}
-        visible={visibles}
-        onCancel={() => {
-          Visible(false);
-        }}
-        closable
-        maskClosable={false}
-        style={{ top: 20, maxWidth: 1200, minWidth: 1000 }}
-        footer={null}
-        getPopupContainer={() => document.body}
-        alignCenter={false}
-      >
 
+<Card>
         {memberInfo && (<>
           <Card style={{ padding: '14px 20px' }}>
             <InfoHeader memberInfo={memberInfo} loading={loading} />
@@ -75,8 +65,7 @@ function MemberDetails({ Visible, visibles, memberValue, memberOption }) {
         }
 
         {!memberInfo && <> <Alert style={{ marginTop: 20, marginBottom: 30 }} type="error" content={memberInfoErr} /><Empty /></>}
-
-      </Modal>
+</Card>
     </>
   );
 }

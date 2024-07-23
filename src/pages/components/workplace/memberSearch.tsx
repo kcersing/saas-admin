@@ -1,10 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Form, Input, Select,Link, Typography, Button, Space, Grid, Tooltip, Message } from '@arco-design/web-react';
+import { Form, Input, Select, Typography, Button, Space, Grid, Tooltip, Message } from '@arco-design/web-react';
 import Info from '@/pages/components/member/info';
 import * as fs from 'node:fs';
 import memberService from '@/api/member';
 import MemberDetails from '@/pages/members/details';
-
+import { Link, useLocation } from 'react-router-dom';
 
 function MemberSearch() {
 
@@ -72,6 +72,7 @@ function MemberSearch() {
         </Space>
       </Form>
       {/*<Link href={"/members/details?id?="+member.value}>About页面</Link>*/}
+      <Link to={{ pathname: "/members/details", state: { id: 100000 } }}>详情</Link>
       {visible?<Info Visible={Visible} visibles={visible} memberValue={member.value} memberOption={member.option[0]} />:null}
       {/*{visible? <MemberDetails Visible={Visible} visibles={visible} memberValue={member.value} memberOption={member.option[0]} />:null}*/}
 
